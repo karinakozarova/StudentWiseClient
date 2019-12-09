@@ -16,5 +16,25 @@ namespace StudentWiseClient
         {
             InitializeComponent();
         }
+
+        private void TsBtn_Click(object sender, EventArgs e)
+        {
+            ToolStripButton button = sender as ToolStripButton;
+            string targetTab = button.Text;
+
+            switch (targetTab)
+            {
+                case "Dashboard":
+                case "Events":
+                case "Expenses":
+                case "Complaints":
+                    tcMain.SelectTab($"tp{targetTab}");
+                break;
+
+                default:
+                    tcMain.SelectTab(0);
+                break;
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace StudentWiseClient
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.SuspendLayout();
+            // 
+            // FormMain
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(944, 501);
+            this.Name = "FormMain";
+            this.Text = "StudentWise";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

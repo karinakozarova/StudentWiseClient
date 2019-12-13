@@ -12,16 +12,32 @@ namespace StudentWiseClient
 {
     public partial class FormMain : Form
     {
-        public FormMain()
+        bool isLoggedIn = false;
+        public FormMain(bool isLoggedIn = false)
         {
             InitializeComponent();
+            if (!isLoggedIn)
+            {
+                Login login = new Login();
+                login.ShowDialog();
+
+            }
+
         }
 
         private void TsBtn_Click(object sender, EventArgs e)
-        { 
-            int targetTabIndex = tsMain.Items.IndexOf(sender as ToolStripItem);
-
-            tcMain.SelectTab(targetTabIndex);
+        {
+            if (!isLoggedIn)
+            {
+                // Login login = new Login();
+                //login.Show();
+            }
+            else
+            {
+               // int targetTabIndex = tsMain.Items.IndexOf(sender as ToolStripItem);
+                //tcMain.SelectTab(targetTabIndex);
+            }
+            
         }
     }
 }

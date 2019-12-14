@@ -15,6 +15,7 @@ namespace StudentWiseClient
         public Login()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
         bool IsValidEmail(string email)
         {
@@ -57,8 +58,8 @@ namespace StudentWiseClient
                 this.Hide();
 
                 // TODO: open the dashboard with arguments
-                //FormMain dashboard = new FormMain(true);
-                //dashboard.Show();
+                FormMain dashboard = new FormMain(true);
+                dashboard.Show();
                 return;
             }
             MessageBox.Show("Wrong credentials, try again!");
@@ -67,6 +68,13 @@ namespace StudentWiseClient
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Register registerScreen = new Register();
+            registerScreen.Show();
         }
     }
 }

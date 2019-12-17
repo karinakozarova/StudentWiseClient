@@ -26,10 +26,8 @@ namespace StudentWiseClient
         /// </summary>
         public void Logout()
         {
-            const string logout_url = "https://studentwise.herokuapp.com/api/v1/users/logout";
-
             var response = Server.Send(
-                logout_url,
+                Server.user_logout_url,
                 token,
                 "DELETE",
                 null
@@ -48,6 +46,11 @@ namespace StudentWiseClient
     /// </summary>
     class Server
     {
+        private const string base_url = "https://studentwise.herokuapp.com/api/v1";
+        internal const string user_create_url = base_url + "/users";
+        internal const string user_login_url = base_url + "/users/login";        
+        internal const string user_logout_url = base_url + "/users/logout";
+        
         static internal HttpWebResponse Send(string url, string token, string method, object data)
         {
             WebRequest request = WebRequest.Create(url);
@@ -71,10 +74,8 @@ namespace StudentWiseClient
         /// <returns>A new user session.</returns>
         static public UserSession Login(string email, string password)
         {
-            const string login_url = "https://studentwise.herokuapp.com/api/v1/users/login";
-
             var response = Send(
-                login_url,
+                user_login_url,
                 null,
                 "POST",
                 new
@@ -102,10 +103,8 @@ namespace StudentWiseClient
         /// <returns>A new user session.</returns>
         static public UserSession CreateUser(string email, string first_name, string last_name, string password)
         {
-            const string create_url = "https://studentwise.herokuapp.com/api/v1/users";
-
             var response = Send(
-                create_url,
+                user_create_url,
                 null,
                 "POST",
                 new

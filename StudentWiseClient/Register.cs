@@ -32,7 +32,7 @@ namespace StudentWiseClient
 
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
-            if(String.IsNullOrEmpty(fNameTbx.Text))
+            if (String.IsNullOrEmpty(fNameTbx.Text))
             {
                 MessageBox.Show("Enter your first name!");
                 return;
@@ -59,13 +59,18 @@ namespace StudentWiseClient
                 MessageBox.Show("Enter a valid email address!");
                 return;
             }
-            else
+
+            try
             {
-                // TODO: send them to the api
+                Server.CreateUser(emailAddressTbx.Text, fNameTbx.Text, lNameTbx.Text, passwordTbx.Text);
+
+                // User logged in successfully, go to the according page
                 this.Hide();
-                Login loginScreen = new Login();
-                loginScreen.Show();
-            }
+                FormMain dashboard = new FormMain();
+                dashboard.Show();
+            } catch(Exception ex){
+                MessageBox.Show(ex.ToString());
+            }            
         }
 
         private void LoginLinkL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -12,7 +12,7 @@ namespace StudentWiseClient
 {
     public partial class FormMain : Form
     {
-        public FormMain(bool isLoggedIn = false)
+        public FormMain()
         {
             InitializeComponent();
         }

@@ -17,18 +17,8 @@ namespace StudentWiseClient
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
-        bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+
+        
 
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
@@ -37,11 +27,13 @@ namespace StudentWiseClient
                 MessageBox.Show("Enter your first name!");
                 return;
             }
+
             if(String.IsNullOrEmpty(lNameTbx.Text))
             {
                 MessageBox.Show("Enter your last name!");
                 return;
             }
+
             if (String.IsNullOrEmpty(emailAddressTbx.Text))
             {
                 MessageBox.Show("Enter your email address!");
@@ -54,7 +46,7 @@ namespace StudentWiseClient
                 return;
             }
 
-            if (!IsValidEmail(emailAddressTbx.Text))
+            if (!EmailValidation.IsValidEmail(emailAddressTbx.Text))
             {
                 MessageBox.Show("Enter a valid email address!");
                 return;

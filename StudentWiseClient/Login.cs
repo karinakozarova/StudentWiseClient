@@ -17,6 +17,7 @@ namespace StudentWiseClient
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
+
         bool IsValidEmail(string email)
         {
             try
@@ -32,7 +33,7 @@ namespace StudentWiseClient
 
         private void ContinueBttn_Click(object sender, EventArgs e)
         {
-            bool isPasswordCorrect = true;
+            bool isPasswordCorrect = false;
 
             if (String.IsNullOrEmpty(emailAddressTbx.Text))
             {
@@ -51,10 +52,17 @@ namespace StudentWiseClient
                 return;
             }
 
-            // TODO: send them to the api
-            // TODO: check if they are correct 
+            try
+            {
+                Server.Login(emailAddressTbx.Text, passwordTbx.Text);
+                isPasswordCorrect = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
-            if(isPasswordCorrect){
+            if (isPasswordCorrect){
                 this.Hide();
 
                 // TODO: open the dashboard with arguments

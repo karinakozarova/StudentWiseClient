@@ -15,11 +15,6 @@ namespace StudentWiseClient
         public FormMain(bool isLoggedIn = false)
         {
             InitializeComponent();
-            if (!isLoggedIn)
-            {
-                Login login = new Login();
-                login.ShowDialog();
-            }
         }
 
         private void TsBtn_Click(object sender, EventArgs e)

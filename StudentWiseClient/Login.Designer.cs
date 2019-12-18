@@ -66,7 +66,7 @@
             this.emailAddressTbx.Location = new System.Drawing.Point(21, 256);
             this.emailAddressTbx.Name = "emailAddressTbx";
             this.emailAddressTbx.Size = new System.Drawing.Size(364, 48);
-            this.emailAddressTbx.TabIndex = 3;
+            this.emailAddressTbx.TabIndex = 1;
             // 
             // label3
             // 
@@ -85,7 +85,7 @@
             this.continueBttn.Location = new System.Drawing.Point(69, 444);
             this.continueBttn.Name = "continueBttn";
             this.continueBttn.Size = new System.Drawing.Size(255, 61);
-            this.continueBttn.TabIndex = 6;
+            this.continueBttn.TabIndex = 3;
             this.continueBttn.Text = "Continue";
             this.continueBttn.UseVisualStyleBackColor = false;
             this.continueBttn.Click += new System.EventHandler(this.ContinueBttn_Click);
@@ -107,7 +107,7 @@
             this.linkLabel1.Location = new System.Drawing.Point(132, 543);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(114, 35);
-            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Register here!";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
@@ -119,7 +119,7 @@
             this.passwordTbx.Name = "passwordTbx";
             this.passwordTbx.PasswordChar = '*';
             this.passwordTbx.Size = new System.Drawing.Size(364, 48);
-            this.passwordTbx.TabIndex = 9;
+            this.passwordTbx.TabIndex = 2;
             // 
             // pictureBox1
             // 

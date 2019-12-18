@@ -20,7 +20,6 @@ namespace StudentWiseClient
         private void TsBtn_Click(object sender, EventArgs e)
         { 
             int targetTabIndex = tsMain.Items.IndexOf(sender as ToolStripItem);
-
             tcMain.SelectTab(targetTabIndex);
         }
     }

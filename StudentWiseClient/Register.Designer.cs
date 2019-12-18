@@ -71,7 +71,7 @@
             this.emailAddressTbx.Location = new System.Drawing.Point(24, 321);
             this.emailAddressTbx.Name = "emailAddressTbx";
             this.emailAddressTbx.Size = new System.Drawing.Size(364, 37);
-            this.emailAddressTbx.TabIndex = 4;
+            this.emailAddressTbx.TabIndex = 3;
             // 
             // passwordTbx
             // 
@@ -80,7 +80,7 @@
             this.passwordTbx.Name = "passwordTbx";
             this.passwordTbx.PasswordChar = '*';
             this.passwordTbx.Size = new System.Drawing.Size(364, 37);
-            this.passwordTbx.TabIndex = 5;
+            this.passwordTbx.TabIndex = 4;
             // 
             // fNameTbx
             // 
@@ -88,7 +88,7 @@
             this.fNameTbx.Location = new System.Drawing.Point(24, 226);
             this.fNameTbx.Name = "fNameTbx";
             this.fNameTbx.Size = new System.Drawing.Size(171, 37);
-            this.fNameTbx.TabIndex = 7;
+            this.fNameTbx.TabIndex = 1;
             // 
             // lNameTbx
             // 
@@ -96,7 +96,7 @@
             this.lNameTbx.Location = new System.Drawing.Point(219, 226);
             this.lNameTbx.Name = "lNameTbx";
             this.lNameTbx.Size = new System.Drawing.Size(171, 37);
-            this.lNameTbx.TabIndex = 8;
+            this.lNameTbx.TabIndex = 2;
             // 
             // emailAddressLbl
             // 
@@ -145,7 +145,7 @@
             this.loginLinkL.Location = new System.Drawing.Point(167, 566);
             this.loginLinkL.Name = "loginLinkL";
             this.loginLinkL.Size = new System.Drawing.Size(59, 35);
-            this.loginLinkL.TabIndex = 15;
+            this.loginLinkL.TabIndex = 6;
             this.loginLinkL.TabStop = true;
             this.loginLinkL.Text = "Login!";
             this.loginLinkL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoginLinkL_LinkClicked);
@@ -167,7 +167,7 @@
             this.registerBtn.Location = new System.Drawing.Point(73, 467);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(255, 61);
-            this.registerBtn.TabIndex = 13;
+            this.registerBtn.TabIndex = 5;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = false;
             this.registerBtn.Click += new System.EventHandler(this.RegisterBtn_Click);

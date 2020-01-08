@@ -46,14 +46,14 @@ namespace StudentWiseClient
     /// </summary>
     public class Event
     {
-        public int Id { get; internal set; }
-        public string EventType { get; internal set; }
-        public string Title { get; internal set; }
-        public string Description { get; internal set; }
-        public DateTime? StartsAt { get; internal set; }
-        public DateTime? FinishesAt { get; internal set; }
-        public DateTime CreatedAt { get; internal set; }
-        public DateTime UpdatedAt { get; internal set; }
+        public int Id { get; protected set; }
+        public string EventType { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime? StartsAt { get; set; }
+        public DateTime? FinishesAt { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         internal Event(ParsedJson json)
         {
@@ -67,6 +67,9 @@ namespace StudentWiseClient
             UpdatedAt = json.Members["updated_at"].GetDateTime();
         }
 
+        /// <summary>
+        /// Create a new event.
+        /// </summary>
         public static Event Create(
             UserSession user,
             string title,
@@ -75,12 +78,33 @@ namespace StudentWiseClient
             DateTime? finishes_at = null
             )
         {
+            // Modifiying events with negative IDs is reserved for creation of new ones
+            return Modify(user, -1, title, description, starts_at, finishes_at);
+        }
+
+        /// <summary>
+        /// Modify an existing event by ID.
+        /// </summary>
+        public static Event Modify(
+            UserSession user,
+            int event_id,
+            string title,
+            string description = null,
+            DateTime? starts_at = null,
+            DateTime? finishes_at = null
+            )
+        {
+            // Negative event IDs are reserved for creating new events.
+
             var response = Server.Send(
-                Server.event_create_url,
+                event_id < 0 ?
+                    Server.event_create_url :
+                    string.Format(Server.event_update_url, event_id),
                 user.token,
-                "POST",
+                event_id < 0 ? "POST" : "PUT",
                 new
                 {
+                    // The API expects "event" which is reserved in C#
                     _event = new
                     {
                         title,
@@ -91,6 +115,7 @@ namespace StudentWiseClient
                 },
                 new JsonSerializerOptions
                 {
+                    // Fix the "event" issue
                     PropertyNamingPolicy = new FixReservedWordsNamingPolicy()
                 }
             );
@@ -104,9 +129,28 @@ namespace StudentWiseClient
             }
 
             // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during event creation.");
+            throw new Exception("Something went wrong during event creation/modification.");
         }
 
+        /// <summary>
+        /// Update information about the event on the server.
+        /// </summary>
+        /// <param name="user"></param>
+        public void ApplyChanges(UserSession user)
+        {
+            var updatedEvent = Modify(user, Id, Title, Description, StartsAt, FinishesAt);
+
+            // Make sure the information is up-to-date
+            Id = updatedEvent.Id;
+            Title = updatedEvent.Title;
+            Description = updatedEvent.Description;
+            StartsAt = updatedEvent.StartsAt;
+            FinishesAt = updatedEvent.FinishesAt;
+        }
+
+        /// <summary>
+        /// Open an existing event by ID.
+        /// </summary>
         public static Event Query(UserSession user, int id)
         {
             var response = Server.Send(
@@ -128,6 +172,9 @@ namespace StudentWiseClient
             throw new Exception("Something went wrong during event querying.");
         }
 
+        /// <summary>
+        /// Delete an event by ID.
+        /// </summary>
         public static void Delete(UserSession user, int id)
         {
             var response = Server.Send(
@@ -142,6 +189,9 @@ namespace StudentWiseClient
                 throw new Exception("Something went wrong during event deletion.");
         }
 
+        /// <summary>
+        /// Delete this event.
+        /// </summary>
         public void Delete(UserSession user)
         {
             Delete(user, Id);
@@ -191,6 +241,7 @@ namespace StudentWiseClient
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_create_url = base_url + "/events";
         internal const string event_query_url = base_url + "/events/{0}";
+        internal const string event_update_url = base_url + "/events/{0}";
         internal const string event_delete_url = base_url + "/events/{0}";
 
         static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)

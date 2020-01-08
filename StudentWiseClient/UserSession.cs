@@ -127,6 +127,25 @@ namespace StudentWiseClient
             // TODO: parse the response to throw proper exceptions
             throw new Exception("Something went wrong during event querying.");
         }
+
+        public static void Delete(UserSession user, int id)
+        {
+            var response = Server.Send(
+                string.Format(Server.event_delete_url, id),
+                user.token,
+                "DELETE",
+                null
+            );
+
+            // TODO: parse the response to throw proper exceptions
+            if (response.StatusCode != HttpStatusCode.OK)            
+                throw new Exception("Something went wrong during event deletion.");
+        }
+
+        public void Delete(UserSession user)
+        {
+            Delete(user, Id);
+        }
     }
 
     /// <summary>
@@ -172,6 +191,7 @@ namespace StudentWiseClient
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_create_url = base_url + "/events";
         internal const string event_query_url = base_url + "/events/{0}";
+        internal const string event_delete_url = base_url + "/events/{0}";
 
         static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)
         {

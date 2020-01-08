@@ -71,31 +71,33 @@ namespace StudentWiseClient
         /// Create a new event.
         /// </summary>
         public static Event Create(
-            UserSession user,
             string title,
             string description = null,
             DateTime? starts_at = null,
-            DateTime? finishes_at = null
+            DateTime? finishes_at = null,
+            UserSession user = null
             )
         {
             // Modifiying events with negative IDs is reserved for creation of new ones
-            return Modify(user, -1, title, description, starts_at, finishes_at);
+            return Modify(-1, title, description, starts_at, finishes_at, user);
         }
 
         /// <summary>
         /// Modify an existing event by ID.
         /// </summary>
         public static Event Modify(
-            UserSession user,
             int event_id,
             string title,
             string description = null,
             DateTime? starts_at = null,
-            DateTime? finishes_at = null
+            DateTime? finishes_at = null,
+            UserSession user = null
             )
         {
-            // Negative event IDs are reserved for creating new events.
+            // Assume current session by default
+            user = user ?? Server.FallbackToCurrentSession;
 
+            // Negative event IDs are reserved for creating new events.
             var response = Server.Send(
                 event_id < 0 ?
                     Server.event_create_url :
@@ -120,7 +122,7 @@ namespace StudentWiseClient
                 }
             );
 
-            if (response.StatusCode == HttpStatusCode.Created)
+            if (response.StatusCode == HttpStatusCode.Created || response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 var eventInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
@@ -136,9 +138,9 @@ namespace StudentWiseClient
         /// Update information about the event on the server.
         /// </summary>
         /// <param name="user"></param>
-        public void ApplyChanges(UserSession user)
+        public void ApplyChanges(UserSession user = null)
         {
-            var updatedEvent = Modify(user, Id, Title, Description, StartsAt, FinishesAt);
+            var updatedEvent = Modify(Id, Title, Description, StartsAt, FinishesAt, user);
 
             // Make sure the information is up-to-date
             Id = updatedEvent.Id;
@@ -151,8 +153,11 @@ namespace StudentWiseClient
         /// <summary>
         /// Open an existing event by ID.
         /// </summary>
-        public static Event Query(UserSession user, int id)
+        public static Event Query(int id, UserSession user = null)
         {
+            // Assume current session by default
+            user = user ?? Server.FallbackToCurrentSession;
+
             var response = Server.Send(
                 string.Format(Server.event_query_url, id),
                 user.token,
@@ -175,8 +180,11 @@ namespace StudentWiseClient
         /// <summary>
         /// Delete an event by ID.
         /// </summary>
-        public static void Delete(UserSession user, int id)
+        public static void Delete(int id, UserSession user = null)
         {
+            // Assume current session by default
+            user = user ?? Server.FallbackToCurrentSession;
+
             var response = Server.Send(
                 string.Format(Server.event_delete_url, id),
                 user.token,
@@ -192,10 +200,11 @@ namespace StudentWiseClient
         /// <summary>
         /// Delete this event.
         /// </summary>
-        public void Delete(UserSession user)
+        public void Delete(UserSession user = null)
         {
-            Delete(user, Id);
+            Delete(Id, user);
         }
+
     }
 
     /// <summary>
@@ -259,6 +268,23 @@ namespace StudentWiseClient
                     stream.Write(JsonSerializer.Serialize(data, options));
 
             return (HttpWebResponse)request.GetResponse();
+        }
+
+        /// <summary>
+        /// Methods that act on behalf of a user assume this session 
+        /// if the caller does not specify a user session explicitly.
+        /// </summary>
+        static public UserSession CurrentSession { get; set; }
+
+        static internal UserSession FallbackToCurrentSession
+        {
+            get
+            {
+                if (CurrentSession != null)
+                    return CurrentSession;
+                else
+                    throw new ArgumentNullException("Current user session is not assigned.");
+            } 
         }
 
         /// <summary>

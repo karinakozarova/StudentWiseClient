@@ -54,33 +54,30 @@ namespace StudentWiseClient
         public DateTime? FinishesAt { get; internal set; }
         public DateTime CreatedAt { get; internal set; }
         public DateTime UpdatedAt { get; internal set; }
-    }
 
-    /// <summary>
-    /// Represents an authenticated user.
-    /// </summary>
-    public class UserSession
-    {
-        private readonly string token;
-
-        internal UserSession(string authToken)
+        internal Event(ParsedJson json)
         {
-            token = authToken;
+            Id = json.Members["id"].GetInt32();
+            Description = json.Member("description")?.GetString();
+            EventType = json.Member("event_type")?.GetString();
+            Title = json.Member("title")?.GetString();
+            StartsAt = json.Member("starts_at")?.GetDateTime();
+            FinishesAt = json.Member("finishes_at")?.GetDateTime();
+            CreatedAt = json.Members["created_at"].GetDateTime();
+            UpdatedAt = json.Members["updated_at"].GetDateTime();
         }
 
-        /// <summary>
-        /// Creates a new shared event.
-        /// </summary>
-        public Event CreateEvent(string title, string description, string starts_at, string finishes_at)
+        public static Event Create(
+            UserSession user,
+            string title,
+            string description = null,
+            DateTime? starts_at = null,
+            DateTime? finishes_at = null
+            )
         {
-            var serializeOptions = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = new FixReservedWordsNamingPolicy()
-            };
-
             var response = Server.Send(
                 Server.event_create_url,
-                token,
+                user.token,
                 "POST",
                 new
                 {
@@ -92,30 +89,56 @@ namespace StudentWiseClient
                         finishes_at
                     }
                 },
-                serializeOptions
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = new FixReservedWordsNamingPolicy()
+                }
             );
 
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                string json = reader.ReadToEnd();
-                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(json, serializeOptions);
+                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
 
-                return new Event()
-                {
-                    Id = eventInfo.Members["id"].GetInt32(),
-                    Description = eventInfo.Member("description")?.GetString(),
-                    EventType = eventInfo.Member("event_type")?.GetString(),
-                    Title = eventInfo.Member("title")?.GetString(),
-                    StartsAt = eventInfo.Member("starts_at")?.GetDateTime(),
-                    FinishesAt = eventInfo.Member("finishes_at")?.GetDateTime(),
-                    CreatedAt = eventInfo.Members["created_at"].GetDateTime(),
-                    UpdatedAt = eventInfo.Members["updated_at"].GetDateTime()
-                };
+                return new Event(eventInfo);
             }
 
             // TODO: parse the response to throw proper exceptions
             throw new Exception("Something went wrong during event creation.");
+        }
+
+        public static Event Query(UserSession user, int id)
+        {
+            var response = Server.Send(
+                string.Format(Server.event_query_url, id),
+                user.token,
+                "GET",
+                null
+            );
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
+
+                return new Event(eventInfo);
+            }
+
+            // TODO: parse the response to throw proper exceptions
+            throw new Exception("Something went wrong during event querying.");
+        }
+    }
+
+    /// <summary>
+    /// Represents an authenticated user.
+    /// </summary>
+    public class UserSession
+    {
+        internal readonly string token;
+
+        internal UserSession(string authToken)
+        {
+            token = authToken;
         }
 
         /// <summary>
@@ -148,6 +171,7 @@ namespace StudentWiseClient
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_create_url = base_url + "/events";
+        internal const string event_query_url = base_url + "/events/{0}";
 
         static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)
         {

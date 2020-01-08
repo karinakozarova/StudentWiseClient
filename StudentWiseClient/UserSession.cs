@@ -5,20 +5,117 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Net;
 
 namespace StudentWiseClient
 {
     /// <summary>
+    /// A class that overwrites names in JSON to fix issues with reserved words in C#.
+    /// </summary>
+    internal class FixReservedWordsNamingPolicy : JsonNamingPolicy
+    {
+        public override string ConvertName(string name)
+        {
+            switch (name)
+            {
+                case "_event": return "event";
+            }
+            return name;
+        }
+    }
+
+    /// <summary>
+    /// A generic class to hold parsed JSON and access its members.
+    /// </summary>
+    internal class ParsedJson
+    {
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Members { get; set; }
+        public JsonElement? Member(string name)
+        {
+            if (Members.TryGetValue(name, out JsonElement result) && result.ValueKind != JsonValueKind.Null)
+                return result;
+
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Represents an event organized by a user.
+    /// </summary>
+    public class Event
+    {
+        public int Id { get; internal set; }
+        public string EventType { get; internal set; }
+        public string Title { get; internal set; }
+        public string Description { get; internal set; }
+        public DateTime? StartsAt { get; internal set; }
+        public DateTime? FinishesAt { get; internal set; }
+        public DateTime CreatedAt { get; internal set; }
+        public DateTime UpdatedAt { get; internal set; }
+    }
+
+    /// <summary>
     /// Represents an authenticated user.
     /// </summary>
-    class UserSession
+    public class UserSession
     {
         private readonly string token;
 
         internal UserSession(string authToken)
         {
             token = authToken;
+        }
+
+        /// <summary>
+        /// Creates a new shared event.
+        /// </summary>
+        public Event CreateEvent(string title, string description, string starts_at, string finishes_at)
+        {
+            var serializeOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = new FixReservedWordsNamingPolicy()
+            };
+
+            var response = Server.Send(
+                Server.event_create_url,
+                token,
+                "POST",
+                new
+                {
+                    _event = new
+                    {
+                        title,
+                        description,
+                        starts_at,
+                        finishes_at
+                    }
+                },
+                serializeOptions
+            );
+
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                string json = reader.ReadToEnd();
+                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(json, serializeOptions);
+
+                return new Event()
+                {
+                    Id = eventInfo.Members["id"].GetInt32(),
+                    Description = eventInfo.Member("description")?.GetString(),
+                    EventType = eventInfo.Member("event_type")?.GetString(),
+                    Title = eventInfo.Member("title")?.GetString(),
+                    StartsAt = eventInfo.Member("starts_at")?.GetDateTime(),
+                    FinishesAt = eventInfo.Member("finishes_at")?.GetDateTime(),
+                    CreatedAt = eventInfo.Members["created_at"].GetDateTime(),
+                    UpdatedAt = eventInfo.Members["updated_at"].GetDateTime()
+                };
+            }
+
+            // TODO: parse the response to throw proper exceptions
+            throw new Exception("Something went wrong during event creation.");
         }
 
         /// <summary>
@@ -44,14 +141,15 @@ namespace StudentWiseClient
     /// <summary>
     /// Represents a server that logs in users and creates new accounts.
     /// </summary>
-    class Server
+    public class Server
     {
         private const string base_url = "https://studentwise.herokuapp.com/api/v1";
         internal const string user_create_url = base_url + "/users";
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
-        
-        static internal HttpWebResponse Send(string url, string token, string method, object data)
+        internal const string event_create_url = base_url + "/events";
+
+        static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)
         {
             WebRequest request = WebRequest.Create(url);
 
@@ -63,7 +161,7 @@ namespace StudentWiseClient
 
             if (data != null)
                 using (var stream = new StreamWriter(request.GetRequestStream()))
-                    stream.Write(JsonSerializer.Serialize(data));
+                    stream.Write(JsonSerializer.Serialize(data, options));
 
             return (HttpWebResponse)request.GetResponse();
         }

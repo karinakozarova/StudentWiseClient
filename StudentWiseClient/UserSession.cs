@@ -41,13 +41,20 @@ namespace StudentWiseClient
         }
     }
 
+    public enum EventType
+    {
+        Other,
+        Duty,
+        Party
+    }
+
     /// <summary>
     /// Represents an event organized by a user.
     /// </summary>
     public class Event
     {
         public int Id { get; protected set; }
-        public string EventType { get; set; }
+        public EventType Type { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime? StartsAt { get; set; }
@@ -59,12 +66,16 @@ namespace StudentWiseClient
         {
             Id = json.Members["id"].GetInt32();
             Description = json.Member("description")?.GetString();
-            EventType = json.Member("event_type")?.GetString();
             Title = json.Member("title")?.GetString();
             StartsAt = json.Member("starts_at")?.GetDateTime();
             FinishesAt = json.Member("finishes_at")?.GetDateTime();
             CreatedAt = json.Members["created_at"].GetDateTime();
             UpdatedAt = json.Members["updated_at"].GetDateTime();
+
+            if (Enum.TryParse(json.Member("event_type")?.GetString(), true, out EventType parsedType))
+                Type = parsedType;
+            else
+                Type = EventType.Other;
         }
 
         /// <summary>
@@ -73,13 +84,14 @@ namespace StudentWiseClient
         public static Event Create(
             string title,
             string description = null,
+            EventType event_type = EventType.Other,
             DateTime? starts_at = null,
             DateTime? finishes_at = null,
             UserSession user = null
             )
         {
             // Modifiying events with negative IDs is reserved for creation of new ones
-            return Modify(-1, title, description, starts_at, finishes_at, user);
+            return Modify(-1, title, description, event_type, starts_at, finishes_at, user);
         }
 
         /// <summary>
@@ -89,6 +101,7 @@ namespace StudentWiseClient
             int event_id,
             string title,
             string description = null,
+            EventType event_type = EventType.Other,
             DateTime? starts_at = null,
             DateTime? finishes_at = null,
             UserSession user = null
@@ -111,6 +124,7 @@ namespace StudentWiseClient
                     {
                         title,
                         description,
+                        event_type = event_type.ToString().ToLower(),
                         starts_at,
                         finishes_at
                     }
@@ -140,10 +154,11 @@ namespace StudentWiseClient
         /// <param name="user"></param>
         public void ApplyChanges(UserSession user = null)
         {
-            var updatedEvent = Modify(Id, Title, Description, StartsAt, FinishesAt, user);
+            var updatedEvent = Modify(Id, Title, Description, Type, StartsAt, FinishesAt, user);
 
             // Make sure the information is up-to-date
             Id = updatedEvent.Id;
+            Type = updatedEvent.Type;
             Title = updatedEvent.Title;
             Description = updatedEvent.Description;
             StartsAt = updatedEvent.StartsAt;

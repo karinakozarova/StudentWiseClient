@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailValidation.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

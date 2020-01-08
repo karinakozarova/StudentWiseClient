@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Net;
 
 namespace StudentWiseClient
@@ -12,9 +13,9 @@ namespace StudentWiseClient
     /// <summary>
     /// Represents an authenticated user.
     /// </summary>
-    class UserSession
+    public class UserSession
     {
-        private readonly string token;
+        internal readonly string token;
 
         internal UserSession(string authToken)
         {
@@ -44,14 +45,18 @@ namespace StudentWiseClient
     /// <summary>
     /// Represents a server that logs in users and creates new accounts.
     /// </summary>
-    class Server
+    public class Server
     {
         private const string base_url = "https://studentwise.herokuapp.com/api/v1";
         internal const string user_create_url = base_url + "/users";
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
-        
-        static internal HttpWebResponse Send(string url, string token, string method, object data)
+        internal const string event_create_url = base_url + "/events";
+        internal const string event_query_url = base_url + "/events/{0}";
+        internal const string event_update_url = base_url + "/events/{0}";
+        internal const string event_delete_url = base_url + "/events/{0}";
+
+        static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)
         {
             WebRequest request = WebRequest.Create(url);
 
@@ -63,9 +68,26 @@ namespace StudentWiseClient
 
             if (data != null)
                 using (var stream = new StreamWriter(request.GetRequestStream()))
-                    stream.Write(JsonSerializer.Serialize(data));
+                    stream.Write(JsonSerializer.Serialize(data, options));
 
             return (HttpWebResponse)request.GetResponse();
+        }
+
+        /// <summary>
+        /// Methods that act on behalf of a user assume this session 
+        /// if the caller does not specify a user session explicitly.
+        /// </summary>
+        static public UserSession CurrentSession { get; set; }
+
+        static internal UserSession FallbackToCurrentSession
+        {
+            get
+            {
+                if (CurrentSession != null)
+                    return CurrentSession;
+                else
+                    throw new ArgumentNullException("Current user session is not assigned.");
+            } 
         }
 
         /// <summary>
@@ -126,6 +148,22 @@ namespace StudentWiseClient
 
             // TODO: parse the response to throw proper exceptions
             throw new Exception("Something went wrong during account creation.");
+        }
+    }
+
+    /// <summary>
+    /// A generic class to hold parsed JSON and access its members.
+    /// </summary>
+    internal class ParsedJson
+    {
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> Members { get; set; }
+        public JsonElement? Member(string name)
+        {
+            if (Members.TryGetValue(name, out JsonElement result) && result.ValueKind != JsonValueKind.Null)
+                return result;
+
+            return null;
         }
     }
 }

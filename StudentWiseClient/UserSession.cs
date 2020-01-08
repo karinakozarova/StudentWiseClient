@@ -53,14 +53,14 @@ namespace StudentWiseClient
     /// </summary>
     public class Event
     {
-        public int Id { get; protected set; }
-        public EventType Type { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime? StartsAt { get; set; }
-        public DateTime? FinishesAt { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int Id { get; }
+        public EventType Type { get; protected set; }
+        public string Title { get; protected set; }
+        public string Description { get; protected set; }
+        public DateTime? StartsAt { get; protected set; }
+        public DateTime? FinishesAt { get; protected set; }
+        public DateTime CreatedAt { get; protected set; }
+        public DateTime UpdatedAt { get; protected set; }
 
         internal Event(ParsedJson json)
         {
@@ -90,8 +90,18 @@ namespace StudentWiseClient
             UserSession user = null
             )
         {
-            // Modifiying events with negative IDs is reserved for creation of new ones
-            return Modify(-1, title, description, event_type, starts_at, finishes_at, user);
+            // Updating events with negative IDs is reserved for creation of new ones
+            return InvokeUpdate(-1,
+                new
+                {
+                    title,
+                    description,
+                    event_type = event_type.ToString().ToLower(),
+                    starts_at,
+                    finishes_at
+                },
+                user
+            );
         }
 
         /// <summary>
@@ -104,6 +114,70 @@ namespace StudentWiseClient
             EventType event_type = EventType.Other,
             DateTime? starts_at = null,
             DateTime? finishes_at = null,
+            UserSession user = null
+            )
+        {
+            return InvokeUpdate(
+                event_id,
+                new
+                {
+                    title,
+                    description,
+                    event_type = event_type.ToString().ToLower(),
+                    starts_at,
+                    finishes_at
+                },
+                user
+            );
+        }
+
+        public void SetType(EventType value, UserSession user = null)
+        {
+            if (value != Type)
+            {
+                InvokeUpdate(Id, new { event_type = Type.ToString().ToLower() }, user);
+                Type = value;
+            }
+        }
+
+        public void SetTitle(string value, UserSession user = null)
+        {
+            if (value != Title)
+            {
+                InvokeUpdate(Id, new { title = Title }, user);
+                Title = value;
+            }
+        }
+
+        public void SetDescription(string value, UserSession user = null)
+        {
+            if (value != Description)
+            {
+                InvokeUpdate(Id, new { description = Description }, user);
+                Description = value;
+            }
+
+        }
+        public void SetStartsAt(DateTime? value, UserSession user = null)
+        {
+            if (value != StartsAt)
+            {
+                InvokeUpdate(Id, new { starts_at = StartsAt }, user);
+                StartsAt = value;
+            }
+        }
+        public void SetFinishesAt(DateTime? value, UserSession user = null)
+        {
+            if (value != FinishesAt)
+            {
+                InvokeUpdate(Id, new { finishes_at = FinishesAt }, user);
+                FinishesAt = value;
+            }
+        }
+
+        protected static Event InvokeUpdate(
+            int event_id,
+            object payload,
             UserSession user = null
             )
         {
@@ -120,14 +194,7 @@ namespace StudentWiseClient
                 new
                 {
                     // The API expects "event" which is reserved in C#
-                    _event = new
-                    {
-                        title,
-                        description,
-                        event_type = event_type.ToString().ToLower(),
-                        starts_at,
-                        finishes_at
-                    }
+                    _event = payload
                 },
                 new JsonSerializerOptions
                 {
@@ -146,23 +213,6 @@ namespace StudentWiseClient
 
             // TODO: parse the response to throw proper exceptions
             throw new Exception("Something went wrong during event creation/modification.");
-        }
-
-        /// <summary>
-        /// Update information about the event on the server.
-        /// </summary>
-        /// <param name="user"></param>
-        public void ApplyChanges(UserSession user = null)
-        {
-            var updatedEvent = Modify(Id, Title, Description, Type, StartsAt, FinishesAt, user);
-
-            // Make sure the information is up-to-date
-            Id = updatedEvent.Id;
-            Type = updatedEvent.Type;
-            Title = updatedEvent.Title;
-            Description = updatedEvent.Description;
-            StartsAt = updatedEvent.StartsAt;
-            FinishesAt = updatedEvent.FinishesAt;
         }
 
         /// <summary>

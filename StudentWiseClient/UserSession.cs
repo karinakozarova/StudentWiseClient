@@ -34,7 +34,7 @@ namespace StudentWiseClient
                 null
             );
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode != HttpStatusCode.NoContent)
             {
                 // TODO: or maybe we should ignore logout errors?
                 throw new Exception("Something went wrong during logging out.");
@@ -61,14 +61,16 @@ namespace StudentWiseClient
             WebRequest request = WebRequest.Create(url);
 
             request.Method = method;
-            request.ContentType = "application/json";
 
             if (token != null)
                 request.Headers.Add("authorization", token);
 
             if (data != null)
+            {
+                request.ContentType = "application/json";
                 using (var stream = new StreamWriter(request.GetRequestStream()))
                     stream.Write(JsonSerializer.Serialize(data, options));
+            }
 
             return (HttpWebResponse)request.GetResponse();
         }

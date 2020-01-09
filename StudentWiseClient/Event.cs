@@ -127,7 +127,7 @@ namespace StudentWiseClient
             );
 
             // TODO: parse the response to throw proper exceptions
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode != HttpStatusCode.NoContent)
                 throw new Exception("Something went wrong during event deletion.");
         }
 

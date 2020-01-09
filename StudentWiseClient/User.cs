@@ -52,5 +52,36 @@ namespace StudentWiseClient
             // TODO: parse the response to throw proper exceptions
             throw new Exception("Something went wrong during user querying.");
         }
+
+        public static List<User> Enumerate(UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                Server.user_enumerate_url,
+                session.token,
+                "GET",
+                null
+            );
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var doc = JsonDocument.Parse(reader.ReadToEnd());
+                var result = new List<User>(doc.RootElement.GetArrayLength());
+
+                foreach (JsonElement element in doc.RootElement.EnumerateArray())
+                {
+                    var info = JsonSerializer.Deserialize<ParsedJson>(element.GetRawText());
+                    result.Add(new User(info));
+                }
+
+                return result;
+            }
+
+            // TODO: parse the response to throw proper exceptions
+            throw new Exception("Something went wrong during user enumeration.");
+        }
     }
 }

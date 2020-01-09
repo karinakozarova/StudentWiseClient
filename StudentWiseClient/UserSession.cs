@@ -51,6 +51,7 @@ namespace StudentWiseClient
     {
         private const string base_url = "https://studentwise.herokuapp.com/api/v1";
         internal const string user_create_url = base_url + "/users";
+        internal const string user_enumerate_url = base_url + "/users";
         internal const string user_query_url = base_url + "/users/{0}";
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";

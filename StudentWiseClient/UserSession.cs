@@ -60,6 +60,8 @@ namespace StudentWiseClient
         internal const string event_query_url = base_url + "/events/{0}";
         internal const string event_update_url = base_url + "/events/{0}";
         internal const string event_delete_url = base_url + "/events/{0}";
+        internal const string event_add_user_url = base_url + "/events/{0}/participants";
+        internal const string event_remove_user_url = base_url + "/events/{0}/participants";
 
         static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)
         {

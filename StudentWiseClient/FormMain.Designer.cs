@@ -70,10 +70,10 @@
             // tpDashboard
             // 
             this.tpDashboard.Controls.Add(this.lblDashboard);
-            this.tpDashboard.Location = new System.Drawing.Point(4, 22);
+            this.tpDashboard.Location = new System.Drawing.Point(4, 25);
             this.tpDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tpDashboard.Name = "tpDashboard";
-            this.tpDashboard.Size = new System.Drawing.Size(938, 439);
+            this.tpDashboard.Size = new System.Drawing.Size(938, 436);
             this.tpDashboard.TabIndex = 0;
             this.tpDashboard.Text = "Dashboard";
             this.tpDashboard.UseVisualStyleBackColor = true;
@@ -94,10 +94,10 @@
             // tpEvents
             // 
             this.tpEvents.Controls.Add(this.lblEvents);
-            this.tpEvents.Location = new System.Drawing.Point(4, 22);
+            this.tpEvents.Location = new System.Drawing.Point(4, 25);
             this.tpEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(938, 439);
+            this.tpEvents.Size = new System.Drawing.Size(938, 436);
             this.tpEvents.TabIndex = 1;
             this.tpEvents.Text = "Events";
             this.tpEvents.UseVisualStyleBackColor = true;
@@ -118,10 +118,10 @@
             // tpExpenses
             // 
             this.tpExpenses.Controls.Add(this.lblExpenses);
-            this.tpExpenses.Location = new System.Drawing.Point(4, 22);
+            this.tpExpenses.Location = new System.Drawing.Point(4, 25);
             this.tpExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tpExpenses.Name = "tpExpenses";
-            this.tpExpenses.Size = new System.Drawing.Size(938, 439);
+            this.tpExpenses.Size = new System.Drawing.Size(938, 436);
             this.tpExpenses.TabIndex = 2;
             this.tpExpenses.Text = "Expenses";
             this.tpExpenses.UseVisualStyleBackColor = true;
@@ -142,10 +142,10 @@
             // tpComplaints
             // 
             this.tpComplaints.Controls.Add(this.lblComplaints);
-            this.tpComplaints.Location = new System.Drawing.Point(4, 22);
+            this.tpComplaints.Location = new System.Drawing.Point(4, 25);
             this.tpComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tpComplaints.Name = "tpComplaints";
-            this.tpComplaints.Size = new System.Drawing.Size(938, 439);
+            this.tpComplaints.Size = new System.Drawing.Size(938, 436);
             this.tpComplaints.TabIndex = 3;
             this.tpComplaints.Text = "Complaints";
             this.tpComplaints.UseVisualStyleBackColor = true;
@@ -171,6 +171,7 @@
             this.tsMain.Dock = System.Windows.Forms.DockStyle.None;
             this.tsMain.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnDashboard,
             this.tsBtnEvents,
@@ -189,7 +190,7 @@
             this.tsBtnDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnDashboard.Name = "tsBtnDashboard";
             this.tsBtnDashboard.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnDashboard.Size = new System.Drawing.Size(116, 40);
+            this.tsBtnDashboard.Size = new System.Drawing.Size(142, 40);
             this.tsBtnDashboard.Text = "Dashboard";
             this.tsBtnDashboard.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -200,7 +201,7 @@
             this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnEvents.Name = "tsBtnEvents";
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnEvents.Size = new System.Drawing.Size(85, 40);
+            this.tsBtnEvents.Size = new System.Drawing.Size(102, 40);
             this.tsBtnEvents.Text = "Events";
             this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -211,7 +212,7 @@
             this.tsBtnExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnExpenses.Name = "tsBtnExpenses";
             this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnExpenses.Size = new System.Drawing.Size(103, 40);
+            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 40);
             this.tsBtnExpenses.Text = "Expenses";
             this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -222,7 +223,7 @@
             this.tsBtnComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnComplaints.Name = "tsBtnComplaints";
             this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnComplaints.Size = new System.Drawing.Size(119, 40);
+            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 40);
             this.tsBtnComplaints.Text = "Complaints";
             this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
             // 

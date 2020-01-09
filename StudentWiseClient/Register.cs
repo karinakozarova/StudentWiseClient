@@ -54,7 +54,7 @@ namespace StudentWiseClient
 
             try
             {
-                Server.CreateUser(emailAddressTbx.Text, fNameTbx.Text, lNameTbx.Text, passwordTbx.Text);
+                Server.CurrentSession = Server.CreateUser(emailAddressTbx.Text, fNameTbx.Text, lNameTbx.Text, passwordTbx.Text);
 
                 // User logged in successfully, go to the according page
                 this.Hide();

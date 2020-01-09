@@ -111,6 +111,37 @@ namespace StudentWiseClient
             throw new Exception("Something went wrong during event querying.");
         }
 
+        public static List<Event> Enumerate(UserSession user = null)
+        {
+            // Assume current session by default
+            user = user ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                Server.event_enumerate_url,
+                user.token,
+                "GET",
+                null
+            );
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var doc = JsonDocument.Parse(reader.ReadToEnd());
+                var result = new List<Event>(doc.RootElement.GetArrayLength());
+
+                foreach(JsonElement element in doc.RootElement.EnumerateArray())
+                {
+                    var eventInfo = JsonSerializer.Deserialize<ParsedJson>(element.GetRawText());
+                    result.Add(new Event(eventInfo));
+                }
+
+                return result;
+            }
+
+            // TODO: parse the response to throw proper exceptions
+            throw new Exception("Something went wrong during event enumeration.");
+        }
+
         /// <summary>
         /// Delete an event by ID.
         /// </summary>

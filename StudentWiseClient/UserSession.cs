@@ -52,6 +52,7 @@ namespace StudentWiseClient
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_create_url = base_url + "/events";
+        internal const string event_enumerate_url = base_url + "/events";
         internal const string event_query_url = base_url + "/events/{0}";
         internal const string event_update_url = base_url + "/events/{0}";
         internal const string event_delete_url = base_url + "/events/{0}";

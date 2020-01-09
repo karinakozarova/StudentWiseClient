@@ -30,6 +30,8 @@ namespace StudentWiseClient
         public DateTime? FinishesAt { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
+        public User Creator { get; }
+        public List<User> Participants { get; }
 
         /// <summary>
         /// Create a new event.
@@ -102,9 +104,7 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
-
-                return new Event(eventInfo);
+                return new Event(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -126,16 +126,7 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var doc = JsonDocument.Parse(reader.ReadToEnd());
-                var result = new List<Event>(doc.RootElement.GetArrayLength());
-
-                foreach(JsonElement element in doc.RootElement.EnumerateArray())
-                {
-                    var eventInfo = JsonSerializer.Deserialize<ParsedJson>(element.GetRawText());
-                    result.Add(new Event(eventInfo));
-                }
-
-                return result;
+                return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new Event(e));
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -168,6 +159,64 @@ namespace StudentWiseClient
         public void Delete(UserSession user = null)
         {
             Delete(Id, user);
+        }
+
+        public static void AddParticipant(int event_id, int user_id, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                string.Format(Server.event_add_user_url, event_id),
+                session.token,
+                "POST",
+                new
+                {
+                    event_participant = new
+                    {
+                        participant_id = user_id
+                    }
+                }
+            );
+
+            // TODO: parse the response to throw proper exceptions
+            if (response.StatusCode != HttpStatusCode.Created)
+                throw new Exception("Something went wrong during event participant addition.");
+        }
+
+        public void AddParticipant(User user, UserSession session = null)
+        {
+            AddParticipant(Id, user.Id, session);
+            Participants.Add(user);
+        }
+
+        public static void RemoveParticipant(int event_id, int user_id, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                string.Format(Server.event_remove_user_url, event_id),
+                session.token,
+                "DELETE",
+                new
+                {
+                    event_participant = new
+                    {
+                        participant_id = user_id
+                    }
+                }
+            );
+
+            // TODO: parse the response to throw proper exceptions
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                throw new Exception("Something went wrong during event participant removing.");
+        }
+
+        public void RemoveParticipant(int user_id, UserSession session = null)
+        {
+            RemoveParticipant(Id, user_id, session);
+            Participants.Remove(Participants.Find(u => u.Id == user_id));
         }
 
         #region Propery updaters
@@ -225,11 +274,15 @@ namespace StudentWiseClient
             FinishesAt = json.Member("finishes_at")?.GetDateTime();
             CreatedAt = json.Members["created_at"].GetDateTime();
             UpdatedAt = json.Members["updated_at"].GetDateTime();
+            Creator = new User(ParsedJson.Parse(json.Members["creator"].GetRawText()));
 
             if (Enum.TryParse(json.Member("event_type")?.GetString(), true, out EventType parsedType))
                 Type = parsedType;
             else
                 Type = EventType.Other;
+
+            Participants = ParsedJson.ParseArray(
+                json.Members["participants"].GetRawText()).ConvertAll(e => new User(e));
         }
 
         protected static Event InvokeUpdate(
@@ -262,10 +315,8 @@ namespace StudentWiseClient
 
             if (response.StatusCode == HttpStatusCode.Created || response.StatusCode == HttpStatusCode.OK)
             {
-                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
-
-                return new Event(eventInfo);
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);                
+                return new Event(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
             // TODO: parse the response to throw proper exceptions

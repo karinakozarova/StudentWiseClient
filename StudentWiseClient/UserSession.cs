@@ -16,10 +16,12 @@ namespace StudentWiseClient
     public class UserSession
     {
         internal readonly string token;
+        public User Info { get; }
 
-        internal UserSession(string authToken)
+        internal UserSession(string authToken, ParsedJson info)
         {
             token = authToken;
+            Info = new User(info);
         }
 
         /// <summary>
@@ -49,6 +51,8 @@ namespace StudentWiseClient
     {
         private const string base_url = "https://studentwise.herokuapp.com/api/v1";
         internal const string user_create_url = base_url + "/users";
+        internal const string user_enumerate_url = base_url + "/users";
+        internal const string user_query_url = base_url + "/users/{0}";
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_create_url = base_url + "/events";
@@ -56,6 +60,8 @@ namespace StudentWiseClient
         internal const string event_query_url = base_url + "/events/{0}";
         internal const string event_update_url = base_url + "/events/{0}";
         internal const string event_delete_url = base_url + "/events/{0}";
+        internal const string event_add_user_url = base_url + "/events/{0}/participants";
+        internal const string event_remove_user_url = base_url + "/events/{0}/participants";
 
         static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)
         {
@@ -115,7 +121,12 @@ namespace StudentWiseClient
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return new UserSession(response.Headers.Get("authorization"));
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                
+                return new UserSession(
+                    response.Headers.Get("authorization"),
+                    ParsedJson.Parse(reader.ReadToEnd())
+                );
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -146,7 +157,12 @@ namespace StudentWiseClient
 
             if (response.StatusCode == HttpStatusCode.Created)
             {
-                return new UserSession(response.Headers.Get("authorization"));
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                
+                return new UserSession(
+                    response.Headers.Get("authorization"),
+                    ParsedJson.Parse(reader.ReadToEnd())
+                );
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -167,6 +183,23 @@ namespace StudentWiseClient
                 return result;
 
             return null;
+        }
+
+        public static ParsedJson Parse(string json, JsonSerializerOptions options = null)
+        {
+            return JsonSerializer.Deserialize<ParsedJson>(json, options);
+        }
+
+        public static List<ParsedJson> ParseArray(string json, JsonSerializerOptions options = null)
+        {
+            var root = JsonDocument.Parse(json).RootElement;
+            var result = new List<ParsedJson>(root.GetArrayLength());
+
+            foreach (JsonElement element in root.EnumerateArray())
+            {
+                result.Add(Parse(element.GetRawText(), options));
+            }
+            return result;
         }
     }
 }

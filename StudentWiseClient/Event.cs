@@ -102,9 +102,7 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
-
-                return new Event(eventInfo);
+                return new Event(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -126,16 +124,7 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var doc = JsonDocument.Parse(reader.ReadToEnd());
-                var result = new List<Event>(doc.RootElement.GetArrayLength());
-
-                foreach(JsonElement element in doc.RootElement.EnumerateArray())
-                {
-                    var eventInfo = JsonSerializer.Deserialize<ParsedJson>(element.GetRawText());
-                    result.Add(new Event(eventInfo));
-                }
-
-                return result;
+                return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new Event(e));
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -262,10 +251,8 @@ namespace StudentWiseClient
 
             if (response.StatusCode == HttpStatusCode.Created || response.StatusCode == HttpStatusCode.OK)
             {
-                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var eventInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
-
-                return new Event(eventInfo);
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);                
+                return new Event(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
             // TODO: parse the response to throw proper exceptions

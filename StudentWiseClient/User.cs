@@ -44,9 +44,7 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var info = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
-
-                return new User(info);
+                return new User(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -68,16 +66,7 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var doc = JsonDocument.Parse(reader.ReadToEnd());
-                var result = new List<User>(doc.RootElement.GetArrayLength());
-
-                foreach (JsonElement element in doc.RootElement.EnumerateArray())
-                {
-                    var info = JsonSerializer.Deserialize<ParsedJson>(element.GetRawText());
-                    result.Add(new User(info));
-                }
-
-                return result;
+                return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new User(e));
             }
 
             // TODO: parse the response to throw proper exceptions

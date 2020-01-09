@@ -120,9 +120,11 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var userInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
-
-                return new UserSession(response.Headers.Get("authorization"), userInfo);
+                
+                return new UserSession(
+                    response.Headers.Get("authorization"),
+                    ParsedJson.Parse(reader.ReadToEnd())
+                );
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -154,9 +156,11 @@ namespace StudentWiseClient
             if (response.StatusCode == HttpStatusCode.Created)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                var userInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
-
-                return new UserSession(response.Headers.Get("authorization"), userInfo);
+                
+                return new UserSession(
+                    response.Headers.Get("authorization"),
+                    ParsedJson.Parse(reader.ReadToEnd())
+                );
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -177,6 +181,23 @@ namespace StudentWiseClient
                 return result;
 
             return null;
+        }
+
+        public static ParsedJson Parse(string json, JsonSerializerOptions options = null)
+        {
+            return JsonSerializer.Deserialize<ParsedJson>(json, options);
+        }
+
+        public static List<ParsedJson> ParseArray(string json, JsonSerializerOptions options = null)
+        {
+            var root = JsonDocument.Parse(json).RootElement;
+            var result = new List<ParsedJson>(root.GetArrayLength());
+
+            foreach (JsonElement element in root.EnumerateArray())
+            {
+                result.Add(Parse(element.GetRawText(), options));
+            }
+            return result;
         }
     }
 }

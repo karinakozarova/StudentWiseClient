@@ -16,10 +16,12 @@ namespace StudentWiseClient
     public class UserSession
     {
         internal readonly string token;
+        public User Info { get; }
 
-        internal UserSession(string authToken)
+        internal UserSession(string authToken, ParsedJson info)
         {
             token = authToken;
+            Info = new User(info);
         }
 
         /// <summary>
@@ -49,6 +51,7 @@ namespace StudentWiseClient
     {
         private const string base_url = "https://studentwise.herokuapp.com/api/v1";
         internal const string user_create_url = base_url + "/users";
+        internal const string user_query_url = base_url + "/users/{0}";
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_create_url = base_url + "/events";
@@ -115,7 +118,10 @@ namespace StudentWiseClient
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return new UserSession(response.Headers.Get("authorization"));
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var userInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
+
+                return new UserSession(response.Headers.Get("authorization"), userInfo);
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -146,7 +152,10 @@ namespace StudentWiseClient
 
             if (response.StatusCode == HttpStatusCode.Created)
             {
-                return new UserSession(response.Headers.Get("authorization"));
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var userInfo = JsonSerializer.Deserialize<ParsedJson>(reader.ReadToEnd());
+
+                return new UserSession(response.Headers.Get("authorization"), userInfo);
             }
 
             // TODO: parse the response to throw proper exceptions

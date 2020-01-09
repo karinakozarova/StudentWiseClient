@@ -34,7 +34,7 @@ namespace StudentWiseClient
                 null
             );
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode != HttpStatusCode.NoContent)
             {
                 // TODO: or maybe we should ignore logout errors?
                 throw new Exception("Something went wrong during logging out.");
@@ -52,6 +52,7 @@ namespace StudentWiseClient
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_create_url = base_url + "/events";
+        internal const string event_enumerate_url = base_url + "/events";
         internal const string event_query_url = base_url + "/events/{0}";
         internal const string event_update_url = base_url + "/events/{0}";
         internal const string event_delete_url = base_url + "/events/{0}";
@@ -61,14 +62,16 @@ namespace StudentWiseClient
             WebRequest request = WebRequest.Create(url);
 
             request.Method = method;
-            request.ContentType = "application/json";
 
             if (token != null)
                 request.Headers.Add("authorization", token);
 
             if (data != null)
+            {
+                request.ContentType = "application/json";
                 using (var stream = new StreamWriter(request.GetRequestStream()))
                     stream.Write(JsonSerializer.Serialize(data, options));
+            }
 
             return (HttpWebResponse)request.GetResponse();
         }

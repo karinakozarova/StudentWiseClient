@@ -123,7 +123,6 @@ namespace StudentWiseClient
                 null
             );
 
-            if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new Event(e));

@@ -52,7 +52,8 @@ namespace StudentWiseClient
                 return;
             }
 
-            Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDttpkr.Value, endDttpkr.Value, session);
+            var ev = Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDttpkr.Value, endDttpkr.Value, session);
+            ev.AddParticipant(Server.CurrentSession.Info);
             MessageBox.Show("Succesfully added your event!");
 
             // open dashboard

@@ -30,6 +30,12 @@ namespace StudentWiseClient
             get;
         }
 
+        public User Creator
+        {
+            get;
+            set;
+        }
+
         public void SetAllNeededProperties(int id, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
         {
             this.SetTitle(title);
@@ -84,7 +90,7 @@ namespace StudentWiseClient
 
         private void DeleteEvent()
         {
-            Event.Delete(this.Id, this.Session);
+            if(this.Creator == this.Session.Info) Event.Delete(this.Id, this.Session);
         }
         
     }

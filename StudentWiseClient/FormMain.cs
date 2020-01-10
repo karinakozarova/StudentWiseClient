@@ -46,6 +46,7 @@ namespace StudentWiseClient
                 event1.setEventPoints();
                 event1.Id = ev.Id;
                 event1.Session = Server.CurrentSession;
+                event1.Creator = ev.Creator;
             }
         }
     }

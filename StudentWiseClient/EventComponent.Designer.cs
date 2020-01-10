@@ -103,7 +103,7 @@
             // 
             this.EventCompletePbx.BackColor = System.Drawing.Color.LawnGreen;
             this.EventCompletePbx.Image = ((System.Drawing.Image)(resources.GetObject("EventCompletePbx.Image")));
-            this.EventCompletePbx.Location = new System.Drawing.Point(255, 237);
+            this.EventCompletePbx.Location = new System.Drawing.Point(351, 237);
             this.EventCompletePbx.Name = "EventCompletePbx";
             this.EventCompletePbx.Size = new System.Drawing.Size(79, 76);
             this.EventCompletePbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -115,7 +115,7 @@
             // 
             this.DeleteEventPbx.BackColor = System.Drawing.Color.Red;
             this.DeleteEventPbx.Image = ((System.Drawing.Image)(resources.GetObject("DeleteEventPbx.Image")));
-            this.DeleteEventPbx.Location = new System.Drawing.Point(351, 237);
+            this.DeleteEventPbx.Location = new System.Drawing.Point(257, 237);
             this.DeleteEventPbx.Name = "DeleteEventPbx";
             this.DeleteEventPbx.Size = new System.Drawing.Size(79, 76);
             this.DeleteEventPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

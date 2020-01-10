@@ -38,15 +38,16 @@ namespace StudentWiseClient
             foreach (Event ev in events)
             {
                 EventComponent event1 = new EventComponent();
+                event1.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
                 flowLayoutPanelToday.Controls.Add(event1);
-                event1.SetTitle(ev.Title);
+                /*event1.SetTitle(ev.Title);
                 event1.SetDescription(ev.Description);
                 event1.SetType(ev.Type);
                 event1.SetDeadline(ev.StartsAt, ev.FinishesAt);
                 event1.setEventPoints();
                 event1.Id = ev.Id;
                 event1.Session = Server.CurrentSession;
-                event1.Creator = ev.Creator;
+                event1.Creator = ev.Creator;*/
             }
         }
     }

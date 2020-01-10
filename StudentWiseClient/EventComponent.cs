@@ -36,7 +36,7 @@ namespace StudentWiseClient
             set;
         }
 
-        public void SetAllNeededProperties(int id, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
+        public void SetAllNeededProperties(int id, User creator, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
         {
             this.SetTitle(title);
             this.SetDescription(description);
@@ -45,6 +45,16 @@ namespace StudentWiseClient
             this.setEventPoints();
             this.Id = id;
             this.Session = session;
+            this.Creator = creator;
+
+            if (this.Creator.Id != this.Session.Info.Id)
+            {
+                DeleteEventPbx.Visible = false;
+            }
+            else
+            {
+                DeleteEventPbx.Visible = true;
+            }
         }
 
         public void SetTitle(String title)
@@ -77,7 +87,6 @@ namespace StudentWiseClient
             if (MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 DeleteEvent();
-                this.Parent.Controls.Remove(this);
             }
             else
             {
@@ -92,7 +101,11 @@ namespace StudentWiseClient
 
         private void DeleteEvent()
         {
-            if(this.Creator == this.Session.Info) Event.Delete(this.Id, this.Session);
+            if (this.Creator == this.Session.Info)
+            {
+                Event.Delete(this.Id, this.Session);
+                this.Parent.Controls.Remove(this);
+            }
         }
         
     }

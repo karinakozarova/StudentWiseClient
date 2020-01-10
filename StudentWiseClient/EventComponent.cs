@@ -75,7 +75,7 @@ namespace StudentWiseClient
             }
             else
             {
-                // user clicked no
+                
             }
         }
 

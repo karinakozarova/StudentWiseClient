@@ -8,8 +8,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net;
 
-namespace StudentWiseClient
+namespace StudentWiseApi
 {
+    /// <summary>
+    /// Represents an account.
+    /// </summary>
     public class User
     {
         public int Id { get; }
@@ -29,6 +32,9 @@ namespace StudentWiseClient
             UpdatedAt = info.Member("updated_at")?.GetDateTime(); ;
         }
 
+        /// <summary>
+        /// Query information about an account.
+        /// </summary>
         public static User Query(int id, UserSession session = null)
         {
             // Assume current session by default
@@ -51,6 +57,9 @@ namespace StudentWiseClient
             throw new Exception("Something went wrong during user querying.");
         }
 
+        /// <summary>
+        /// Enumerate user accounts.
+        /// </summary>
         public static List<User> Enumerate(UserSession session = null)
         {
             // Assume current session by default

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StudentWiseApi;
 
 namespace StudentWiseClient
 {
@@ -53,7 +54,7 @@ namespace StudentWiseClient
             }
 
             var ev = Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDttpkr.Value, endDttpkr.Value, session);
-            ev.AddParticipant(Server.CurrentSession.Info);
+            ev.AddParticipant(Server.CurrentSession.Info.Id);
             MessageBox.Show("Succesfully added your event!");
 
             // open dashboard

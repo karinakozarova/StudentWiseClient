@@ -8,10 +8,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net;
 
-namespace StudentWiseClient
+namespace StudentWiseApi
 {
     /// <summary>
-    /// Represents an authenticated user.
+    /// Represents a session of an authenticated user.
     /// </summary>
     public class UserSession
     {
@@ -25,7 +25,7 @@ namespace StudentWiseClient
         }
 
         /// <summary>
-        /// Invalidates current session.
+        /// Invalidates this session.
         /// </summary>
         public void Logout()
         {

@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net;
 
-namespace StudentWiseClient
+namespace StudentWiseApi
 {
     public enum EventType
     {
@@ -111,6 +111,9 @@ namespace StudentWiseClient
             throw new Exception("Something went wrong during event querying.");
         }
 
+        /// <summary>
+        /// Enumerate events in which you participate.
+        /// </summary>
         public static List<Event> Enumerate(UserSession user = null)
         {
             // Assume current session by default
@@ -123,6 +126,7 @@ namespace StudentWiseClient
                 null
             );
 
+            if (response.StatusCode == HttpStatusCode.OK)
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new Event(e));
@@ -160,6 +164,9 @@ namespace StudentWiseClient
             Delete(Id, user);
         }
 
+        /// <summary>
+        /// Add a user as a participant of an event by ID.
+        /// </summary>
         public static void AddParticipant(int event_id, int user_id, UserSession session = null)
         {
             // Assume current session by default
@@ -183,12 +190,18 @@ namespace StudentWiseClient
                 throw new Exception("Something went wrong during event participant addition.");
         }
 
-        public void AddParticipant(User user, UserSession session = null)
+        /// <summary>
+        /// Add a user as a participant if this event.
+        /// </summary>
+        public void AddParticipant(int user_id, UserSession session = null)
         {
-            AddParticipant(Id, user.Id, session);
-            Participants.Add(user);
+            AddParticipant(Id, user_id, session);
+            Participants.Add(User.Query(user_id));
         }
 
+        /// <summary>
+        /// Remove a participating user from an event by ID.
+        /// </summary>
         public static void RemoveParticipant(int event_id, int user_id, UserSession session = null)
         {
             // Assume current session by default
@@ -212,6 +225,11 @@ namespace StudentWiseClient
                 throw new Exception("Something went wrong during event participant removing.");
         }
 
+        /// <summary>
+        /// Remove a participating user from this event.
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="session"></param>
         public void RemoveParticipant(int user_id, UserSession session = null)
         {
             RemoveParticipant(Id, user_id, session);

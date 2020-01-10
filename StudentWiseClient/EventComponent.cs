@@ -101,11 +101,8 @@ namespace StudentWiseClient
 
         private void DeleteEvent()
         {
-            if (this.Creator == this.Session.Info)
-            {
-                Event.Delete(this.Id, this.Session);
-                this.Parent.Controls.Remove(this);
-            }
+            Event.Delete(this.Id, this.Session);
+            this.Parent.Controls.Remove(this);
         }
         
     }

@@ -70,7 +70,8 @@ namespace StudentWiseClient
         {
             if (MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                // user clicked yes
+                DeleteEvent();
+                this.Parent.Controls.Remove(this);
             }
             else
             {
@@ -80,6 +81,7 @@ namespace StudentWiseClient
 
         private void EventCompletePbx_Click(object sender, EventArgs e)
         {
+
         }
 
         private void DeleteEvent()

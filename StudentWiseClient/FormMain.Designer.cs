@@ -37,6 +37,10 @@
             this.flowLayoutPanelDay1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelDay2 = new System.Windows.Forms.FlowLayoutPanel();
             this.AddEventBtn = new System.Windows.Forms.Button();
+            this.flowLayoutPanelToday = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblEvents = new System.Windows.Forms.Label();
+            this.flowLayoutPanelTommorow = new System.Windows.Forms.FlowLayoutPanel();
+            this.TommorowEventsLbl = new System.Windows.Forms.Label();
             this.tpExpenses = new System.Windows.Forms.TabPage();
             this.lblExpenses = new System.Windows.Forms.Label();
             this.tpComplaints = new System.Windows.Forms.TabPage();
@@ -46,19 +50,15 @@
             this.tsBtnEvents = new System.Windows.Forms.ToolStripButton();
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
             this.tsBtnComplaints = new System.Windows.Forms.ToolStripButton();
-            this.flowLayoutPanelToday = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblEvents = new System.Windows.Forms.Label();
-            this.flowLayoutPanelTommorow = new System.Windows.Forms.FlowLayoutPanel();
-            this.TommorowEventsLbl = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanelToday.SuspendLayout();
+            this.flowLayoutPanelTommorow.SuspendLayout();
             this.tpExpenses.SuspendLayout();
             this.tpComplaints.SuspendLayout();
             this.tsMain.SuspendLayout();
-            this.flowLayoutPanelToday.SuspendLayout();
-            this.flowLayoutPanelTommorow.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcMain
@@ -158,6 +158,56 @@
             this.AddEventBtn.UseVisualStyleBackColor = false;
             this.AddEventBtn.Click += new System.EventHandler(this.AddEventBtn_Click);
             // 
+            // flowLayoutPanelToday
+            // 
+            this.flowLayoutPanelToday.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanelToday.AutoSize = true;
+            this.flowLayoutPanelToday.Controls.Add(this.lblEvents);
+            this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 60);
+            this.flowLayoutPanelToday.Name = "flowLayoutPanelToday";
+            this.flowLayoutPanelToday.Size = new System.Drawing.Size(897, 89);
+            this.flowLayoutPanelToday.TabIndex = 9;
+            // 
+            // lblEvents
+            // 
+            this.lblEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblEvents.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblEvents.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEvents.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblEvents.Location = new System.Drawing.Point(0, 0);
+            this.lblEvents.Margin = new System.Windows.Forms.Padding(0);
+            this.lblEvents.Name = "lblEvents";
+            this.lblEvents.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
+            this.lblEvents.Size = new System.Drawing.Size(897, 89);
+            this.lblEvents.TabIndex = 8;
+            this.lblEvents.Text = "Today\'s events";
+            this.lblEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // flowLayoutPanelTommorow
+            // 
+            this.flowLayoutPanelTommorow.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanelTommorow.AutoSize = true;
+            this.flowLayoutPanelTommorow.Controls.Add(this.TommorowEventsLbl);
+            this.flowLayoutPanelTommorow.Location = new System.Drawing.Point(3, 155);
+            this.flowLayoutPanelTommorow.Name = "flowLayoutPanelTommorow";
+            this.flowLayoutPanelTommorow.Size = new System.Drawing.Size(897, 89);
+            this.flowLayoutPanelTommorow.TabIndex = 10;
+            // 
+            // TommorowEventsLbl
+            // 
+            this.TommorowEventsLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TommorowEventsLbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TommorowEventsLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TommorowEventsLbl.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.TommorowEventsLbl.Location = new System.Drawing.Point(0, 0);
+            this.TommorowEventsLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.TommorowEventsLbl.Name = "TommorowEventsLbl";
+            this.TommorowEventsLbl.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
+            this.TommorowEventsLbl.Size = new System.Drawing.Size(897, 89);
+            this.TommorowEventsLbl.TabIndex = 9;
+            this.TommorowEventsLbl.Text = "Tommorow\'s events";
+            this.TommorowEventsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tpExpenses
             // 
             this.tpExpenses.Controls.Add(this.lblExpenses);
@@ -244,7 +294,7 @@
             this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnEvents.Name = "tsBtnEvents";
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnEvents.Size = new System.Drawing.Size(102, 30);
+            this.tsBtnEvents.Size = new System.Drawing.Size(102, 44);
             this.tsBtnEvents.Text = "Events";
             this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -255,7 +305,7 @@
             this.tsBtnExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnExpenses.Name = "tsBtnExpenses";
             this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 30);
+            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 44);
             this.tsBtnExpenses.Text = "Expenses";
             this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -266,59 +316,9 @@
             this.tsBtnComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnComplaints.Name = "tsBtnComplaints";
             this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 30);
+            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 44);
             this.tsBtnComplaints.Text = "Complaints";
             this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
-            // 
-            // flowLayoutPanelToday
-            // 
-            this.flowLayoutPanelToday.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flowLayoutPanelToday.AutoSize = true;
-            this.flowLayoutPanelToday.Controls.Add(this.lblEvents);
-            this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 60);
-            this.flowLayoutPanelToday.Name = "flowLayoutPanelToday";
-            this.flowLayoutPanelToday.Size = new System.Drawing.Size(897, 89);
-            this.flowLayoutPanelToday.TabIndex = 9;
-            // 
-            // lblEvents
-            // 
-            this.lblEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblEvents.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblEvents.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEvents.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblEvents.Location = new System.Drawing.Point(0, 0);
-            this.lblEvents.Margin = new System.Windows.Forms.Padding(0);
-            this.lblEvents.Name = "lblEvents";
-            this.lblEvents.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
-            this.lblEvents.Size = new System.Drawing.Size(897, 89);
-            this.lblEvents.TabIndex = 8;
-            this.lblEvents.Text = "Today\'s events";
-            this.lblEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // flowLayoutPanelTommorow
-            // 
-            this.flowLayoutPanelTommorow.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flowLayoutPanelTommorow.AutoSize = true;
-            this.flowLayoutPanelTommorow.Controls.Add(this.TommorowEventsLbl);
-            this.flowLayoutPanelTommorow.Location = new System.Drawing.Point(3, 155);
-            this.flowLayoutPanelTommorow.Name = "flowLayoutPanelTommorow";
-            this.flowLayoutPanelTommorow.Size = new System.Drawing.Size(897, 89);
-            this.flowLayoutPanelTommorow.TabIndex = 10;
-            // 
-            // TommorowEventsLbl
-            // 
-            this.TommorowEventsLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TommorowEventsLbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TommorowEventsLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TommorowEventsLbl.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.TommorowEventsLbl.Location = new System.Drawing.Point(0, 0);
-            this.TommorowEventsLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.TommorowEventsLbl.Name = "TommorowEventsLbl";
-            this.TommorowEventsLbl.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
-            this.TommorowEventsLbl.Size = new System.Drawing.Size(897, 89);
-            this.TommorowEventsLbl.TabIndex = 9;
-            this.TommorowEventsLbl.Text = "Tommorow\'s events";
-            this.TommorowEventsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormMain
             // 
@@ -335,12 +335,12 @@
             this.tpEvents.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanelToday.ResumeLayout(false);
+            this.flowLayoutPanelTommorow.ResumeLayout(false);
             this.tpExpenses.ResumeLayout(false);
             this.tpComplaints.ResumeLayout(false);
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
-            this.flowLayoutPanelToday.ResumeLayout(false);
-            this.flowLayoutPanelTommorow.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

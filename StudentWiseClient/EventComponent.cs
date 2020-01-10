@@ -42,7 +42,20 @@ namespace StudentWiseClient
             EventPointsLbl.Text = points.ToString();
         }
 
-        private void CompleteEventBtn_Click(object sender, EventArgs e)
+
+        private void DeleteEventPbx_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // user clicked yes
+            }
+            else
+            {
+                // user clicked no
+            }
+        }
+
+        private void EventCompletePbx_Click(object sender, EventArgs e)
         {
 
         }

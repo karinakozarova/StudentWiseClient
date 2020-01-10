@@ -30,6 +30,17 @@ namespace StudentWiseClient
             get;
         }
 
+        public void SetAllNeededProperties(int id, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
+        {
+            this.SetTitle(title);
+            this.SetDescription(description);
+            this.SetType(type);
+            this.SetDeadline(start, end);
+            this.setEventPoints();
+            this.Id = id;
+            this.Session = session;
+        }
+
         public void SetTitle(String title)
         {
             EventTitleLbl.Text = title;

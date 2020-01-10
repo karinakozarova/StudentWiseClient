@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventComponent));
             this.EventTypeLbl = new System.Windows.Forms.Label();
             this.EventTitleLbl = new System.Windows.Forms.Label();
             this.EventDescriptionLbl = new System.Windows.Forms.Label();
             this.EventDeadlineLbl = new System.Windows.Forms.Label();
-            this.CompleteEventBtn = new System.Windows.Forms.Button();
             this.EventPointsLbl = new System.Windows.Forms.Label();
             this.ImagePbx = new System.Windows.Forms.PictureBox();
+            this.EventCompletePbx = new System.Windows.Forms.PictureBox();
+            this.DeleteEventPbx = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EventCompletePbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteEventPbx)).BeginInit();
             this.SuspendLayout();
             // 
             // EventTypeLbl
@@ -76,18 +80,6 @@
             this.EventDeadlineLbl.TabIndex = 4;
             this.EventDeadlineLbl.Text = "Start Date and End Date";
             // 
-            // CompleteEventBtn
-            // 
-            this.CompleteEventBtn.BackColor = System.Drawing.Color.LawnGreen;
-            this.CompleteEventBtn.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CompleteEventBtn.Location = new System.Drawing.Point(190, 239);
-            this.CompleteEventBtn.Name = "CompleteEventBtn";
-            this.CompleteEventBtn.Size = new System.Drawing.Size(240, 73);
-            this.CompleteEventBtn.TabIndex = 5;
-            this.CompleteEventBtn.Text = "Complete";
-            this.CompleteEventBtn.UseVisualStyleBackColor = false;
-            this.CompleteEventBtn.Click += new System.EventHandler(this.CompleteEventBtn_Click);
-            // 
             // EventPointsLbl
             // 
             this.EventPointsLbl.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -107,14 +99,39 @@
             this.ImagePbx.TabIndex = 0;
             this.ImagePbx.TabStop = false;
             // 
+            // EventCompletePbx
+            // 
+            this.EventCompletePbx.BackColor = System.Drawing.Color.LawnGreen;
+            this.EventCompletePbx.Image = ((System.Drawing.Image)(resources.GetObject("EventCompletePbx.Image")));
+            this.EventCompletePbx.Location = new System.Drawing.Point(351, 237);
+            this.EventCompletePbx.Name = "EventCompletePbx";
+            this.EventCompletePbx.Size = new System.Drawing.Size(79, 76);
+            this.EventCompletePbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EventCompletePbx.TabIndex = 8;
+            this.EventCompletePbx.TabStop = false;
+            this.EventCompletePbx.Click += new System.EventHandler(this.EventCompletePbx_Click);
+            // 
+            // DeleteEventPbx
+            // 
+            this.DeleteEventPbx.BackColor = System.Drawing.Color.Red;
+            this.DeleteEventPbx.Image = ((System.Drawing.Image)(resources.GetObject("DeleteEventPbx.Image")));
+            this.DeleteEventPbx.Location = new System.Drawing.Point(257, 237);
+            this.DeleteEventPbx.Name = "DeleteEventPbx";
+            this.DeleteEventPbx.Size = new System.Drawing.Size(79, 76);
+            this.DeleteEventPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DeleteEventPbx.TabIndex = 9;
+            this.DeleteEventPbx.TabStop = false;
+            this.DeleteEventPbx.Click += new System.EventHandler(this.DeleteEventPbx_Click);
+            // 
             // EventComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.DeleteEventPbx);
+            this.Controls.Add(this.EventCompletePbx);
             this.Controls.Add(this.EventPointsLbl);
-            this.Controls.Add(this.CompleteEventBtn);
             this.Controls.Add(this.EventDeadlineLbl);
             this.Controls.Add(this.EventDescriptionLbl);
             this.Controls.Add(this.EventTitleLbl);
@@ -125,6 +142,8 @@
             this.Name = "EventComponent";
             this.Size = new System.Drawing.Size(445, 321);
             ((System.ComponentModel.ISupportInitialize)(this.ImagePbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EventCompletePbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteEventPbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,7 +156,8 @@
         private System.Windows.Forms.Label EventTitleLbl;
         private System.Windows.Forms.Label EventDescriptionLbl;
         private System.Windows.Forms.Label EventDeadlineLbl;
-        private System.Windows.Forms.Button CompleteEventBtn;
         private System.Windows.Forms.Label EventPointsLbl;
+        private System.Windows.Forms.PictureBox EventCompletePbx;
+        private System.Windows.Forms.PictureBox DeleteEventPbx;
     }
 }

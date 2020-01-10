@@ -18,6 +18,45 @@ namespace StudentWiseClient
             this.BorderStyle = BorderStyle.FixedSingle;
         }
 
+        public UserSession Session
+        {
+            get;
+            set;
+        }
+
+        public int Id
+        {
+            set;
+            get;
+        }
+
+        public User Creator
+        {
+            get;
+            set;
+        }
+
+        public void SetAllNeededProperties(int id, User creator, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
+        {
+            this.SetTitle(title);
+            this.SetDescription(description);
+            this.SetType(type);
+            this.SetDeadline(start, end);
+            this.setEventPoints();
+            this.Id = id;
+            this.Session = session;
+            this.Creator = creator;
+
+            if (this.Creator.Id != this.Session.Info.Id)
+            {
+                DeleteEventPbx.Visible = false;
+            }
+            else
+            {
+                DeleteEventPbx.Visible = true;
+            }
+        }
+
         public void SetTitle(String title)
         {
             EventTitleLbl.Text = title;
@@ -42,9 +81,32 @@ namespace StudentWiseClient
             EventPointsLbl.Text = points.ToString();
         }
 
-        private void CompleteEventBtn_Click(object sender, EventArgs e)
+
+        private void DeleteEventPbx_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DeleteEvent();
+            }
+            else
+            {
+                
+            }
+        }
+
+        private void EventCompletePbx_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void DeleteEvent()
+        {
+            if (this.Creator == this.Session.Info)
+            {
+                Event.Delete(this.Id, this.Session);
+                this.Parent.Controls.Remove(this);
+            }
+        }
+        
     }
 }

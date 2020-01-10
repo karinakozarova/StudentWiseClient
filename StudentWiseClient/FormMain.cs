@@ -44,6 +44,8 @@ namespace StudentWiseClient
                 event1.SetType(ev.Type);
                 event1.SetDeadline(ev.StartsAt, ev.FinishesAt);
                 event1.setEventPoints();
+                event1.Id = ev.Id;
+                event1.Session = Server.CurrentSession;
             }
         }
     }

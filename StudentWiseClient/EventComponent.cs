@@ -18,6 +18,18 @@ namespace StudentWiseClient
             this.BorderStyle = BorderStyle.FixedSingle;
         }
 
+        public UserSession Session
+        {
+            get;
+            set;
+        }
+
+        public int Id
+        {
+            set;
+            get;
+        }
+
         public void SetTitle(String title)
         {
             EventTitleLbl.Text = title;
@@ -44,7 +56,12 @@ namespace StudentWiseClient
 
         private void CompleteEventBtn_Click(object sender, EventArgs e)
         {
-
         }
+
+        private void DeleteEvent()
+        {
+            Event.Delete(this.Id, this.Session);
+        }
+        
     }
 }

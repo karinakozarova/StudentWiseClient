@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplaintsComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplaintsComponent.Designer.cs">
+      <DependentUpon>ComplaintsComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmailValidation.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventComponent.cs">
@@ -110,6 +116,9 @@
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="UserSession.cs" />
+    <EmbeddedResource Include="ComplaintsComponent.resx">
+      <DependentUpon>ComplaintsComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EventComponent.resx">
       <DependentUpon>EventComponent.cs</DependentUpon>
     </EmbeddedResource>

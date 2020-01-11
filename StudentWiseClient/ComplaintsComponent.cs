@@ -11,7 +11,7 @@ using StudentWiseApi;
 
 namespace StudentWiseClient
 {
-    public partial class ComplaintsComponent: UserControl
+    public partial class ComplaintsComponent : UserControl
     {
         public ComplaintsComponent()
         {
@@ -19,7 +19,35 @@ namespace StudentWiseClient
             this.BorderStyle = BorderStyle.FixedSingle;
         }
 
-        // Add properties here for changing the labels
-        // Add function to change all the labels by calling the functions
+        public void ChangeComplainStatus()
+        {
+            // TODO: add parameter type
+            // statusLbl.Text = 
+        }
+
+        public void ChangeTitle(String title)
+        {
+            titleLbl.Text = title;
+        }
+
+        public void ChangeDescription(String description)
+        {
+            descriptionLbl.Text = description;
+        }
+
+        public void ChangeTimestamp()
+        {
+            // TODO: add parameter type
+            // timestampLbl.Text = 
+        }
+
+        public void ChangeLabels(String title, String description)
+        {
+            // TODO: add missing parameters
+            ChangeTitle(title);
+            ChangeDescription(description);
+            ChangeComplainStatus();
+            ChangeTimestamp();
+        }
     }
 }

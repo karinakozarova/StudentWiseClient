@@ -34,12 +34,12 @@
             this.EventDescriptionLbl = new System.Windows.Forms.Label();
             this.EventDeadlineLbl = new System.Windows.Forms.Label();
             this.EventPointsLbl = new System.Windows.Forms.Label();
-            this.ImagePbx = new System.Windows.Forms.PictureBox();
-            this.EventCompletePbx = new System.Windows.Forms.PictureBox();
             this.DeleteEventPbx = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.ImagePbx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EventCompletePbx)).BeginInit();
+            this.EventCompletePbx = new System.Windows.Forms.PictureBox();
+            this.ImagePbx = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DeleteEventPbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EventCompletePbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePbx)).BeginInit();
             this.SuspendLayout();
             // 
             // EventTypeLbl
@@ -90,14 +90,17 @@
             this.EventPointsLbl.Text = "Event Points";
             this.EventPointsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ImagePbx
+            // DeleteEventPbx
             // 
-            this.ImagePbx.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ImagePbx.Location = new System.Drawing.Point(17, 19);
-            this.ImagePbx.Name = "ImagePbx";
-            this.ImagePbx.Size = new System.Drawing.Size(106, 102);
-            this.ImagePbx.TabIndex = 0;
-            this.ImagePbx.TabStop = false;
+            this.DeleteEventPbx.BackColor = System.Drawing.Color.Red;
+            this.DeleteEventPbx.Image = ((System.Drawing.Image)(resources.GetObject("DeleteEventPbx.Image")));
+            this.DeleteEventPbx.Location = new System.Drawing.Point(257, 237);
+            this.DeleteEventPbx.Name = "DeleteEventPbx";
+            this.DeleteEventPbx.Size = new System.Drawing.Size(79, 76);
+            this.DeleteEventPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DeleteEventPbx.TabIndex = 9;
+            this.DeleteEventPbx.TabStop = false;
+            this.DeleteEventPbx.Click += new System.EventHandler(this.DeleteEventPbx_Click);
             // 
             // EventCompletePbx
             // 
@@ -111,17 +114,14 @@
             this.EventCompletePbx.TabStop = false;
             this.EventCompletePbx.Click += new System.EventHandler(this.EventCompletePbx_Click);
             // 
-            // DeleteEventPbx
+            // ImagePbx
             // 
-            this.DeleteEventPbx.BackColor = System.Drawing.Color.Red;
-            this.DeleteEventPbx.Image = ((System.Drawing.Image)(resources.GetObject("DeleteEventPbx.Image")));
-            this.DeleteEventPbx.Location = new System.Drawing.Point(257, 237);
-            this.DeleteEventPbx.Name = "DeleteEventPbx";
-            this.DeleteEventPbx.Size = new System.Drawing.Size(79, 76);
-            this.DeleteEventPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.DeleteEventPbx.TabIndex = 9;
-            this.DeleteEventPbx.TabStop = false;
-            this.DeleteEventPbx.Click += new System.EventHandler(this.DeleteEventPbx_Click);
+            this.ImagePbx.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ImagePbx.Location = new System.Drawing.Point(17, 19);
+            this.ImagePbx.Name = "ImagePbx";
+            this.ImagePbx.Size = new System.Drawing.Size(106, 102);
+            this.ImagePbx.TabIndex = 0;
+            this.ImagePbx.TabStop = false;
             // 
             // EventComponent
             // 
@@ -141,9 +141,9 @@
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "EventComponent";
             this.Size = new System.Drawing.Size(445, 321);
-            ((System.ComponentModel.ISupportInitialize)(this.ImagePbx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EventCompletePbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeleteEventPbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EventCompletePbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

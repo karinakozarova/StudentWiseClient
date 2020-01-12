@@ -42,6 +42,34 @@ namespace StudentWiseClient
                 event1.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
                 flowLayoutPanelToday.Controls.Add(event1);
             }
+
+            // TODO: get the complaints here and fill them
+            for(int i = 0; i <5; i++)
+            {
+                ComplaintsComponent complaint = new ComplaintsComponent();
+                complaintsFllpnl.Controls.Add(complaint);
+            }
+        }
+
+        private void FileComplaintBttn_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(titleTbx.Text))
+            {
+                MessageBox.Show("Please enter a title for your complaint");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(descriptionTbx.Text))
+            {
+                MessageBox.Show("Please enter a description for your complaint");
+                return;
+            }
+
+            // TODO: 
+            // Send request to server here with the data
+
+            titleTbx.Clear();
+            descriptionTbx.Clear();
         }
     }
 }

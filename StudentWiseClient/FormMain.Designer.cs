@@ -44,8 +44,16 @@
             this.tpExpenses = new System.Windows.Forms.TabPage();
             this.lblExpenses = new System.Windows.Forms.Label();
             this.tpComplaints = new System.Windows.Forms.TabPage();
-            this.lblComplaints = new System.Windows.Forms.Label();
+            this.newComplaintGb = new System.Windows.Forms.GroupBox();
+            this.fileComplaintBttn = new System.Windows.Forms.Button();
+            this.titleTbx = new System.Windows.Forms.TextBox();
+            this.descriptionTbx = new System.Windows.Forms.RichTextBox();
+            this.descriptionLbl = new System.Windows.Forms.Label();
+            this.titleLbl = new System.Windows.Forms.Label();
+            this.newComplaintLbl = new System.Windows.Forms.Label();
+            this.complaintsLbl = new System.Windows.Forms.Label();
             this.tsMain = new System.Windows.Forms.ToolStrip();
+            this.complaintsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
             this.tsBtnDashboard = new System.Windows.Forms.ToolStripButton();
             this.tsBtnEvents = new System.Windows.Forms.ToolStripButton();
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +66,7 @@
             this.flowLayoutPanelTommorow.SuspendLayout();
             this.tpExpenses.SuspendLayout();
             this.tpComplaints.SuspendLayout();
+            this.newComplaintGb.SuspendLayout();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -234,7 +243,9 @@
             // 
             // tpComplaints
             // 
-            this.tpComplaints.Controls.Add(this.lblComplaints);
+            this.tpComplaints.Controls.Add(this.complaintsFllpnl);
+            this.tpComplaints.Controls.Add(this.newComplaintGb);
+            this.tpComplaints.Controls.Add(this.complaintsLbl);
             this.tpComplaints.Location = new System.Drawing.Point(4, 25);
             this.tpComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tpComplaints.Name = "tpComplaints";
@@ -243,18 +254,89 @@
             this.tpComplaints.Text = "Complaints";
             this.tpComplaints.UseVisualStyleBackColor = true;
             // 
-            // lblComplaints
+            // newComplaintGb
             // 
-            this.lblComplaints.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblComplaints.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComplaints.Location = new System.Drawing.Point(0, 0);
-            this.lblComplaints.Margin = new System.Windows.Forms.Padding(0);
-            this.lblComplaints.Name = "lblComplaints";
-            this.lblComplaints.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
-            this.lblComplaints.Size = new System.Drawing.Size(949, 66);
-            this.lblComplaints.TabIndex = 3;
-            this.lblComplaints.Text = "Complaints";
-            this.lblComplaints.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newComplaintGb.Controls.Add(this.fileComplaintBttn);
+            this.newComplaintGb.Controls.Add(this.titleTbx);
+            this.newComplaintGb.Controls.Add(this.descriptionTbx);
+            this.newComplaintGb.Controls.Add(this.descriptionLbl);
+            this.newComplaintGb.Controls.Add(this.titleLbl);
+            this.newComplaintGb.Controls.Add(this.newComplaintLbl);
+            this.newComplaintGb.Location = new System.Drawing.Point(531, 13);
+            this.newComplaintGb.Name = "newComplaintGb";
+            this.newComplaintGb.Size = new System.Drawing.Size(397, 412);
+            this.newComplaintGb.TabIndex = 1;
+            this.newComplaintGb.TabStop = false;
+            // 
+            // fileComplaintBttn
+            // 
+            this.fileComplaintBttn.BackColor = System.Drawing.Color.SpringGreen;
+            this.fileComplaintBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileComplaintBttn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.fileComplaintBttn.Location = new System.Drawing.Point(24, 343);
+            this.fileComplaintBttn.Name = "fileComplaintBttn";
+            this.fileComplaintBttn.Size = new System.Drawing.Size(347, 50);
+            this.fileComplaintBttn.TabIndex = 3;
+            this.fileComplaintBttn.Text = "File Complaint";
+            this.fileComplaintBttn.UseVisualStyleBackColor = false;
+            this.fileComplaintBttn.Click += new System.EventHandler(this.FileComplaintBttn_Click);
+            // 
+            // titleTbx
+            // 
+            this.titleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleTbx.Location = new System.Drawing.Point(24, 122);
+            this.titleTbx.Name = "titleTbx";
+            this.titleTbx.Size = new System.Drawing.Size(347, 37);
+            this.titleTbx.TabIndex = 1;
+            // 
+            // descriptionTbx
+            // 
+            this.descriptionTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descriptionTbx.Location = new System.Drawing.Point(24, 212);
+            this.descriptionTbx.Name = "descriptionTbx";
+            this.descriptionTbx.Size = new System.Drawing.Size(347, 112);
+            this.descriptionTbx.TabIndex = 2;
+            this.descriptionTbx.Text = "";
+            // 
+            // descriptionLbl
+            // 
+            this.descriptionLbl.AutoSize = true;
+            this.descriptionLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descriptionLbl.Location = new System.Drawing.Point(17, 168);
+            this.descriptionLbl.Name = "descriptionLbl";
+            this.descriptionLbl.Size = new System.Drawing.Size(124, 41);
+            this.descriptionLbl.TabIndex = 3;
+            this.descriptionLbl.Text = "Description:";
+            // 
+            // titleLbl
+            // 
+            this.titleLbl.AutoSize = true;
+            this.titleLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLbl.Location = new System.Drawing.Point(17, 78);
+            this.titleLbl.Name = "titleLbl";
+            this.titleLbl.Size = new System.Drawing.Size(62, 41);
+            this.titleLbl.TabIndex = 1;
+            this.titleLbl.Text = "Title:";
+            // 
+            // newComplaintLbl
+            // 
+            this.newComplaintLbl.AutoSize = true;
+            this.newComplaintLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newComplaintLbl.Location = new System.Drawing.Point(16, 18);
+            this.newComplaintLbl.Name = "newComplaintLbl";
+            this.newComplaintLbl.Size = new System.Drawing.Size(175, 48);
+            this.newComplaintLbl.TabIndex = 1;
+            this.newComplaintLbl.Text = "New complaint:";
+            // 
+            // complaintsLbl
+            // 
+            this.complaintsLbl.AutoSize = true;
+            this.complaintsLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.complaintsLbl.Location = new System.Drawing.Point(8, 13);
+            this.complaintsLbl.Name = "complaintsLbl";
+            this.complaintsLbl.Size = new System.Drawing.Size(138, 48);
+            this.complaintsLbl.TabIndex = 0;
+            this.complaintsLbl.Text = "Complaints:";
             // 
             // tsMain
             // 
@@ -276,6 +358,14 @@
             this.tsMain.Size = new System.Drawing.Size(953, 64);
             this.tsMain.TabIndex = 1;
             // 
+            // complaintsFllpnl
+            // 
+            this.complaintsFllpnl.AutoScroll = true;
+            this.complaintsFllpnl.Location = new System.Drawing.Point(16, 64);
+            this.complaintsFllpnl.Name = "complaintsFllpnl";
+            this.complaintsFllpnl.Size = new System.Drawing.Size(500, 361);
+            this.complaintsFllpnl.TabIndex = 2;
+            // 
             // tsBtnDashboard
             // 
             this.tsBtnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDashboard.Image")));
@@ -294,7 +384,7 @@
             this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnEvents.Name = "tsBtnEvents";
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnEvents.Size = new System.Drawing.Size(102, 44);
+            this.tsBtnEvents.Size = new System.Drawing.Size(102, 19);
             this.tsBtnEvents.Text = "Events";
             this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -305,7 +395,7 @@
             this.tsBtnExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnExpenses.Name = "tsBtnExpenses";
             this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 44);
+            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 19);
             this.tsBtnExpenses.Text = "Expenses";
             this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -316,7 +406,7 @@
             this.tsBtnComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnComplaints.Name = "tsBtnComplaints";
             this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 44);
+            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 19);
             this.tsBtnComplaints.Text = "Complaints";
             this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -339,6 +429,9 @@
             this.flowLayoutPanelTommorow.ResumeLayout(false);
             this.tpExpenses.ResumeLayout(false);
             this.tpComplaints.ResumeLayout(false);
+            this.tpComplaints.PerformLayout();
+            this.newComplaintGb.ResumeLayout(false);
+            this.newComplaintGb.PerformLayout();
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
             this.ResumeLayout(false);
@@ -358,7 +451,6 @@
         private System.Windows.Forms.ToolStripButton tsBtnComplaints;
         private System.Windows.Forms.Label lblDashboard;
         private System.Windows.Forms.Label lblExpenses;
-        private System.Windows.Forms.Label lblComplaints;
         private System.Windows.Forms.TabPage tpEvents;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelDay1;
@@ -368,6 +460,15 @@
         private System.Windows.Forms.Label lblEvents;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTommorow;
         private System.Windows.Forms.Label TommorowEventsLbl;
+        private System.Windows.Forms.GroupBox newComplaintGb;
+        private System.Windows.Forms.Label complaintsLbl;
+        private System.Windows.Forms.Label newComplaintLbl;
+        private System.Windows.Forms.Button fileComplaintBttn;
+        private System.Windows.Forms.TextBox titleTbx;
+        private System.Windows.Forms.RichTextBox descriptionTbx;
+        private System.Windows.Forms.Label descriptionLbl;
+        private System.Windows.Forms.Label titleLbl;
+        private System.Windows.Forms.FlowLayoutPanel complaintsFllpnl;
     }
 }
 

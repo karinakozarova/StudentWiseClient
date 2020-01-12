@@ -241,7 +241,7 @@ namespace StudentWiseApi
         {
             if (value != Type)
             {
-                InvokeUpdate(Id, new { event_type = Type.ToString().ToLower() }, session);
+                UpdatedAt = InvokeUpdate(Id, new { event_type = value.ToString().ToLower() }, session).UpdatedAt;
                 Type = value;
             }
         }
@@ -250,7 +250,7 @@ namespace StudentWiseApi
         {
             if (value != Title)
             {
-                InvokeUpdate(Id, new { title = Title }, session);
+                UpdatedAt = InvokeUpdate(Id, new { title = value }, session).UpdatedAt;
                 Title = value;
             }
         }
@@ -259,7 +259,7 @@ namespace StudentWiseApi
         {
             if (value != Description)
             {
-                InvokeUpdate(Id, new { description = Description }, session);
+                UpdatedAt = InvokeUpdate(Id, new { description = value }, session).UpdatedAt;
                 Description = value;
             }
 
@@ -268,7 +268,7 @@ namespace StudentWiseApi
         {
             if (value != StartsAt)
             {
-                InvokeUpdate(Id, new { starts_at = StartsAt }, session);
+                UpdatedAt = InvokeUpdate(Id, new { starts_at = value }, session).UpdatedAt;
                 StartsAt = value;
             }
         }
@@ -276,7 +276,7 @@ namespace StudentWiseApi
         {
             if (value != FinishesAt)
             {
-                InvokeUpdate(Id, new { finishes_at = FinishesAt }, session);
+                UpdatedAt = InvokeUpdate(Id, new { finishes_at = value }, session).UpdatedAt;
                 FinishesAt = value;
             }
         }

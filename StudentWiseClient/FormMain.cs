@@ -16,6 +16,16 @@ namespace StudentWiseClient
         public FormMain()
         {
             InitializeComponent();
+            timeNowTimer.Start();
+
+            List<Event> events = Event.Enumerate(); // TODO: filter them to be today's only
+            todaysEventsFllpnl.Controls.Clear();
+            foreach (Event ev in events)
+            {
+                EventComponent eventComponent = new EventComponent();
+                eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                todaysEventsFllpnl.Controls.Add(eventComponent);
+            }
         }
 
         private void TsBtn_Click(object sender, EventArgs e)
@@ -41,6 +51,17 @@ namespace StudentWiseClient
                 EventComponent eventComponent = new EventComponent();
                 eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
                 flowLayoutPanelToday.Controls.Add(eventComponent);
+            }
+
+            List<Complaint> complaints = Complaint.Enumerate();
+
+            complaintsFllPanel.Controls.Clear();
+
+            foreach (Complaint complaint in complaints)
+            {
+                MiniComplaintComponent complaintComponent = new MiniComplaintComponent();
+                complaintComponent.ChangeLabels(complaint.Title, complaint.Status);
+                complaintsFllPanel.Controls.Add(complaintComponent);
             }
 
             ReloadComplaints();
@@ -78,6 +99,11 @@ namespace StudentWiseClient
             titleTbx.Clear();
             descriptionTbx.Clear();
             ReloadComplaints();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            timeNowLbl.Text = $"Today is {DateTime.Now.Date.ToString("dd/MM/yyyy")}";
         }
     }
 }

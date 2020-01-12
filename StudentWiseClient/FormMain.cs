@@ -34,20 +34,29 @@ namespace StudentWiseClient
         private void FormMain_Load(object sender, EventArgs e)
         {
             List<Event> events = Event.Enumerate();
-
+           
 
             foreach (Event ev in events)
             {
-                EventComponent event1 = new EventComponent();
-                event1.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
-                flowLayoutPanelToday.Controls.Add(event1);
+                EventComponent eventComponent = new EventComponent();
+                eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                flowLayoutPanelToday.Controls.Add(eventComponent);
             }
 
-            // TODO: get the complaints here and fill them
-            for(int i = 0; i <5; i++)
+            ReloadComplaints();
+        }
+
+        private void ReloadComplaints()
+        {
+            List<Complaint> complaints = Complaint.Enumerate();
+
+            complaintsFllpnl.Controls.Clear();
+
+            foreach (Complaint complaint in complaints)
             {
-                ComplaintsComponent complaint = new ComplaintsComponent();
-                complaintsFllpnl.Controls.Add(complaint);
+                ComplaintsComponent complaintComponent = new ComplaintsComponent();
+                complaintComponent.ChangeLabels(complaint.Title, complaint.Description, complaint.Status, complaint.CreatedAt);
+                complaintsFllpnl.Controls.Add(complaintComponent);
             }
         }
 
@@ -65,11 +74,10 @@ namespace StudentWiseClient
                 return;
             }
 
-            // TODO: 
-            // Send request to server here with the data
-
+            Complaint.Create(titleTbx.Text, descriptionTbx.Text, Server.CurrentSession);
             titleTbx.Clear();
             descriptionTbx.Clear();
+            ReloadComplaints();
         }
     }
 }

@@ -41,7 +41,7 @@
             this.statusLbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.statusLbl.Location = new System.Drawing.Point(24, 22);
             this.statusLbl.Name = "statusLbl";
-            this.statusLbl.Size = new System.Drawing.Size(74, 22);
+            this.statusLbl.Size = new System.Drawing.Size(79, 24);
             this.statusLbl.TabIndex = 0;
             this.statusLbl.Text = "IN PROGRESS";
             // 
@@ -74,12 +74,13 @@
             this.timestampLbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.timestampLbl.Location = new System.Drawing.Point(348, 22);
             this.timestampLbl.Name = "timestampLbl";
-            this.timestampLbl.Size = new System.Drawing.Size(100, 22);
+            this.timestampLbl.Size = new System.Drawing.Size(108, 24);
             this.timestampLbl.TabIndex = 3;
             this.timestampLbl.Text = "12th October 2020";
             // 
             // ComplaintsComponent
             // 
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Controls.Add(this.timestampLbl);
             this.Controls.Add(this.descriptionLbl);
             this.Controls.Add(this.titleLbl);

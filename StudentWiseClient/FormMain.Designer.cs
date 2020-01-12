@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpDashboard = new System.Windows.Forms.TabPage();
-            this.lblDashboard = new System.Windows.Forms.Label();
+            this.dashboardComplaintsLbl = new System.Windows.Forms.Label();
+            this.balanceAmountLbl = new System.Windows.Forms.Label();
+            this.balanceLbl = new System.Windows.Forms.Label();
+            this.complaintsFllPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.todaysEventsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
+            this.dashboardEventsLbl = new System.Windows.Forms.Label();
+            this.timeNowLbl = new System.Windows.Forms.Label();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelDay1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,6 +51,7 @@
             this.tpExpenses = new System.Windows.Forms.TabPage();
             this.lblExpenses = new System.Windows.Forms.Label();
             this.tpComplaints = new System.Windows.Forms.TabPage();
+            this.complaintsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
             this.newComplaintGb = new System.Windows.Forms.GroupBox();
             this.fileComplaintBttn = new System.Windows.Forms.Button();
             this.titleTbx = new System.Windows.Forms.TextBox();
@@ -53,11 +61,11 @@
             this.newComplaintLbl = new System.Windows.Forms.Label();
             this.complaintsLbl = new System.Windows.Forms.Label();
             this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.complaintsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
             this.tsBtnDashboard = new System.Windows.Forms.ToolStripButton();
             this.tsBtnEvents = new System.Windows.Forms.ToolStripButton();
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
             this.tsBtnComplaints = new System.Windows.Forms.ToolStripButton();
+            this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
@@ -88,7 +96,13 @@
             // 
             // tpDashboard
             // 
-            this.tpDashboard.Controls.Add(this.lblDashboard);
+            this.tpDashboard.Controls.Add(this.dashboardComplaintsLbl);
+            this.tpDashboard.Controls.Add(this.balanceAmountLbl);
+            this.tpDashboard.Controls.Add(this.balanceLbl);
+            this.tpDashboard.Controls.Add(this.complaintsFllPanel);
+            this.tpDashboard.Controls.Add(this.todaysEventsFllpnl);
+            this.tpDashboard.Controls.Add(this.dashboardEventsLbl);
+            this.tpDashboard.Controls.Add(this.timeNowLbl);
             this.tpDashboard.Location = new System.Drawing.Point(4, 25);
             this.tpDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tpDashboard.Name = "tpDashboard";
@@ -97,18 +111,72 @@
             this.tpDashboard.Text = "Dashboard";
             this.tpDashboard.UseVisualStyleBackColor = true;
             // 
-            // lblDashboard
+            // dashboardComplaintsLbl
             // 
-            this.lblDashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDashboard.Location = new System.Drawing.Point(0, 0);
-            this.lblDashboard.Margin = new System.Windows.Forms.Padding(0);
-            this.lblDashboard.Name = "lblDashboard";
-            this.lblDashboard.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
-            this.lblDashboard.Size = new System.Drawing.Size(949, 66);
-            this.lblDashboard.TabIndex = 0;
-            this.lblDashboard.Text = "Dashboard";
-            this.lblDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dashboardComplaintsLbl.AutoSize = true;
+            this.dashboardComplaintsLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardComplaintsLbl.Location = new System.Drawing.Point(543, 34);
+            this.dashboardComplaintsLbl.Name = "dashboardComplaintsLbl";
+            this.dashboardComplaintsLbl.Size = new System.Drawing.Size(143, 51);
+            this.dashboardComplaintsLbl.TabIndex = 7;
+            this.dashboardComplaintsLbl.Text = "Complaints";
+            // 
+            // balanceAmountLbl
+            // 
+            this.balanceAmountLbl.AutoSize = true;
+            this.balanceAmountLbl.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balanceAmountLbl.ForeColor = System.Drawing.Color.SpringGreen;
+            this.balanceAmountLbl.Location = new System.Drawing.Point(708, 371);
+            this.balanceAmountLbl.Name = "balanceAmountLbl";
+            this.balanceAmountLbl.Size = new System.Drawing.Size(35, 35);
+            this.balanceAmountLbl.TabIndex = 6;
+            this.balanceAmountLbl.Text = "0$";
+            // 
+            // balanceLbl
+            // 
+            this.balanceLbl.AutoSize = true;
+            this.balanceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balanceLbl.Location = new System.Drawing.Point(554, 365);
+            this.balanceLbl.Name = "balanceLbl";
+            this.balanceLbl.Size = new System.Drawing.Size(159, 41);
+            this.balanceLbl.TabIndex = 5;
+            this.balanceLbl.Text = "Your balance is:";
+            // 
+            // complaintsFllPanel
+            // 
+            this.complaintsFllPanel.AutoScroll = true;
+            this.complaintsFllPanel.Location = new System.Drawing.Point(552, 88);
+            this.complaintsFllPanel.Name = "complaintsFllPanel";
+            this.complaintsFllPanel.Size = new System.Drawing.Size(315, 261);
+            this.complaintsFllPanel.TabIndex = 4;
+            // 
+            // todaysEventsFllpnl
+            // 
+            this.todaysEventsFllpnl.AutoScroll = true;
+            this.todaysEventsFllpnl.Location = new System.Drawing.Point(17, 88);
+            this.todaysEventsFllpnl.Name = "todaysEventsFllpnl";
+            this.todaysEventsFllpnl.Size = new System.Drawing.Size(460, 318);
+            this.todaysEventsFllpnl.TabIndex = 3;
+            // 
+            // dashboardEventsLbl
+            // 
+            this.dashboardEventsLbl.AutoSize = true;
+            this.dashboardEventsLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardEventsLbl.Location = new System.Drawing.Point(8, 34);
+            this.dashboardEventsLbl.Name = "dashboardEventsLbl";
+            this.dashboardEventsLbl.Size = new System.Drawing.Size(261, 51);
+            this.dashboardEventsLbl.TabIndex = 2;
+            this.dashboardEventsLbl.Text = "Your events for today:";
+            // 
+            // timeNowLbl
+            // 
+            this.timeNowLbl.AutoSize = true;
+            this.timeNowLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeNowLbl.Location = new System.Drawing.Point(748, 14);
+            this.timeNowLbl.Name = "timeNowLbl";
+            this.timeNowLbl.Size = new System.Drawing.Size(101, 41);
+            this.timeNowLbl.TabIndex = 1;
+            this.timeNowLbl.Text = "Time now";
             // 
             // tpEvents
             // 
@@ -139,7 +207,7 @@
             // 
             this.flowLayoutPanelDay1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flowLayoutPanelDay1.AutoSize = true;
-            this.flowLayoutPanelDay1.Location = new System.Drawing.Point(3, 28);
+            this.flowLayoutPanelDay1.Location = new System.Drawing.Point(3, 37);
             this.flowLayoutPanelDay1.Name = "flowLayoutPanelDay1";
             this.flowLayoutPanelDay1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanelDay1.TabIndex = 3;
@@ -155,13 +223,14 @@
             // 
             // AddEventBtn
             // 
-            this.AddEventBtn.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AddEventBtn.AutoSize = true;
+            this.AddEventBtn.AllowDrop = true;
+            this.AddEventBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AddEventBtn.AutoEllipsis = true;
             this.AddEventBtn.BackColor = System.Drawing.Color.LawnGreen;
             this.AddEventBtn.Font = new System.Drawing.Font("Oswald SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddEventBtn.Location = new System.Drawing.Point(15, 3);
             this.AddEventBtn.Name = "AddEventBtn";
-            this.AddEventBtn.Size = new System.Drawing.Size(900, 51);
+            this.AddEventBtn.Size = new System.Drawing.Size(907, 68);
             this.AddEventBtn.TabIndex = 4;
             this.AddEventBtn.Text = "Add new event";
             this.AddEventBtn.UseVisualStyleBackColor = false;
@@ -172,22 +241,23 @@
             this.flowLayoutPanelToday.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flowLayoutPanelToday.AutoSize = true;
             this.flowLayoutPanelToday.Controls.Add(this.lblEvents);
-            this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 60);
+            this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 77);
             this.flowLayoutPanelToday.Name = "flowLayoutPanelToday";
-            this.flowLayoutPanelToday.Size = new System.Drawing.Size(897, 89);
+            this.flowLayoutPanelToday.Size = new System.Drawing.Size(907, 66);
             this.flowLayoutPanelToday.TabIndex = 9;
             // 
             // lblEvents
             // 
+            this.lblEvents.AllowDrop = true;
+            this.lblEvents.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblEvents.BackColor = System.Drawing.Color.LightGray;
             this.lblEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblEvents.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblEvents.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEvents.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblEvents.Location = new System.Drawing.Point(0, 0);
             this.lblEvents.Margin = new System.Windows.Forms.Padding(0);
             this.lblEvents.Name = "lblEvents";
-            this.lblEvents.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
-            this.lblEvents.Size = new System.Drawing.Size(897, 89);
+            this.lblEvents.Size = new System.Drawing.Size(907, 66);
             this.lblEvents.TabIndex = 8;
             this.lblEvents.Text = "Today\'s events";
             this.lblEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -197,22 +267,22 @@
             this.flowLayoutPanelTommorow.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flowLayoutPanelTommorow.AutoSize = true;
             this.flowLayoutPanelTommorow.Controls.Add(this.TommorowEventsLbl);
-            this.flowLayoutPanelTommorow.Location = new System.Drawing.Point(3, 155);
+            this.flowLayoutPanelTommorow.Location = new System.Drawing.Point(3, 149);
             this.flowLayoutPanelTommorow.Name = "flowLayoutPanelTommorow";
-            this.flowLayoutPanelTommorow.Size = new System.Drawing.Size(897, 89);
+            this.flowLayoutPanelTommorow.Size = new System.Drawing.Size(907, 68);
             this.flowLayoutPanelTommorow.TabIndex = 10;
             // 
             // TommorowEventsLbl
             // 
+            this.TommorowEventsLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TommorowEventsLbl.BackColor = System.Drawing.Color.LightGray;
             this.TommorowEventsLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TommorowEventsLbl.Dock = System.Windows.Forms.DockStyle.Top;
             this.TommorowEventsLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TommorowEventsLbl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.TommorowEventsLbl.Location = new System.Drawing.Point(0, 0);
             this.TommorowEventsLbl.Margin = new System.Windows.Forms.Padding(0);
             this.TommorowEventsLbl.Name = "TommorowEventsLbl";
-            this.TommorowEventsLbl.Padding = new System.Windows.Forms.Padding(0, 20, 0, 20);
-            this.TommorowEventsLbl.Size = new System.Drawing.Size(897, 89);
+            this.TommorowEventsLbl.Size = new System.Drawing.Size(907, 68);
             this.TommorowEventsLbl.TabIndex = 9;
             this.TommorowEventsLbl.Text = "Tommorow\'s events";
             this.TommorowEventsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -253,6 +323,14 @@
             this.tpComplaints.TabIndex = 3;
             this.tpComplaints.Text = "Complaints";
             this.tpComplaints.UseVisualStyleBackColor = true;
+            // 
+            // complaintsFllpnl
+            // 
+            this.complaintsFllpnl.AutoScroll = true;
+            this.complaintsFllpnl.Location = new System.Drawing.Point(16, 64);
+            this.complaintsFllpnl.Name = "complaintsFllpnl";
+            this.complaintsFllpnl.Size = new System.Drawing.Size(500, 361);
+            this.complaintsFllpnl.TabIndex = 2;
             // 
             // newComplaintGb
             // 
@@ -358,14 +436,6 @@
             this.tsMain.Size = new System.Drawing.Size(953, 64);
             this.tsMain.TabIndex = 1;
             // 
-            // complaintsFllpnl
-            // 
-            this.complaintsFllpnl.AutoScroll = true;
-            this.complaintsFllpnl.Location = new System.Drawing.Point(16, 64);
-            this.complaintsFllpnl.Name = "complaintsFllpnl";
-            this.complaintsFllpnl.Size = new System.Drawing.Size(500, 361);
-            this.complaintsFllpnl.TabIndex = 2;
-            // 
             // tsBtnDashboard
             // 
             this.tsBtnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDashboard.Image")));
@@ -410,6 +480,11 @@
             this.tsBtnComplaints.Text = "Complaints";
             this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
             // 
+            // timeNowTimer
+            // 
+            this.timeNowTimer.Interval = 1000;
+            this.timeNowTimer.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -422,6 +497,7 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tcMain.ResumeLayout(false);
             this.tpDashboard.ResumeLayout(false);
+            this.tpDashboard.PerformLayout();
             this.tpEvents.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
@@ -449,7 +525,6 @@
         private System.Windows.Forms.ToolStripButton tsBtnEvents;
         private System.Windows.Forms.ToolStripButton tsBtnExpenses;
         private System.Windows.Forms.ToolStripButton tsBtnComplaints;
-        private System.Windows.Forms.Label lblDashboard;
         private System.Windows.Forms.Label lblExpenses;
         private System.Windows.Forms.TabPage tpEvents;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -469,6 +544,14 @@
         private System.Windows.Forms.Label descriptionLbl;
         private System.Windows.Forms.Label titleLbl;
         private System.Windows.Forms.FlowLayoutPanel complaintsFllpnl;
+        private System.Windows.Forms.Label timeNowLbl;
+        private System.Windows.Forms.Timer timeNowTimer;
+        private System.Windows.Forms.Label dashboardEventsLbl;
+        private System.Windows.Forms.FlowLayoutPanel todaysEventsFllpnl;
+        private System.Windows.Forms.Label balanceAmountLbl;
+        private System.Windows.Forms.Label balanceLbl;
+        private System.Windows.Forms.FlowLayoutPanel complaintsFllPanel;
+        private System.Windows.Forms.Label dashboardComplaintsLbl;
     }
 }
 

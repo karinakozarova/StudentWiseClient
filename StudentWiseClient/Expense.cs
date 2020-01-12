@@ -19,6 +19,7 @@ namespace StudentWiseApi
         public User Creator { get; }
         public DateTime CreatedAt { get; }
         public DateTime UpdatedAt { get; protected set; }
+        public List<User> Participants { get; }
 
         /// <summary>
         /// Create a new expense.
@@ -182,6 +183,81 @@ namespace StudentWiseApi
             Delete(Id, session);
         }
 
+        /// <summary>
+        /// Add a user as a participant of an expense by ID.
+        /// </summary>
+        public static User AddParticipant(int expense_id, int user_id, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                string.Format(Server.expense_participant_url, expense_id),
+                session.token,
+                "POST",
+                new
+                {
+                    expense_participant = new
+                    {
+                        participant_id = user_id
+                    }
+                }
+            );
+
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var json = ParsedJson.Parse(reader.ReadToEnd());
+                return new User(ParsedJson.Parse(json.Members["participant"].GetRawText()));
+            }
+
+            // TODO: parse the response to throw proper exceptions
+            throw new Exception("Something went wrong during expense participant addition.");
+        }
+
+        /// <summary>
+        /// Add a user as a participant if this expense.
+        /// </summary>
+        public void AddParticipant(int user_id, UserSession session = null)
+        {
+            Participants.Add(AddParticipant(Id, user_id, session));
+        }
+
+        /// <summary>
+        /// Remove a participating user from an expense by ID.
+        /// </summary>
+        public static void RemoveParticipant(int expense_id, int user_id, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                string.Format(Server.expense_participant_url, expense_id),
+                session.token,
+                "DELETE",
+                new
+                {
+                    expense_participant = new
+                    {
+                        participant_id = user_id
+                    }
+                }
+            );
+
+            // TODO: parse the response to throw proper exceptions
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                throw new Exception("Something went wrong during expense participant removing.");
+        }
+
+        /// <summary>
+        /// Remove a participating user from this expense.
+        /// </summary>
+        public void RemoveParticipant(int user_id, UserSession session = null)
+        {
+            RemoveParticipant(Id, user_id, session);
+            Participants.Remove(Participants.Find(u => u.Id == user_id));
+        }
+
         internal static Expense InvokeUpdate(
             int expense_id,
             object body,
@@ -223,6 +299,8 @@ namespace StudentWiseApi
             CreatedAt = json.Members["created_at"].GetDateTime();
             UpdatedAt = json.Members["updated_at"].GetDateTime();
             Creator = new User(ParsedJson.Parse(json.Members["creator"].GetRawText()));
+            Participants = ParsedJson.ParseArray(
+                json.Members["participants"].GetRawText()).ConvertAll(e => new User(e));
         }
     }
 }

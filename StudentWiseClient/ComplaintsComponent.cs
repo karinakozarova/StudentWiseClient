@@ -19,10 +19,9 @@ namespace StudentWiseClient
             this.BorderStyle = BorderStyle.FixedSingle;
         }
 
-        public void ChangeComplainStatus()
+        public void ChangeComplainStatus(ComplaintStatus status)
         {
-            // TODO: add parameter type
-            // statusLbl.Text = 
+            statusLbl.Text = status.ToString();
         }
 
         public void ChangeTitle(String title)
@@ -35,19 +34,17 @@ namespace StudentWiseClient
             descriptionLbl.Text = description;
         }
 
-        public void ChangeTimestamp()
+        public void ChangeTimestamp(DateTime timestamp)
         {
-            // TODO: add parameter type
-            // timestampLbl.Text = 
+            timestampLbl.Text = timestamp.ToString();
         }
 
-        public void ChangeLabels(String title, String description)
+        public void ChangeLabels(String title, String description, ComplaintStatus status, DateTime timestamp)
         {
-            // TODO: add missing parameters
             ChangeTitle(title);
             ChangeDescription(description);
-            ChangeComplainStatus();
-            ChangeTimestamp();
+            ChangeComplainStatus(status);
+            ChangeTimestamp(timestamp);
         }
     }
 }

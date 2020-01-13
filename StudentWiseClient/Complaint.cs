@@ -53,7 +53,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                Server.complaint_enumerate_url,
+                Server.complaint_url,
                 session.token,
                 "GET",
                 null
@@ -173,7 +173,7 @@ namespace StudentWiseApi
 
             // Negative complaint IDs are reserved for creating new complaints.
             var response = Server.Send(
-                complaint_id < 0 ? Server.complaint_create_url : 
+                complaint_id < 0 ? Server.complaint_url : 
                     string.Format(Server.complaint_manage_url, complaint_id),
                 session.token,
                 complaint_id < 0 ? "POST" : "PUT",

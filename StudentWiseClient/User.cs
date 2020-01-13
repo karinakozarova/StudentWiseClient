@@ -41,7 +41,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.user_query_url, id),
+                string.Format(Server.user_manage_url, id),
                 session.token,
                 "GET",
                 null
@@ -66,7 +66,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                Server.user_enumerate_url,
+                Server.user_url,
                 session.token,
                 "GET",
                 null

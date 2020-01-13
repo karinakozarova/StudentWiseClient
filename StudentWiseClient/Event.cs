@@ -95,7 +95,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.event_query_url, id),
+                string.Format(Server.event_manage_url, id),
                 session.token,
                 "GET",
                 null
@@ -120,7 +120,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                Server.event_enumerate_url,
+                Server.event_url,
                 session.token,
                 "GET",
                 null
@@ -145,7 +145,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.event_delete_url, id),
+                string.Format(Server.event_manage_url, id),
                 session.token,
                 "DELETE",
                 null
@@ -167,13 +167,13 @@ namespace StudentWiseApi
         /// <summary>
         /// Add a user as a participant of an event by ID.
         /// </summary>
-        public static void AddParticipant(int event_id, int user_id, UserSession session = null)
+        public static User AddParticipant(int event_id, int user_id, UserSession session = null)
         {
             // Assume current session by default
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.event_add_user_url, event_id),
+                string.Format(Server.event_participant_url, event_id),
                 session.token,
                 "POST",
                 new
@@ -184,10 +184,16 @@ namespace StudentWiseApi
                     }
                 }
             );
+            
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var json = ParsedJson.Parse(reader.ReadToEnd());
+                return new User(ParsedJson.Parse(json.Members["participant"].GetRawText()));
+            }
 
             // TODO: parse the response to throw proper exceptions
-            if (response.StatusCode != HttpStatusCode.Created)
-                throw new Exception("Something went wrong during event participant addition.");
+            throw new Exception("Something went wrong during event participant addition.");
         }
 
         /// <summary>
@@ -195,8 +201,7 @@ namespace StudentWiseApi
         /// </summary>
         public void AddParticipant(int user_id, UserSession session = null)
         {
-            AddParticipant(Id, user_id, session);
-            Participants.Add(User.Query(user_id));
+            Participants.Add(AddParticipant(Id, user_id, session));
         }
 
         /// <summary>
@@ -208,7 +213,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.event_remove_user_url, event_id),
+                string.Format(Server.event_participant_url, event_id),
                 session.token,
                 "DELETE",
                 new
@@ -228,8 +233,6 @@ namespace StudentWiseApi
         /// <summary>
         /// Remove a participating user from this event.
         /// </summary>
-        /// <param name="user_id"></param>
-        /// <param name="session"></param>
         public void RemoveParticipant(int user_id, UserSession session = null)
         {
             RemoveParticipant(Id, user_id, session);
@@ -314,8 +317,8 @@ namespace StudentWiseApi
             // Negative event IDs are reserved for creating new events.
             var response = Server.Send(
                 event_id < 0 ?
-                    Server.event_create_url :
-                    string.Format(Server.event_update_url, event_id),
+                    Server.event_url :
+                    string.Format(Server.event_manage_url, event_id),
                 session.token,
                 event_id < 0 ? "POST" : "PUT",
                 new

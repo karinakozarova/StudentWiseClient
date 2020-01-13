@@ -89,6 +89,7 @@
     <Compile Include="EventComponent.Designer.cs">
       <DependentUpon>EventComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expense.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

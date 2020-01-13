@@ -50,23 +50,16 @@ namespace StudentWiseApi
     public class Server
     {
         private const string base_url = "https://studentwise.herokuapp.com/api/v1";
-        internal const string user_create_url = base_url + "/users";
-        internal const string user_enumerate_url = base_url + "/users";
-        internal const string user_query_url = base_url + "/users/{0}";
+        internal const string user_url = base_url + "/users";
+        internal const string user_manage_url = base_url + "/users/{0}";
         internal const string user_login_url = base_url + "/users/login";        
         internal const string user_logout_url = base_url + "/users/logout";
-        internal const string event_create_url = base_url + "/events";
-        internal const string event_enumerate_url = base_url + "/events";
-        internal const string event_query_url = base_url + "/events/{0}";
-        internal const string event_update_url = base_url + "/events/{0}";
-        internal const string event_delete_url = base_url + "/events/{0}";
-        internal const string event_add_user_url = base_url + "/events/{0}/participants";
-        internal const string event_remove_user_url = base_url + "/events/{0}/participants";
-        internal const string complaint_create_url = base_url + "/complaints";
-        internal const string complaint_enumerate_url = base_url + "/complaints";
+        internal const string event_url = base_url + "/events";
+        internal const string event_manage_url = base_url + "/events/{0}";
+        internal const string event_participant_url = base_url + "/events/{0}/participants";
+        internal const string complaint_url = base_url + "/complaints";
         internal const string complaint_manage_url = base_url + "/complaints/{0}";
-        internal const string expense_create_url = base_url + "/expenses";
-        internal const string expense_enumerate_url = base_url + "/expenses";
+        internal const string expense_url = base_url + "/expenses";
         internal const string expense_manage_url = base_url + "/expenses/{0}";
         internal const string expense_participant_url = base_url + "/expenses/{0}/participants";
 
@@ -147,7 +140,7 @@ namespace StudentWiseApi
         static public UserSession CreateUser(string email, string first_name, string last_name, string password)
         {
             var response = Send(
-                user_create_url,
+                user_url,
                 null,
                 "POST",
                 new

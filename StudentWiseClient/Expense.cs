@@ -48,7 +48,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                Server.expense_enumerate_url,
+                Server.expense_url,
                 session.token,
                 "GET",
                 null
@@ -269,7 +269,7 @@ namespace StudentWiseApi
 
             // Negative expense IDs are reserved for creating new expenses.
             var response = Server.Send(
-                expense_id < 0 ? Server.expense_create_url:
+                expense_id < 0 ? Server.expense_url:
                     string.Format(Server.expense_manage_url, expense_id),
                 session.token,
                 expense_id < 0 ? "POST" : "PUT",

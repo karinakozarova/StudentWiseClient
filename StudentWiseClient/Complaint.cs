@@ -195,17 +195,13 @@ namespace StudentWiseApi
 
         internal Complaint(ParsedJson json)
         {
-            Id = json.Members["id"].GetInt32();
-            Title = json.Member("title")?.GetString();
-            Description = json.Member("description")?.GetString();
-            CreatedAt = json.Members["created_at"].GetDateTime();
-            UpdatedAt = json.Members["updated_at"].GetDateTime();
-            Creator = new User(ParsedJson.Parse(json.Members["creator"].GetRawText()));
-
-            if (Enum.TryParse(json.Member("status")?.GetString(), true, out ComplaintStatus parsedStatus))
-                Status = parsedStatus;
-            else
-                throw new Exception("Unexpected complaint status encountered.");
+            Id = json.GetMember("id", JsonValueKind.Number).GetInt32();
+            Title = json.GetString("title");
+            Description = json.GetString("description");
+            CreatedAt = json.GetDateTime("created_at", false).Value;
+            UpdatedAt = json.GetDateTime("updated_at", false).Value;
+            Creator = new User(json.GetObject("creator"));
+            Status = json.GetEnum<ComplaintStatus>("status");
         }
     }
 }

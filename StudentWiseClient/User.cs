@@ -22,16 +22,6 @@ namespace StudentWiseApi
         public DateTime CreatedAt { get; }
         public DateTime? UpdatedAt { get; }
 
-        internal User(ParsedJson info)
-        {
-            Id = info.Members["id"].GetInt32();
-            Email = info.Member("email")?.GetString();
-            FirstName = info.Member("first_name")?.GetString();
-            LastName = info.Member("last_name")?.GetString();
-            CreatedAt = info.Members["created_at"].GetDateTime();
-            UpdatedAt = info.Member("updated_at")?.GetDateTime(); ;
-        }
-
         /// <summary>
         /// Query information about an account.
         /// </summary>
@@ -80,6 +70,16 @@ namespace StudentWiseApi
 
             // TODO: parse the response to throw proper exceptions
             throw new Exception("Something went wrong during user enumeration.");
+        }
+
+        internal User(ParsedJson info)
+        {
+            Id = info.GetMember("id", JsonValueKind.Number).GetInt32();
+            Email = info.GetString("email");
+            FirstName = info.GetString("first_name");
+            LastName = info.GetString("last_name");
+            CreatedAt = info.GetDateTime("created_at", false).Value;
+            UpdatedAt = info.GetDateTime("updated_at", true);
         }
     }
 }

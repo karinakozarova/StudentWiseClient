@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Net;
 
 namespace StudentWiseApi
@@ -167,39 +165,6 @@ namespace StudentWiseApi
 
             // TODO: parse the response to throw proper exceptions
             throw new Exception("Something went wrong during account creation.");
-        }
-    }
-
-    /// <summary>
-    /// A generic class to hold parsed JSON and access its members.
-    /// </summary>
-    internal class ParsedJson
-    {
-        [JsonExtensionData]
-        public Dictionary<string, JsonElement> Members { get; set; }
-        public JsonElement? Member(string name)
-        {
-            if (Members.TryGetValue(name, out JsonElement result) && result.ValueKind != JsonValueKind.Null)
-                return result;
-
-            return null;
-        }
-
-        public static ParsedJson Parse(string json, JsonSerializerOptions options = null)
-        {
-            return JsonSerializer.Deserialize<ParsedJson>(json, options);
-        }
-
-        public static List<ParsedJson> ParseArray(string json, JsonSerializerOptions options = null)
-        {
-            var root = JsonDocument.Parse(json).RootElement;
-            var result = new List<ParsedJson>(root.GetArrayLength());
-
-            foreach (JsonElement element in root.EnumerateArray())
-            {
-                result.Add(Parse(element.GetRawText(), options));
-            }
-            return result;
         }
     }
 }

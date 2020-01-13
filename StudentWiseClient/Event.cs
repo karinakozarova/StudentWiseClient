@@ -189,7 +189,7 @@ namespace StudentWiseApi
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 var json = ParsedJson.Parse(reader.ReadToEnd());
-                return new User(ParsedJson.Parse(json.Members["participant"].GetRawText()));
+                return new User(json.GetObject("participant"));
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -287,22 +287,16 @@ namespace StudentWiseApi
 
         internal Event(ParsedJson json)
         {
-            Id = json.Members["id"].GetInt32();
-            Description = json.Member("description")?.GetString();
-            Title = json.Member("title")?.GetString();
-            StartsAt = json.Member("starts_at")?.GetDateTime();
-            FinishesAt = json.Member("finishes_at")?.GetDateTime();
-            CreatedAt = json.Members["created_at"].GetDateTime();
-            UpdatedAt = json.Members["updated_at"].GetDateTime();
-            Creator = new User(ParsedJson.Parse(json.Members["creator"].GetRawText()));
-
-            if (Enum.TryParse(json.Member("event_type")?.GetString(), true, out EventType parsedType))
-                Type = parsedType;
-            else
-                Type = EventType.Other;
-
-            Participants = ParsedJson.ParseArray(
-                json.Members["participants"].GetRawText()).ConvertAll(e => new User(e));
+            Id = json.GetMember("id", JsonValueKind.Number).GetInt32();
+            Description = json.GetString("description");
+            Title = json.GetString("title");
+            StartsAt = json.GetDateTime("starts_at", true);
+            FinishesAt = json.GetDateTime("finishes_at", true);
+            CreatedAt = json.GetDateTime("created_at", false).Value;
+            UpdatedAt = json.GetDateTime("updated_at", false).Value;
+            Creator = new User(json.GetObject("creator"));
+            Type = json.GetEnum<EventType>("event_type");
+            Participants = json.GetArray("participants").ConvertAll(e => new User(e));
         }
 
         protected static Event InvokeUpdate(

@@ -208,7 +208,7 @@ namespace StudentWiseApi
             {
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 var json = ParsedJson.Parse(reader.ReadToEnd());
-                return new User(ParsedJson.Parse(json.Members["participant"].GetRawText()));
+                return new User(json.GetObject("participant"));
             }
 
             // TODO: parse the response to throw proper exceptions
@@ -291,16 +291,15 @@ namespace StudentWiseApi
 
         internal Expense(ParsedJson json)
         {
-            Id = json.Members["id"].GetInt32();
-            Name = json.Member("name")?.GetString();
-            Notes = json.Member("notes")?.GetString();
-            Price = Convert.ToDecimal(json.Members["price"].GetString());
-            Amount = json.Members["amount"].GetInt32();
-            CreatedAt = json.Members["created_at"].GetDateTime();
-            UpdatedAt = json.Members["updated_at"].GetDateTime();
-            Creator = new User(ParsedJson.Parse(json.Members["creator"].GetRawText()));
-            Participants = ParsedJson.ParseArray(
-                json.Members["participants"].GetRawText()).ConvertAll(e => new User(e));
+            Id = json.GetMember("id", JsonValueKind.Number).GetInt32();
+            Name = json.GetString("name");
+            Notes = json.GetString("notes");
+            Price = Convert.ToDecimal(json.GetString("price"));
+            Amount = json.GetMember("amount", JsonValueKind.Number).GetInt32();
+            CreatedAt = json.GetDateTime("created_at", false).Value;
+            UpdatedAt = json.GetDateTime("updated_at", false).Value;
+            Creator = new User(json.GetObject("creator"));
+            Participants = json.GetArray("participants").ConvertAll(e => new User(e));
         }
     }
 }

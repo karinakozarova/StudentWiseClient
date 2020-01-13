@@ -114,6 +114,7 @@
     <Compile Include="NewEvent.Designer.cs">
       <DependentUpon>NewEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="ParsedJson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.cs">

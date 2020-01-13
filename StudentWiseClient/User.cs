@@ -43,8 +43,7 @@ namespace StudentWiseApi
                 return new User(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during user querying.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -68,8 +67,7 @@ namespace StudentWiseApi
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new User(e));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during user enumeration.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         internal User(ParsedJson info)

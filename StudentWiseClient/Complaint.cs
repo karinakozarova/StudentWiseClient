@@ -65,8 +65,7 @@ namespace StudentWiseApi
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(c => new Complaint(c));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during complaint enumeration.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -90,8 +89,7 @@ namespace StudentWiseApi
                 return new Complaint(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during complaint querying.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -148,10 +146,9 @@ namespace StudentWiseApi
                 "DELETE",
                 null
             );
-
-            // TODO: parse the response to throw proper exceptions
-            if (response.StatusCode != HttpStatusCode.NoContent)            
-                throw new Exception("Something went wrong during complaint deletion.");
+            
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -189,8 +186,7 @@ namespace StudentWiseApi
                 return new Complaint(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during complaint creation/modification.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         internal Complaint(ParsedJson json)

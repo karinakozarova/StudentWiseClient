@@ -123,6 +123,7 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="Server.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserSession.cs" />
     <EmbeddedResource Include="ComplaintsComponent.resx">

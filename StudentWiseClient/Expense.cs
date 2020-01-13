@@ -60,8 +60,7 @@ namespace StudentWiseApi
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new Expense(e));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during expenses enumeration.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -85,8 +84,7 @@ namespace StudentWiseApi
                 return new Expense(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during expense querying.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -170,9 +168,8 @@ namespace StudentWiseApi
                 null
             );
 
-            // TODO: parse the response to throw proper exceptions
             if (response.StatusCode != HttpStatusCode.NoContent)
-                throw new Exception("Something went wrong during expense deletion.");
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -211,8 +208,7 @@ namespace StudentWiseApi
                 return new User(json.GetObject("participant"));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during expense participant addition.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -244,9 +240,8 @@ namespace StudentWiseApi
                 }
             );
 
-            // TODO: parse the response to throw proper exceptions
             if (response.StatusCode != HttpStatusCode.NoContent)
-                throw new Exception("Something went wrong during expense participant removing.");
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -285,8 +280,7 @@ namespace StudentWiseApi
                 return new Expense(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during expense creation/modification.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         internal Expense(ParsedJson json)

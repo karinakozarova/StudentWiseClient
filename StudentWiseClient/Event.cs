@@ -107,8 +107,7 @@ namespace StudentWiseApi
                 return new Event(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during event querying.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -132,8 +131,7 @@ namespace StudentWiseApi
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new Event(e));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during event enumeration.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -151,9 +149,8 @@ namespace StudentWiseApi
                 null
             );
 
-            // TODO: parse the response to throw proper exceptions
             if (response.StatusCode != HttpStatusCode.NoContent)
-                throw new Exception("Something went wrong during event deletion.");
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -192,8 +189,7 @@ namespace StudentWiseApi
                 return new User(json.GetObject("participant"));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during event participant addition.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -225,9 +221,8 @@ namespace StudentWiseApi
                 }
             );
 
-            // TODO: parse the response to throw proper exceptions
             if (response.StatusCode != HttpStatusCode.NoContent)
-                throw new Exception("Something went wrong during event participant removing.");
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -333,8 +328,7 @@ namespace StudentWiseApi
                 return new Event(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during event creation/modification.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
     }
 

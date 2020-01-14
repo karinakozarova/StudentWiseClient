@@ -14,10 +14,11 @@ namespace StudentWiseApi
         public Dictionary<string, JsonElement> Members { get; set; }
         internal const string invalid_data_msg = "Unexpected data format encountered.";
 
-        public JsonElement GetMember(string name, JsonValueKind kind)
+        public int GetInt(string name)
         {
-            if (Members.TryGetValue(name, out JsonElement result) && result.ValueKind == kind)
-                return result;
+            if (Members.TryGetValue(name, out JsonElement result) &&
+                result.ValueKind == JsonValueKind.Number)
+                    return result.GetInt32();
 
             throw new Exception(invalid_data_msg);
         }
@@ -36,6 +37,35 @@ namespace StudentWiseApi
                 }
 
             return null;
+        }
+
+        public bool GetBool(string name)
+        {
+            if (Members.TryGetValue(name, out JsonElement result))
+                switch (result.ValueKind)
+                {
+                    case JsonValueKind.True:
+                    case JsonValueKind.False:
+                        return result.GetBoolean();
+                }
+
+            throw new Exception(invalid_data_msg);
+        }
+
+        public decimal GetDecimal(string name)
+        {
+            if (Members.TryGetValue(name, out JsonElement result) &&
+                result.ValueKind == JsonValueKind.String)
+                try
+                {
+                    return result.GetDecimal();
+                }
+                catch (FormatException e)
+                {
+                    throw new Exception(invalid_data_msg, e);
+                }
+
+            throw new Exception(invalid_data_msg);
         }
 
         public DateTime? GetDateTime(string name, bool allow_null)

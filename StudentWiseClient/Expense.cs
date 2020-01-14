@@ -285,11 +285,11 @@ namespace StudentWiseApi
 
         internal Expense(ParsedJson json)
         {
-            Id = json.GetMember("id", JsonValueKind.Number).GetInt32();
+            Id = json.GetInt("id");
             Name = json.GetString("name");
             Notes = json.GetString("notes");
-            Price = Convert.ToDecimal(json.GetString("price"));
-            Amount = json.GetMember("amount", JsonValueKind.Number).GetInt32();
+            Price = json.GetDecimal("price");
+            Amount = json.GetInt("amount");
             CreatedAt = json.GetDateTime("created_at", false).Value;
             UpdatedAt = json.GetDateTime("updated_at", false).Value;
             Creator = new User(json.GetObject("creator"));

@@ -191,7 +191,7 @@ namespace StudentWiseApi
 
         internal Complaint(ParsedJson json)
         {
-            Id = json.GetMember("id", JsonValueKind.Number).GetInt32();
+            Id = json.GetInt("id");
             Title = json.GetString("title");
             Description = json.GetString("description");
             CreatedAt = json.GetDateTime("created_at", false).Value;

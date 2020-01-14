@@ -17,6 +17,31 @@ namespace StudentWiseApi
         Party
     }
 
+    public enum EventStatus
+    {
+        Finished,
+        Marked_as_finished,
+        Pending,
+        Unfinished
+    }
+    
+    /// <summary>
+    /// Represents user's vote.
+    /// </summary>
+    public struct EventVote
+    {
+        public bool Finished { get; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+        internal EventVote(ParsedJson json)
+        {
+            Finished = json.GetBool("finished");
+            CreatedAt = json.GetDateTime("created_at", false).Value;
+            UpdatedAt = json.GetDateTime("updated_at", false).Value;
+        }
+    }
+
     /// <summary>
     /// Represents an event organized by a user.
     /// </summary>
@@ -24,14 +49,22 @@ namespace StudentWiseApi
     {
         public int Id { get; }
         public EventType Type { get; protected set; }
+
+        public EventStatus Status { get; protected set; }
+        public bool Locked { get; protected set; }
         public string Title { get; protected set; }
         public string Description { get; protected set; }
         public DateTime? StartsAt { get; protected set; }
         public DateTime? FinishesAt { get; protected set; }
-        public DateTime CreatedAt { get; protected set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; protected set; }
         public User Creator { get; }
         public List<User> Participants { get; }
+        
+        /// <summary>
+        /// Each item in this list is a pair of a user ID and a vote itself.
+        /// </summary>
+        public Dictionary<int, EventVote> Votes { get; }
 
         /// <summary>
         /// Create a new event.
@@ -89,13 +122,13 @@ namespace StudentWiseApi
         /// <summary>
         /// Open an existing event by ID.
         /// </summary>
-        public static Event Query(int id, UserSession session = null)
+        public static Event Query(int event_id, UserSession session = null)
         {
             // Assume current session by default
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.event_manage_url, id),
+                string.Format(Server.event_manage_url, event_id),
                 session.token,
                 "GET",
                 null
@@ -137,13 +170,13 @@ namespace StudentWiseApi
         /// <summary>
         /// Delete an event by ID.
         /// </summary>
-        public static void Delete(int id, UserSession session = null)
+        public static void Delete(int event_id, UserSession session = null)
         {
             // Assume current session by default
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.event_manage_url, id),
+                string.Format(Server.event_manage_url, event_id),
                 session.token,
                 "DELETE",
                 null
@@ -234,6 +267,79 @@ namespace StudentWiseApi
             Participants.Remove(Participants.Find(u => u.Id == user_id));
         }
 
+        /// <summary>
+        /// Vote for/against completion of this event.
+        /// </summary>
+        public void Vote(bool finished, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            // See if there is a vote already
+            var update_only = Votes.TryGetValue(session.Info.Id, out EventVote old_vote);
+
+            if (update_only && finished == old_vote.Finished)
+                return;
+                        
+            var response = Server.Send(
+                string.Format(Server.event_vote_url, Id),
+                session.token,
+                update_only ? "PUT" : "POST",
+                new
+                {
+                    event_vote = new
+                    {
+                        finished
+                    }
+                }
+            );
+
+            if (response.StatusCode == HttpStatusCode.Created || response.StatusCode == HttpStatusCode.OK)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var json = ParsedJson.Parse(reader.ReadToEnd());
+                Votes[session.Info.Id] = new EventVote(json);
+
+                // Voting can cause status and lock change
+                if (json.Members.ContainsKey("event"))
+                {
+                    json = json.GetObject("event");
+
+                    if (json.Members.ContainsKey("event_status"))
+                        Status = json.GetEnum<EventStatus>("event_status");
+
+                    if (json.Members.ContainsKey("locked"))
+                        Locked = json.GetBool("locked");
+                }
+
+                // TODO: remove this code when the API starts notifiying about lock changes
+                Locked = Query(Id).Locked;
+            }
+               
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));            
+        }
+
+        /// <summary>
+        /// Revoke an existing vote.
+        /// </summary>
+        public void RevokeVote(UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                string.Format(Server.event_vote_url, Id),
+                session.token,
+                "DELETE",
+                null
+            );
+
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+
+            Votes.Remove(session.Info.Id);
+        }
+
         #region Propery updaters
         public void UpdateType(EventType value, UserSession session = null)
         {
@@ -278,11 +384,72 @@ namespace StudentWiseApi
                 FinishesAt = value;
             }
         }
+
+        /// <summary>
+        /// Marks an event as finished by ID.
+        /// </summary>
+        public static void MarkAsFinished(int event_id, UserSession session = null)
+        {
+            MarkEvent(event_id, true, session);
+        }
+
+        /// <summary>
+        /// Marks this event as finished.
+        /// </summary>
+        public void MarkAsFinished(UserSession session = null)
+        {
+            MarkAsFinished(Id, session);
+            
+            // TODO: use a response from a newer API when ready
+            var e = Query(Id);
+            Status = e.Status;
+            UpdatedAt = e.UpdatedAt;
+        }
+
+        /// <summary>
+        /// Unmarks an event as finished by ID.
+        /// </summary>
+        public static void MarkAsPending(int event_id, UserSession session = null)
+        {
+            MarkEvent(event_id, false, session);
+        }
+
+        /// <summary>
+        /// Unmarks this event as finished.
+        /// </summary>
+        public void MarkAsPending(UserSession session = null)
+        {
+            MarkAsPending(Id, session);
+
+            // TODO: use a response from a newer API when ready
+            var e = Query(Id);
+            Status = e.Status;
+            UpdatedAt = e.UpdatedAt;
+        }
         #endregion
+
+        internal static void MarkEvent(int event_id, bool finished, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            // Negative event IDs are reserved for creating new events.
+            var response = Server.Send(
+                finished ?
+                    string.Format(Server.event_mark_url, event_id) :
+                    string.Format(Server.event_unmark_url, event_id),
+                session.token,
+                "PUT",
+                null
+            );
+
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
 
         internal Event(ParsedJson json)
         {
-            Id = json.GetMember("id", JsonValueKind.Number).GetInt32();
+            Id = json.GetInt("id");
             Description = json.GetString("description");
             Title = json.GetString("title");
             StartsAt = json.GetDateTime("starts_at", true);
@@ -291,7 +458,15 @@ namespace StudentWiseApi
             UpdatedAt = json.GetDateTime("updated_at", false).Value;
             Creator = new User(json.GetObject("creator"));
             Type = json.GetEnum<EventType>("event_type");
-            Participants = json.GetArray("participants").ConvertAll(e => new User(e));
+            Status = json.GetEnum<EventStatus>("event_status");
+            Locked = json.GetBool("locked");
+            Participants = json.GetArray("participants").ConvertAll(e => new User(e));            
+            Votes = new Dictionary<int, EventVote>();
+
+            foreach (var vote in json.GetArray("votes"))
+            {
+                Votes[vote.GetInt("id")] = new EventVote(vote);
+            }
         }
 
         protected static Event InvokeUpdate(

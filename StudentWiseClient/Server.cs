@@ -20,6 +20,9 @@ namespace StudentWiseApi
         internal const string user_logout_url = base_url + "/users/logout";
         internal const string event_url = base_url + "/events";
         internal const string event_manage_url = base_url + "/events/{0}";
+        internal const string event_vote_url = base_url + "/events/{0}/votes";
+        internal const string event_mark_url = base_url + "/events/{0}/mark_as_finished";
+        internal const string event_unmark_url = base_url + "/events/{0}/unmark_as_finished";
         internal const string event_participant_url = base_url + "/events/{0}/participants";
         internal const string complaint_url = base_url + "/complaints";
         internal const string complaint_manage_url = base_url + "/complaints/{0}";

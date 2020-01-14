@@ -72,7 +72,7 @@ namespace StudentWiseApi
 
         internal User(ParsedJson info)
         {
-            Id = info.GetMember("id", JsonValueKind.Number).GetInt32();
+            Id = info.GetInt("id");
             Email = info.GetString("email");
             FirstName = info.GetString("first_name");
             LastName = info.GetString("last_name");

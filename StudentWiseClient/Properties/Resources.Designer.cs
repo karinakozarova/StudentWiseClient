@@ -63,6 +63,17 @@ namespace StudentWiseClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717 {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-check-mark-symbol-icon-black-checkmark-5a76d35a732948.8416047115177367944" +
+                        "717", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap StudentwISEvBuilders__1_ {
             get {
                 object obj = ResourceManager.GetObject("StudentwISEvBuilders (1)", resourceCulture);
@@ -76,6 +87,16 @@ namespace StudentWiseClient.Properties {
         internal static System.Drawing.Bitmap StudentwISEvBuilders__1_1 {
             get {
                 object obj = ResourceManager.GetObject("StudentwISEvBuilders (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap undo_favicon {
+            get {
+                object obj = ResourceManager.GetObject("undo-favicon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

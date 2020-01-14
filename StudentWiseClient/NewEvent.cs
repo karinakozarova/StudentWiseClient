@@ -54,7 +54,7 @@ namespace StudentWiseClient
             }
 
             var ev = Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDttpkr.Value, endDttpkr.Value, session);
-            ev.AddParticipant(Server.CurrentSession.Info.Id);
+            //ev.AddParticipant(Server.CurrentSession.Info.Id);
             MessageBox.Show("Succesfully added your event!");
 
             // open dashboard

@@ -105,5 +105,14 @@ namespace StudentWiseClient
         {
             timeNowLbl.Text = $"Today is {DateTime.Now.Date.ToString("dd/MM/yyyy")}";
         }
+
+        private void AddExpenseBtn_Click(object sender, EventArgs e)
+        {
+            string expenseTitle = ExpenseTitleTbx.Text;
+            string expenseNotes = ExpenseNotesRtbx.Text;
+            int expensePrice = Convert.ToInt32(ExpensePriceNum.Value);
+            int expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
+            //TODO: Send the created expense to the server
+        }
     }
 }

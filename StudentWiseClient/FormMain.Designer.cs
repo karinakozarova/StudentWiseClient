@@ -49,12 +49,26 @@
             this.flowLayoutPanelTommorow = new System.Windows.Forms.FlowLayoutPanel();
             this.TommorowEventsLbl = new System.Windows.Forms.Label();
             this.tpExpenses = new System.Windows.Forms.TabPage();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.ExpenseTotalPriceLbl = new System.Windows.Forms.Label();
+            this.ExpenseTotalLbl = new System.Windows.Forms.Label();
+            this.AddExpenseBtn = new System.Windows.Forms.Button();
+            this.ExpenseQuantityNum = new System.Windows.Forms.NumericUpDown();
+            this.ExpensePriceNum = new System.Windows.Forms.NumericUpDown();
+            this.ExpenseQuantityLbl = new System.Windows.Forms.Label();
+            this.ExpensePriceLbl = new System.Windows.Forms.Label();
+            this.ExpenseNotesLbl = new System.Windows.Forms.Label();
+            this.ExpenseNotesRtbx = new System.Windows.Forms.RichTextBox();
+            this.ExpenseTitleTbx = new System.Windows.Forms.TextBox();
+            this.ExpenseTitleLbl = new System.Windows.Forms.Label();
+            this.NewExpenseLbl = new System.Windows.Forms.Label();
+            this.ExpensesLv = new System.Windows.Forms.ListView();
             this.columnExpense = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnNotes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ListOfExpensesLbl = new System.Windows.Forms.Label();
             this.MembersLbl = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.MembersLv = new System.Windows.Forms.ListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnBalance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpComplaints = new System.Windows.Forms.TabPage();
@@ -73,20 +87,6 @@
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
             this.tsBtnComplaints = new System.Windows.Forms.ToolStripButton();
             this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
-            this.columnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnNotes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NewExpenseLbl = new System.Windows.Forms.Label();
-            this.ExpenseTitleLbl = new System.Windows.Forms.Label();
-            this.ExpenseTitleTbx = new System.Windows.Forms.TextBox();
-            this.ExpenseNotesRtbx = new System.Windows.Forms.RichTextBox();
-            this.ExpenseNotesLbl = new System.Windows.Forms.Label();
-            this.ExpensePriceLbl = new System.Windows.Forms.Label();
-            this.ExpenseQuantityLbl = new System.Windows.Forms.Label();
-            this.ExpensePriceNum = new System.Windows.Forms.NumericUpDown();
-            this.ExpenseQuantityNum = new System.Windows.Forms.NumericUpDown();
-            this.AddExpenseBtn = new System.Windows.Forms.Button();
-            this.ExpenseTotalLbl = new System.Windows.Forms.Label();
-            this.ExpenseTotalPriceLbl = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
@@ -94,11 +94,11 @@
             this.flowLayoutPanelToday.SuspendLayout();
             this.flowLayoutPanelTommorow.SuspendLayout();
             this.tpExpenses.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ExpenseQuantityNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExpensePriceNum)).BeginInit();
             this.tpComplaints.SuspendLayout();
             this.newComplaintGb.SuspendLayout();
             this.tsMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ExpensePriceNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ExpenseQuantityNum)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMain
@@ -324,10 +324,10 @@
             this.tpExpenses.Controls.Add(this.ExpenseTitleTbx);
             this.tpExpenses.Controls.Add(this.ExpenseTitleLbl);
             this.tpExpenses.Controls.Add(this.NewExpenseLbl);
-            this.tpExpenses.Controls.Add(this.listView2);
+            this.tpExpenses.Controls.Add(this.ExpensesLv);
             this.tpExpenses.Controls.Add(this.ListOfExpensesLbl);
             this.tpExpenses.Controls.Add(this.MembersLbl);
-            this.tpExpenses.Controls.Add(this.listView1);
+            this.tpExpenses.Controls.Add(this.MembersLv);
             this.tpExpenses.Location = new System.Drawing.Point(4, 25);
             this.tpExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tpExpenses.Name = "tpExpenses";
@@ -336,22 +336,149 @@
             this.tpExpenses.Text = "Expenses";
             this.tpExpenses.UseVisualStyleBackColor = true;
             // 
-            // listView2
+            // ExpenseTotalPriceLbl
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ExpenseTotalPriceLbl.AutoSize = true;
+            this.ExpenseTotalPriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseTotalPriceLbl.Location = new System.Drawing.Point(539, 390);
+            this.ExpenseTotalPriceLbl.Name = "ExpenseTotalPriceLbl";
+            this.ExpenseTotalPriceLbl.Size = new System.Drawing.Size(48, 41);
+            this.ExpenseTotalPriceLbl.TabIndex = 15;
+            this.ExpenseTotalPriceLbl.Text = "0 $";
+            // 
+            // ExpenseTotalLbl
+            // 
+            this.ExpenseTotalLbl.AutoSize = true;
+            this.ExpenseTotalLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseTotalLbl.Location = new System.Drawing.Point(467, 390);
+            this.ExpenseTotalLbl.Name = "ExpenseTotalLbl";
+            this.ExpenseTotalLbl.Size = new System.Drawing.Size(66, 41);
+            this.ExpenseTotalLbl.TabIndex = 14;
+            this.ExpenseTotalLbl.Text = "Total:";
+            // 
+            // AddExpenseBtn
+            // 
+            this.AddExpenseBtn.BackColor = System.Drawing.Color.LawnGreen;
+            this.AddExpenseBtn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddExpenseBtn.Location = new System.Drawing.Point(619, 380);
+            this.AddExpenseBtn.Name = "AddExpenseBtn";
+            this.AddExpenseBtn.Size = new System.Drawing.Size(286, 53);
+            this.AddExpenseBtn.TabIndex = 13;
+            this.AddExpenseBtn.Text = "Add expense";
+            this.AddExpenseBtn.UseVisualStyleBackColor = false;
+            this.AddExpenseBtn.Click += new System.EventHandler(this.AddExpenseBtn_Click);
+            // 
+            // ExpenseQuantityNum
+            // 
+            this.ExpenseQuantityNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseQuantityNum.Location = new System.Drawing.Point(773, 341);
+            this.ExpenseQuantityNum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ExpenseQuantityNum.Name = "ExpenseQuantityNum";
+            this.ExpenseQuantityNum.Size = new System.Drawing.Size(132, 30);
+            this.ExpenseQuantityNum.TabIndex = 12;
+            this.ExpenseQuantityNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // ExpensePriceNum
+            // 
+            this.ExpensePriceNum.DecimalPlaces = 2;
+            this.ExpensePriceNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpensePriceNum.Location = new System.Drawing.Point(619, 341);
+            this.ExpensePriceNum.Name = "ExpensePriceNum";
+            this.ExpensePriceNum.Size = new System.Drawing.Size(126, 30);
+            this.ExpensePriceNum.TabIndex = 11;
+            // 
+            // ExpenseQuantityLbl
+            // 
+            this.ExpenseQuantityLbl.AutoSize = true;
+            this.ExpenseQuantityLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseQuantityLbl.Location = new System.Drawing.Point(766, 297);
+            this.ExpenseQuantityLbl.Name = "ExpenseQuantityLbl";
+            this.ExpenseQuantityLbl.Size = new System.Drawing.Size(97, 41);
+            this.ExpenseQuantityLbl.TabIndex = 10;
+            this.ExpenseQuantityLbl.Text = "Quantity:";
+            // 
+            // ExpensePriceLbl
+            // 
+            this.ExpensePriceLbl.AutoSize = true;
+            this.ExpensePriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpensePriceLbl.Location = new System.Drawing.Point(612, 299);
+            this.ExpensePriceLbl.Name = "ExpensePriceLbl";
+            this.ExpensePriceLbl.Size = new System.Drawing.Size(69, 41);
+            this.ExpensePriceLbl.TabIndex = 9;
+            this.ExpensePriceLbl.Text = "Price:";
+            // 
+            // ExpenseNotesLbl
+            // 
+            this.ExpenseNotesLbl.AutoSize = true;
+            this.ExpenseNotesLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseNotesLbl.Location = new System.Drawing.Point(612, 138);
+            this.ExpenseNotesLbl.Name = "ExpenseNotesLbl";
+            this.ExpenseNotesLbl.Size = new System.Drawing.Size(72, 41);
+            this.ExpenseNotesLbl.TabIndex = 8;
+            this.ExpenseNotesLbl.Text = "Notes:";
+            // 
+            // ExpenseNotesRtbx
+            // 
+            this.ExpenseNotesRtbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ExpenseNotesRtbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseNotesRtbx.Location = new System.Drawing.Point(619, 182);
+            this.ExpenseNotesRtbx.Name = "ExpenseNotesRtbx";
+            this.ExpenseNotesRtbx.Size = new System.Drawing.Size(286, 115);
+            this.ExpenseNotesRtbx.TabIndex = 7;
+            this.ExpenseNotesRtbx.Text = "";
+            // 
+            // ExpenseTitleTbx
+            // 
+            this.ExpenseTitleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseTitleTbx.Location = new System.Drawing.Point(619, 98);
+            this.ExpenseTitleTbx.Name = "ExpenseTitleTbx";
+            this.ExpenseTitleTbx.Size = new System.Drawing.Size(286, 37);
+            this.ExpenseTitleTbx.TabIndex = 6;
+            // 
+            // ExpenseTitleLbl
+            // 
+            this.ExpenseTitleLbl.AutoSize = true;
+            this.ExpenseTitleLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseTitleLbl.Location = new System.Drawing.Point(612, 59);
+            this.ExpenseTitleLbl.Name = "ExpenseTitleLbl";
+            this.ExpenseTitleLbl.Size = new System.Drawing.Size(62, 41);
+            this.ExpenseTitleLbl.TabIndex = 5;
+            this.ExpenseTitleLbl.Text = "Title:";
+            // 
+            // NewExpenseLbl
+            // 
+            this.NewExpenseLbl.AutoSize = true;
+            this.NewExpenseLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewExpenseLbl.Location = new System.Drawing.Point(691, 13);
+            this.NewExpenseLbl.Name = "NewExpenseLbl";
+            this.NewExpenseLbl.Size = new System.Drawing.Size(172, 48);
+            this.NewExpenseLbl.TabIndex = 4;
+            this.NewExpenseLbl.Text = "New expense:";
+            // 
+            // ExpensesLv
+            // 
+            this.ExpensesLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnExpense,
             this.columnQuantity,
             this.columnPrice,
             this.columnNotes});
-            this.listView2.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(239, 64);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(348, 324);
-            this.listView2.TabIndex = 3;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.ExpensesLv.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpensesLv.GridLines = true;
+            this.ExpensesLv.HideSelection = false;
+            this.ExpensesLv.Location = new System.Drawing.Point(239, 64);
+            this.ExpensesLv.Name = "ExpensesLv";
+            this.ExpensesLv.Size = new System.Drawing.Size(348, 324);
+            this.ExpensesLv.TabIndex = 3;
+            this.ExpensesLv.UseCompatibleStateImageBehavior = false;
+            this.ExpensesLv.View = System.Windows.Forms.View.Details;
             // 
             // columnExpense
             // 
@@ -362,11 +489,21 @@
             // 
             this.columnQuantity.Text = "Quantity:";
             // 
+            // columnPrice
+            // 
+            this.columnPrice.Text = "Price:";
+            this.columnPrice.Width = 50;
+            // 
+            // columnNotes
+            // 
+            this.columnNotes.Text = "Notes:";
+            this.columnNotes.Width = 133;
+            // 
             // ListOfExpensesLbl
             // 
             this.ListOfExpensesLbl.AutoSize = true;
             this.ListOfExpensesLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListOfExpensesLbl.Location = new System.Drawing.Point(324, 13);
+            this.ListOfExpensesLbl.Location = new System.Drawing.Point(235, 13);
             this.ListOfExpensesLbl.Name = "ListOfExpensesLbl";
             this.ListOfExpensesLbl.Size = new System.Drawing.Size(209, 48);
             this.ListOfExpensesLbl.TabIndex = 2;
@@ -376,26 +513,26 @@
             // 
             this.MembersLbl.AutoSize = true;
             this.MembersLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MembersLbl.Location = new System.Drawing.Point(60, 13);
+            this.MembersLbl.Location = new System.Drawing.Point(16, 13);
             this.MembersLbl.Name = "MembersLbl";
             this.MembersLbl.Size = new System.Drawing.Size(132, 48);
             this.MembersLbl.TabIndex = 1;
             this.MembersLbl.Text = "Members:";
             // 
-            // listView1
+            // MembersLv
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.MembersLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
             this.columnBalance});
-            this.listView1.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(20, 64);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(184, 324);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.MembersLv.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MembersLv.GridLines = true;
+            this.MembersLv.HideSelection = false;
+            this.MembersLv.Location = new System.Drawing.Point(20, 64);
+            this.MembersLv.Name = "MembersLv";
+            this.MembersLv.Size = new System.Drawing.Size(184, 324);
+            this.MembersLv.TabIndex = 0;
+            this.MembersLv.UseCompatibleStateImageBehavior = false;
+            this.MembersLv.View = System.Windows.Forms.View.Details;
             // 
             // columnName
             // 
@@ -581,130 +718,6 @@
             this.timeNowTimer.Interval = 1000;
             this.timeNowTimer.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // columnPrice
-            // 
-            this.columnPrice.Text = "Price:";
-            this.columnPrice.Width = 50;
-            // 
-            // columnNotes
-            // 
-            this.columnNotes.Text = "Notes:";
-            this.columnNotes.Width = 133;
-            // 
-            // NewExpenseLbl
-            // 
-            this.NewExpenseLbl.AutoSize = true;
-            this.NewExpenseLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewExpenseLbl.Location = new System.Drawing.Point(691, 13);
-            this.NewExpenseLbl.Name = "NewExpenseLbl";
-            this.NewExpenseLbl.Size = new System.Drawing.Size(172, 48);
-            this.NewExpenseLbl.TabIndex = 4;
-            this.NewExpenseLbl.Text = "New expense:";
-            // 
-            // ExpenseTitleLbl
-            // 
-            this.ExpenseTitleLbl.AutoSize = true;
-            this.ExpenseTitleLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTitleLbl.Location = new System.Drawing.Point(612, 64);
-            this.ExpenseTitleLbl.Name = "ExpenseTitleLbl";
-            this.ExpenseTitleLbl.Size = new System.Drawing.Size(62, 41);
-            this.ExpenseTitleLbl.TabIndex = 5;
-            this.ExpenseTitleLbl.Text = "Title:";
-            // 
-            // ExpenseTitleTbx
-            // 
-            this.ExpenseTitleTbx.Font = new System.Drawing.Font("Oswald", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTitleTbx.Location = new System.Drawing.Point(619, 108);
-            this.ExpenseTitleTbx.Name = "ExpenseTitleTbx";
-            this.ExpenseTitleTbx.Size = new System.Drawing.Size(286, 27);
-            this.ExpenseTitleTbx.TabIndex = 6;
-            // 
-            // ExpenseNotesRtbx
-            // 
-            this.ExpenseNotesRtbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ExpenseNotesRtbx.Font = new System.Drawing.Font("Oswald", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseNotesRtbx.Location = new System.Drawing.Point(619, 182);
-            this.ExpenseNotesRtbx.Name = "ExpenseNotesRtbx";
-            this.ExpenseNotesRtbx.Size = new System.Drawing.Size(286, 115);
-            this.ExpenseNotesRtbx.TabIndex = 7;
-            this.ExpenseNotesRtbx.Text = "";
-            // 
-            // ExpenseNotesLbl
-            // 
-            this.ExpenseNotesLbl.AutoSize = true;
-            this.ExpenseNotesLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseNotesLbl.Location = new System.Drawing.Point(612, 138);
-            this.ExpenseNotesLbl.Name = "ExpenseNotesLbl";
-            this.ExpenseNotesLbl.Size = new System.Drawing.Size(72, 41);
-            this.ExpenseNotesLbl.TabIndex = 8;
-            this.ExpenseNotesLbl.Text = "Notes:";
-            // 
-            // ExpensePriceLbl
-            // 
-            this.ExpensePriceLbl.AutoSize = true;
-            this.ExpensePriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpensePriceLbl.Location = new System.Drawing.Point(612, 300);
-            this.ExpensePriceLbl.Name = "ExpensePriceLbl";
-            this.ExpensePriceLbl.Size = new System.Drawing.Size(69, 41);
-            this.ExpensePriceLbl.TabIndex = 9;
-            this.ExpensePriceLbl.Text = "Price:";
-            // 
-            // ExpenseQuantityLbl
-            // 
-            this.ExpenseQuantityLbl.AutoSize = true;
-            this.ExpenseQuantityLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseQuantityLbl.Location = new System.Drawing.Point(766, 300);
-            this.ExpenseQuantityLbl.Name = "ExpenseQuantityLbl";
-            this.ExpenseQuantityLbl.Size = new System.Drawing.Size(97, 41);
-            this.ExpenseQuantityLbl.TabIndex = 10;
-            this.ExpenseQuantityLbl.Text = "Quantity:";
-            // 
-            // ExpensePriceNum
-            // 
-            this.ExpensePriceNum.Location = new System.Drawing.Point(619, 344);
-            this.ExpensePriceNum.Name = "ExpensePriceNum";
-            this.ExpensePriceNum.Size = new System.Drawing.Size(126, 22);
-            this.ExpensePriceNum.TabIndex = 11;
-            // 
-            // ExpenseQuantityNum
-            // 
-            this.ExpenseQuantityNum.Location = new System.Drawing.Point(773, 344);
-            this.ExpenseQuantityNum.Name = "ExpenseQuantityNum";
-            this.ExpenseQuantityNum.Size = new System.Drawing.Size(132, 22);
-            this.ExpenseQuantityNum.TabIndex = 12;
-            // 
-            // AddExpenseBtn
-            // 
-            this.AddExpenseBtn.BackColor = System.Drawing.Color.LawnGreen;
-            this.AddExpenseBtn.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddExpenseBtn.Location = new System.Drawing.Point(619, 390);
-            this.AddExpenseBtn.Name = "AddExpenseBtn";
-            this.AddExpenseBtn.Size = new System.Drawing.Size(286, 41);
-            this.AddExpenseBtn.TabIndex = 13;
-            this.AddExpenseBtn.Text = "Add expense";
-            this.AddExpenseBtn.UseVisualStyleBackColor = false;
-            this.AddExpenseBtn.Click += new System.EventHandler(this.AddExpenseBtn_Click);
-            // 
-            // ExpenseTotalLbl
-            // 
-            this.ExpenseTotalLbl.AutoSize = true;
-            this.ExpenseTotalLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTotalLbl.Location = new System.Drawing.Point(467, 390);
-            this.ExpenseTotalLbl.Name = "ExpenseTotalLbl";
-            this.ExpenseTotalLbl.Size = new System.Drawing.Size(66, 41);
-            this.ExpenseTotalLbl.TabIndex = 14;
-            this.ExpenseTotalLbl.Text = "Total:";
-            // 
-            // ExpenseTotalPriceLbl
-            // 
-            this.ExpenseTotalPriceLbl.AutoSize = true;
-            this.ExpenseTotalPriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTotalPriceLbl.Location = new System.Drawing.Point(539, 390);
-            this.ExpenseTotalPriceLbl.Name = "ExpenseTotalPriceLbl";
-            this.ExpenseTotalPriceLbl.Size = new System.Drawing.Size(48, 41);
-            this.ExpenseTotalPriceLbl.TabIndex = 15;
-            this.ExpenseTotalPriceLbl.Text = "0 $";
-            // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -725,14 +738,14 @@
             this.flowLayoutPanelTommorow.ResumeLayout(false);
             this.tpExpenses.ResumeLayout(false);
             this.tpExpenses.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ExpenseQuantityNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExpensePriceNum)).EndInit();
             this.tpComplaints.ResumeLayout(false);
             this.tpComplaints.PerformLayout();
             this.newComplaintGb.ResumeLayout(false);
             this.newComplaintGb.PerformLayout();
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ExpensePriceNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ExpenseQuantityNum)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -774,11 +787,11 @@
         private System.Windows.Forms.Label balanceLbl;
         private System.Windows.Forms.FlowLayoutPanel complaintsFllPanel;
         private System.Windows.Forms.Label dashboardComplaintsLbl;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView MembersLv;
         private System.Windows.Forms.ColumnHeader columnName;
         private System.Windows.Forms.ColumnHeader columnBalance;
         private System.Windows.Forms.Label MembersLbl;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView ExpensesLv;
         private System.Windows.Forms.ColumnHeader columnExpense;
         private System.Windows.Forms.ColumnHeader columnQuantity;
         private System.Windows.Forms.Label ListOfExpensesLbl;

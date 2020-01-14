@@ -65,6 +65,16 @@ namespace StudentWiseClient
             }
 
             ReloadComplaints();
+
+            for (int i = 1; i < 5; i++)
+            {
+                MembersLv.Items.Add(new ListViewItem(new string[] { "Martin", "20$" }));
+                ExpensesLv.Items.Add(new ListViewItem(new string[] { "Toilet Paper", "3", "5", "new" }));
+            }
+            MembersLv.Items.Add(new ListViewItem(new string[] { "1", "content" }));
+            MembersLv.Items.Add(new ListViewItem(new string[] { "4", "content2" }));
+            ExpensesLv.Items.Add(new ListViewItem(new string[] { "2", "content3" }));
+
         }
 
         private void ReloadComplaints()
@@ -108,11 +118,31 @@ namespace StudentWiseClient
 
         private void AddExpenseBtn_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(ExpenseTitleTbx.Text))
+            {
+                MessageBox.Show("Please enter expense title");
+                return;
+            }
+
             string expenseTitle = ExpenseTitleTbx.Text;
             string expenseNotes = ExpenseNotesRtbx.Text;
-            int expensePrice = Convert.ToInt32(ExpensePriceNum.Value);
-            int expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
-            //TODO: Send the created expense to the server
+
+            decimal expensePrice = 0;
+            int expenseQuantity = 1;
+
+            try
+            {
+                expensePrice = ExpensePriceNum.Value;
+                expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Please enter a correct number");
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+            Expense.Create("test", 2, 2, null , Server.CurrentSession);
+            Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
+
         }
     }
 }

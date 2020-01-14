@@ -53,7 +53,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                Server.complaint_enumerate_url,
+                Server.complaint_url,
                 session.token,
                 "GET",
                 null
@@ -65,8 +65,7 @@ namespace StudentWiseApi
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(c => new Complaint(c));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during complaint enumeration.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -90,8 +89,7 @@ namespace StudentWiseApi
                 return new Complaint(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during complaint querying.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -148,10 +146,9 @@ namespace StudentWiseApi
                 "DELETE",
                 null
             );
-
-            // TODO: parse the response to throw proper exceptions
-            if (response.StatusCode != HttpStatusCode.NoContent)            
-                throw new Exception("Something went wrong during complaint deletion.");
+            
+            if (response.StatusCode != HttpStatusCode.NoContent)
+                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -173,7 +170,7 @@ namespace StudentWiseApi
 
             // Negative complaint IDs are reserved for creating new complaints.
             var response = Server.Send(
-                complaint_id < 0 ? Server.complaint_create_url : 
+                complaint_id < 0 ? Server.complaint_url : 
                     string.Format(Server.complaint_manage_url, complaint_id),
                 session.token,
                 complaint_id < 0 ? "POST" : "PUT",
@@ -189,23 +186,18 @@ namespace StudentWiseApi
                 return new Complaint(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during complaint creation/modification.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         internal Complaint(ParsedJson json)
         {
-            Id = json.Members["id"].GetInt32();
-            Title = json.Member("title")?.GetString();
-            Description = json.Member("description")?.GetString();
-            CreatedAt = json.Members["created_at"].GetDateTime();
-            UpdatedAt = json.Members["updated_at"].GetDateTime();
-            Creator = new User(ParsedJson.Parse(json.Members["creator"].GetRawText()));
-
-            if (Enum.TryParse(json.Member("status")?.GetString(), true, out ComplaintStatus parsedStatus))
-                Status = parsedStatus;
-            else
-                throw new Exception("Unexpected complaint status encountered.");
+            Id = json.GetInt("id");
+            Title = json.GetString("title");
+            Description = json.GetString("description");
+            CreatedAt = json.GetDateTime("created_at", false).Value;
+            UpdatedAt = json.GetDateTime("updated_at", false).Value;
+            Creator = new User(json.GetObject("creator"));
+            Status = json.GetEnum<ComplaintStatus>("status");
         }
     }
 }

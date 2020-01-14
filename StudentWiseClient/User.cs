@@ -22,16 +22,6 @@ namespace StudentWiseApi
         public DateTime CreatedAt { get; }
         public DateTime? UpdatedAt { get; }
 
-        internal User(ParsedJson info)
-        {
-            Id = info.Members["id"].GetInt32();
-            Email = info.Member("email")?.GetString();
-            FirstName = info.Member("first_name")?.GetString();
-            LastName = info.Member("last_name")?.GetString();
-            CreatedAt = info.Members["created_at"].GetDateTime();
-            UpdatedAt = info.Member("updated_at")?.GetDateTime(); ;
-        }
-
         /// <summary>
         /// Query information about an account.
         /// </summary>
@@ -41,7 +31,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                string.Format(Server.user_query_url, id),
+                string.Format(Server.user_manage_url, id),
                 session.token,
                 "GET",
                 null
@@ -53,8 +43,7 @@ namespace StudentWiseApi
                 return new User(ParsedJson.Parse(reader.ReadToEnd()));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during user querying.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -66,7 +55,7 @@ namespace StudentWiseApi
             session = session ?? Server.FallbackToCurrentSession;
 
             var response = Server.Send(
-                Server.user_enumerate_url,
+                Server.user_url,
                 session.token,
                 "GET",
                 null
@@ -78,8 +67,17 @@ namespace StudentWiseApi
                 return ParsedJson.ParseArray(reader.ReadToEnd()).ConvertAll(e => new User(e));
             }
 
-            // TODO: parse the response to throw proper exceptions
-            throw new Exception("Something went wrong during user enumeration.");
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
+
+        internal User(ParsedJson info)
+        {
+            Id = info.GetInt("id");
+            Email = info.GetString("email");
+            FirstName = info.GetString("first_name");
+            LastName = info.GetString("last_name");
+            CreatedAt = info.GetDateTime("created_at", false).Value;
+            UpdatedAt = info.GetDateTime("updated_at", true);
         }
     }
 }

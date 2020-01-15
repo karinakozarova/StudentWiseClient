@@ -17,18 +17,46 @@ namespace StudentWiseClient
         {
             InitializeComponent();
             timeNowTimer.Start();
-            AddTodaysEventsToDashboard();
+            PopulateDashboard();
         }
 
-        private void AddTodaysEventsToDashboard()
+        private void PopulateDashboard()
+        {
+            AddTodaysEventsToEventView();
+            AddBalanceToDashboard();
+        }
+
+        private void AddTodaysEventsToEventView()
         {
             List<Event> events = Event.Enumerate(); // TODO: filter them to be today's only
             todaysEventsFllpnl.Controls.Clear();
-            foreach (Event ev in events)
+
+            if(events.Count == 0)
             {
-                EventComponent eventComponent = new EventComponent();
-                eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                DashboardNoEventToday eventComponent = new DashboardNoEventToday();
                 todaysEventsFllpnl.Controls.Add(eventComponent);
+            } else
+            {
+                foreach (Event ev in events)
+                {
+                    EventComponent eventComponent = new EventComponent();
+                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    todaysEventsFllpnl.Controls.Add(eventComponent);
+                }
+            }
+        }
+
+        private void AddBalanceToDashboard()
+        {
+            decimal balance = Server.CurrentSession.Info.ComputeBalance(Expense.Enumerate()); // TODO: filter which expenses
+            balanceAmountLbl.Text = balance.ToString();
+            if (balance > 0)
+            {
+                balanceAmountLbl.ForeColor = Color.Green;
+            }
+            else
+            {
+                balanceAmountLbl.ForeColor = Color.Red;
             }
         }
 
@@ -41,8 +69,8 @@ namespace StudentWiseClient
         private void AddEventBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            NewEvent dashboard = new NewEvent();
-            dashboard.Show();
+            NewEvent createEvent = new NewEvent();
+            createEvent.Show();
         }
 
         private void AddComplaintsComponentsToDashboardView()
@@ -62,13 +90,21 @@ namespace StudentWiseClient
         private void AddEventComponentsToTodayPanel()
         {
             List<Event> events = Event.Enumerate();
-
-            foreach (Event ev in events)
+            if(events.Count == 0)
             {
-                EventComponent eventComponent = new EventComponent();
-                eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                NoEventsAvailable eventComponent = new NoEventsAvailable();
                 flowLayoutPanelToday.Controls.Add(eventComponent);
             }
+            else
+            {
+                foreach (Event ev in events)
+                {
+                    EventComponent eventComponent = new EventComponent();
+                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    flowLayoutPanelToday.Controls.Add(eventComponent);
+                }
+            }
+            
         }
 
         private void AddExpenseToExpenseListView(Expense expense)
@@ -111,6 +147,14 @@ namespace StudentWiseClient
             }
 
             ExpenseTotalPriceLbl.Text = total.ToString();
+            if (total > 0)
+            {
+                ExpenseTotalPriceLbl.ForeColor = Color.Green;
+            }
+            else
+            {
+                ExpenseTotalPriceLbl.ForeColor = Color.Red;
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -126,11 +170,26 @@ namespace StudentWiseClient
             List<Complaint> complaints = Complaint.Enumerate();
             complaintsFllpnl.Controls.Clear();
 
-            foreach (Complaint complaint in complaints)
+            if (complaints.Count > 0)
             {
-                ComplaintsComponent complaintComponent = new ComplaintsComponent();
-                complaintComponent.ChangeLabels(complaint.Title, complaint.Description, complaint.Status, complaint.CreatedAt);
+                foreach (Complaint complaint in complaints)
+                {
+                    ComplaintsComponent complaintComponent = new ComplaintsComponent();
+                    complaintComponent.ChangeLabels(complaint.Title, complaint.Description, complaint.Status, complaint.CreatedAt);
+                    complaintsFllpnl.Controls.Add(complaintComponent);
+                }
+            }
+            else
+            {
+                NoComplaints complaintComponent = new NoComplaints();
+                NoComplaints complaintComponentDashboard = new NoComplaints();
+
+                complaintsFllPanel.Controls.Add(complaintComponentDashboard);
                 complaintsFllpnl.Controls.Add(complaintComponent);
+
+                complaintsFllPanel.AutoScroll = false;
+                complaintsFllpnl.AutoScroll = false;
+
             }
         }
 

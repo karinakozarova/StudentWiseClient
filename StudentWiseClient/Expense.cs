@@ -9,13 +9,14 @@ using System.Net;
 
 namespace StudentWiseApi
 {
-    class Expense
+    public class Expense
     {
         public int Id { get; }
         public string Name { get; protected set; }
         public decimal Price { get; protected set; }
         public int Amount { get; protected set; }
         public string Notes { get; protected set; }
+        public bool Archived { get; protected set; }
         public User Creator { get; }
         public DateTime CreatedAt { get; }
         public DateTime UpdatedAt { get; protected set; }
@@ -150,6 +151,42 @@ namespace StudentWiseApi
                 UpdatedAt = InvokeUpdate(Id, new { notes = value }, session).UpdatedAt;
                 Notes = value;
             }
+        }
+
+        /// <summary>
+        /// Archieves/unarchives an expense by ID.
+        /// </summary>
+        public static void Archive(int expense_id, bool archive, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                archive ?
+                    string.Format(Server.expense_archive_url, expense_id):
+                    string.Format(Server.expense_unarchive_url, expense_id),
+                session.token,
+                "PUT",
+                null
+            );
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {                
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var _ = reader.ReadToEnd();
+                return;
+            }
+
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
+
+        /// <summary>
+        /// Archives/unarchieves this expense.
+        /// </summary>
+        public void Archive(bool archive, UserSession session = null)
+        {
+            Archive(Id, archive, session);
+            Archived = archive;
         }
 
         /// <summary>
@@ -290,6 +327,7 @@ namespace StudentWiseApi
             Notes = json.GetString("notes");
             Price = json.GetDecimal("price");
             Amount = json.GetInt("amount");
+            Archived = json.GetBool("archived");
             CreatedAt = json.GetDateTime("created_at", false).Value;
             UpdatedAt = json.GetDateTime("updated_at", false).Value;
             Creator = new User(json.GetObject("creator"));

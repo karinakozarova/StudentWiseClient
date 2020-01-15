@@ -311,9 +311,6 @@ namespace StudentWiseApi
                     if (json.Members.ContainsKey("locked"))
                         Locked = json.GetBool("locked");
                 }
-
-                // TODO: remove this code when the API starts notifiying about lock changes
-                Locked = Query(Id).Locked;
             }
                
             throw new Exception(Server.UnexpectedStatus(response.StatusCode));            
@@ -403,11 +400,6 @@ namespace StudentWiseApi
             
             if (newStatus.HasValue)
                 Status = newStatus.Value;            
-
-            // TODO: use a response from a newer API when ready
-            var e = Query(Id);
-            Status = e.Status;
-            UpdatedAt = e.UpdatedAt;
         }
 
         /// <summary>
@@ -428,11 +420,6 @@ namespace StudentWiseApi
 
             if (newStatus.HasValue)
                 Status = newStatus.Value;
-
-            // TODO: use a response from a newer API when ready
-            var e = Query(Id);
-            Status = e.Status;
-            UpdatedAt = e.UpdatedAt;
         }
         #endregion
 
@@ -451,16 +438,13 @@ namespace StudentWiseApi
                 null
             );
 
-            // TODO: remove this code whenthe API is ready
-            if (response.StatusCode == HttpStatusCode.NoContent)
-                return null;
-
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                if (response.ContentLength > 0)
-                {
-                    var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                    var json = ParsedJson.Parse(reader.ReadToEnd());
+                var data = new StreamReader(response.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+
+                if (data.Length > 0)
+                {                    
+                    var json = ParsedJson.Parse(data);
 
                     if (json.Members.ContainsKey("event"))
                     {

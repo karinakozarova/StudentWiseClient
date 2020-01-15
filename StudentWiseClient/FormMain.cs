@@ -76,8 +76,17 @@ namespace StudentWiseClient
             ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Amount.ToString(), expense.Price.ToString(), expense.Notes }));
 
         }
+
+        private void AddMembersToExpenseListView(User participant)
+        {
+            MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, participant.ComputeBalance(Expense.Enumerate()).ToString() }));
+
+        }
         private void CalculateAndPopulateExpenses()
         {
+            MembersLv.Items.Clear();
+            ExpensesLv.Items.Clear();
+
             HashSet<User> users = new HashSet<User>();
             HashSet<int> userIds = new HashSet<int>();
 
@@ -98,16 +107,7 @@ namespace StudentWiseClient
 
             foreach (User participant in users)
             {
-                decimal balance = 0;
-                foreach (Expense expense in Expense.Enumerate())
-                {
-                    foreach (User u in expense.Participants)
-                    {
-                        if (u.Id == participant.Id) balance += (expense.Price * expense.Amount) / (expense.Participants.Count);
-                    }
-
-                }
-                MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, balance.ToString() }));
+                AddMembersToExpenseListView(participant);
             }
 
             ExpenseTotalPriceLbl.Text = total.ToString();
@@ -185,8 +185,8 @@ namespace StudentWiseClient
             }
 
             Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
+            CalculateAndPopulateExpenses();
             MessageBox.Show("You successfully created the expense!");
-            AddExpenseToExpenseListView(expense);
         }
     }
 }

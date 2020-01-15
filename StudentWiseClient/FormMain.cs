@@ -17,7 +17,13 @@ namespace StudentWiseClient
         {
             InitializeComponent();
             timeNowTimer.Start();
+            PopulateDashboard();
+        }
+
+        private void PopulateDashboard()
+        {
             AddTodaysEventsToDashboard();
+            AddBalanceToDashboard();
         }
 
         private void AddTodaysEventsToDashboard()
@@ -29,6 +35,20 @@ namespace StudentWiseClient
                 EventComponent eventComponent = new EventComponent();
                 eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
                 todaysEventsFllpnl.Controls.Add(eventComponent);
+            }
+        }
+
+        private void AddBalanceToDashboard()
+        {
+            decimal balance = Server.CurrentSession.Info.ComputeBalance(Expense.Enumerate()); // TODO: filter which expenses
+            balanceAmountLbl.Text = balance.ToString();
+            if (balance > 0)
+            {
+                balanceAmountLbl.ForeColor = Color.Green;
+            }
+            else
+            {
+                balanceAmountLbl.ForeColor = Color.Red;
             }
         }
 
@@ -111,6 +131,14 @@ namespace StudentWiseClient
             }
 
             ExpenseTotalPriceLbl.Text = total.ToString();
+            if (total > 0)
+            {
+                ExpenseTotalPriceLbl.ForeColor = Color.Green;
+            }
+            else
+            {
+                ExpenseTotalPriceLbl.ForeColor = Color.Red;
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)

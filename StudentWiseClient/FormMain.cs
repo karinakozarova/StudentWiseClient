@@ -68,9 +68,12 @@ namespace StudentWiseClient
 
             HashSet<User> users = new HashSet<User>();
             HashSet<int> userIds = new HashSet<int>();
+
+            decimal total = 0;
             foreach(Expense expense in Expense.Enumerate())
             {
-                ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Price.ToString(), expense.Amount.ToString(), expense.Notes}));
+                total += expense.Price;
+                ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Amount.ToString(), expense.Price.ToString(), expense.Notes}));
                 foreach(User participant in expense.Participants)
                 {
                     if (!userIds.Contains(participant.Id))
@@ -95,6 +98,8 @@ namespace StudentWiseClient
                 MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, balance.ToString() }));
 
             }
+
+            ExpenseTotalPriceLbl.Text = total.ToString();
         }
 
         private void ReloadComplaints()

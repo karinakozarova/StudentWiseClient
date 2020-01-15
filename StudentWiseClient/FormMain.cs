@@ -66,15 +66,35 @@ namespace StudentWiseClient
 
             ReloadComplaints();
 
-            for (int i = 1; i < 5; i++)
+            HashSet<User> users = new HashSet<User>();
+            HashSet<int> userIds = new HashSet<int>();
+            foreach(Expense expense in Expense.Enumerate())
             {
-                MembersLv.Items.Add(new ListViewItem(new string[] { "Martin", "20$" }));
-                ExpensesLv.Items.Add(new ListViewItem(new string[] { "Toilet Paper", "3", "5", "new" }));
+                ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Price.ToString(), expense.Amount.ToString(), expense.Notes}));
+                foreach(User participant in expense.Participants)
+                {
+                    if (!userIds.Contains(participant.Id))
+                    {
+                        users.Add(participant);
+                        userIds.Add(participant.Id);
+                    }
+                }
             }
-            MembersLv.Items.Add(new ListViewItem(new string[] { "1", "content" }));
-            MembersLv.Items.Add(new ListViewItem(new string[] { "4", "content2" }));
-            ExpensesLv.Items.Add(new ListViewItem(new string[] { "2", "content3" }));
 
+            foreach (User participant in users)
+            {
+                decimal balance = 0;
+                foreach (Expense expense  in Expense.Enumerate())
+                {
+                    foreach(User u in expense.Participants)
+                    {
+                        if(u.Id == participant.Id) balance += (expense.Price * expense.Amount) / (expense.Participants.Count);
+                    }
+                     
+                }
+                MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, balance.ToString() }));
+
+            }
         }
 
         private void ReloadComplaints()
@@ -137,11 +157,11 @@ namespace StudentWiseClient
             } catch(Exception ex)
             {
                 MessageBox.Show("Please enter a correct number");
-                MessageBox.Show(ex.ToString());
                 return;
             }
-            Expense.Create("test", 2, 2, null , Server.CurrentSession);
-            Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
+            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
+            MessageBox.Show("You successfully created the expense!");
+            ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Price.ToString(), expense.Amount.ToString(), expense.Notes }));
 
         }
     }

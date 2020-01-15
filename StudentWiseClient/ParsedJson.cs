@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -58,7 +59,7 @@ namespace StudentWiseApi
                 result.ValueKind == JsonValueKind.String)
                 try
                 {
-                    return Convert.ToDecimal(result.GetString());
+                    return Convert.ToDecimal(result.GetString(), CultureInfo.InvariantCulture);
                 }
                 catch (FormatException e)
                 {

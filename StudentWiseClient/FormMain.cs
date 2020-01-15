@@ -17,7 +17,11 @@ namespace StudentWiseClient
         {
             InitializeComponent();
             timeNowTimer.Start();
+            AddTodaysEventsToDashboard();
+        }
 
+        private void AddTodaysEventsToDashboard()
+        {
             List<Event> events = Event.Enumerate(); // TODO: filter them to be today's only
             todaysEventsFllpnl.Controls.Clear();
             foreach (Event ev in events)
@@ -29,7 +33,7 @@ namespace StudentWiseClient
         }
 
         private void TsBtn_Click(object sender, EventArgs e)
-        { 
+        {
             int targetTabIndex = tsMain.Items.IndexOf(sender as ToolStripItem);
             tcMain.SelectTab(targetTabIndex);
         }
@@ -41,18 +45,8 @@ namespace StudentWiseClient
             dashboard.Show();
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void AddComplaintsComponentsToDashboardView()
         {
-            List<Event> events = Event.Enumerate();
-           
-
-            foreach (Event ev in events)
-            {
-                EventComponent eventComponent = new EventComponent();
-                eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
-                flowLayoutPanelToday.Controls.Add(eventComponent);
-            }
-
             List<Complaint> complaints = Complaint.Enumerate();
 
             complaintsFllPanel.Controls.Clear();
@@ -63,18 +57,36 @@ namespace StudentWiseClient
                 complaintComponent.ChangeLabels(complaint.Title, complaint.Status);
                 complaintsFllPanel.Controls.Add(complaintComponent);
             }
+        }
 
-            ReloadComplaints();
+        private void AddEventComponentsToTodayPanel()
+        {
+            List<Event> events = Event.Enumerate();
 
+            foreach (Event ev in events)
+            {
+                EventComponent eventComponent = new EventComponent();
+                eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                flowLayoutPanelToday.Controls.Add(eventComponent);
+            }
+        }
+
+        private void AddExpenseToExpenseListView(Expense expense)
+        {
+            ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Amount.ToString(), expense.Price.ToString(), expense.Notes }));
+
+        }
+        private void CalculateAndPopulateExpenses()
+        {
             HashSet<User> users = new HashSet<User>();
             HashSet<int> userIds = new HashSet<int>();
 
             decimal total = 0;
-            foreach(Expense expense in Expense.Enumerate())
+            foreach (Expense expense in Expense.Enumerate())
             {
                 total += expense.Price;
-                ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Amount.ToString(), expense.Price.ToString(), expense.Notes}));
-                foreach(User participant in expense.Participants)
+                AddExpenseToExpenseListView(expense);
+                foreach (User participant in expense.Participants)
                 {
                     if (!userIds.Contains(participant.Id))
                     {
@@ -87,25 +99,31 @@ namespace StudentWiseClient
             foreach (User participant in users)
             {
                 decimal balance = 0;
-                foreach (Expense expense  in Expense.Enumerate())
+                foreach (Expense expense in Expense.Enumerate())
                 {
-                    foreach(User u in expense.Participants)
+                    foreach (User u in expense.Participants)
                     {
-                        if(u.Id == participant.Id) balance += (expense.Price * expense.Amount) / (expense.Participants.Count);
+                        if (u.Id == participant.Id) balance += (expense.Price * expense.Amount) / (expense.Participants.Count);
                     }
-                     
+
                 }
                 MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, balance.ToString() }));
-
             }
 
             ExpenseTotalPriceLbl.Text = total.ToString();
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            AddEventComponentsToTodayPanel();
+            AddComplaintsComponentsToDashboardView();
+            ReloadComplaints();
+            CalculateAndPopulateExpenses();
+        }
+
         private void ReloadComplaints()
         {
             List<Complaint> complaints = Complaint.Enumerate();
-
             complaintsFllpnl.Controls.Clear();
 
             foreach (Complaint complaint in complaints)
@@ -159,15 +177,16 @@ namespace StudentWiseClient
             {
                 expensePrice = ExpensePriceNum.Value;
                 expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
-            } catch(Exception ex)
+            }
+            catch (Exception)
             {
                 MessageBox.Show("Please enter a correct number");
                 return;
             }
+
             Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
             MessageBox.Show("You successfully created the expense!");
-            ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Price.ToString(), expense.Amount.ToString(), expense.Notes }));
-
+            AddExpenseToExpenseListView(expense);
         }
     }
 }

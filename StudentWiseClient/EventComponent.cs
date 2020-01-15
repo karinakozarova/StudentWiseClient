@@ -89,17 +89,13 @@ namespace StudentWiseClient
             {
                 DeleteEvent();
             }
-            else
-            {
-                
-            }
         }
 
         private void EventCompletePbx_Click(object sender, EventArgs e)
         {
             //When the event is mark as finished the picture box icon will change to undo icon, in order someone
             //has marked his event by mistake.
-            //Should retrieve data from the server in order to check wether the event is marked as finished or not
+            //Should retrieve data from the server in order to check whether the event is marked as finished or not
             //and then update the picture box accordingly.
 
             //EventCompletePbx.Image = Properties.Resources.undo_favicon;

@@ -33,14 +33,15 @@ namespace StudentWiseClient
                 return;
             }
 
-            if (!EmailValidation.IsValidEmail(emailAddressTbx.Text)){
+            if (!EmailValidation.IsValidEmail(emailAddressTbx.Text))
+            {
                 MessageBox.Show("Enter a valid email address");
                 return;
             }
 
             try
             {
-                Server.CurrentSession =  Server.Login(emailAddressTbx.Text, passwordTbx.Text);
+                Server.CurrentSession = Server.Login(emailAddressTbx.Text, passwordTbx.Text);
                 this.Hide();
 
                 FormMain dashboard = new FormMain();

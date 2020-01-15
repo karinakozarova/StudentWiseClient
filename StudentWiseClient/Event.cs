@@ -388,9 +388,10 @@ namespace StudentWiseApi
         /// <summary>
         /// Marks an event as finished by ID.
         /// </summary>
-        public static void MarkAsFinished(int event_id, UserSession session = null)
+        /// <returns>The new event status.</returns>
+        public static EventStatus? MarkAsFinished(int event_id, UserSession session = null)
         {
-            MarkEvent(event_id, true, session);
+            return MarkEvent(event_id, true, session);
         }
 
         /// <summary>
@@ -398,8 +399,11 @@ namespace StudentWiseApi
         /// </summary>
         public void MarkAsFinished(UserSession session = null)
         {
-            MarkAsFinished(Id, session);
+            var newStatus = MarkAsFinished(Id, session);
             
+            if (newStatus.HasValue)
+                Status = newStatus.Value;            
+
             // TODO: use a response from a newer API when ready
             var e = Query(Id);
             Status = e.Status;
@@ -409,9 +413,10 @@ namespace StudentWiseApi
         /// <summary>
         /// Unmarks an event as finished by ID.
         /// </summary>
-        public static void MarkAsPending(int event_id, UserSession session = null)
+        /// <returns>The new event status.</returns>
+        public static EventStatus? MarkAsPending(int event_id, UserSession session = null)
         {
-            MarkEvent(event_id, false, session);
+            return MarkEvent(event_id, false, session);
         }
 
         /// <summary>
@@ -419,7 +424,10 @@ namespace StudentWiseApi
         /// </summary>
         public void MarkAsPending(UserSession session = null)
         {
-            MarkAsPending(Id, session);
+            var newStatus = MarkAsPending(Id, session);
+
+            if (newStatus.HasValue)
+                Status = newStatus.Value;
 
             // TODO: use a response from a newer API when ready
             var e = Query(Id);
@@ -428,7 +436,7 @@ namespace StudentWiseApi
         }
         #endregion
 
-        internal static void MarkEvent(int event_id, bool finished, UserSession session = null)
+        internal static EventStatus? MarkEvent(int event_id, bool finished, UserSession session = null)
         {
             // Assume current session by default
             session = session ?? Server.FallbackToCurrentSession;
@@ -443,8 +451,30 @@ namespace StudentWiseApi
                 null
             );
 
-            if (response.StatusCode != HttpStatusCode.NoContent)
-                throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+            // TODO: remove this code whenthe API is ready
+            if (response.StatusCode == HttpStatusCode.NoContent)
+                return null;
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                if (response.ContentLength > 0)
+                {
+                    var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                    var json = ParsedJson.Parse(reader.ReadToEnd());
+
+                    if (json.Members.ContainsKey("event"))
+                    {
+                        json = json.GetObject("event");
+
+                        if (json.Members.ContainsKey("event_status"))
+                            return json.GetEnum<EventStatus>("event_status");
+                    }
+                }
+                
+                return null;
+            }
+            
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
 
         internal Event(ParsedJson json)

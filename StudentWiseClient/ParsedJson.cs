@@ -58,7 +58,7 @@ namespace StudentWiseApi
                 result.ValueKind == JsonValueKind.String)
                 try
                 {
-                    return result.GetDecimal();
+                    return Convert.ToDecimal(result.GetString());
                 }
                 catch (FormatException e)
                 {

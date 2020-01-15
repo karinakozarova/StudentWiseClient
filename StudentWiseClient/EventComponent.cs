@@ -43,7 +43,7 @@ namespace StudentWiseClient
             this.SetDescription(description);
             this.SetType(type);
             this.SetDeadline(start, end);
-            this.setEventPoints();
+            this.SetEventPoints();
             this.Id = id;
             this.Session = session;
             this.Creator = creator;
@@ -77,7 +77,7 @@ namespace StudentWiseClient
             EventDeadlineLbl.Text = $"from {start} untill {end}";
         }
 
-        public void setEventPoints(int points = 0)
+        public void SetEventPoints(int points = 0)
         {
             EventPointsLbl.Text = points.ToString();
         }
@@ -97,13 +97,20 @@ namespace StudentWiseClient
 
         private void EventCompletePbx_Click(object sender, EventArgs e)
         {
+            //When the event is mark as finished the picture box icon will change to undo icon, in order someone
+            //has marked his event by mistake.
+            //Should retrieve data from the server in order to check wether the event is marked as finished or not
+            //and then update the picture box accordingly.
 
+            //EventCompletePbx.Image = Properties.Resources.undo_favicon;
+            //EventCompletePbx.BackColor = Color.DarkGreen;
         }
 
         private void DeleteEvent()
         {
             Event.Delete(this.Id, this.Session);
             this.Parent.Controls.Remove(this);
+            //this.Enabled = false;
         }
         
     }

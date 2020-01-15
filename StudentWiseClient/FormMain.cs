@@ -65,6 +65,41 @@ namespace StudentWiseClient
             }
 
             ReloadComplaints();
+
+            HashSet<User> users = new HashSet<User>();
+            HashSet<int> userIds = new HashSet<int>();
+
+            decimal total = 0;
+            foreach(Expense expense in Expense.Enumerate())
+            {
+                total += expense.Price;
+                ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Amount.ToString(), expense.Price.ToString(), expense.Notes}));
+                foreach(User participant in expense.Participants)
+                {
+                    if (!userIds.Contains(participant.Id))
+                    {
+                        users.Add(participant);
+                        userIds.Add(participant.Id);
+                    }
+                }
+            }
+
+            foreach (User participant in users)
+            {
+                decimal balance = 0;
+                foreach (Expense expense  in Expense.Enumerate())
+                {
+                    foreach(User u in expense.Participants)
+                    {
+                        if(u.Id == participant.Id) balance += (expense.Price * expense.Amount) / (expense.Participants.Count);
+                    }
+                     
+                }
+                MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, balance.ToString() }));
+
+            }
+
+            ExpenseTotalPriceLbl.Text = total.ToString();
         }
 
         private void ReloadComplaints()
@@ -104,6 +139,35 @@ namespace StudentWiseClient
         private void Timer1_Tick(object sender, EventArgs e)
         {
             timeNowLbl.Text = $"Today is {DateTime.Now.Date.ToString("dd/MM/yyyy")}";
+        }
+
+        private void AddExpenseBtn_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(ExpenseTitleTbx.Text))
+            {
+                MessageBox.Show("Please enter expense title");
+                return;
+            }
+
+            string expenseTitle = ExpenseTitleTbx.Text;
+            string expenseNotes = ExpenseNotesRtbx.Text;
+
+            decimal expensePrice = 0;
+            int expenseQuantity = 1;
+
+            try
+            {
+                expensePrice = ExpensePriceNum.Value;
+                expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Please enter a correct number");
+                return;
+            }
+            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
+            MessageBox.Show("You successfully created the expense!");
+            ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Price.ToString(), expense.Amount.ToString(), expense.Notes }));
+
         }
     }
 }

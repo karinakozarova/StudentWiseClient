@@ -105,7 +105,7 @@
             // EventCompletePbx
             // 
             this.EventCompletePbx.BackColor = System.Drawing.Color.LawnGreen;
-            this.EventCompletePbx.Image = ((System.Drawing.Image)(resources.GetObject("EventCompletePbx.Image")));
+            this.EventCompletePbx.Image = global::StudentWiseClient.Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
             this.EventCompletePbx.Location = new System.Drawing.Point(330, 207);
             this.EventCompletePbx.Name = "EventCompletePbx";
             this.EventCompletePbx.Size = new System.Drawing.Size(79, 76);

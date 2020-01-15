@@ -43,7 +43,7 @@ namespace StudentWiseClient
             this.SetDescription(description);
             this.SetType(type);
             this.SetDeadline(start, end);
-            this.setEventPoints();
+            this.SetEventPoints();
             this.Id = id;
             this.Session = session;
             this.Creator = creator;
@@ -77,7 +77,7 @@ namespace StudentWiseClient
             EventDeadlineLbl.Text = $"from {start} untill {end}";
         }
 
-        public void setEventPoints(int points = 0)
+        public void SetEventPoints(int points = 0)
         {
             EventPointsLbl.Text = points.ToString();
         }

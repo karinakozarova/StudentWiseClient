@@ -81,6 +81,12 @@
     <Compile Include="ComplaintsComponent.Designer.cs">
       <DependentUpon>ComplaintsComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="DashboardNoEventToday.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DashboardNoEventToday.Designer.cs">
+      <DependentUpon>DashboardNoEventToday.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmailValidation.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventComponent.cs">
@@ -114,6 +120,18 @@
     <Compile Include="NewEvent.Designer.cs">
       <DependentUpon>NewEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="NoComplaints.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NoComplaints.Designer.cs">
+      <DependentUpon>NoComplaints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NoEventsAvailable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NoEventsAvailable.Designer.cs">
+      <DependentUpon>NoEventsAvailable.cs</DependentUpon>
+    </Compile>
     <Compile Include="ParsedJson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +147,9 @@
     <EmbeddedResource Include="ComplaintsComponent.resx">
       <DependentUpon>ComplaintsComponent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DashboardNoEventToday.resx">
+      <DependentUpon>DashboardNoEventToday.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EventComponent.resx">
       <DependentUpon>EventComponent.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +164,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewEvent.resx">
       <DependentUpon>NewEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoComplaints.resx">
+      <DependentUpon>NoComplaints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoEventsAvailable.resx">
+      <DependentUpon>NoEventsAvailable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

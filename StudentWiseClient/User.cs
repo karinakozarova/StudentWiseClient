@@ -59,12 +59,12 @@ namespace StudentWiseApi
             expenses = expenses ?? Expense.Enumerate(session);
 
             // Add expences that the user owns (payed)
-            balance += expenses.Where(e => e.Creator == this).ToList().
-                ConvertAll(e => e.Price * e.Amount).Aggregate((a, b) => a + b);
+            balance += expenses.Where(e => !e.Archived && e.Creator == this).ToList().
+                ConvertAll(e => e.Price * e.Amount).Append(0).Aggregate((a, b) => a + b);
 
             // Substract expences where the user participates (e.g. needs to pay)
-            balance -= expenses.Where(e => e.Participants.Contains(this)).ToList().
-                ConvertAll(e => e.Price * e.Amount / e.Participants.Count).Aggregate((a, b) => a + b);
+            balance -= expenses.Where(e => !e.Archived && e.Participants.Contains(this)).ToList().
+                ConvertAll(e => e.Price * e.Amount / e.Participants.Count).Append(0).Aggregate((a, b) => a + b);
 
             return balance;
         }

@@ -9,7 +9,7 @@ using System.Net;
 
 namespace StudentWiseApi
 {
-    class Expense
+    public class Expense
     {
         public int Id { get; }
         public string Name { get; protected set; }

@@ -47,6 +47,29 @@ namespace StudentWiseApi
         }
 
         /// <summary>
+        /// Calculates user's balance based on existing expenses.
+        /// </summary>
+        /// <param name="expenses">
+        /// To optimize balance calculation for multiple users, obtain a list of expenses first,
+        /// and then pass it as this parameter for each of the users.
+        /// </param>
+        public decimal ComputeBalance(List<Expense> expenses = null, UserSession session = null)
+        {
+            decimal balance = 0;
+            expenses = expenses ?? Expense.Enumerate(session);
+
+            // Add expences that the user owns (payed)
+            balance += expenses.Where(e => e.Creator == this).ToList().
+                ConvertAll(e => e.Price * e.Amount).Aggregate((a, b) => a + b);
+
+            // Substract expences where the user participates (e.g. needs to pay)
+            balance -= expenses.Where(e => e.Participants.Contains(this)).ToList().
+                ConvertAll(e => e.Price * e.Amount / e.Participants.Count).Aggregate((a, b) => a + b);
+
+            return balance;
+        }
+
+        /// <summary>
         /// Enumerate user accounts.
         /// </summary>
         public static List<User> Enumerate(UserSession session = null)
@@ -68,6 +91,28 @@ namespace StudentWiseApi
             }
 
             throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
+        
+        public static bool operator ==(User a, User b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            if ((object)a == null || (object)b == null)
+                return false;
+
+            return a.Id == b.Id;
+        }
+
+        public static bool operator !=(User a, User b) => !(a == b);
+        public override int GetHashCode() => Id;
+
+        public override bool Equals(object obj)
+        {
+            if (obj as User == null)
+                return false;
+
+            return (User)obj == this;
         }
 
         internal User(ParsedJson info)

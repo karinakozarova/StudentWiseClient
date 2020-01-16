@@ -185,10 +185,10 @@ namespace StudentWiseClient
         }
 
         private void ReloadAgreements(){
-            // List<Agreement> agreements = Agreement.Enumerate();
+            List<Agreement> agreements = Agreement.Enumerate();
             complaintsFllpnl.Controls.Clear();
 
-            /*if (agreements.Count > 0) { 
+            if (agreements.Count > 0) { 
                 foreach (Agreement agreement in agreements)
                 {
                     AgreementComponent agreement = new ComplaintsComponent(agreement.Title, Agreement.Description, agreement.CreatedBy,agreement.CreatedAt);
@@ -200,7 +200,7 @@ namespace StudentWiseClient
                 // No Agreements
                 NoAgreements noAgreements = new NoAgreements();
                 agreementsFlpnl.Controls.Add(noAgreements);
-            }*/
+            }
 
         }
 

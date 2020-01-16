@@ -31,7 +31,7 @@ namespace StudentWiseClient
             List<Event> events = Event.Enumerate(); // TODO: filter them to be today's only
             todaysEventsFllpnl.Controls.Clear();
 
-            if(events.Count == 0)
+            if (events.Count == 0)
             {
                 DashboardNoEventToday eventComponent = new DashboardNoEventToday();
                 todaysEventsFllpnl.Controls.Add(eventComponent);
@@ -97,7 +97,7 @@ namespace StudentWiseClient
         private void AddEventComponentsToTodayPanel()
         {
             List<Event> events = Event.Enumerate();
-            if(events.Count == 0)
+            if (events.Count == 0)
             {
                 NoEventsAvailable eventComponent = new NoEventsAvailable();
                 flowLayoutPanelToday.Controls.Add(eventComponent);
@@ -122,7 +122,7 @@ namespace StudentWiseClient
                     }
                 }
             }
-            
+
         }
 
         private void AddExpenseToExpenseListView(Expense expense)
@@ -180,7 +180,28 @@ namespace StudentWiseClient
             AddEventComponentsToTodayPanel();
             AddComplaintsComponentsToDashboardView();
             ReloadComplaints();
+            ReloadAgreements();
             CalculateAndPopulateExpenses();
+        }
+
+        private void ReloadAgreements(){
+            // List<Agreement> agreements = Agreement.Enumerate();
+            complaintsFllpnl.Controls.Clear();
+
+            /*if (agreements.Count > 0) { 
+                foreach (Agreement agreement in agreements)
+                {
+                    AgreementComponent agreement = new ComplaintsComponent(agreement.Title, Agreement.Description, agreement.CreatedBy,agreement.CreatedAt);
+                    agreementsFlpnl.Controls.Add(agreement);
+                }
+            }
+            else
+            {
+                // No Agreements
+                NoAgreements noAgreements = new NoAgreements();
+                agreementsFlpnl.Controls.Add(noAgreements);
+            }*/
+
         }
 
         private void ReloadComplaints()
@@ -264,6 +285,28 @@ namespace StudentWiseClient
             Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
             CalculateAndPopulateExpenses();
             MessageBox.Show("You successfully created the expense!");
+        }
+
+        private void NewAgreementBttn_Click(object sender, EventArgs e)
+        {
+            string description = agreementDescriprionTbx.Text;
+            string title = agreementTitleTbx.Text;
+
+            if (String.IsNullOrEmpty(description))
+            {
+                MessageBox.Show("Add description");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(title))
+            {
+                MessageBox.Show("Add title");
+                return;
+            }
+
+            // TODO: uncomment when Denis is ready
+            // Agreement Create(title, description, Server.CurrentSession)
+            ReloadAgreements();
         }
     }
 }

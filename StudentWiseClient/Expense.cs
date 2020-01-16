@@ -14,7 +14,9 @@ namespace StudentWiseApi
         public int Id { get; }
         public string Name { get; protected set; }
         public decimal Price { get; protected set; }
-        public int Amount { get; protected set; }
+        public int Quantity { get; protected set; }
+        [Obsolete("use Quantity instead")]
+        public int Amount { get { return Quantity; } }
         public string Notes { get; protected set; }
         public bool Archived { get; protected set; }
         public User Creator { get; }
@@ -25,7 +27,7 @@ namespace StudentWiseApi
         /// <summary>
         /// Create a new expense.
         /// </summary>
-        public static Expense Create(string name, decimal price, int amount = 1, string notes = null, UserSession session = null)
+        public static Expense Create(string name, decimal price, int quantity = 1, string notes = null, UserSession session = null)
         {
             // Modifiying expenses with negative IDs is reserved for creating new ones.
             return InvokeUpdate(-1,
@@ -34,7 +36,7 @@ namespace StudentWiseApi
                     name,
                     notes,
                     price,
-                    amount
+                    quantity
                 },
                 session
             );
@@ -91,7 +93,7 @@ namespace StudentWiseApi
         /// <summary>
         /// Update information about an expense by ID.
         /// </summary>
-        public static Expense Modify(int expense_id, string name, decimal price, int amount = 1, string notes = null, UserSession session = null)
+        public static Expense Modify(int expense_id, string name, decimal price, int quantity = 1, string notes = null, UserSession session = null)
         {
             return InvokeUpdate(expense_id,
                 new
@@ -99,7 +101,7 @@ namespace StudentWiseApi
                     name,
                     notes,
                     price,
-                    amount
+                    quantity
                 },
                 session
             );
@@ -130,14 +132,14 @@ namespace StudentWiseApi
         }
 
         /// <summary>
-        /// Update the amount for this expense.
+        /// Update the quantity for this expense.
         /// </summary>
-        public void UpdateAmount(int value, UserSession session = null)
+        public void UpdateQuantity(int value, UserSession session = null)
         {
-            if (value != Amount)
+            if (value != Quantity)
             {
-                UpdatedAt = InvokeUpdate(Id, new { amount = value }, session).UpdatedAt;
-                Amount = value;
+                UpdatedAt = InvokeUpdate(Id, new { quantity = value }, session).UpdatedAt;
+                Quantity = value;
             }
         }
 
@@ -326,7 +328,7 @@ namespace StudentWiseApi
             Name = json.GetString("name");
             Notes = json.GetString("notes");
             Price = json.GetDecimal("price");
-            Amount = json.GetInt("amount");
+            Quantity = json.GetInt("quantity");
             Archived = json.GetBool("archived");
             CreatedAt = json.GetDateTime("created_at", false).Value;
             UpdatedAt = json.GetDateTime("updated_at", false).Value;

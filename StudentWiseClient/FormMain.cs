@@ -307,11 +307,5 @@ namespace StudentWiseClient
             Agreement.Create(title, description, Server.CurrentSession);
             ReloadAgreements();
         }
-
-        private void TsAgreementBttn_Click(object sender, EventArgs e)
-        {
-            int targetTabIndex = tsMain.Items.IndexOf(sender as ToolStripItem);
-            tcMain.SelectTab(targetTabIndex);
-        }
     }
 }

@@ -853,7 +853,6 @@
             this.tsAgreementBttn.Padding = new System.Windows.Forms.Padding(5);
             this.tsAgreementBttn.Size = new System.Drawing.Size(151, 29);
             this.tsAgreementBttn.Text = "Agreements";
-            this.tsAgreementBttn.Click += new System.EventHandler(this.TsAgreementBttn_Click);
             // 
             // timeNowTimer
             // 

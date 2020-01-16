@@ -28,7 +28,7 @@ namespace StudentWiseApi
     public enum EventInvolvement
     {
         Creator,
-        Participatant,
+        Participant,
         Voter
     }
 
@@ -226,7 +226,7 @@ namespace StudentWiseApi
                 case EventInvolvement.Creator:
                     events = events.Where(e => e.Creator == session.Info).ToList();
                     break;
-                case EventInvolvement.Participatant:
+                case EventInvolvement.Participant:
                     events = events.Where(e => e.Participants.Contains(session.Info)).ToList();
                     break;
                 case EventInvolvement.Voter:

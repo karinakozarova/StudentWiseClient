@@ -21,6 +21,7 @@ namespace StudentWiseApi
         public string LastName { get; }
         public DateTime CreatedAt { get; }
         public DateTime? UpdatedAt { get; }
+        public bool Admin { get; }
 
         /// <summary>
         /// Query information about an account.
@@ -98,7 +99,7 @@ namespace StudentWiseApi
             if (ReferenceEquals(a, b))
                 return true;
 
-            if ((object)a == null || (object)b == null)
+            if (a is null || b is null)
                 return false;
 
             return a.Id == b.Id;
@@ -123,6 +124,7 @@ namespace StudentWiseApi
             LastName = info.GetString("last_name");
             CreatedAt = info.GetDateTime("created_at", false).Value;
             UpdatedAt = info.GetDateTime("updated_at", true);
+            Admin = info.GetBool("admin");
         }
     }
 }

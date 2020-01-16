@@ -79,7 +79,7 @@ namespace StudentWiseApi
                 if (result.ValueKind == JsonValueKind.String)
                     try
                     {
-                        return result.GetDateTime();
+                        return result.GetDateTime().ToLocalTime();
                     }
                     catch (FormatException e)
                     {

@@ -124,8 +124,8 @@
             this.tcMain.Controls.Add(this.tpEvents);
             this.tcMain.Controls.Add(this.tpExpenses);
             this.tcMain.Controls.Add(this.tpComplaints);
-            this.tcMain.Controls.Add(this.tpCreatedEvents);
             this.tcMain.Controls.Add(this.tbAgreements);
+            this.tcMain.Controls.Add(this.tpCreatedEvents);
             this.tcMain.Location = new System.Drawing.Point(0, 39);
             this.tcMain.Margin = new System.Windows.Forms.Padding(0);
             this.tcMain.Name = "tcMain";

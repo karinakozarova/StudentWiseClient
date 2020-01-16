@@ -38,7 +38,7 @@
             this.timestampLbl.AutoSize = true;
             this.timestampLbl.Font = new System.Drawing.Font("Oswald", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timestampLbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.timestampLbl.Location = new System.Drawing.Point(352, 32);
+            this.timestampLbl.Location = new System.Drawing.Point(312, 32);
             this.timestampLbl.Name = "timestampLbl";
             this.timestampLbl.Size = new System.Drawing.Size(108, 24);
             this.timestampLbl.TabIndex = 6;
@@ -75,7 +75,7 @@
             this.Controls.Add(this.descriptionLbl);
             this.Controls.Add(this.titleLbl);
             this.Name = "AgreementComponent";
-            this.Size = new System.Drawing.Size(486, 150);
+            this.Size = new System.Drawing.Size(611, 150);
             this.ResumeLayout(false);
             this.PerformLayout();
 

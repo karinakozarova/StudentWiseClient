@@ -185,19 +185,19 @@ namespace StudentWiseClient
         }
 
         private void ReloadAgreements(){
+            agreementsFlpnl.Controls.Clear();
+
             List<Agreement> agreements = Agreement.Enumerate();
-            complaintsFllpnl.Controls.Clear();
 
             if (agreements.Count > 0) { 
                 foreach (Agreement agreement in agreements)
                 {
-                    AgreementComponent agreement = new ComplaintsComponent(agreement.Title, Agreement.Description, agreement.CreatedBy,agreement.CreatedAt);
-                    agreementsFlpnl.Controls.Add(agreement);
+                    AgreementComponent agreementComponent = new AgreementComponent(agreement.Title, agreement.Description, agreement.Creator.FirstName,agreement.CreatedAt);
+                    agreementsFlpnl.Controls.Add(agreementComponent);
                 }
             }
             else
             {
-                // No Agreements
                 NoAgreements noAgreements = new NoAgreements();
                 agreementsFlpnl.Controls.Add(noAgreements);
             }
@@ -304,9 +304,14 @@ namespace StudentWiseClient
                 return;
             }
 
-            // TODO: uncomment when Denis is ready
-            // Agreement Create(title, description, Server.CurrentSession)
+            Agreement.Create(title, description, Server.CurrentSession);
             ReloadAgreements();
+        }
+
+        private void TsAgreementBttn_Click(object sender, EventArgs e)
+        {
+            int targetTabIndex = tsMain.Items.IndexOf(sender as ToolStripItem);
+            tcMain.SelectTab(targetTabIndex);
         }
     }
 }

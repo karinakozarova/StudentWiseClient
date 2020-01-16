@@ -75,6 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agreement.cs" />
+    <Compile Include="AgreementComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgreementComponent.Designer.cs">
+      <DependentUpon>AgreementComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Complaint.cs" />
     <Compile Include="ComplaintsComponent.cs">
       <SubType>UserControl</SubType>
@@ -121,6 +127,12 @@
     <Compile Include="NewEvent.Designer.cs">
       <DependentUpon>NewEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="NoAgreements.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NoAgreements.Designer.cs">
+      <DependentUpon>NoAgreements.cs</DependentUpon>
+    </Compile>
     <Compile Include="NoComplaints.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,6 +157,9 @@
     <Compile Include="Server.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserSession.cs" />
+    <EmbeddedResource Include="AgreementComponent.resx">
+      <DependentUpon>AgreementComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComplaintsComponent.resx">
       <DependentUpon>ComplaintsComponent.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewEvent.resx">
       <DependentUpon>NewEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoAgreements.resx">
+      <DependentUpon>NoAgreements.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NoComplaints.resx">
       <DependentUpon>NoComplaints.cs</DependentUpon>

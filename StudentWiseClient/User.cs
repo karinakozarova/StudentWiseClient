@@ -16,11 +16,11 @@ namespace StudentWiseApi
     public class User
     {
         public int Id { get; }
-        public string Email { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
+        public string Email { get; internal set; }
+        public string FirstName { get; internal set; }
+        public string LastName { get; internal set; }
         public DateTime CreatedAt { get; }
-        public DateTime? UpdatedAt { get; }
+        public DateTime? UpdatedAt { get; internal set; }
         public bool Admin { get; }
 
         /// <summary>

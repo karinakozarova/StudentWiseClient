@@ -98,8 +98,8 @@ namespace StudentWiseClient
             //Should retrieve data from the server in order to check whether the event is marked as finished or not
             //and then update the picture box accordingly.
 
-            //EventCompletePbx.Image = Properties.Resources.undo_favicon;
-            //EventCompletePbx.BackColor = Color.DarkGreen;
+            EventCompletePbx.Image = Properties.Resources.undo_favicon;
+            EventCompletePbx.BackColor = Color.DarkGreen;
         }
 
         private void DeleteEvent()

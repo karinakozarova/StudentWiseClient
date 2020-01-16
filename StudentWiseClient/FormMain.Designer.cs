@@ -46,8 +46,8 @@
             this.AddEventBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanelToday = new System.Windows.Forms.FlowLayoutPanel();
             this.lblEvents = new System.Windows.Forms.Label();
-            this.flowLayoutPanelTommorow = new System.Windows.Forms.FlowLayoutPanel();
-            this.TommorowEventsLbl = new System.Windows.Forms.Label();
+            this.flowLayoutPanelUpcoming = new System.Windows.Forms.FlowLayoutPanel();
+            this.UpcomingEventsLbl = new System.Windows.Forms.Label();
             this.tpExpenses = new System.Windows.Forms.TabPage();
             this.ExpenseTotalPriceLbl = new System.Windows.Forms.Label();
             this.ExpenseTotalLbl = new System.Windows.Forms.Label();
@@ -92,7 +92,7 @@
             this.tpEvents.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanelToday.SuspendLayout();
-            this.flowLayoutPanelTommorow.SuspendLayout();
+            this.flowLayoutPanelUpcoming.SuspendLayout();
             this.tpExpenses.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExpenseQuantityNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExpensePriceNum)).BeginInit();
@@ -220,7 +220,7 @@
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelDay2);
             this.flowLayoutPanel1.Controls.Add(this.AddEventBtn);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelToday);
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelTommorow);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelUpcoming);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(933, 422);
@@ -285,30 +285,30 @@
             this.lblEvents.Text = "Today\'s events";
             this.lblEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // flowLayoutPanelTommorow
+            // flowLayoutPanelUpcoming
             // 
-            this.flowLayoutPanelTommorow.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flowLayoutPanelTommorow.AutoSize = true;
-            this.flowLayoutPanelTommorow.Controls.Add(this.TommorowEventsLbl);
-            this.flowLayoutPanelTommorow.Location = new System.Drawing.Point(3, 149);
-            this.flowLayoutPanelTommorow.Name = "flowLayoutPanelTommorow";
-            this.flowLayoutPanelTommorow.Size = new System.Drawing.Size(907, 68);
-            this.flowLayoutPanelTommorow.TabIndex = 10;
+            this.flowLayoutPanelUpcoming.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanelUpcoming.AutoSize = true;
+            this.flowLayoutPanelUpcoming.Controls.Add(this.UpcomingEventsLbl);
+            this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(3, 149);
+            this.flowLayoutPanelUpcoming.Name = "flowLayoutPanelUpcoming";
+            this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(907, 68);
+            this.flowLayoutPanelUpcoming.TabIndex = 10;
             // 
-            // TommorowEventsLbl
+            // UpcomingEventsLbl
             // 
-            this.TommorowEventsLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TommorowEventsLbl.BackColor = System.Drawing.Color.LightGray;
-            this.TommorowEventsLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TommorowEventsLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TommorowEventsLbl.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.TommorowEventsLbl.Location = new System.Drawing.Point(0, 0);
-            this.TommorowEventsLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.TommorowEventsLbl.Name = "TommorowEventsLbl";
-            this.TommorowEventsLbl.Size = new System.Drawing.Size(907, 68);
-            this.TommorowEventsLbl.TabIndex = 9;
-            this.TommorowEventsLbl.Text = "Tommorow\'s events";
-            this.TommorowEventsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UpcomingEventsLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.UpcomingEventsLbl.BackColor = System.Drawing.Color.LightGray;
+            this.UpcomingEventsLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UpcomingEventsLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpcomingEventsLbl.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.UpcomingEventsLbl.Location = new System.Drawing.Point(0, 0);
+            this.UpcomingEventsLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.UpcomingEventsLbl.Name = "UpcomingEventsLbl";
+            this.UpcomingEventsLbl.Size = new System.Drawing.Size(907, 68);
+            this.UpcomingEventsLbl.TabIndex = 9;
+            this.UpcomingEventsLbl.Text = "Upcoming events";
+            this.UpcomingEventsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tpExpenses
             // 
@@ -734,7 +734,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanelToday.ResumeLayout(false);
-            this.flowLayoutPanelTommorow.ResumeLayout(false);
+            this.flowLayoutPanelUpcoming.ResumeLayout(false);
             this.tpExpenses.ResumeLayout(false);
             this.tpExpenses.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExpenseQuantityNum)).EndInit();
@@ -767,8 +767,8 @@
         private System.Windows.Forms.Button AddEventBtn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelToday;
         private System.Windows.Forms.Label lblEvents;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTommorow;
-        private System.Windows.Forms.Label TommorowEventsLbl;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelUpcoming;
+        private System.Windows.Forms.Label UpcomingEventsLbl;
         private System.Windows.Forms.GroupBox newComplaintGb;
         private System.Windows.Forms.Label complaintsLbl;
         private System.Windows.Forms.Label newComplaintLbl;

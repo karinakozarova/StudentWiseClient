@@ -24,6 +24,55 @@ namespace StudentWiseApi
         Pending,
         Unfinished
     }
+
+    public enum EventInvolvement
+    {
+        Creator,
+        Participant,
+        Voter
+    }
+
+    /// <summary>
+    /// Represents a filter for event enumeration.
+    /// </summary>
+    public struct EventFilter
+    {
+        public EventInvolvement? InvolvedAs { get; set; }
+        public EventType? Type { get; set; }
+        public EventStatus? Status { get; set; }
+        public bool? TimeConstrained{ get; set; }
+        public DateTime? StartsBefore { get; set; }
+        public DateTime? StartsAfter { get; set; }
+        public DateTime? FinishesBefore { get; set; }
+        public DateTime? FinishesAfter { get; set; }
+
+        public static EventFilter Today()
+        {
+            return new EventFilter()
+            {
+                TimeConstrained = true,
+                StartsBefore = DateTime.Today,
+                FinishesAfter = DateTime.Today
+            };
+        }
+
+        public static EventFilter Upcoming()
+        {
+            return new EventFilter()
+            {
+                TimeConstrained = true,
+                StartsAfter = DateTime.Today.AddDays(1)
+            };
+        }
+
+        public static EventFilter Involved(EventInvolvement involvement)
+        {
+            return new EventFilter()
+            {
+                InvolvedAs = involvement                
+            };
+        }
+    }
     
     /// <summary>
     /// Represents user's vote.
@@ -49,7 +98,6 @@ namespace StudentWiseApi
     {
         public int Id { get; }
         public EventType Type { get; protected set; }
-
         public EventStatus Status { get; protected set; }
         public bool Locked { get; protected set; }
         public string Title { get; protected set; }
@@ -165,6 +213,50 @@ namespace StudentWiseApi
             }
 
             throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
+
+        public static List<Event> Enumerate(EventFilter filter, UserSession session = null)
+        {
+            // TODO: switch to passing GET-parameters when the API is ready
+
+            var events = Enumerate(session);
+
+            switch (filter.InvolvedAs)
+            {
+                case EventInvolvement.Creator:
+                    events = events.Where(e => e.Creator == session.Info).ToList();
+                    break;
+                case EventInvolvement.Participant:
+                    events = events.Where(e => e.Participants.Contains(session.Info)).ToList();
+                    break;
+                case EventInvolvement.Voter:
+                    events = events.Where(e => e.Votes.ContainsKey(session.Info.Id)).ToList();
+                    break;
+            }
+
+            if (filter.Type.HasValue)
+                events = events.Where(e => e.Type == filter.Type.Value).ToList();
+
+            if (filter.Status.HasValue)
+                events = events.Where(e => e.Status == filter.Status.Value).ToList();
+
+            if (filter.TimeConstrained.HasValue)
+                events = events.Where(e => filter.TimeConstrained.Value ^
+                    (!e.StartsAt.HasValue && !e.FinishesAt.HasValue)).ToList();
+
+            if (filter.StartsBefore.HasValue)
+                events = events.Where(e => !e.StartsAt.HasValue || e.StartsAt <= filter.StartsBefore).ToList();
+
+            if (filter.StartsAfter.HasValue)
+                events = events.Where(e => !e.StartsAt.HasValue || e.StartsAt >= filter.StartsAfter).ToList();
+
+            if (filter.FinishesBefore.HasValue)
+                events = events.Where(e => !e.FinishesAt.HasValue || e.FinishesAt <= filter.FinishesBefore).ToList();
+
+            if (filter.FinishesAfter.HasValue)
+                events = events.Where(e => !e.FinishesAt.HasValue || e.FinishesAt >= filter.FinishesAfter).ToList();
+
+            return events;
         }
 
         /// <summary>

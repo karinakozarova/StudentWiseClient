@@ -26,7 +26,6 @@ namespace StudentWiseClient
 
             foreach (Form f in openForms)
             {
-                MessageBox.Show(f.Name);
                 if (f.Name == "FormMain")
                     f.Close();
             }

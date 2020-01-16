@@ -26,6 +26,9 @@ namespace StudentWiseApi
         internal const string event_participant_url = base_url + "/events/{0}/participants";
         internal const string complaint_url = base_url + "/complaints";
         internal const string complaint_manage_url = base_url + "/complaints/{0}";
+        internal const string complaint_mark_progress_url = base_url + "/complaints/{0}/mark_as_in_progress";
+        internal const string complaint_mark_rejected_url = base_url + "/complaints/{0}/mark_as_rejected";
+        internal const string complaint_mark_resolved_url = base_url + "/complaints/{0}/mark_as_resolved";
         internal const string expense_url = base_url + "/expenses";
         internal const string expense_manage_url = base_url + "/expenses/{0}";
         internal const string expense_participant_url = base_url + "/expenses/{0}/participants";

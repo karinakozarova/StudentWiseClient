@@ -26,7 +26,8 @@ namespace StudentWiseApi
         public User Creator { get; }
         public DateTime CreatedAt { get; }
         public DateTime UpdatedAt { get; protected set; }
-        public ComplaintStatus Status { get; }
+        public ComplaintStatus Status { get; protected set; }
+        public bool Locked { get; protected set; }
 
         /// <summary>
         /// Create a new complaint.
@@ -129,6 +130,75 @@ namespace StudentWiseApi
                 UpdatedAt = InvokeUpdate(Id, new { description = value }, session).UpdatedAt;
                 Description = value;
             }
+        }
+
+        /// <summary>
+        /// Marks a complaint with the specified status
+        /// </summary>
+        /// <remarks>This action requires an administrative account.</remarks>
+        /// <returns>New locked state of null otherwise.</returns>
+        public static bool? MarkAs(int complaint_id, ComplaintStatus status, UserSession session = null)
+        {
+            string url;
+
+            switch(status)
+            {
+                case ComplaintStatus.In_progress:
+                    url = Server.complaint_mark_progress_url;
+                    break;
+                case ComplaintStatus.Rejected:
+                    url = Server.complaint_mark_rejected_url;
+                    break;
+                case ComplaintStatus.Resolved:
+                    url = Server.complaint_mark_resolved_url;
+                    break;
+                default:
+                    throw new Exception("Invalid action: can't mark a complaint with this status");
+            }
+
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            var response = Server.Send(
+                string.Format(url, complaint_id),
+                session.token,
+                "PUT",
+                null
+            );
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                var json = ParsedJson.Parse(reader.ReadToEnd());
+                
+                // Voting can cause status and lock change
+                if (json.Members.ContainsKey("complaint"))
+                {
+                    json = json.GetObject("complaint");
+
+                    if (json.Members.ContainsKey("locked"))
+                        return json.GetBool("locked");
+                }
+
+                return null;
+            }
+
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
+
+        /// <summary>
+        /// Marks this complaint with a new status.
+        /// </summary>
+        /// <remarks>This action requires an administrative account.</remarks>
+        public void MarkAs(ComplaintStatus status, UserSession session = null)
+        {
+            var newLocked = MarkAs(Id, status, session);
+
+            if (newLocked.HasValue)
+                Locked = newLocked.Value;
+
+            Status = status;
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>

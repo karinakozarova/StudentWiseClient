@@ -129,7 +129,7 @@ namespace StudentWiseClient
             decimal total = 0;
             foreach (Expense expense in Expense.Enumerate())
             {
-                total += expense.Price;
+                total += expense.Price * expense.Amount;
                 AddExpenseToExpenseListView(expense);
                 foreach (User participant in expense.Participants)
                 {

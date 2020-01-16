@@ -34,6 +34,8 @@ namespace StudentWiseApi
         internal const string expense_participant_url = base_url + "/expenses/{0}/participants";
         internal const string expense_archive_url = base_url + "/expenses/{0}/archive";
         internal const string expense_unarchive_url = base_url + "/expenses/{0}/unarchive";
+        internal const string agreement_url = base_url + "/agreements";
+        internal const string agreement_manage_url = base_url + "/agreements/{0}";
 
         static internal HttpWebResponse Send(string url, string token, string method, object data, JsonSerializerOptions options = null)
         {

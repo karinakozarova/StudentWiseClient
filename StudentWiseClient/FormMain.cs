@@ -39,9 +39,16 @@ namespace StudentWiseClient
             {
                 foreach (Event ev in events)
                 {
+                    DateTime startDate = Convert.ToDateTime(ev.StartsAt);
+                    var date = startDate.Date;
+                    var dateAndTime = DateTime.Now;
+                    var dateNow = dateAndTime.Date;
                     EventComponent eventComponent = new EventComponent();
                     eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
-                    todaysEventsFllpnl.Controls.Add(eventComponent);
+                    if (date == dateNow)
+                    {
+                        todaysEventsFllpnl.Controls.Add(eventComponent);
+                    }
                 }
             }
         }
@@ -99,9 +106,20 @@ namespace StudentWiseClient
             {
                 foreach (Event ev in events)
                 {
+                    DateTime startDate = Convert.ToDateTime(ev.StartsAt);
+                    var date = startDate.Date;
+                    var dateAndTime = DateTime.Now;
+                    var dateNow = dateAndTime.Date;
                     EventComponent eventComponent = new EventComponent();
                     eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
-                    flowLayoutPanelToday.Controls.Add(eventComponent);
+                    if (date == dateNow)
+                    {
+                        flowLayoutPanelToday.Controls.Add(eventComponent);
+                    }
+                    else
+                    {
+                        flowLayoutPanelUpcoming.Controls.Add(eventComponent);
+                    }
                 }
             }
             

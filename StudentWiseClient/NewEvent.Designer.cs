@@ -39,6 +39,8 @@
             this.endsAtLbl = new System.Windows.Forms.Label();
             this.endDttpkr = new System.Windows.Forms.DateTimePicker();
             this.createBttn = new System.Windows.Forms.Button();
+            this.startTimepkr = new System.Windows.Forms.DateTimePicker();
+            this.EndTimepkr = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -92,7 +94,7 @@
             this.startDttpkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startDttpkr.Location = new System.Drawing.Point(16, 357);
             this.startDttpkr.Name = "startDttpkr";
-            this.startDttpkr.Size = new System.Drawing.Size(363, 37);
+            this.startDttpkr.Size = new System.Drawing.Size(193, 37);
             this.startDttpkr.TabIndex = 3;
             // 
             // descriptionLbl
@@ -130,7 +132,7 @@
             this.endDttpkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endDttpkr.Location = new System.Drawing.Point(16, 468);
             this.endDttpkr.Name = "endDttpkr";
-            this.endDttpkr.Size = new System.Drawing.Size(363, 37);
+            this.endDttpkr.Size = new System.Drawing.Size(193, 37);
             this.endDttpkr.TabIndex = 4;
             // 
             // createBttn
@@ -145,11 +147,29 @@
             this.createBttn.UseVisualStyleBackColor = false;
             this.createBttn.Click += new System.EventHandler(this.CreateBttn_Click);
             // 
+            // startTimepkr
+            // 
+            this.startTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startTimepkr.Location = new System.Drawing.Point(215, 357);
+            this.startTimepkr.Name = "startTimepkr";
+            this.startTimepkr.Size = new System.Drawing.Size(162, 37);
+            this.startTimepkr.TabIndex = 16;
+            // 
+            // EndTimepkr
+            // 
+            this.EndTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EndTimepkr.Location = new System.Drawing.Point(215, 468);
+            this.EndTimepkr.Name = "EndTimepkr";
+            this.EndTimepkr.Size = new System.Drawing.Size(162, 37);
+            this.EndTimepkr.TabIndex = 17;
+            // 
             // NewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 619);
+            this.Controls.Add(this.EndTimepkr);
+            this.Controls.Add(this.startTimepkr);
             this.Controls.Add(this.createBttn);
             this.Controls.Add(this.endsAtLbl);
             this.Controls.Add(this.endDttpkr);
@@ -181,5 +201,7 @@
         private System.Windows.Forms.Label endsAtLbl;
         private System.Windows.Forms.DateTimePicker endDttpkr;
         private System.Windows.Forms.Button createBttn;
+        private System.Windows.Forms.DateTimePicker startTimepkr;
+        private System.Windows.Forms.DateTimePicker EndTimepkr;
     }
 }

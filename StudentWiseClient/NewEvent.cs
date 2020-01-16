@@ -29,6 +29,10 @@ namespace StudentWiseClient
             InitializeComponent();
             DisablePastDates();
             this.session = Server.CurrentSession;
+            startTimepkr.Format = DateTimePickerFormat.Time;
+            startTimepkr.ShowUpDown = true;
+            EndTimepkr.Format = DateTimePickerFormat.Time;
+            EndTimepkr.ShowUpDown = true;
         }
 
         private void CreateBttn_Click(object sender, EventArgs e)
@@ -53,7 +57,10 @@ namespace StudentWiseClient
                 return;
             }
 
-            var ev = Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDttpkr.Value, endDttpkr.Value, session);
+            DateTime startDateTime = startDttpkr.Value.Date + startTimepkr.Value.TimeOfDay;
+            DateTime endDateTime = endDttpkr.Value.Date + EndTimepkr.Value.TimeOfDay;
+
+            var ev = Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDateTime, endDateTime, session);
             //ev.AddParticipant(Server.CurrentSession.Info.Id);
             MessageBox.Show("Succesfully added your event!");
 

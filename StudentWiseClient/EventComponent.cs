@@ -95,7 +95,21 @@ namespace StudentWiseClient
 
         public void SetDeadline(DateTime? start, DateTime? end)
         {
-            EventDeadlineLbl.Text = $"from {start} untill {end}";
+            if(start == null && end == null)
+            {
+                EventDeadlineLbl.Text = "";
+            }else if(start == null)
+            {
+                EventDeadlineLbl.Text = $"Until {end}";
+            }else if(end == null)
+            {
+                EventDeadlineLbl.Text = $"From {start}";
+            }
+            else
+            {
+                EventDeadlineLbl.Text = $"From {start} untill {end}";
+            }
+            
         }
 
         public void SetEventPoints(int points = 0)

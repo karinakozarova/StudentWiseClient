@@ -118,16 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="StudentwISEvBuilders (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StudentwISEvBuilders (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="StudentwISEvBuilders (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StudentwISEvBuilders (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="person_favicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\person_favicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="undo-favicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\undo-favicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kisspng-check-mark-symbol-icon-black-checkmark-5a76d35a732948.8416047115177367944717" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kisspng-check-mark-symbol-icon-black-checkmark-5a76d35a732948.8416047115177367944717.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StudentwISEvBuilders (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StudentwISEvBuilders (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StudentwISEvBuilders (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StudentwISEvBuilders (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="person-male" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\person-male.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

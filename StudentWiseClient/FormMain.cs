@@ -191,6 +191,7 @@ namespace StudentWiseClient
             ReloadComplaints();
             ReloadAgreements();
             CalculateAndPopulateExpenses();
+            UserNameLbl.Text = Server.CurrentSession.Info.FirstName;
         }
 
         private void ReloadAgreements()

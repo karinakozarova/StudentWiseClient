@@ -10,6 +10,7 @@ using System.Net;
 
 namespace StudentWiseApi
 {
+    using EventKind = EventType;
     public enum EventType
     {
         Other,
@@ -38,13 +39,15 @@ namespace StudentWiseApi
     public struct EventFilter
     {
         public EventInvolvement? InvolvedAs { get; set; }
-        public EventType? Type { get; set; }
+        public EventKind? Kind { get; set; }
+        [Obsolete("use Kind instead")]
+        public EventKind? Type { get { return Kind; } set { Kind = value; } }
         public EventStatus? Status { get; set; }
         public bool? TimeConstrained{ get; set; }
         public DateTime? StartsBefore { get; set; }
         public DateTime? StartsAfter { get; set; }
         public DateTime? FinishesBefore { get; set; }
-        public DateTime? FinishesAfter { get; set; }
+        public DateTime? FinishesAfter { get; set; }        
 
         public static EventFilter Today()
         {
@@ -97,7 +100,9 @@ namespace StudentWiseApi
     public class Event
     {
         public int Id { get; }
-        public EventType Type { get; protected set; }
+        public EventKind Kind { get; protected set; }
+        [Obsolete("use Kind instead")]
+        public EventKind Type { get; set; }
         public EventStatus Status { get; protected set; }
         public bool Locked { get; protected set; }
         public string Title { get; protected set; }
@@ -120,7 +125,7 @@ namespace StudentWiseApi
         public static Event Create(
             string title,
             string description = null,
-            EventType event_type = EventType.Other,
+            EventKind kind = EventKind.Other,
             DateTime? starts_at = null,
             DateTime? finishes_at = null,
             UserSession session = null
@@ -132,7 +137,7 @@ namespace StudentWiseApi
                 {
                     title,
                     description,
-                    event_type = event_type.ToString().ToLower(),
+                    kind = kind.ToString().ToLower(),
                     starts_at,
                     finishes_at
                 },
@@ -147,7 +152,7 @@ namespace StudentWiseApi
             int event_id,
             string title,
             string description = null,
-            EventType event_type = EventType.Other,
+            EventKind kind = EventKind.Other,
             DateTime? starts_at = null,
             DateTime? finishes_at = null,
             UserSession session = null
@@ -159,7 +164,7 @@ namespace StudentWiseApi
                 {
                     title,
                     description,
-                    event_type = event_type.ToString().ToLower(),
+                    kind = kind.ToString().ToLower(),
                     starts_at,
                     finishes_at
                 },
@@ -234,8 +239,8 @@ namespace StudentWiseApi
                     break;
             }
 
-            if (filter.Type.HasValue)
-                events = events.Where(e => e.Type == filter.Type.Value).ToList();
+            if (filter.Kind.HasValue)
+                events = events.Where(e => e.Kind == filter.Kind.Value).ToList();
 
             if (filter.Status.HasValue)
                 events = events.Where(e => e.Status == filter.Status.Value).ToList();
@@ -323,6 +328,7 @@ namespace StudentWiseApi
         public void AddParticipant(int user_id, UserSession session = null)
         {
             Participants.Add(AddParticipant(Id, user_id, session));
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -357,6 +363,7 @@ namespace StudentWiseApi
         {
             RemoveParticipant(Id, user_id, session);
             Participants.Remove(Participants.Find(u => u.Id == user_id));
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -391,14 +398,15 @@ namespace StudentWiseApi
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 var json = ParsedJson.Parse(reader.ReadToEnd());
                 Votes[session.Info.Id] = new EventVote(json);
+                UpdatedAt = DateTime.Now;
 
                 // Voting can cause status and lock change
                 if (json.Members.ContainsKey("event"))
                 {
                     json = json.GetObject("event");
 
-                    if (json.Members.ContainsKey("event_status"))
-                        Status = json.GetEnum<EventStatus>("event_status");
+                    if (json.Members.ContainsKey("status"))
+                        Status = json.GetEnum<EventStatus>("status");
 
                     if (json.Members.ContainsKey("locked"))
                         Locked = json.GetBool("locked");
@@ -427,15 +435,16 @@ namespace StudentWiseApi
                 throw new Exception(Server.UnexpectedStatus(response.StatusCode));
 
             Votes.Remove(session.Info.Id);
+            UpdatedAt = DateTime.Now;
         }
 
         #region Propery updaters
-        public void UpdateType(EventType value, UserSession session = null)
+        public void UpdateType(EventKind value, UserSession session = null)
         {
-            if (value != Type)
+            if (value != Kind)
             {
-                UpdatedAt = InvokeUpdate(Id, new { event_type = value.ToString().ToLower() }, session).UpdatedAt;
-                Type = value;
+                UpdatedAt = InvokeUpdate(Id, new { kind = value.ToString().ToLower() }, session).UpdatedAt;
+                Kind = value;
             }
         }
 
@@ -491,7 +500,9 @@ namespace StudentWiseApi
             var newStatus = MarkAsFinished(Id, session);
             
             if (newStatus.HasValue)
-                Status = newStatus.Value;            
+                Status = newStatus.Value;
+
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -512,6 +523,8 @@ namespace StudentWiseApi
 
             if (newStatus.HasValue)
                 Status = newStatus.Value;
+
+            UpdatedAt = DateTime.Now;
         }
         #endregion
 
@@ -542,8 +555,8 @@ namespace StudentWiseApi
                     {
                         json = json.GetObject("event");
 
-                        if (json.Members.ContainsKey("event_status"))
-                            return json.GetEnum<EventStatus>("event_status");
+                        if (json.Members.ContainsKey("status"))
+                            return json.GetEnum<EventStatus>("status");
                     }
                 }
                 
@@ -563,8 +576,8 @@ namespace StudentWiseApi
             CreatedAt = json.GetDateTime("created_at", false).Value;
             UpdatedAt = json.GetDateTime("updated_at", false).Value;
             Creator = new User(json.GetObject("creator"));
-            Type = json.GetEnum<EventType>("event_type");
-            Status = json.GetEnum<EventStatus>("event_status");
+            Kind = json.GetEnum<EventKind>("kind");
+            Status = json.GetEnum<EventStatus>("status");
             Locked = json.GetBool("locked");
             Participants = json.GetArray("participants").ConvertAll(e => new User(e));            
             Votes = new Dictionary<int, EventVote>();

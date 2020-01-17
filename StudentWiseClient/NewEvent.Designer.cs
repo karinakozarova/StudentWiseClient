@@ -41,6 +41,8 @@
             this.createBttn = new System.Windows.Forms.Button();
             this.startTimepkr = new System.Windows.Forms.DateTimePicker();
             this.EndTimepkr = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.eventTypeCmbbx = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -57,7 +59,7 @@
             this.titleTbx.Font = new System.Drawing.Font("Oswald", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleTbx.Location = new System.Drawing.Point(16, 111);
             this.titleTbx.Name = "titleTbx";
-            this.titleTbx.Size = new System.Drawing.Size(364, 33);
+            this.titleTbx.Size = new System.Drawing.Size(402, 33);
             this.titleTbx.TabIndex = 1;
             // 
             // label2
@@ -85,16 +87,16 @@
             this.descriptionTbx.Font = new System.Drawing.Font("Oswald", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionTbx.Location = new System.Drawing.Point(16, 198);
             this.descriptionTbx.Name = "descriptionTbx";
-            this.descriptionTbx.Size = new System.Drawing.Size(361, 96);
+            this.descriptionTbx.Size = new System.Drawing.Size(402, 96);
             this.descriptionTbx.TabIndex = 2;
             this.descriptionTbx.Text = "";
             // 
             // startDttpkr
             // 
             this.startDttpkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDttpkr.Location = new System.Drawing.Point(16, 357);
+            this.startDttpkr.Location = new System.Drawing.Point(18, 445);
             this.startDttpkr.Name = "startDttpkr";
-            this.startDttpkr.Size = new System.Drawing.Size(193, 37);
+            this.startDttpkr.Size = new System.Drawing.Size(205, 37);
             this.startDttpkr.TabIndex = 3;
             // 
             // descriptionLbl
@@ -111,7 +113,7 @@
             // 
             this.startsAtLbl.AutoSize = true;
             this.startsAtLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startsAtLbl.Location = new System.Drawing.Point(8, 306);
+            this.startsAtLbl.Location = new System.Drawing.Point(11, 397);
             this.startsAtLbl.Name = "startsAtLbl";
             this.startsAtLbl.Size = new System.Drawing.Size(115, 48);
             this.startsAtLbl.TabIndex = 12;
@@ -121,7 +123,7 @@
             // 
             this.endsAtLbl.AutoSize = true;
             this.endsAtLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endsAtLbl.Location = new System.Drawing.Point(8, 417);
+            this.endsAtLbl.Location = new System.Drawing.Point(11, 487);
             this.endsAtLbl.Name = "endsAtLbl";
             this.endsAtLbl.Size = new System.Drawing.Size(98, 48);
             this.endsAtLbl.TabIndex = 14;
@@ -130,16 +132,16 @@
             // endDttpkr
             // 
             this.endDttpkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endDttpkr.Location = new System.Drawing.Point(16, 468);
+            this.endDttpkr.Location = new System.Drawing.Point(18, 536);
             this.endDttpkr.Name = "endDttpkr";
-            this.endDttpkr.Size = new System.Drawing.Size(193, 37);
+            this.endDttpkr.Size = new System.Drawing.Size(205, 37);
             this.endDttpkr.TabIndex = 4;
             // 
             // createBttn
             // 
             this.createBttn.BackColor = System.Drawing.Color.LawnGreen;
             this.createBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createBttn.Location = new System.Drawing.Point(75, 537);
+            this.createBttn.Location = new System.Drawing.Point(78, 589);
             this.createBttn.Name = "createBttn";
             this.createBttn.Size = new System.Drawing.Size(255, 61);
             this.createBttn.TabIndex = 15;
@@ -150,24 +152,45 @@
             // startTimepkr
             // 
             this.startTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startTimepkr.Location = new System.Drawing.Point(215, 357);
+            this.startTimepkr.Location = new System.Drawing.Point(229, 445);
             this.startTimepkr.Name = "startTimepkr";
-            this.startTimepkr.Size = new System.Drawing.Size(162, 37);
+            this.startTimepkr.Size = new System.Drawing.Size(200, 37);
             this.startTimepkr.TabIndex = 16;
             // 
             // EndTimepkr
             // 
             this.EndTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EndTimepkr.Location = new System.Drawing.Point(215, 468);
+            this.EndTimepkr.Location = new System.Drawing.Point(229, 536);
             this.EndTimepkr.Name = "EndTimepkr";
-            this.EndTimepkr.Size = new System.Drawing.Size(162, 37);
+            this.EndTimepkr.Size = new System.Drawing.Size(200, 37);
             this.EndTimepkr.TabIndex = 17;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(10, 297);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 48);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Event type:";
+            // 
+            // eventTypeCmbbx
+            // 
+            this.eventTypeCmbbx.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eventTypeCmbbx.FormattingEnabled = true;
+            this.eventTypeCmbbx.Location = new System.Drawing.Point(18, 348);
+            this.eventTypeCmbbx.Name = "eventTypeCmbbx";
+            this.eventTypeCmbbx.Size = new System.Drawing.Size(257, 39);
+            this.eventTypeCmbbx.TabIndex = 19;
             // 
             // NewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 619);
+            this.ClientSize = new System.Drawing.Size(441, 662);
+            this.Controls.Add(this.eventTypeCmbbx);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.EndTimepkr);
             this.Controls.Add(this.startTimepkr);
             this.Controls.Add(this.createBttn);
@@ -203,5 +226,7 @@
         private System.Windows.Forms.Button createBttn;
         private System.Windows.Forms.DateTimePicker startTimepkr;
         private System.Windows.Forms.DateTimePicker EndTimepkr;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox eventTypeCmbbx;
     }
 }

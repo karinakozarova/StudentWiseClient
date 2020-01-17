@@ -24,15 +24,25 @@ namespace StudentWiseClient
             startDttpkr.MinDate = DateTime.Today;
         }
 
-        public NewEvent()
+        private void TimePickersSetup()
         {
-            InitializeComponent();
             DisablePastDates();
-            this.session = Server.CurrentSession;
             startTimepkr.Format = DateTimePickerFormat.Time;
             startTimepkr.ShowUpDown = true;
             EndTimepkr.Format = DateTimePickerFormat.Time;
+
             EndTimepkr.ShowUpDown = true;
+        }
+
+        public NewEvent()
+        {
+            InitializeComponent();
+            TimePickersSetup();
+            this.session = Server.CurrentSession;
+
+            eventTypeCmbbx.Items.Add(EventType.Duty);
+            eventTypeCmbbx.Items.Add(EventType.Other);
+            eventTypeCmbbx.Items.Add(EventType.Party);
         }
 
         private void CreateBttn_Click(object sender, EventArgs e)
@@ -60,7 +70,18 @@ namespace StudentWiseClient
                 return;
             }
 
-           Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDateTime, endDateTime, session);
+            EventType type;
+            string eventType = eventTypeCmbbx.SelectedItem.ToString();
+            switch (eventType)
+            {
+                case "Duty": type = EventType.Duty; break;
+                case "Party": type = EventType.Party; break;
+                default:
+                    case "Other": type = EventType.Other; break;
+
+
+            }
+            Event.Create(titleTbx.Text, descriptionTbx.Text, type, startDateTime, endDateTime, session);
 
             // open dashboard
             this.Close();

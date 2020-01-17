@@ -44,7 +44,7 @@ namespace StudentWiseClient
                     var date = startDate.Date;
                     var dateNow = DateTime.Now.Date;
                     EventComponent eventComponent = new EventComponent();
-                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Kind, ev.StartsAt, ev.FinishesAt);
                     eventComponent.SetEvent(ev);
                     if (date == dateNow)
                     {
@@ -97,7 +97,7 @@ namespace StudentWiseClient
                     var date = startDate.Date;
                     var dateNow = DateTime.Now.Date;
                     EventComponent eventComponent = new EventComponent();
-                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Kind, ev.StartsAt, ev.FinishesAt);
                     eventComponent.SetEvent(ev);
                     if (date == dateNow)
                     {

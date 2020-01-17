@@ -80,6 +80,14 @@ namespace StudentWiseClient
             {
                 DeleteEventPbx.Visible = true;
             }
+
+            if(type == EventType.Party)
+            {
+                this.BackColor = Color.Gold;
+            } else if (type == EventType.Duty)
+            {
+                this.BackColor = Color.OrangeRed;
+            }
         }
 
         public void SetTitle(String title)

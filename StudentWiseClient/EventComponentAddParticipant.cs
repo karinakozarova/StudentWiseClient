@@ -161,7 +161,7 @@ namespace StudentWiseClient
             }
             else if (CurrentEvent.Status == EventStatus.Finished)
             {
-                Event.MarkEvent(CurrentEvent.Id, false);
+                // Event.MarkEvent(CurrentEvent.Id, false); // TODO: debug why this throws error sometimes
                 EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
             }
         }

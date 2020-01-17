@@ -13,6 +13,7 @@ namespace StudentWiseClient
 {
     public partial class EventComponent : UserControl
     {
+        private bool MarkedAsFinished = false;
         public EventComponent()
         {
             InitializeComponent();
@@ -30,6 +31,11 @@ namespace StudentWiseClient
             set;
             get;
         }
+        public Event CurrentEvent
+        {
+            set;
+            get;
+        }
 
         public User Creator
         {
@@ -37,6 +43,10 @@ namespace StudentWiseClient
             set;
         }
 
+        public void SetEvent(Event ev)
+        {
+            CurrentEvent = ev;
+        }
         public void SetAllNeededProperties(int id, User creator, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
         {
             this.SetTitle(title);
@@ -93,13 +103,19 @@ namespace StudentWiseClient
 
         private void EventCompletePbx_Click(object sender, EventArgs e)
         {
-            //When the event is mark as finished the picture box icon will change to undo icon, in order someone
-            //has marked his event by mistake.
-            //Should retrieve data from the server in order to check whether the event is marked as finished or not
-            //and then update the picture box accordingly.
-
-            EventCompletePbx.Image = Properties.Resources.undo_favicon;
-            EventCompletePbx.BackColor = Color.DarkGreen;
+            if (!MarkedAsFinished)
+            {
+                CurrentEvent.MarkAsFinished();
+                MarkedAsFinished = true;
+                EventCompletePbx.Image = Properties.Resources.undo_favicon;
+            }
+            else
+            {
+                Event.MarkEvent(CurrentEvent.Id, false);
+                MarkedAsFinished = false;
+                EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+            }
+            
         }
 
         private void DeleteEvent()

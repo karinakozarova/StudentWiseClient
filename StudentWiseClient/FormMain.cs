@@ -45,6 +45,7 @@ namespace StudentWiseClient
                     var dateNow = DateTime.Now.Date;
                     EventComponent eventComponent = new EventComponent();
                     eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    eventComponent.SetEvent(ev);
                     if (date == dateNow)
                     {
                         todaysEventsFllpnl.Controls.Add(eventComponent);
@@ -97,6 +98,7 @@ namespace StudentWiseClient
                     var dateNow = DateTime.Now.Date;
                     EventComponent eventComponent = new EventComponent();
                     eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    eventComponent.SetEvent(ev);
                     if (date == dateNow)
                     {
                         flowLayoutPanelToday.Controls.Add(eventComponent);
@@ -158,6 +160,28 @@ namespace StudentWiseClient
             {
                 ExpenseTotalPriceLbl.ForeColor = Color.Red;
             }
+
+            PopulateUserBalanceOnDashboard();
+        }
+
+        private void PopulateUserBalanceOnDashboard()
+        {
+            decimal total = 0;
+            HashSet<User> users = new HashSet<User>();
+            HashSet<int> userIds = new HashSet<int>();
+
+            foreach (Expense expense in Expense.Enumerate())
+            {
+                foreach (User participant in expense.Participants)
+                {
+                    if (participant.Id == Server.CurrentSession.Info.Id)
+                    {
+                        total += expense.Price * expense.Amount;
+                    }
+                }
+            }
+
+            balanceAmountLbl.Text = total.ToString();
         }
 
         private void FormMain_Load(object sender, EventArgs e)

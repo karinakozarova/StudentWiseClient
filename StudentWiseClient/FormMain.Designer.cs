@@ -373,6 +373,7 @@
             // 
             // ExpenseTotalPriceLbl
             // 
+            this.ExpenseTotalPriceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTotalPriceLbl.AutoSize = true;
             this.ExpenseTotalPriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTotalPriceLbl.Location = new System.Drawing.Point(539, 390);
@@ -383,6 +384,7 @@
             // 
             // ExpenseTotalLbl
             // 
+            this.ExpenseTotalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTotalLbl.AutoSize = true;
             this.ExpenseTotalLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTotalLbl.Location = new System.Drawing.Point(467, 390);
@@ -393,6 +395,7 @@
             // 
             // AddExpenseBtn
             // 
+            this.AddExpenseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddExpenseBtn.BackColor = System.Drawing.Color.LawnGreen;
             this.AddExpenseBtn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddExpenseBtn.Location = new System.Drawing.Point(619, 380);
@@ -405,6 +408,7 @@
             // 
             // ExpenseQuantityNum
             // 
+            this.ExpenseQuantityNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseQuantityNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseQuantityNum.Location = new System.Drawing.Point(773, 341);
             this.ExpenseQuantityNum.Minimum = new decimal(new int[] {
@@ -423,6 +427,7 @@
             // 
             // ExpensePriceNum
             // 
+            this.ExpensePriceNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensePriceNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpensePriceNum.Location = new System.Drawing.Point(619, 341);
             this.ExpensePriceNum.Name = "ExpensePriceNum";
@@ -431,6 +436,7 @@
             // 
             // ExpenseQuantityLbl
             // 
+            this.ExpenseQuantityLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseQuantityLbl.AutoSize = true;
             this.ExpenseQuantityLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseQuantityLbl.Location = new System.Drawing.Point(766, 297);
@@ -441,6 +447,7 @@
             // 
             // ExpensePriceLbl
             // 
+            this.ExpensePriceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensePriceLbl.AutoSize = true;
             this.ExpensePriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpensePriceLbl.Location = new System.Drawing.Point(612, 299);
@@ -451,6 +458,7 @@
             // 
             // ExpenseNotesLbl
             // 
+            this.ExpenseNotesLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseNotesLbl.AutoSize = true;
             this.ExpenseNotesLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseNotesLbl.Location = new System.Drawing.Point(612, 138);
@@ -461,6 +469,8 @@
             // 
             // ExpenseNotesRtbx
             // 
+            this.ExpenseNotesRtbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseNotesRtbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ExpenseNotesRtbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseNotesRtbx.Location = new System.Drawing.Point(619, 182);
@@ -471,6 +481,7 @@
             // 
             // ExpenseTitleTbx
             // 
+            this.ExpenseTitleTbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTitleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTitleTbx.Location = new System.Drawing.Point(619, 98);
             this.ExpenseTitleTbx.Name = "ExpenseTitleTbx";
@@ -479,6 +490,7 @@
             // 
             // ExpenseTitleLbl
             // 
+            this.ExpenseTitleLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTitleLbl.AutoSize = true;
             this.ExpenseTitleLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTitleLbl.Location = new System.Drawing.Point(612, 59);
@@ -489,6 +501,7 @@
             // 
             // NewExpenseLbl
             // 
+            this.NewExpenseLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NewExpenseLbl.AutoSize = true;
             this.NewExpenseLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewExpenseLbl.Location = new System.Drawing.Point(691, 13);
@@ -499,12 +512,16 @@
             // 
             // ExpensesLv
             // 
+            this.ExpensesLv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensesLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnExpense,
             this.columnQuantity,
             this.columnPrice,
             this.columnNotes});
             this.ExpensesLv.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpensesLv.FullRowSelect = true;
             this.ExpensesLv.GridLines = true;
             this.ExpensesLv.HideSelection = false;
             this.ExpensesLv.Location = new System.Drawing.Point(239, 64);
@@ -555,10 +572,13 @@
             // 
             // MembersLv
             // 
+            this.MembersLv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.MembersLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
             this.columnBalance});
             this.MembersLv.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MembersLv.FullRowSelect = true;
             this.MembersLv.GridLines = true;
             this.MembersLv.HideSelection = false;
             this.MembersLv.Location = new System.Drawing.Point(20, 64);

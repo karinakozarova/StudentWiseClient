@@ -100,6 +100,7 @@ namespace StudentWiseApi
     public class Event
     {
         public int Id { get; }
+        public Group PrimaryGroup { get; }
         public EventKind Kind { get; protected set; }
         [Obsolete("use Kind instead")]
         public EventKind Type { get; set; }
@@ -569,6 +570,7 @@ namespace StudentWiseApi
         internal Event(ParsedJson json)
         {
             Id = json.GetInt("id");
+            PrimaryGroup = new Group(json.GetObject("group"));
             Description = json.GetString("description");
             Title = json.GetString("title");
             StartsAt = json.GetDateTime("starts_at", true);

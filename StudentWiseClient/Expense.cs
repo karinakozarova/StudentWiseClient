@@ -12,6 +12,7 @@ namespace StudentWiseApi
     public class Expense
     {
         public int Id { get; }
+        public Group PrimaryGroup { get; }
         public string Name { get; protected set; }
         public decimal Price { get; protected set; }
         public int Quantity { get; protected set; }
@@ -328,6 +329,7 @@ namespace StudentWiseApi
         internal Expense(ParsedJson json)
         {
             Id = json.GetInt("id");
+            PrimaryGroup = new Group(json.GetObject("group"));
             Name = json.GetString("name");
             Notes = json.GetString("notes");
             Price = json.GetDecimal("price");

@@ -160,6 +160,7 @@
             // 
             // dashboardComplaintsLbl
             // 
+            this.dashboardComplaintsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dashboardComplaintsLbl.AutoSize = true;
             this.dashboardComplaintsLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dashboardComplaintsLbl.Location = new System.Drawing.Point(543, 34);
@@ -170,6 +171,7 @@
             // 
             // balanceAmountLbl
             // 
+            this.balanceAmountLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceAmountLbl.AutoSize = true;
             this.balanceAmountLbl.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.balanceAmountLbl.ForeColor = System.Drawing.Color.SpringGreen;
@@ -181,6 +183,7 @@
             // 
             // balanceLbl
             // 
+            this.balanceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceLbl.AutoSize = true;
             this.balanceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.balanceLbl.Location = new System.Drawing.Point(554, 365);
@@ -191,6 +194,8 @@
             // 
             // complaintsFllPanel
             // 
+            this.complaintsFllPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.complaintsFllPanel.AutoScroll = true;
             this.complaintsFllPanel.Location = new System.Drawing.Point(552, 88);
             this.complaintsFllPanel.Name = "complaintsFllPanel";
@@ -199,6 +204,9 @@
             // 
             // todaysEventsFllpnl
             // 
+            this.todaysEventsFllpnl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.todaysEventsFllpnl.AutoScroll = true;
             this.todaysEventsFllpnl.Location = new System.Drawing.Point(17, 88);
             this.todaysEventsFllpnl.Name = "todaysEventsFllpnl";
@@ -217,6 +225,7 @@
             // 
             // timeNowLbl
             // 
+            this.timeNowLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.timeNowLbl.AutoSize = true;
             this.timeNowLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeNowLbl.Location = new System.Drawing.Point(748, 14);
@@ -238,7 +247,9 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelDay1);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelDay2);
@@ -271,7 +282,7 @@
             // AddEventBtn
             // 
             this.AddEventBtn.AllowDrop = true;
-            this.AddEventBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.AddEventBtn.AutoEllipsis = true;
             this.AddEventBtn.BackColor = System.Drawing.Color.LawnGreen;
             this.AddEventBtn.Font = new System.Drawing.Font("Oswald SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -285,8 +296,8 @@
             // 
             // flowLayoutPanelToday
             // 
-            this.flowLayoutPanelToday.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flowLayoutPanelToday.AutoSize = true;
+            this.flowLayoutPanelToday.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanelToday.Controls.Add(this.lblEvents);
             this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 77);
             this.flowLayoutPanelToday.Name = "flowLayoutPanelToday";
@@ -311,8 +322,8 @@
             // 
             // flowLayoutPanelUpcoming
             // 
-            this.flowLayoutPanelUpcoming.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flowLayoutPanelUpcoming.AutoSize = true;
+            this.flowLayoutPanelUpcoming.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanelUpcoming.Controls.Add(this.UpcomingEventsLbl);
             this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(3, 149);
             this.flowLayoutPanelUpcoming.Name = "flowLayoutPanelUpcoming";
@@ -909,6 +920,8 @@
             // 
             // UserNameLbl
             // 
+            this.UserNameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UserNameLbl.AutoEllipsis = true;
             this.UserNameLbl.AutoSize = true;
             this.UserNameLbl.BackColor = System.Drawing.SystemColors.Control;
             this.UserNameLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -920,6 +933,7 @@
             // 
             // PersonIconPbx
             // 
+            this.PersonIconPbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PersonIconPbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.PersonIconPbx.Image = global::StudentWiseClient.Properties.Resources.anonymous_person_png;
             this.PersonIconPbx.Location = new System.Drawing.Point(713, 7);

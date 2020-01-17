@@ -35,14 +35,14 @@ namespace StudentWiseClient
             {
                 DashboardNoEventToday eventComponent = new DashboardNoEventToday();
                 todaysEventsFllpnl.Controls.Add(eventComponent);
-            } else
+            }
+            else
             {
                 foreach (Event ev in events)
                 {
                     DateTime startDate = Convert.ToDateTime(ev.StartsAt);
                     var date = startDate.Date;
-                    var dateAndTime = DateTime.Now;
-                    var dateNow = dateAndTime.Date;
+                    var dateNow = DateTime.Now.Date;
                     EventComponent eventComponent = new EventComponent();
                     eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
                     if (date == dateNow)
@@ -94,8 +94,7 @@ namespace StudentWiseClient
                 {
                     DateTime startDate = Convert.ToDateTime(ev.StartsAt);
                     var date = startDate.Date;
-                    var dateAndTime = DateTime.Now;
-                    var dateNow = dateAndTime.Date;
+                    var dateNow = DateTime.Now.Date;
                     EventComponent eventComponent = new EventComponent();
                     eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
                     if (date == dateNow)
@@ -170,15 +169,17 @@ namespace StudentWiseClient
             CalculateAndPopulateExpenses();
         }
 
-        private void ReloadAgreements(){
+        private void ReloadAgreements()
+        {
             agreementsFlpnl.Controls.Clear();
 
             List<Agreement> agreements = Agreement.Enumerate();
 
-            if (agreements.Count > 0) { 
+            if (agreements.Count > 0)
+            {
                 foreach (Agreement agreement in agreements)
                 {
-                    AgreementComponent agreementComponent = new AgreementComponent(agreement.Title, agreement.Description, agreement.Creator.FirstName,agreement.CreatedAt);
+                    AgreementComponent agreementComponent = new AgreementComponent(agreement.Title, agreement.Description, agreement.Creator.FirstName, agreement.CreatedAt);
                     agreementsFlpnl.Controls.Add(agreementComponent);
                 }
             }

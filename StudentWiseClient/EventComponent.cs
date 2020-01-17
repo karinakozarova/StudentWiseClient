@@ -105,7 +105,9 @@ namespace StudentWiseClient
         private void DeleteEvent()
         {
             Event.Delete(this.Id, this.Session);
+
             this.Parent.Controls.Remove(this);
+
             //this.Enabled = false;
         }
         

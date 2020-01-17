@@ -56,7 +56,7 @@ namespace StudentWiseClient
 
         private void AddBalanceToDashboard()
         {
-            decimal balance = Server.CurrentSession.Info.ComputeBalance(Expense.Enumerate()); // TODO: filter which expenses
+            decimal balance = Server.CurrentSession.Info.ComputeBalance(Expense.Enumerate());
             balanceAmountLbl.Text = balance.ToString();
             if (balance > 0)
             {
@@ -150,6 +150,8 @@ namespace StudentWiseClient
 
             ExpenseTotalPriceLbl.Text = total.ToString();
             ExpenseTotalPriceLbl.ForeColor = Color.Green;
+
+            AddBalanceToDashboard();
         }
 
         private void FormMain_Load(object sender, EventArgs e)

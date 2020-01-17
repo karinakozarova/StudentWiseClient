@@ -17,7 +17,7 @@ namespace StudentWiseClient
             InitializeComponent();
             titleLbl.Text = title;
             descriptionLbl.Text = description;
-            timestampLbl.Text = $"Created at {createdAt} by {username}";
+            timestampLbl.Text = $"Created by {username} \n on {createdAt.ToShortDateString()}";
         }
     }
 }

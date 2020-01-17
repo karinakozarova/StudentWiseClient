@@ -839,18 +839,18 @@
             // 
             this.UserNameLbl.AutoSize = true;
             this.UserNameLbl.BackColor = System.Drawing.SystemColors.Control;
-            this.UserNameLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserNameLbl.Location = new System.Drawing.Point(859, 11);
+            this.UserNameLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserNameLbl.Location = new System.Drawing.Point(766, 14);
             this.UserNameLbl.Name = "UserNameLbl";
-            this.UserNameLbl.Size = new System.Drawing.Size(84, 51);
+            this.UserNameLbl.Size = new System.Drawing.Size(67, 41);
             this.UserNameLbl.TabIndex = 2;
             this.UserNameLbl.Text = "Name";
             // 
             // PersonIconPbx
             // 
-            this.PersonIconPbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PersonIconPbx.Image = global::StudentWiseClient.Properties.Resources.person_male;
-            this.PersonIconPbx.Location = new System.Drawing.Point(799, 11);
+            this.PersonIconPbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.PersonIconPbx.Image = global::StudentWiseClient.Properties.Resources.anonymous_person_png;
+            this.PersonIconPbx.Location = new System.Drawing.Point(713, 7);
             this.PersonIconPbx.Name = "PersonIconPbx";
             this.PersonIconPbx.Size = new System.Drawing.Size(54, 50);
             this.PersonIconPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

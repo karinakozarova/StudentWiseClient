@@ -287,7 +287,17 @@ namespace StudentWiseClient
                 return;
             }
 
-            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
+            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes);            
+
+            // Share expeses with all users by default
+            foreach(User user in User.Enumerate())
+            {
+                if (user != Server.CurrentSession.Info)
+                {
+                    expense.AddParticipant(user.Id);
+                }
+            }
+
             CalculateAndPopulateExpenses();
             MessageBox.Show("You successfully created the expense!");
         }

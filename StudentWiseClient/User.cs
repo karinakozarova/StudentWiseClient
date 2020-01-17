@@ -16,6 +16,7 @@ namespace StudentWiseApi
     public class User
     {
         public int Id { get; }
+        public Group PrimaryGroup { get; }
         public string Email { get; internal set; }
         public string FirstName { get; internal set; }
         public string LastName { get; internal set; }
@@ -61,11 +62,11 @@ namespace StudentWiseApi
 
             // Add expences that the user owns (payed)
             balance += expenses.Where(e => !e.Archived && e.Creator == this).ToList().
-                ConvertAll(e => e.Price * e.Amount).Append(0).Aggregate((a, b) => a + b);
+                ConvertAll(e => e.Price * e.Quantity).Append(0).Aggregate((a, b) => a + b);
 
             // Substract expences where the user participates (e.g. needs to pay)
             balance -= expenses.Where(e => !e.Archived && e.Participants.Contains(this)).ToList().
-                ConvertAll(e => e.Price * e.Amount / e.Participants.Count).Append(0).Aggregate((a, b) => a + b);
+                ConvertAll(e => e.Price * e.Quantity / e.Participants.Count).Append(0).Aggregate((a, b) => a + b);
 
             return balance;
         }
@@ -119,6 +120,7 @@ namespace StudentWiseApi
         internal User(ParsedJson info)
         {
             Id = info.GetInt("id");
+            PrimaryGroup = new Group(info.GetObject("group"));
             Email = info.GetString("email");
             FirstName = info.GetString("first_name");
             LastName = info.GetString("last_name");

@@ -11,6 +11,7 @@ namespace StudentWiseApi
     public class Agreement
     {
         public int Id { get; }
+        public Group PrimaryGroup { get; }
         public string Title { get; protected set; }
         public string Description { get; protected set; }
         public User Creator { get; }
@@ -181,6 +182,7 @@ namespace StudentWiseApi
         internal Agreement(ParsedJson json)
         {
             Id = json.GetInt("id");
+            PrimaryGroup = new Group(json.GetObject("group"));
             Title = json.GetString("title");
             Description = json.GetString("description");
             CreatedAt = json.GetDateTime("created_at", false).Value;

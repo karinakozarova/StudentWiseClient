@@ -115,6 +115,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Group.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

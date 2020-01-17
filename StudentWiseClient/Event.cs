@@ -328,6 +328,7 @@ namespace StudentWiseApi
         public void AddParticipant(int user_id, UserSession session = null)
         {
             Participants.Add(AddParticipant(Id, user_id, session));
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -362,6 +363,7 @@ namespace StudentWiseApi
         {
             RemoveParticipant(Id, user_id, session);
             Participants.Remove(Participants.Find(u => u.Id == user_id));
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -396,6 +398,7 @@ namespace StudentWiseApi
                 var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 var json = ParsedJson.Parse(reader.ReadToEnd());
                 Votes[session.Info.Id] = new EventVote(json);
+                UpdatedAt = DateTime.Now;
 
                 // Voting can cause status and lock change
                 if (json.Members.ContainsKey("event"))
@@ -432,6 +435,7 @@ namespace StudentWiseApi
                 throw new Exception(Server.UnexpectedStatus(response.StatusCode));
 
             Votes.Remove(session.Info.Id);
+            UpdatedAt = DateTime.Now;
         }
 
         #region Propery updaters
@@ -496,7 +500,9 @@ namespace StudentWiseApi
             var newStatus = MarkAsFinished(Id, session);
             
             if (newStatus.HasValue)
-                Status = newStatus.Value;            
+                Status = newStatus.Value;
+
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -517,6 +523,8 @@ namespace StudentWiseApi
 
             if (newStatus.HasValue)
                 Status = newStatus.Value;
+
+            UpdatedAt = DateTime.Now;
         }
         #endregion
 

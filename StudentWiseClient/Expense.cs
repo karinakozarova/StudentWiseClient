@@ -189,6 +189,7 @@ namespace StudentWiseApi
         {
             Archive(Id, archive, session);
             Archived = archive;
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -256,6 +257,7 @@ namespace StudentWiseApi
         public void AddParticipant(int user_id, UserSession session = null)
         {
             Participants.Add(AddParticipant(Id, user_id, session));
+            UpdatedAt = DateTime.Now;
         }
 
         /// <summary>
@@ -290,6 +292,7 @@ namespace StudentWiseApi
         {
             RemoveParticipant(Id, user_id, session);
             Participants.Remove(Participants.Find(u => u.Id == user_id));
+            UpdatedAt = DateTime.Now;
         }
 
         internal static Expense InvokeUpdate(

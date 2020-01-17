@@ -105,7 +105,6 @@ namespace StudentWiseApi
             {
                 UpdatedAt = InvokeUpdate(Id, new { title = value }, session).UpdatedAt;
                 Title = value;
-                UpdatedAt = DateTime.Now;
             }
         }
 
@@ -118,7 +117,6 @@ namespace StudentWiseApi
             {
                 UpdatedAt = InvokeUpdate(Id, new { description = value }, session).UpdatedAt;
                 Description = value;
-                UpdatedAt = DateTime.Now;
             }
         }
 

@@ -16,7 +16,7 @@ StudentWise is a solution aimed towards students living in shared accommodation.
 
 ## Architecture
 
-Internally, we have a cloud server running our backend on Ruby on Rails which provides RESTfull API. It handles the authentication requests and issues web-tokens for each user session, maintains the database, and provides all the logic for the client application. This part is covered with automated tests and automatic deployment of source code changes.
+Internally, we have a cloud server running our backend on Ruby on Rails which provides RESTful API. It handles the authentication requests and issues web-tokens for each user session, maintains the database, and provides all the logic for the client application. This part is covered with automated tests and automatic deployment of source code changes.
 
 On the client-side, we have a layered C# application. The backend layer hides implementation details about the interaction with the API from the frontend layer which renders the user interface. This separation of the logic provides great opportunities for diving our work and managing compatibility through API changes.
 

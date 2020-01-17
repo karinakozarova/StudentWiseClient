@@ -238,5 +238,11 @@
   <ItemGroup>
     <None Include="Resources\kisspng-check-mark-symbol-icon-black-checkmark-5a76d35a732948.8416047115177367944717.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person_favicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person-male.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

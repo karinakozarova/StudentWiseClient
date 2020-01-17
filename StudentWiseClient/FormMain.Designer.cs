@@ -92,8 +92,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.newAgreementLbl = new System.Windows.Forms.Label();
             this.tpCreatedEvents = new System.Windows.Forms.TabPage();
+            this.CreatedEventsLbl = new System.Windows.Forms.Label();
+            this.CreatedEventsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
+            this.UserNameLbl = new System.Windows.Forms.Label();
+            this.PersonIconPbx = new System.Windows.Forms.PictureBox();
             this.tsBtnDashboard = new System.Windows.Forms.ToolStripButton();
             this.tsBtnEvents = new System.Windows.Forms.ToolStripDropDownButton();
             this.myEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,8 +105,6 @@
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
             this.tsBtnComplaints = new System.Windows.Forms.ToolStripButton();
             this.tsAgreementBttn = new System.Windows.Forms.ToolStripButton();
-            this.CreatedEventsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
-            this.CreatedEventsLbl = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
@@ -118,6 +120,7 @@
             this.groupBox1.SuspendLayout();
             this.tpCreatedEvents.SuspendLayout();
             this.tsMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PersonIconPbx)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMain
@@ -786,11 +789,31 @@
             this.tpCreatedEvents.Text = "CreatedEvents";
             this.tpCreatedEvents.UseVisualStyleBackColor = true;
             // 
+            // CreatedEventsLbl
+            // 
+            this.CreatedEventsLbl.AutoSize = true;
+            this.CreatedEventsLbl.Font = new System.Drawing.Font("Oswald", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatedEventsLbl.Location = new System.Drawing.Point(326, 16);
+            this.CreatedEventsLbl.Name = "CreatedEventsLbl";
+            this.CreatedEventsLbl.Size = new System.Drawing.Size(274, 68);
+            this.CreatedEventsLbl.TabIndex = 1;
+            this.CreatedEventsLbl.Text = "Created events";
+            // 
+            // CreatedEventsFllpnl
+            // 
+            this.CreatedEventsFllpnl.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.CreatedEventsFllpnl.AutoScroll = true;
+            this.CreatedEventsFllpnl.Location = new System.Drawing.Point(8, 98);
+            this.CreatedEventsFllpnl.Name = "CreatedEventsFllpnl";
+            this.CreatedEventsFllpnl.Size = new System.Drawing.Size(920, 327);
+            this.CreatedEventsFllpnl.TabIndex = 0;
+            // 
             // tsMain
             // 
             this.tsMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tsMain.AutoSize = false;
+            this.tsMain.BackColor = System.Drawing.SystemColors.Control;
             this.tsMain.Dock = System.Windows.Forms.DockStyle.None;
             this.tsMain.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -804,13 +827,35 @@
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Padding = new System.Windows.Forms.Padding(10);
-            this.tsMain.Size = new System.Drawing.Size(953, 49);
+            this.tsMain.Size = new System.Drawing.Size(953, 64);
             this.tsMain.TabIndex = 1;
             // 
             // timeNowTimer
             // 
             this.timeNowTimer.Interval = 1000;
             this.timeNowTimer.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // UserNameLbl
+            // 
+            this.UserNameLbl.AutoSize = true;
+            this.UserNameLbl.BackColor = System.Drawing.SystemColors.Control;
+            this.UserNameLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserNameLbl.Location = new System.Drawing.Point(859, 11);
+            this.UserNameLbl.Name = "UserNameLbl";
+            this.UserNameLbl.Size = new System.Drawing.Size(84, 51);
+            this.UserNameLbl.TabIndex = 2;
+            this.UserNameLbl.Text = "Name";
+            // 
+            // PersonIconPbx
+            // 
+            this.PersonIconPbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PersonIconPbx.Image = global::StudentWiseClient.Properties.Resources.person_male;
+            this.PersonIconPbx.Location = new System.Drawing.Point(799, 11);
+            this.PersonIconPbx.Name = "PersonIconPbx";
+            this.PersonIconPbx.Size = new System.Drawing.Size(54, 50);
+            this.PersonIconPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PersonIconPbx.TabIndex = 3;
+            this.PersonIconPbx.TabStop = false;
             // 
             // tsBtnDashboard
             // 
@@ -819,7 +864,7 @@
             this.tsBtnDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnDashboard.Name = "tsBtnDashboard";
             this.tsBtnDashboard.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnDashboard.Size = new System.Drawing.Size(142, 29);
+            this.tsBtnDashboard.Size = new System.Drawing.Size(142, 44);
             this.tsBtnDashboard.Text = "Dashboard";
             this.tsBtnDashboard.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -833,7 +878,7 @@
             this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnEvents.Name = "tsBtnEvents";
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnEvents.Size = new System.Drawing.Size(112, 29);
+            this.tsBtnEvents.Size = new System.Drawing.Size(112, 44);
             this.tsBtnEvents.Text = "Events";
             this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -858,7 +903,7 @@
             this.tsBtnExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnExpenses.Name = "tsBtnExpenses";
             this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 29);
+            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 44);
             this.tsBtnExpenses.Text = "Expenses";
             this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -869,7 +914,7 @@
             this.tsBtnComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnComplaints.Name = "tsBtnComplaints";
             this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 29);
+            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 44);
             this.tsBtnComplaints.Text = "Complaints";
             this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -880,33 +925,16 @@
             this.tsAgreementBttn.Margin = new System.Windows.Forms.Padding(0);
             this.tsAgreementBttn.Name = "tsAgreementBttn";
             this.tsAgreementBttn.Padding = new System.Windows.Forms.Padding(5);
-            this.tsAgreementBttn.Size = new System.Drawing.Size(151, 29);
+            this.tsAgreementBttn.Size = new System.Drawing.Size(151, 44);
             this.tsAgreementBttn.Text = "Agreements";
             this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
-            // 
-            // CreatedEventsFllpnl
-            // 
-            this.CreatedEventsFllpnl.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.CreatedEventsFllpnl.AutoScroll = true;
-            this.CreatedEventsFllpnl.Location = new System.Drawing.Point(8, 98);
-            this.CreatedEventsFllpnl.Name = "CreatedEventsFllpnl";
-            this.CreatedEventsFllpnl.Size = new System.Drawing.Size(920, 327);
-            this.CreatedEventsFllpnl.TabIndex = 0;
-            // 
-            // CreatedEventsLbl
-            // 
-            this.CreatedEventsLbl.AutoSize = true;
-            this.CreatedEventsLbl.Font = new System.Drawing.Font("Oswald", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatedEventsLbl.Location = new System.Drawing.Point(326, 16);
-            this.CreatedEventsLbl.Name = "CreatedEventsLbl";
-            this.CreatedEventsLbl.Size = new System.Drawing.Size(274, 68);
-            this.CreatedEventsLbl.TabIndex = 1;
-            this.CreatedEventsLbl.Text = "Created events";
             // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(944, 501);
+            this.Controls.Add(this.PersonIconPbx);
+            this.Controls.Add(this.UserNameLbl);
             this.Controls.Add(this.tsMain);
             this.Controls.Add(this.tcMain);
             this.MinimumSize = new System.Drawing.Size(470, 540);
@@ -937,7 +965,9 @@
             this.tpCreatedEvents.PerformLayout();
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PersonIconPbx)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1016,6 +1046,8 @@
         private System.Windows.Forms.ToolStripMenuItem createdEventsToolStripMenuItem;
         private System.Windows.Forms.Label CreatedEventsLbl;
         private System.Windows.Forms.FlowLayoutPanel CreatedEventsFllpnl;
+        private System.Windows.Forms.Label UserNameLbl;
+        private System.Windows.Forms.PictureBox PersonIconPbx;
     }
 }
 

@@ -50,12 +50,6 @@ namespace StudentWiseClient
                 return;
             }
 
-            // validate that finish is after start
-            //if (startDttpkr.Value >= endDttpkr.Value)
-            //{
-               // MessageBox.Show("The finish time must be after the start");
-                //return;
-            //}
 
             DateTime startDateTime = startDttpkr.Value.Date + startTimepkr.Value.TimeOfDay;
             DateTime endDateTime = endDttpkr.Value.Date + EndTimepkr.Value.TimeOfDay;
@@ -66,9 +60,7 @@ namespace StudentWiseClient
                 return;
             }
 
-            var ev = Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDateTime, endDateTime, session);
-            //ev.AddParticipant(Server.CurrentSession.Info.Id);
-            MessageBox.Show("Succesfully added your event!");
+           Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDateTime, endDateTime, session);
 
             // open dashboard
             this.Close();

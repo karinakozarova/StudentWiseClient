@@ -95,9 +95,6 @@
             this.CreatedEventsLbl = new System.Windows.Forms.Label();
             this.CreatedEventsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
             this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
-            this.UserNameLbl = new System.Windows.Forms.Label();
-            this.PersonIconPbx = new System.Windows.Forms.PictureBox();
             this.tsBtnDashboard = new System.Windows.Forms.ToolStripButton();
             this.tsBtnEvents = new System.Windows.Forms.ToolStripDropDownButton();
             this.myEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,6 +102,9 @@
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
             this.tsBtnComplaints = new System.Windows.Forms.ToolStripButton();
             this.tsAgreementBttn = new System.Windows.Forms.ToolStripButton();
+            this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
+            this.UserNameLbl = new System.Windows.Forms.Label();
+            this.PersonIconPbx = new System.Windows.Forms.PictureBox();
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
@@ -830,6 +830,78 @@
             this.tsMain.Size = new System.Drawing.Size(953, 64);
             this.tsMain.TabIndex = 1;
             // 
+            // tsBtnDashboard
+            // 
+            this.tsBtnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDashboard.Image")));
+            this.tsBtnDashboard.ImageTransparentColor = System.Drawing.SystemColors.Window;
+            this.tsBtnDashboard.Margin = new System.Windows.Forms.Padding(0);
+            this.tsBtnDashboard.Name = "tsBtnDashboard";
+            this.tsBtnDashboard.Padding = new System.Windows.Forms.Padding(5);
+            this.tsBtnDashboard.Size = new System.Drawing.Size(142, 44);
+            this.tsBtnDashboard.Text = "Dashboard";
+            this.tsBtnDashboard.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
+            // tsBtnEvents
+            // 
+            this.tsBtnEvents.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.myEventsToolStripMenuItem,
+            this.createdEventsToolStripMenuItem});
+            this.tsBtnEvents.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnEvents.Image")));
+            this.tsBtnEvents.ImageTransparentColor = System.Drawing.SystemColors.Window;
+            this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
+            this.tsBtnEvents.Name = "tsBtnEvents";
+            this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
+            this.tsBtnEvents.Size = new System.Drawing.Size(112, 19);
+            this.tsBtnEvents.Text = "Events";
+            this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
+            // myEventsToolStripMenuItem
+            // 
+            this.myEventsToolStripMenuItem.Name = "myEventsToolStripMenuItem";
+            this.myEventsToolStripMenuItem.Size = new System.Drawing.Size(227, 32);
+            this.myEventsToolStripMenuItem.Text = "My events";
+            this.myEventsToolStripMenuItem.Click += new System.EventHandler(this.MyEventsToolStripMenuItem_Click);
+            // 
+            // createdEventsToolStripMenuItem
+            // 
+            this.createdEventsToolStripMenuItem.Name = "createdEventsToolStripMenuItem";
+            this.createdEventsToolStripMenuItem.Size = new System.Drawing.Size(227, 32);
+            this.createdEventsToolStripMenuItem.Text = "Created events";
+            this.createdEventsToolStripMenuItem.Click += new System.EventHandler(this.CreatedEventsToolStripMenuItem_Click);
+            // 
+            // tsBtnExpenses
+            // 
+            this.tsBtnExpenses.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnExpenses.Image")));
+            this.tsBtnExpenses.ImageTransparentColor = System.Drawing.SystemColors.Window;
+            this.tsBtnExpenses.Margin = new System.Windows.Forms.Padding(0);
+            this.tsBtnExpenses.Name = "tsBtnExpenses";
+            this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
+            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 19);
+            this.tsBtnExpenses.Text = "Expenses";
+            this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
+            // tsBtnComplaints
+            // 
+            this.tsBtnComplaints.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnComplaints.Image")));
+            this.tsBtnComplaints.ImageTransparentColor = System.Drawing.SystemColors.Window;
+            this.tsBtnComplaints.Margin = new System.Windows.Forms.Padding(0);
+            this.tsBtnComplaints.Name = "tsBtnComplaints";
+            this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
+            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 19);
+            this.tsBtnComplaints.Text = "Complaints";
+            this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
+            // tsAgreementBttn
+            // 
+            this.tsAgreementBttn.Image = ((System.Drawing.Image)(resources.GetObject("tsAgreementBttn.Image")));
+            this.tsAgreementBttn.ImageTransparentColor = System.Drawing.SystemColors.Window;
+            this.tsAgreementBttn.Margin = new System.Windows.Forms.Padding(0);
+            this.tsAgreementBttn.Name = "tsAgreementBttn";
+            this.tsAgreementBttn.Padding = new System.Windows.Forms.Padding(5);
+            this.tsAgreementBttn.Size = new System.Drawing.Size(151, 19);
+            this.tsAgreementBttn.Text = "Agreements";
+            this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
             // timeNowTimer
             // 
             this.timeNowTimer.Interval = 1000;
@@ -856,78 +928,6 @@
             this.PersonIconPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PersonIconPbx.TabIndex = 3;
             this.PersonIconPbx.TabStop = false;
-            // 
-            // tsBtnDashboard
-            // 
-            this.tsBtnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDashboard.Image")));
-            this.tsBtnDashboard.ImageTransparentColor = System.Drawing.SystemColors.Window;
-            this.tsBtnDashboard.Margin = new System.Windows.Forms.Padding(0);
-            this.tsBtnDashboard.Name = "tsBtnDashboard";
-            this.tsBtnDashboard.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnDashboard.Size = new System.Drawing.Size(142, 44);
-            this.tsBtnDashboard.Text = "Dashboard";
-            this.tsBtnDashboard.Click += new System.EventHandler(this.TsBtn_Click);
-            // 
-            // tsBtnEvents
-            // 
-            this.tsBtnEvents.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.myEventsToolStripMenuItem,
-            this.createdEventsToolStripMenuItem});
-            this.tsBtnEvents.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnEvents.Image")));
-            this.tsBtnEvents.ImageTransparentColor = System.Drawing.SystemColors.Window;
-            this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
-            this.tsBtnEvents.Name = "tsBtnEvents";
-            this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnEvents.Size = new System.Drawing.Size(112, 44);
-            this.tsBtnEvents.Text = "Events";
-            this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
-            // 
-            // myEventsToolStripMenuItem
-            // 
-            this.myEventsToolStripMenuItem.Name = "myEventsToolStripMenuItem";
-            this.myEventsToolStripMenuItem.Size = new System.Drawing.Size(227, 32);
-            this.myEventsToolStripMenuItem.Text = "My events";
-            this.myEventsToolStripMenuItem.Click += new System.EventHandler(this.MyEventsToolStripMenuItem_Click);
-            // 
-            // createdEventsToolStripMenuItem
-            // 
-            this.createdEventsToolStripMenuItem.Name = "createdEventsToolStripMenuItem";
-            this.createdEventsToolStripMenuItem.Size = new System.Drawing.Size(227, 32);
-            this.createdEventsToolStripMenuItem.Text = "Created events";
-            this.createdEventsToolStripMenuItem.Click += new System.EventHandler(this.CreatedEventsToolStripMenuItem_Click);
-            // 
-            // tsBtnExpenses
-            // 
-            this.tsBtnExpenses.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnExpenses.Image")));
-            this.tsBtnExpenses.ImageTransparentColor = System.Drawing.SystemColors.Window;
-            this.tsBtnExpenses.Margin = new System.Windows.Forms.Padding(0);
-            this.tsBtnExpenses.Name = "tsBtnExpenses";
-            this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 44);
-            this.tsBtnExpenses.Text = "Expenses";
-            this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
-            // 
-            // tsBtnComplaints
-            // 
-            this.tsBtnComplaints.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnComplaints.Image")));
-            this.tsBtnComplaints.ImageTransparentColor = System.Drawing.SystemColors.Window;
-            this.tsBtnComplaints.Margin = new System.Windows.Forms.Padding(0);
-            this.tsBtnComplaints.Name = "tsBtnComplaints";
-            this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 44);
-            this.tsBtnComplaints.Text = "Complaints";
-            this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
-            // 
-            // tsAgreementBttn
-            // 
-            this.tsAgreementBttn.Image = ((System.Drawing.Image)(resources.GetObject("tsAgreementBttn.Image")));
-            this.tsAgreementBttn.ImageTransparentColor = System.Drawing.SystemColors.Window;
-            this.tsAgreementBttn.Margin = new System.Windows.Forms.Padding(0);
-            this.tsAgreementBttn.Name = "tsAgreementBttn";
-            this.tsAgreementBttn.Padding = new System.Windows.Forms.Padding(5);
-            this.tsAgreementBttn.Size = new System.Drawing.Size(151, 44);
-            this.tsAgreementBttn.Text = "Agreements";
-            this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
             // 
             // FormMain
             // 

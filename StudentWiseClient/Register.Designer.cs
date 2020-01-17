@@ -81,6 +81,7 @@
             this.passwordTbx.PasswordChar = '*';
             this.passwordTbx.Size = new System.Drawing.Size(364, 37);
             this.passwordTbx.TabIndex = 4;
+            this.passwordTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordTbx_KeyPress);
             // 
             // fNameTbx
             // 

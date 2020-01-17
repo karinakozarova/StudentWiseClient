@@ -23,19 +23,19 @@ namespace StudentWiseClient
         {
             if (String.IsNullOrEmpty(emailAddressTbx.Text))
             {
-                MessageBox.Show("Enter your email address");
+                MessageBox.Show("Please, enter your email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (String.IsNullOrEmpty(passwordTbx.Text))
             {
-                MessageBox.Show("Enter a password");
+                MessageBox.Show("Please, enter your password.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!EmailValidation.IsValidEmail(emailAddressTbx.Text))
             {
-                MessageBox.Show("Enter a valid email address");
+                MessageBox.Show("Please, enter a valid email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -50,7 +50,7 @@ namespace StudentWiseClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -59,6 +59,12 @@ namespace StudentWiseClient
             this.Hide();
             Register registerScreen = new Register();
             registerScreen.Show();
+        }
+
+        private void passwordTbx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                continueBttn.PerformClick();
         }
     }
 }

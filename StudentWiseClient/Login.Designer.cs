@@ -120,6 +120,7 @@
             this.passwordTbx.PasswordChar = '*';
             this.passwordTbx.Size = new System.Drawing.Size(364, 48);
             this.passwordTbx.TabIndex = 2;
+            this.passwordTbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordTbx_KeyPress);
             // 
             // pictureBox1
             // 

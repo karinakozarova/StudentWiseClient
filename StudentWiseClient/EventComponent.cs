@@ -13,7 +13,6 @@ namespace StudentWiseClient
 {
     public partial class EventComponent : UserControl
     {
-        private bool MarkedAsFinished = false;
         public EventComponent()
         {
             InitializeComponent();
@@ -46,6 +45,18 @@ namespace StudentWiseClient
         public void SetEvent(Event ev)
         {
             CurrentEvent = ev;
+            if (CurrentEvent.Status == EventStatus.Pending)
+            {
+                EventCompletePbx.Image = Properties.Resources.undo_favicon;
+            }
+            else if (CurrentEvent.Status == EventStatus.Finished)
+            {
+                EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+            }
+            else
+            {
+                EventCompletePbx.Visible = false;
+            }
         }
         public void SetAllNeededProperties(int id, User creator, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
         {
@@ -103,19 +114,17 @@ namespace StudentWiseClient
 
         private void EventCompletePbx_Click(object sender, EventArgs e)
         {
-            if (!MarkedAsFinished)
+            if (CurrentEvent.Status == EventStatus.Pending)
             {
                 CurrentEvent.MarkAsFinished();
-                MarkedAsFinished = true;
                 EventCompletePbx.Image = Properties.Resources.undo_favicon;
             }
-            else
+            else if (CurrentEvent.Status == EventStatus.Finished)
             {
-                Event.MarkEvent(CurrentEvent.Id, false);
-                MarkedAsFinished = false;
+                // Event.MarkEvent(CurrentEvent.Id, false); // TODO: debug why this throws error sometimes
                 EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
             }
-            
+
         }
 
         private void DeleteEvent()

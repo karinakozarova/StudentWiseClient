@@ -179,6 +179,7 @@ namespace StudentWiseClient
         {
             AddEventComponentsToTodayPanel();
             AddComplaintsComponentsToDashboardView();
+            AddEventComponentAddParticipantToCreatedEvents();
             ReloadComplaints();
             ReloadAgreements();
             CalculateAndPopulateExpenses();
@@ -306,6 +307,37 @@ namespace StudentWiseClient
 
             Agreement.Create(title, description, Server.CurrentSession);
             ReloadAgreements();
+        }
+
+        private void MyEventsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tcMain.SelectTab(tpEvents);
+        }
+
+        private void CreatedEventsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tcMain.SelectTab(tpCreatedEvents);
+        }
+        private void AddEventComponentAddParticipantToCreatedEvents()
+        {
+            List<Event> events = Event.Enumerate();
+            if (events.Count == 0)
+            {
+                NoEventsAvailable eventComponent = new NoEventsAvailable();
+                CreatedEventsFllpnl.Controls.Add(eventComponent);
+            }
+            else
+            {
+                foreach (Event ev in events)
+                {
+                    EventComponentAddParticipant eventComponent = new EventComponentAddParticipant();
+                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    if (eventComponent.Creator.Id == eventComponent.Session.Info.Id)
+                    {
+                        CreatedEventsFllpnl.Controls.Add(eventComponent);
+                    }
+                }
+            }
         }
     }
 }

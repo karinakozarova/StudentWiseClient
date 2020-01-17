@@ -81,7 +81,6 @@
             this.titleLbl = new System.Windows.Forms.Label();
             this.newComplaintLbl = new System.Windows.Forms.Label();
             this.complaintsLbl = new System.Windows.Forms.Label();
-            this.tpCreatedEvents = new System.Windows.Forms.TabPage();
             this.tbAgreements = new System.Windows.Forms.TabPage();
             this.agreementsFlpnl = new System.Windows.Forms.FlowLayoutPanel();
             this.agreemeentsLBl = new System.Windows.Forms.Label();
@@ -92,13 +91,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.newAgreementLbl = new System.Windows.Forms.Label();
+            this.tpCreatedEvents = new System.Windows.Forms.TabPage();
             this.tsMain = new System.Windows.Forms.ToolStrip();
+            this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
             this.tsBtnDashboard = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnEvents = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnEvents = new System.Windows.Forms.ToolStripDropDownButton();
+            this.myEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createdEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
             this.tsBtnComplaints = new System.Windows.Forms.ToolStripButton();
             this.tsAgreementBttn = new System.Windows.Forms.ToolStripButton();
-            this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
+            this.CreatedEventsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
+            this.CreatedEventsLbl = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
@@ -112,6 +116,7 @@
             this.newComplaintGb.SuspendLayout();
             this.tbAgreements.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tpCreatedEvents.SuspendLayout();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -664,16 +669,6 @@
             this.complaintsLbl.TabIndex = 0;
             this.complaintsLbl.Text = "Complaints:";
             // 
-            // tpCreatedEvents
-            // 
-            this.tpCreatedEvents.Location = new System.Drawing.Point(4, 25);
-            this.tpCreatedEvents.Name = "tpCreatedEvents";
-            this.tpCreatedEvents.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCreatedEvents.Size = new System.Drawing.Size(949, 446);
-            this.tpCreatedEvents.TabIndex = 5;
-            this.tpCreatedEvents.Text = "tpCreatedEvents";
-            this.tpCreatedEvents.UseVisualStyleBackColor = true;
-            // 
             // tbAgreements
             // 
             this.tbAgreements.Controls.Add(this.agreementsFlpnl);
@@ -779,6 +774,18 @@
             this.newAgreementLbl.TabIndex = 1;
             this.newAgreementLbl.Text = "New agreement:";
             // 
+            // tpCreatedEvents
+            // 
+            this.tpCreatedEvents.Controls.Add(this.CreatedEventsLbl);
+            this.tpCreatedEvents.Controls.Add(this.CreatedEventsFllpnl);
+            this.tpCreatedEvents.Location = new System.Drawing.Point(4, 25);
+            this.tpCreatedEvents.Name = "tpCreatedEvents";
+            this.tpCreatedEvents.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCreatedEvents.Size = new System.Drawing.Size(949, 446);
+            this.tpCreatedEvents.TabIndex = 5;
+            this.tpCreatedEvents.Text = "CreatedEvents";
+            this.tpCreatedEvents.UseVisualStyleBackColor = true;
+            // 
             // tsMain
             // 
             this.tsMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -800,6 +807,11 @@
             this.tsMain.Size = new System.Drawing.Size(953, 49);
             this.tsMain.TabIndex = 1;
             // 
+            // timeNowTimer
+            // 
+            this.timeNowTimer.Interval = 1000;
+            this.timeNowTimer.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // tsBtnDashboard
             // 
             this.tsBtnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDashboard.Image")));
@@ -813,14 +825,31 @@
             // 
             // tsBtnEvents
             // 
+            this.tsBtnEvents.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.myEventsToolStripMenuItem,
+            this.createdEventsToolStripMenuItem});
             this.tsBtnEvents.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnEvents.Image")));
             this.tsBtnEvents.ImageTransparentColor = System.Drawing.SystemColors.Window;
             this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnEvents.Name = "tsBtnEvents";
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnEvents.Size = new System.Drawing.Size(102, 29);
+            this.tsBtnEvents.Size = new System.Drawing.Size(112, 29);
             this.tsBtnEvents.Text = "Events";
             this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
+            // myEventsToolStripMenuItem
+            // 
+            this.myEventsToolStripMenuItem.Name = "myEventsToolStripMenuItem";
+            this.myEventsToolStripMenuItem.Size = new System.Drawing.Size(227, 32);
+            this.myEventsToolStripMenuItem.Text = "My events";
+            this.myEventsToolStripMenuItem.Click += new System.EventHandler(this.MyEventsToolStripMenuItem_Click);
+            // 
+            // createdEventsToolStripMenuItem
+            // 
+            this.createdEventsToolStripMenuItem.Name = "createdEventsToolStripMenuItem";
+            this.createdEventsToolStripMenuItem.Size = new System.Drawing.Size(227, 32);
+            this.createdEventsToolStripMenuItem.Text = "Created events";
+            this.createdEventsToolStripMenuItem.Click += new System.EventHandler(this.CreatedEventsToolStripMenuItem_Click);
             // 
             // tsBtnExpenses
             // 
@@ -855,10 +884,24 @@
             this.tsAgreementBttn.Text = "Agreements";
             this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
             // 
-            // timeNowTimer
+            // CreatedEventsFllpnl
             // 
-            this.timeNowTimer.Interval = 1000;
-            this.timeNowTimer.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.CreatedEventsFllpnl.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.CreatedEventsFllpnl.AutoScroll = true;
+            this.CreatedEventsFllpnl.Location = new System.Drawing.Point(8, 98);
+            this.CreatedEventsFllpnl.Name = "CreatedEventsFllpnl";
+            this.CreatedEventsFllpnl.Size = new System.Drawing.Size(920, 327);
+            this.CreatedEventsFllpnl.TabIndex = 0;
+            // 
+            // CreatedEventsLbl
+            // 
+            this.CreatedEventsLbl.AutoSize = true;
+            this.CreatedEventsLbl.Font = new System.Drawing.Font("Oswald", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatedEventsLbl.Location = new System.Drawing.Point(326, 16);
+            this.CreatedEventsLbl.Name = "CreatedEventsLbl";
+            this.CreatedEventsLbl.Size = new System.Drawing.Size(274, 68);
+            this.CreatedEventsLbl.TabIndex = 1;
+            this.CreatedEventsLbl.Text = "Created events";
             // 
             // FormMain
             // 
@@ -890,6 +933,8 @@
             this.tbAgreements.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tpCreatedEvents.ResumeLayout(false);
+            this.tpCreatedEvents.PerformLayout();
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
             this.ResumeLayout(false);
@@ -904,7 +949,6 @@
         private System.Windows.Forms.TabPage tpComplaints;
         private System.Windows.Forms.ToolStrip tsMain;
         private System.Windows.Forms.ToolStripButton tsBtnDashboard;
-        private System.Windows.Forms.ToolStripButton tsBtnEvents;
         private System.Windows.Forms.ToolStripButton tsBtnExpenses;
         private System.Windows.Forms.ToolStripButton tsBtnComplaints;
         private System.Windows.Forms.TabPage tpEvents;
@@ -967,6 +1011,11 @@
         private System.Windows.Forms.Label newAgreementLbl;
         private System.Windows.Forms.ToolStripButton tsAgreementBttn;
         private System.Windows.Forms.TabPage tpCreatedEvents;
+        private System.Windows.Forms.ToolStripDropDownButton tsBtnEvents;
+        private System.Windows.Forms.ToolStripMenuItem myEventsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createdEventsToolStripMenuItem;
+        private System.Windows.Forms.Label CreatedEventsLbl;
+        private System.Windows.Forms.FlowLayoutPanel CreatedEventsFllpnl;
     }
 }
 

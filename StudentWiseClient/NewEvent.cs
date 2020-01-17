@@ -51,14 +51,20 @@ namespace StudentWiseClient
             }
 
             // validate that finish is after start
-            if (startDttpkr.Value >= endDttpkr.Value)
+            //if (startDttpkr.Value >= endDttpkr.Value)
+            //{
+               // MessageBox.Show("The finish time must be after the start");
+                //return;
+            //}
+
+            DateTime startDateTime = startDttpkr.Value.Date + startTimepkr.Value.TimeOfDay;
+            DateTime endDateTime = endDttpkr.Value.Date + EndTimepkr.Value.TimeOfDay;
+            
+            if(startDateTime.TimeOfDay >= endDateTime.TimeOfDay)
             {
                 MessageBox.Show("The finish time must be after the start");
                 return;
             }
-
-            DateTime startDateTime = startDttpkr.Value.Date + startTimepkr.Value.TimeOfDay;
-            DateTime endDateTime = endDttpkr.Value.Date + EndTimepkr.Value.TimeOfDay;
 
             var ev = Event.Create(titleTbx.Text, descriptionTbx.Text, EventType.Other, startDateTime, endDateTime, session);
             //ev.AddParticipant(Server.CurrentSession.Info.Id);

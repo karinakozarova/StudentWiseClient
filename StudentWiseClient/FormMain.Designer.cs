@@ -160,6 +160,7 @@
             // 
             // dashboardComplaintsLbl
             // 
+            this.dashboardComplaintsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dashboardComplaintsLbl.AutoSize = true;
             this.dashboardComplaintsLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dashboardComplaintsLbl.Location = new System.Drawing.Point(543, 34);
@@ -170,6 +171,7 @@
             // 
             // balanceAmountLbl
             // 
+            this.balanceAmountLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceAmountLbl.AutoSize = true;
             this.balanceAmountLbl.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.balanceAmountLbl.ForeColor = System.Drawing.Color.SpringGreen;
@@ -181,6 +183,7 @@
             // 
             // balanceLbl
             // 
+            this.balanceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceLbl.AutoSize = true;
             this.balanceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.balanceLbl.Location = new System.Drawing.Point(554, 365);
@@ -191,6 +194,8 @@
             // 
             // complaintsFllPanel
             // 
+            this.complaintsFllPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.complaintsFllPanel.AutoScroll = true;
             this.complaintsFllPanel.Location = new System.Drawing.Point(552, 88);
             this.complaintsFllPanel.Name = "complaintsFllPanel";
@@ -199,6 +204,9 @@
             // 
             // todaysEventsFllpnl
             // 
+            this.todaysEventsFllpnl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.todaysEventsFllpnl.AutoScroll = true;
             this.todaysEventsFllpnl.Location = new System.Drawing.Point(17, 88);
             this.todaysEventsFllpnl.Name = "todaysEventsFllpnl";
@@ -217,6 +225,7 @@
             // 
             // timeNowLbl
             // 
+            this.timeNowLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.timeNowLbl.AutoSize = true;
             this.timeNowLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeNowLbl.Location = new System.Drawing.Point(748, 14);
@@ -238,7 +247,9 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelDay1);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelDay2);
@@ -271,7 +282,7 @@
             // AddEventBtn
             // 
             this.AddEventBtn.AllowDrop = true;
-            this.AddEventBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.AddEventBtn.AutoEllipsis = true;
             this.AddEventBtn.BackColor = System.Drawing.Color.LawnGreen;
             this.AddEventBtn.Font = new System.Drawing.Font("Oswald SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -285,8 +296,8 @@
             // 
             // flowLayoutPanelToday
             // 
-            this.flowLayoutPanelToday.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flowLayoutPanelToday.AutoSize = true;
+            this.flowLayoutPanelToday.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanelToday.Controls.Add(this.lblEvents);
             this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 77);
             this.flowLayoutPanelToday.Name = "flowLayoutPanelToday";
@@ -311,8 +322,8 @@
             // 
             // flowLayoutPanelUpcoming
             // 
-            this.flowLayoutPanelUpcoming.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flowLayoutPanelUpcoming.AutoSize = true;
+            this.flowLayoutPanelUpcoming.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanelUpcoming.Controls.Add(this.UpcomingEventsLbl);
             this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(3, 149);
             this.flowLayoutPanelUpcoming.Name = "flowLayoutPanelUpcoming";
@@ -362,6 +373,7 @@
             // 
             // ExpenseTotalPriceLbl
             // 
+            this.ExpenseTotalPriceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTotalPriceLbl.AutoSize = true;
             this.ExpenseTotalPriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTotalPriceLbl.Location = new System.Drawing.Point(539, 390);
@@ -372,6 +384,7 @@
             // 
             // ExpenseTotalLbl
             // 
+            this.ExpenseTotalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTotalLbl.AutoSize = true;
             this.ExpenseTotalLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTotalLbl.Location = new System.Drawing.Point(467, 390);
@@ -382,6 +395,7 @@
             // 
             // AddExpenseBtn
             // 
+            this.AddExpenseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddExpenseBtn.BackColor = System.Drawing.Color.LawnGreen;
             this.AddExpenseBtn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddExpenseBtn.Location = new System.Drawing.Point(619, 380);
@@ -394,6 +408,7 @@
             // 
             // ExpenseQuantityNum
             // 
+            this.ExpenseQuantityNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseQuantityNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseQuantityNum.Location = new System.Drawing.Point(773, 341);
             this.ExpenseQuantityNum.Minimum = new decimal(new int[] {
@@ -412,6 +427,7 @@
             // 
             // ExpensePriceNum
             // 
+            this.ExpensePriceNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensePriceNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpensePriceNum.Location = new System.Drawing.Point(619, 341);
             this.ExpensePriceNum.Name = "ExpensePriceNum";
@@ -420,6 +436,7 @@
             // 
             // ExpenseQuantityLbl
             // 
+            this.ExpenseQuantityLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseQuantityLbl.AutoSize = true;
             this.ExpenseQuantityLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseQuantityLbl.Location = new System.Drawing.Point(766, 297);
@@ -430,6 +447,7 @@
             // 
             // ExpensePriceLbl
             // 
+            this.ExpensePriceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensePriceLbl.AutoSize = true;
             this.ExpensePriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpensePriceLbl.Location = new System.Drawing.Point(612, 299);
@@ -440,6 +458,7 @@
             // 
             // ExpenseNotesLbl
             // 
+            this.ExpenseNotesLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseNotesLbl.AutoSize = true;
             this.ExpenseNotesLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseNotesLbl.Location = new System.Drawing.Point(612, 138);
@@ -450,6 +469,8 @@
             // 
             // ExpenseNotesRtbx
             // 
+            this.ExpenseNotesRtbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseNotesRtbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ExpenseNotesRtbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseNotesRtbx.Location = new System.Drawing.Point(619, 182);
@@ -460,6 +481,7 @@
             // 
             // ExpenseTitleTbx
             // 
+            this.ExpenseTitleTbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTitleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTitleTbx.Location = new System.Drawing.Point(619, 98);
             this.ExpenseTitleTbx.Name = "ExpenseTitleTbx";
@@ -468,6 +490,7 @@
             // 
             // ExpenseTitleLbl
             // 
+            this.ExpenseTitleLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTitleLbl.AutoSize = true;
             this.ExpenseTitleLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseTitleLbl.Location = new System.Drawing.Point(612, 59);
@@ -478,6 +501,7 @@
             // 
             // NewExpenseLbl
             // 
+            this.NewExpenseLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NewExpenseLbl.AutoSize = true;
             this.NewExpenseLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewExpenseLbl.Location = new System.Drawing.Point(691, 13);
@@ -488,12 +512,16 @@
             // 
             // ExpensesLv
             // 
+            this.ExpensesLv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensesLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnExpense,
             this.columnQuantity,
             this.columnPrice,
             this.columnNotes});
             this.ExpensesLv.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpensesLv.FullRowSelect = true;
             this.ExpensesLv.GridLines = true;
             this.ExpensesLv.HideSelection = false;
             this.ExpensesLv.Location = new System.Drawing.Point(239, 64);
@@ -544,10 +572,13 @@
             // 
             // MembersLv
             // 
+            this.MembersLv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.MembersLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
             this.columnBalance});
             this.MembersLv.Font = new System.Drawing.Font("Oswald", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MembersLv.FullRowSelect = true;
             this.MembersLv.GridLines = true;
             this.MembersLv.HideSelection = false;
             this.MembersLv.Location = new System.Drawing.Point(20, 64);
@@ -582,6 +613,9 @@
             // 
             // complaintsFllpnl
             // 
+            this.complaintsFllpnl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.complaintsFllpnl.AutoScroll = true;
             this.complaintsFllpnl.Location = new System.Drawing.Point(16, 64);
             this.complaintsFllpnl.Name = "complaintsFllpnl";
@@ -590,6 +624,8 @@
             // 
             // newComplaintGb
             // 
+            this.newComplaintGb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.newComplaintGb.Controls.Add(this.fileComplaintBttn);
             this.newComplaintGb.Controls.Add(this.titleTbx);
             this.newComplaintGb.Controls.Add(this.descriptionTbx);
@@ -604,6 +640,8 @@
             // 
             // fileComplaintBttn
             // 
+            this.fileComplaintBttn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.fileComplaintBttn.BackColor = System.Drawing.Color.SpringGreen;
             this.fileComplaintBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileComplaintBttn.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -617,6 +655,8 @@
             // 
             // titleTbx
             // 
+            this.titleTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleTbx.Location = new System.Drawing.Point(24, 122);
             this.titleTbx.Name = "titleTbx";
@@ -625,6 +665,9 @@
             // 
             // descriptionTbx
             // 
+            this.descriptionTbx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionTbx.Location = new System.Drawing.Point(24, 212);
             this.descriptionTbx.Name = "descriptionTbx";
@@ -686,6 +729,9 @@
             // 
             // agreementsFlpnl
             // 
+            this.agreementsFlpnl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.agreementsFlpnl.AutoScroll = true;
             this.agreementsFlpnl.Location = new System.Drawing.Point(22, 68);
             this.agreementsFlpnl.Name = "agreementsFlpnl";
@@ -705,6 +751,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.newAgreementBttn);
             this.groupBox1.Controls.Add(this.agreementTitleTbx);
             this.groupBox1.Controls.Add(this.agreementDescriprionTbx);
@@ -719,6 +767,8 @@
             // 
             // newAgreementBttn
             // 
+            this.newAgreementBttn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.newAgreementBttn.BackColor = System.Drawing.Color.SpringGreen;
             this.newAgreementBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newAgreementBttn.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -732,6 +782,8 @@
             // 
             // agreementTitleTbx
             // 
+            this.agreementTitleTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.agreementTitleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agreementTitleTbx.Location = new System.Drawing.Point(24, 122);
             this.agreementTitleTbx.Name = "agreementTitleTbx";
@@ -740,6 +792,9 @@
             // 
             // agreementDescriprionTbx
             // 
+            this.agreementDescriprionTbx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.agreementDescriprionTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agreementDescriprionTbx.Location = new System.Drawing.Point(24, 212);
             this.agreementDescriprionTbx.Name = "agreementDescriprionTbx";
@@ -909,6 +964,8 @@
             // 
             // UserNameLbl
             // 
+            this.UserNameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UserNameLbl.AutoEllipsis = true;
             this.UserNameLbl.AutoSize = true;
             this.UserNameLbl.BackColor = System.Drawing.SystemColors.Control;
             this.UserNameLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -920,6 +977,7 @@
             // 
             // PersonIconPbx
             // 
+            this.PersonIconPbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PersonIconPbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.PersonIconPbx.Image = global::StudentWiseClient.Properties.Resources.anonymous_person_png;
             this.PersonIconPbx.Location = new System.Drawing.Point(713, 7);

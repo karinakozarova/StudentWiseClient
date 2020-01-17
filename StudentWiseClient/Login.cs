@@ -16,7 +16,6 @@ namespace StudentWiseClient
         public Login()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void ContinueBttn_Click(object sender, EventArgs e)

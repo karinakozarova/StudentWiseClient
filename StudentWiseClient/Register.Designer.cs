@@ -191,6 +191,9 @@
             this.Controls.Add(this.emailAddressTbx);
             this.Controls.Add(this.CreateAccountLbl);
             this.Controls.Add(this.LogoPbx);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Register";
             this.Text = "Register";
             ((System.ComponentModel.ISupportInitialize)(this.LogoPbx)).EndInit();

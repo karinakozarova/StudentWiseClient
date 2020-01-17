@@ -116,18 +116,19 @@
             // 
             // ParticipantsCmb
             // 
+            this.ParticipantsCmb.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParticipantsCmb.FormattingEnabled = true;
-            this.ParticipantsCmb.Location = new System.Drawing.Point(23, 302);
+            this.ParticipantsCmb.Location = new System.Drawing.Point(23, 240);
             this.ParticipantsCmb.Name = "ParticipantsCmb";
-            this.ParticipantsCmb.Size = new System.Drawing.Size(187, 24);
+            this.ParticipantsCmb.Size = new System.Drawing.Size(243, 39);
             this.ParticipantsCmb.TabIndex = 17;
             // 
             // AddParticipantBtn
             // 
             this.AddParticipantBtn.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddParticipantBtn.Location = new System.Drawing.Point(23, 240);
+            this.AddParticipantBtn.Location = new System.Drawing.Point(23, 285);
             this.AddParticipantBtn.Name = "AddParticipantBtn";
-            this.AddParticipantBtn.Size = new System.Drawing.Size(187, 56);
+            this.AddParticipantBtn.Size = new System.Drawing.Size(243, 43);
             this.AddParticipantBtn.TabIndex = 18;
             this.AddParticipantBtn.Text = "Add Participant";
             this.AddParticipantBtn.UseVisualStyleBackColor = true;

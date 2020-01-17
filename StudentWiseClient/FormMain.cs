@@ -332,6 +332,7 @@ namespace StudentWiseClient
                 {
                     EventComponentAddParticipant eventComponent = new EventComponentAddParticipant();
                     eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
+                    eventComponent.SetEvent(ev);
                     if (eventComponent.Creator.Id == eventComponent.Session.Info.Id)
                     {
                         CreatedEventsFllpnl.Controls.Add(eventComponent);

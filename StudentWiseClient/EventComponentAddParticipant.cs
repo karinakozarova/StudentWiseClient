@@ -18,10 +18,6 @@ namespace StudentWiseClient
         {
             InitializeComponent();
             this.BorderStyle = BorderStyle.FixedSingle;
-            foreach (User user in User.Enumerate())
-            {
-                ParticipantsCmb.Items.Add(user.FirstName);
-            }
         }
 
         public Event CurrentEvent
@@ -69,6 +65,7 @@ namespace StudentWiseClient
         public void SetEvent(Event eventParam)
         {
             this.CurrentEvent = eventParam;
+            ReloadParticipants();
         }
 
         public void SetTitle(String title)
@@ -97,16 +94,32 @@ namespace StudentWiseClient
             //this.Enabled = false;
         }
 
-        private void AddParticipantBtn_Click(object sender, EventArgs e)
+        private void ReloadParticipants()
         {
-            int userID = 0;
-            List < User > users = User.Enumerate();
-            List < User > participants = CurrentEvent.Participants;
-            List < User > result = users.Except(participants).ToList();
+            ParticipantsCmb.Items.Clear();
+
+            List<User> users = User.Enumerate();
+            List<User> participants = CurrentEvent.Participants;
+            List<User> result = users.Except(participants).ToList();
+
 
             foreach (User user in result)
             {
-                
+                ParticipantsCmb.Items.Add(user.FirstName);
+            }
+
+        }
+
+        private void AddParticipantBtn_Click(object sender, EventArgs e)
+        {
+            int userID = 0;
+            List<User> users = User.Enumerate();
+            List<User> participants = CurrentEvent.Participants;
+            List<User> result = users.Except(participants).ToList();
+
+            foreach (User user in result)
+            {
+
                 if (ParticipantsCmb.SelectedIndex == -1) continue;
                 string selected = ParticipantsCmb.SelectedItem.ToString();
                 if (user.FirstName == selected)

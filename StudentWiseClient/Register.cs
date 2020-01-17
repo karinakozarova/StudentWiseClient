@@ -17,39 +17,37 @@ namespace StudentWiseClient
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-        }
-
-        
+        }        
 
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(fNameTbx.Text))
             {
-                MessageBox.Show("Enter your first name!");
+                MessageBox.Show("Please, enter your first name.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if(String.IsNullOrEmpty(lNameTbx.Text))
             {
-                MessageBox.Show("Enter your last name!");
+                MessageBox.Show("Please, enter your last name.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (String.IsNullOrEmpty(emailAddressTbx.Text))
             {
-                MessageBox.Show("Enter your email address!");
+                MessageBox.Show("Please, enter your email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (String.IsNullOrEmpty(passwordTbx.Text))
             {
-                MessageBox.Show("Enter a password!");
+                MessageBox.Show("Please, enter a password", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!EmailValidation.IsValidEmail(emailAddressTbx.Text))
             {
-                MessageBox.Show("Enter a valid email address!");
+                MessageBox.Show("Please, enter a valid email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -62,7 +60,7 @@ namespace StudentWiseClient
                 FormMain dashboard = new FormMain();
                 dashboard.Show();
             } catch(Exception ex){
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }            
         }
 
@@ -71,6 +69,12 @@ namespace StudentWiseClient
             this.Hide();
             Login loginScreen = new Login();
             loginScreen.Show();
+        }
+
+        private void passwordTbx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                registerBtn.PerformClick();
         }
     }
 }

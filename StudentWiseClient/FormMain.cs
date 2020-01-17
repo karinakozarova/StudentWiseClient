@@ -117,9 +117,9 @@ namespace StudentWiseClient
 
         }
 
-        private void AddMembersToExpenseListView(User participant)
+        private void AddMembersToExpenseListView(User participant, List<Expense> expenses)
         {
-            MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, participant.ComputeBalance(Expense.Enumerate()).ToString() }));
+            MembersLv.Items.Add(new ListViewItem(new string[] { participant.FirstName, participant.ComputeBalance(expenses).ToString("0.00") }));
 
         }
         private void CalculateAndPopulateExpenses()
@@ -127,38 +127,28 @@ namespace StudentWiseClient
             MembersLv.Items.Clear();
             ExpensesLv.Items.Clear();
 
+            List<Expense> expenses = Expense.Enumerate();
             HashSet<User> users = new HashSet<User>();
-            HashSet<int> userIds = new HashSet<int>();
-
+            
             decimal total = 0;
-            foreach (Expense expense in Expense.Enumerate())
+            foreach (Expense expense in expenses)
             {
                 total += expense.Price * expense.Amount;
                 AddExpenseToExpenseListView(expense);
+                
                 foreach (User participant in expense.Participants)
                 {
-                    if (!userIds.Contains(participant.Id))
-                    {
-                        users.Add(participant);
-                        userIds.Add(participant.Id);
-                    }
+                    users.Add(participant);
                 }
             }
 
             foreach (User participant in users)
             {
-                AddMembersToExpenseListView(participant);
+                AddMembersToExpenseListView(participant, expenses);
             }
 
             ExpenseTotalPriceLbl.Text = total.ToString();
-            if (total > 0)
-            {
-                ExpenseTotalPriceLbl.ForeColor = Color.Green;
-            }
-            else
-            {
-                ExpenseTotalPriceLbl.ForeColor = Color.Red;
-            }
+            ExpenseTotalPriceLbl.ForeColor = Color.Green;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -287,7 +277,17 @@ namespace StudentWiseClient
                 return;
             }
 
-            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes, Server.CurrentSession);
+            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes);            
+
+            // Share expeses with all users by default
+            foreach(User user in User.Enumerate())
+            {
+                if (user != Server.CurrentSession.Info)
+                {
+                    expense.AddParticipant(user.Id);
+                }
+            }
+
             CalculateAndPopulateExpenses();
             MessageBox.Show("You successfully created the expense!");
         }

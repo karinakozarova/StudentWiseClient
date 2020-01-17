@@ -74,6 +74,26 @@ namespace StudentWiseClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap person_favicon {
+            get {
+                object obj = ResourceManager.GetObject("person_favicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap person_male {
+            get {
+                object obj = ResourceManager.GetObject("person-male", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap StudentwISEvBuilders__1_ {
             get {
                 object obj = ResourceManager.GetObject("StudentwISEvBuilders (1)", resourceCulture);

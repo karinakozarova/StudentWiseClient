@@ -65,6 +65,19 @@ namespace StudentWiseClient
         public void SetEvent(Event eventParam)
         {
             this.CurrentEvent = eventParam;
+
+            if (CurrentEvent.Status == EventStatus.Pending)
+            {
+                EventCompletePbx.Image = Properties.Resources.undo_favicon;
+            }
+            else if (CurrentEvent.Status == EventStatus.Finished)
+            {
+                EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+            } else
+            {
+                EventCompletePbx.Visible = false;
+            }
+            
             ReloadParticipants();
         }
 
@@ -141,13 +154,16 @@ namespace StudentWiseClient
 
         private void EventCompletePbx_Click(object sender, EventArgs e)
         {
-            //When the event is mark as finished the picture box icon will change to undo icon, in order someone
-            //has marked his event by mistake.
-            //Should retrieve data from the server in order to check whether the event is marked as finished or not
-            //and then update the picture box accordingly.
-
-            EventCompletePbx.Image = Properties.Resources.undo_favicon;
-            EventCompletePbx.BackColor = Color.DarkGreen;
+            if (CurrentEvent.Status == EventStatus.Pending)
+            {
+                CurrentEvent.MarkAsFinished();
+                EventCompletePbx.Image = Properties.Resources.undo_favicon;
+            }
+            else if (CurrentEvent.Status == EventStatus.Finished)
+            {
+                Event.MarkEvent(CurrentEvent.Id, false);
+                EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+            }
         }
     }
 }

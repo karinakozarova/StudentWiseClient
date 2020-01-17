@@ -63,6 +63,16 @@ namespace StudentWiseClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap anonymous_person_png {
+            get {
+                object obj = ResourceManager.GetObject("anonymous-person-png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717 {
             get {
                 object obj = ResourceManager.GetObject("kisspng-check-mark-symbol-icon-black-checkmark-5a76d35a732948.8416047115177367944" +

@@ -80,20 +80,6 @@ namespace StudentWiseClient
             createEvent.Show();
         }
 
-        private void AddComplaintsComponentsToDashboardView()
-        {
-            List<Complaint> complaints = Complaint.Enumerate();
-
-            complaintsFllPanel.Controls.Clear();
-
-            foreach (Complaint complaint in complaints)
-            {
-                MiniComplaintComponent complaintComponent = new MiniComplaintComponent();
-                complaintComponent.ChangeLabels(complaint.Title, complaint.Status);
-                complaintsFllPanel.Controls.Add(complaintComponent);
-            }
-        }
-
         private void AddEventComponentsToTodayPanel()
         {
             List<Event> events = Event.Enumerate();
@@ -178,7 +164,6 @@ namespace StudentWiseClient
         private void FormMain_Load(object sender, EventArgs e)
         {
             AddEventComponentsToTodayPanel();
-            AddComplaintsComponentsToDashboardView();
             AddEventComponentAddParticipantToCreatedEvents();
             ReloadComplaints();
             ReloadAgreements();
@@ -205,18 +190,36 @@ namespace StudentWiseClient
 
         }
 
+        private void AddComplaintToDashboard(Complaint complaint)
+        {
+            MiniComplaintComponent miniComplaintComponent = new MiniComplaintComponent();
+            miniComplaintComponent.ChangeLabels(complaint.Title, complaint.Status);
+            complaintsFllPanel.Controls.Add(miniComplaintComponent);
+        }
+        private void AddComplaintToComplaintsListing(Complaint complaint)
+        {
+            ComplaintsComponent complaintComponent = new ComplaintsComponent();
+            complaintComponent.ChangeLabels(complaint.Title, complaint.Description, complaint.Status, complaint.CreatedAt);
+            complaintsFllpnl.Controls.Add(complaintComponent);
+        }
+
+        private void AddComplaintToUI(Complaint complaint)
+        {
+            AddComplaintToComplaintsListing(complaint);
+            AddComplaintToDashboard(complaint);
+        }
+
         private void ReloadComplaints()
         {
             List<Complaint> complaints = Complaint.Enumerate();
             complaintsFllpnl.Controls.Clear();
+            complaintsFllPanel.Controls.Clear();
 
             if (complaints.Count > 0)
             {
                 foreach (Complaint complaint in complaints)
                 {
-                    ComplaintsComponent complaintComponent = new ComplaintsComponent();
-                    complaintComponent.ChangeLabels(complaint.Title, complaint.Description, complaint.Status, complaint.CreatedAt);
-                    complaintsFllpnl.Controls.Add(complaintComponent);
+                    AddComplaintToUI(complaint);
                 }
             }
             else

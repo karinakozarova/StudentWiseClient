@@ -105,6 +105,8 @@
             this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
             this.UserNameLbl = new System.Windows.Forms.Label();
             this.PersonIconPbx = new System.Windows.Forms.PictureBox();
+            this.tsBtnGroups = new System.Windows.Forms.ToolStripButton();
+            this.tpGroups = new System.Windows.Forms.TabPage();
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
@@ -133,6 +135,7 @@
             this.tcMain.Controls.Add(this.tpExpenses);
             this.tcMain.Controls.Add(this.tpComplaints);
             this.tcMain.Controls.Add(this.tbAgreements);
+            this.tcMain.Controls.Add(this.tpGroups);
             this.tcMain.Controls.Add(this.tpCreatedEvents);
             this.tcMain.Location = new System.Drawing.Point(0, 39);
             this.tcMain.Margin = new System.Windows.Forms.Padding(0);
@@ -878,7 +881,8 @@
             this.tsBtnEvents,
             this.tsBtnExpenses,
             this.tsBtnComplaints,
-            this.tsAgreementBttn});
+            this.tsAgreementBttn,
+            this.tsBtnGroups});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Padding = new System.Windows.Forms.Padding(10);
@@ -906,7 +910,7 @@
             this.tsBtnEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnEvents.Name = "tsBtnEvents";
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnEvents.Size = new System.Drawing.Size(112, 19);
+            this.tsBtnEvents.Size = new System.Drawing.Size(112, 44);
             this.tsBtnEvents.Text = "Events";
             this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -931,7 +935,7 @@
             this.tsBtnExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnExpenses.Name = "tsBtnExpenses";
             this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 19);
+            this.tsBtnExpenses.Size = new System.Drawing.Size(124, 44);
             this.tsBtnExpenses.Text = "Expenses";
             this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -942,7 +946,7 @@
             this.tsBtnComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tsBtnComplaints.Name = "tsBtnComplaints";
             this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 19);
+            this.tsBtnComplaints.Size = new System.Drawing.Size(145, 44);
             this.tsBtnComplaints.Text = "Complaints";
             this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -953,7 +957,7 @@
             this.tsAgreementBttn.Margin = new System.Windows.Forms.Padding(0);
             this.tsAgreementBttn.Name = "tsAgreementBttn";
             this.tsAgreementBttn.Padding = new System.Windows.Forms.Padding(5);
-            this.tsAgreementBttn.Size = new System.Drawing.Size(151, 19);
+            this.tsAgreementBttn.Size = new System.Drawing.Size(151, 44);
             this.tsAgreementBttn.Text = "Agreements";
             this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
             // 
@@ -986,6 +990,26 @@
             this.PersonIconPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PersonIconPbx.TabIndex = 3;
             this.PersonIconPbx.TabStop = false;
+            // 
+            // tsBtnGroups
+            // 
+            this.tsBtnGroups.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnGroups.Image")));
+            this.tsBtnGroups.ImageTransparentColor = System.Drawing.SystemColors.Window;
+            this.tsBtnGroups.Margin = new System.Windows.Forms.Padding(0);
+            this.tsBtnGroups.Name = "tsBtnGroups";
+            this.tsBtnGroups.Padding = new System.Windows.Forms.Padding(5);
+            this.tsBtnGroups.Size = new System.Drawing.Size(110, 44);
+            this.tsBtnGroups.Text = "Groups";
+            this.tsBtnGroups.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
+            // tpGroups
+            // 
+            this.tpGroups.Location = new System.Drawing.Point(4, 25);
+            this.tpGroups.Name = "tpGroups";
+            this.tpGroups.Size = new System.Drawing.Size(949, 446);
+            this.tpGroups.TabIndex = 6;
+            this.tpGroups.Text = "Groups";
+            this.tpGroups.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -1106,6 +1130,8 @@
         private System.Windows.Forms.FlowLayoutPanel CreatedEventsFllpnl;
         private System.Windows.Forms.Label UserNameLbl;
         private System.Windows.Forms.PictureBox PersonIconPbx;
+        private System.Windows.Forms.ToolStripButton tsBtnGroups;
+        private System.Windows.Forms.TabPage tpGroups;
     }
 }
 

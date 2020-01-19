@@ -859,6 +859,7 @@
             this.tpGroups.TabIndex = 6;
             this.tpGroups.Text = "Groups";
             this.tpGroups.UseVisualStyleBackColor = true;
+            this.tpGroups.Enter += new System.EventHandler(this.TpGroups_Enter);
             // 
             // lblGroups
             // 
@@ -987,6 +988,7 @@
             this.btnAddGroup.TabIndex = 4;
             this.btnAddGroup.Text = "Add Group";
             this.btnAddGroup.UseVisualStyleBackColor = false;
+            this.btnAddGroup.Click += new System.EventHandler(this.BtnAddGroup_Click);
             // 
             // tpCreatedEvents
             // 

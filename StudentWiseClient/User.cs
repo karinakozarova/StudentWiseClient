@@ -16,7 +16,7 @@ namespace StudentWiseApi
     public class User
     {
         public int Id { get; }
-        public Group PrimaryGroup { get; }
+        public Group PrimaryGroup { get; internal set; }
         public string Email { get; internal set; }
         public string FirstName { get; internal set; }
         public string LastName { get; internal set; }
@@ -94,6 +94,16 @@ namespace StudentWiseApi
 
             throw new Exception(Server.UnexpectedStatus(response.StatusCode));
         }
+
+        /// <summary>
+        /// Moves this user to a specified group.
+        /// </summary>
+        /// <remarks>This action requires administrative access.</remarks>
+        public void MoveToGroup(int group_id, UserSession session = null)
+        {
+            PrimaryGroup = Group.AddMember(group_id, Id, session);
+            UpdatedAt = DateTime.Now;
+        }
         
         public static bool operator ==(User a, User b)
         {
@@ -120,7 +130,13 @@ namespace StudentWiseApi
         internal User(ParsedJson info)
         {
             Id = info.GetInt("id");
-            PrimaryGroup = new Group(info.GetObject("group"));
+
+            // FIXED: when registering, the response contains a group_id instead of a group
+            if (info.Members.ContainsKey("group_id"))
+                PrimaryGroup = Group.Query(info.GetInt("group_id"));
+            else
+                PrimaryGroup = new Group(info.GetObject("group"));
+
             Email = info.GetString("email");
             FirstName = info.GetString("first_name");
             LastName = info.GetString("last_name");

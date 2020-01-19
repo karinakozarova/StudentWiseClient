@@ -120,7 +120,13 @@ namespace StudentWiseApi
         internal User(ParsedJson info)
         {
             Id = info.GetInt("id");
-            PrimaryGroup = new Group(info.GetObject("group"));
+
+            // FIXED: when registering, the response contains a group_id instead of a group
+            if (info.Members.ContainsKey("group_id"))
+                PrimaryGroup = Group.Query(info.GetInt("group_id"));
+            else
+                PrimaryGroup = new Group(info.GetObject("group"));
+
             Email = info.GetString("email");
             FirstName = info.GetString("first_name");
             LastName = info.GetString("last_name");

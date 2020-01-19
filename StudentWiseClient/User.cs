@@ -16,7 +16,7 @@ namespace StudentWiseApi
     public class User
     {
         public int Id { get; }
-        public Group PrimaryGroup { get; }
+        public Group PrimaryGroup { get; internal set; }
         public string Email { get; internal set; }
         public string FirstName { get; internal set; }
         public string LastName { get; internal set; }
@@ -93,6 +93,16 @@ namespace StudentWiseApi
             }
 
             throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
+
+        /// <summary>
+        /// Moves this user to a specified group.
+        /// </summary>
+        /// <remarks>This action requires administrative access.</remarks>
+        public void MoveToGroup(int group_id, UserSession session = null)
+        {
+            PrimaryGroup = Group.AddMember(group_id, Id, session);
+            UpdatedAt = DateTime.Now;
         }
         
         public static bool operator ==(User a, User b)

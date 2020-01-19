@@ -122,6 +122,9 @@ namespace StudentWiseApi
         /// <remarks>This action requires administrative access.</remarks>
         public static void Delete(int group_id, UserSession session = null)
         {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
             // Negarive IDs are reserved for group creation
             var response = Server.Send(
                 string.Format(Server.group_manage_url, group_id),
@@ -143,8 +146,75 @@ namespace StudentWiseApi
             Delete(Id, session);
         }
 
+        /// <summary>
+        /// Add a member to a group by ID.
+        /// </summary>
+        /// <remarks>This action requires administrative access.</remarks>
+        public static Group AddMember(int group_id, int user_id, UserSession session = null)
+        {
+            return ManageMembers(group_id, user_id, true, session);
+        }
+
+        /// <summary>
+        /// Add a member to this group.
+        /// </summary>
+        /// <remarks>This action requires administrative access.</remarks>
+        public Group AddMember(int user_id, UserSession session = null)
+        {
+            return ManageMembers(Id, user_id, true, session);
+        }
+
+        /// <summary>
+        /// Removes a member from a group by ID.
+        /// </summary>
+        /// <remarks>This action requires administrative access.</remarks>
+        public static Group RemoveMember(int group_id, int user_id, UserSession session = null)
+        {
+            return ManageMembers(group_id, user_id, false, session);
+        }
+
+        /// <summary>
+        /// Removes a member from this group.
+        /// </summary>
+        /// <remarks>This action requires administrative access.</remarks>
+        public Group RemoveMember(int user_id, UserSession session = null)
+        {
+            return ManageMembers(Id, user_id, false, session);
+        }
+
+        internal static Group ManageMembers(int group_id, int user_id, bool add, UserSession session = null)
+        {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
+            // Negarive IDs are reserved for group creation
+            var response = Server.Send(
+                string.Format(Server.group_member_url, group_id),
+                session.token,
+                add ? "PUT": "DELETE",
+                new
+                {
+                    group_member = new
+                    {
+                        member_id = user_id
+                    }
+                }
+            );
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                return new Group(ParsedJson.Parse(reader.ReadToEnd()).GetObject("user").GetObject("group"));
+            }
+
+            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+        }
+
         internal static Group InvokeUpdate(int group_id, object body, UserSession session = null)
         {
+            // Assume current session by default
+            session = session ?? Server.FallbackToCurrentSession;
+
             // Negarive IDs are reserved for group creation
             var response = Server.Send(
                 group_id < 0 ?

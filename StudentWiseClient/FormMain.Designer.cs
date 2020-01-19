@@ -91,6 +91,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.newAgreementLbl = new System.Windows.Forms.Label();
+            this.tpGroups = new System.Windows.Forms.TabPage();
+            this.lblGroups = new System.Windows.Forms.Label();
+            this.flPnlGroups = new System.Windows.Forms.FlowLayoutPanel();
+            this.gbNewGroup = new System.Windows.Forms.GroupBox();
+            this.lblNewGroupHeader = new System.Windows.Forms.Label();
+            this.lblGroupName = new System.Windows.Forms.Label();
+            this.tbxGroupName = new System.Windows.Forms.TextBox();
+            this.lblGroupDescription = new System.Windows.Forms.Label();
+            this.tbxGroupDescription = new System.Windows.Forms.TextBox();
+            this.lblGroupRules = new System.Windows.Forms.Label();
+            this.tbxGroupRules = new System.Windows.Forms.TextBox();
+            this.btnAddGroup = new System.Windows.Forms.Button();
             this.tpCreatedEvents = new System.Windows.Forms.TabPage();
             this.CreatedEventsLbl = new System.Windows.Forms.Label();
             this.CreatedEventsFllpnl = new System.Windows.Forms.FlowLayoutPanel();
@@ -102,11 +114,10 @@
             this.tsBtnExpenses = new System.Windows.Forms.ToolStripButton();
             this.tsBtnComplaints = new System.Windows.Forms.ToolStripButton();
             this.tsAgreementBttn = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnGroups = new System.Windows.Forms.ToolStripButton();
             this.timeNowTimer = new System.Windows.Forms.Timer(this.components);
             this.UserNameLbl = new System.Windows.Forms.Label();
             this.PersonIconPbx = new System.Windows.Forms.PictureBox();
-            this.tsBtnGroups = new System.Windows.Forms.ToolStripButton();
-            this.tpGroups = new System.Windows.Forms.TabPage();
             this.tcMain.SuspendLayout();
             this.tpDashboard.SuspendLayout();
             this.tpEvents.SuspendLayout();
@@ -120,6 +131,8 @@
             this.newComplaintGb.SuspendLayout();
             this.tbAgreements.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tpGroups.SuspendLayout();
+            this.gbNewGroup.SuspendLayout();
             this.tpCreatedEvents.SuspendLayout();
             this.tsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PersonIconPbx)).BeginInit();
@@ -835,6 +848,146 @@
             this.newAgreementLbl.TabIndex = 1;
             this.newAgreementLbl.Text = "New agreement:";
             // 
+            // tpGroups
+            // 
+            this.tpGroups.Controls.Add(this.lblGroups);
+            this.tpGroups.Controls.Add(this.flPnlGroups);
+            this.tpGroups.Controls.Add(this.gbNewGroup);
+            this.tpGroups.Location = new System.Drawing.Point(4, 25);
+            this.tpGroups.Name = "tpGroups";
+            this.tpGroups.Size = new System.Drawing.Size(949, 446);
+            this.tpGroups.TabIndex = 6;
+            this.tpGroups.Text = "Groups";
+            this.tpGroups.UseVisualStyleBackColor = true;
+            // 
+            // lblGroups
+            // 
+            this.lblGroups.AutoSize = true;
+            this.lblGroups.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroups.Location = new System.Drawing.Point(8, 13);
+            this.lblGroups.Name = "lblGroups";
+            this.lblGroups.Size = new System.Drawing.Size(96, 48);
+            this.lblGroups.TabIndex = 4;
+            this.lblGroups.Text = "Groups:";
+            // 
+            // flPnlGroups
+            // 
+            this.flPnlGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flPnlGroups.AutoScroll = true;
+            this.flPnlGroups.Location = new System.Drawing.Point(16, 64);
+            this.flPnlGroups.Name = "flPnlGroups";
+            this.flPnlGroups.Size = new System.Drawing.Size(500, 361);
+            this.flPnlGroups.TabIndex = 0;
+            // 
+            // gbNewGroup
+            // 
+            this.gbNewGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbNewGroup.Controls.Add(this.lblNewGroupHeader);
+            this.gbNewGroup.Controls.Add(this.lblGroupName);
+            this.gbNewGroup.Controls.Add(this.tbxGroupName);
+            this.gbNewGroup.Controls.Add(this.lblGroupDescription);
+            this.gbNewGroup.Controls.Add(this.tbxGroupDescription);
+            this.gbNewGroup.Controls.Add(this.lblGroupRules);
+            this.gbNewGroup.Controls.Add(this.tbxGroupRules);
+            this.gbNewGroup.Controls.Add(this.btnAddGroup);
+            this.gbNewGroup.Location = new System.Drawing.Point(531, 13);
+            this.gbNewGroup.Name = "gbNewGroup";
+            this.gbNewGroup.Size = new System.Drawing.Size(397, 412);
+            this.gbNewGroup.TabIndex = 5;
+            this.gbNewGroup.TabStop = false;
+            // 
+            // lblNewGroupHeader
+            // 
+            this.lblNewGroupHeader.AutoSize = true;
+            this.lblNewGroupHeader.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewGroupHeader.Location = new System.Drawing.Point(16, 18);
+            this.lblNewGroupHeader.Name = "lblNewGroupHeader";
+            this.lblNewGroupHeader.Size = new System.Drawing.Size(135, 48);
+            this.lblNewGroupHeader.TabIndex = 1;
+            this.lblNewGroupHeader.Text = "New Group:";
+            // 
+            // lblGroupName
+            // 
+            this.lblGroupName.AutoSize = true;
+            this.lblGroupName.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupName.Location = new System.Drawing.Point(17, 66);
+            this.lblGroupName.Name = "lblGroupName";
+            this.lblGroupName.Size = new System.Drawing.Size(72, 41);
+            this.lblGroupName.TabIndex = 1;
+            this.lblGroupName.Text = "Name:";
+            // 
+            // tbxGroupName
+            // 
+            this.tbxGroupName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxGroupName.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxGroupName.Location = new System.Drawing.Point(24, 110);
+            this.tbxGroupName.Name = "tbxGroupName";
+            this.tbxGroupName.Size = new System.Drawing.Size(347, 37);
+            this.tbxGroupName.TabIndex = 1;
+            // 
+            // lblGroupDescription
+            // 
+            this.lblGroupDescription.AutoSize = true;
+            this.lblGroupDescription.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupDescription.Location = new System.Drawing.Point(17, 156);
+            this.lblGroupDescription.Name = "lblGroupDescription";
+            this.lblGroupDescription.Size = new System.Drawing.Size(124, 41);
+            this.lblGroupDescription.TabIndex = 3;
+            this.lblGroupDescription.Text = "Description:";
+            // 
+            // tbxGroupDescription
+            // 
+            this.tbxGroupDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxGroupDescription.Font = new System.Drawing.Font("Oswald", 12F);
+            this.tbxGroupDescription.Location = new System.Drawing.Point(24, 201);
+            this.tbxGroupDescription.Multiline = true;
+            this.tbxGroupDescription.Name = "tbxGroupDescription";
+            this.tbxGroupDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxGroupDescription.Size = new System.Drawing.Size(347, 37);
+            this.tbxGroupDescription.TabIndex = 2;
+            // 
+            // lblGroupRules
+            // 
+            this.lblGroupRules.AutoSize = true;
+            this.lblGroupRules.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupRules.Location = new System.Drawing.Point(17, 247);
+            this.lblGroupRules.Name = "lblGroupRules";
+            this.lblGroupRules.Size = new System.Drawing.Size(71, 41);
+            this.lblGroupRules.TabIndex = 5;
+            this.lblGroupRules.Text = "Rules:";
+            // 
+            // tbxGroupRules
+            // 
+            this.tbxGroupRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxGroupRules.Font = new System.Drawing.Font("Oswald", 12F);
+            this.tbxGroupRules.Location = new System.Drawing.Point(24, 291);
+            this.tbxGroupRules.Multiline = true;
+            this.tbxGroupRules.Name = "tbxGroupRules";
+            this.tbxGroupRules.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxGroupRules.Size = new System.Drawing.Size(347, 37);
+            this.tbxGroupRules.TabIndex = 3;
+            // 
+            // btnAddGroup
+            // 
+            this.btnAddGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddGroup.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnAddGroup.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddGroup.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAddGroup.Location = new System.Drawing.Point(24, 343);
+            this.btnAddGroup.Name = "btnAddGroup";
+            this.btnAddGroup.Size = new System.Drawing.Size(347, 50);
+            this.btnAddGroup.TabIndex = 4;
+            this.btnAddGroup.Text = "Add Group";
+            this.btnAddGroup.UseVisualStyleBackColor = false;
+            // 
             // tpCreatedEvents
             // 
             this.tpCreatedEvents.Controls.Add(this.CreatedEventsLbl);
@@ -961,6 +1114,17 @@
             this.tsAgreementBttn.Text = "Agreements";
             this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
             // 
+            // tsBtnGroups
+            // 
+            this.tsBtnGroups.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnGroups.Image")));
+            this.tsBtnGroups.ImageTransparentColor = System.Drawing.SystemColors.Window;
+            this.tsBtnGroups.Margin = new System.Windows.Forms.Padding(0);
+            this.tsBtnGroups.Name = "tsBtnGroups";
+            this.tsBtnGroups.Padding = new System.Windows.Forms.Padding(5);
+            this.tsBtnGroups.Size = new System.Drawing.Size(110, 44);
+            this.tsBtnGroups.Text = "Groups";
+            this.tsBtnGroups.Click += new System.EventHandler(this.TsBtn_Click);
+            // 
             // timeNowTimer
             // 
             this.timeNowTimer.Interval = 1000;
@@ -990,26 +1154,6 @@
             this.PersonIconPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PersonIconPbx.TabIndex = 3;
             this.PersonIconPbx.TabStop = false;
-            // 
-            // tsBtnGroups
-            // 
-            this.tsBtnGroups.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnGroups.Image")));
-            this.tsBtnGroups.ImageTransparentColor = System.Drawing.SystemColors.Window;
-            this.tsBtnGroups.Margin = new System.Windows.Forms.Padding(0);
-            this.tsBtnGroups.Name = "tsBtnGroups";
-            this.tsBtnGroups.Padding = new System.Windows.Forms.Padding(5);
-            this.tsBtnGroups.Size = new System.Drawing.Size(110, 44);
-            this.tsBtnGroups.Text = "Groups";
-            this.tsBtnGroups.Click += new System.EventHandler(this.TsBtn_Click);
-            // 
-            // tpGroups
-            // 
-            this.tpGroups.Location = new System.Drawing.Point(4, 25);
-            this.tpGroups.Name = "tpGroups";
-            this.tpGroups.Size = new System.Drawing.Size(949, 446);
-            this.tpGroups.TabIndex = 6;
-            this.tpGroups.Text = "Groups";
-            this.tpGroups.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -1043,6 +1187,10 @@
             this.tbAgreements.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tpGroups.ResumeLayout(false);
+            this.tpGroups.PerformLayout();
+            this.gbNewGroup.ResumeLayout(false);
+            this.gbNewGroup.PerformLayout();
             this.tpCreatedEvents.ResumeLayout(false);
             this.tpCreatedEvents.PerformLayout();
             this.tsMain.ResumeLayout(false);
@@ -1132,6 +1280,17 @@
         private System.Windows.Forms.PictureBox PersonIconPbx;
         private System.Windows.Forms.ToolStripButton tsBtnGroups;
         private System.Windows.Forms.TabPage tpGroups;
+        private System.Windows.Forms.Label lblGroups;
+        private System.Windows.Forms.FlowLayoutPanel flPnlGroups;
+        private System.Windows.Forms.GroupBox gbNewGroup;
+        private System.Windows.Forms.Label lblNewGroupHeader;
+        private System.Windows.Forms.Label lblGroupName;
+        private System.Windows.Forms.TextBox tbxGroupName;
+        private System.Windows.Forms.Label lblGroupDescription;
+        private System.Windows.Forms.TextBox tbxGroupDescription;
+        private System.Windows.Forms.Button btnAddGroup;
+        private System.Windows.Forms.Label lblGroupRules;
+        private System.Windows.Forms.TextBox tbxGroupRules;
     }
 }
 

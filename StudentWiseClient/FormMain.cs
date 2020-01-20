@@ -349,5 +349,73 @@ namespace StudentWiseClient
                 }
             }
         }
+
+        private void AddGroupToUI(Group group)
+        {
+            Control groupComponent;
+
+            if (Server.CurrentSession.Info.Admin)
+                groupComponent = new GroupDetailedComponent(group, User.Enumerate());
+            else
+                groupComponent = new GroupComponent(group);
+
+            flPnlGroups.Controls.Add(groupComponent);
+        }
+
+        private void ReloadGroups()
+        {
+            flPnlGroups.Controls.Clear();
+
+            List<Group> groups = Server.CurrentSession.Info.Admin ? Group.Enumerate() : new List<Group>() { Server.CurrentSession.Info.PrimaryGroup };
+
+            if (groups.Count > 0)
+            {
+                foreach (Group group in groups)
+                {
+                    AddGroupToUI(group);
+                }
+            }
+            else
+            {
+                NoGroups noGroups = new NoGroups();
+                flPnlGroups.Controls.Add(noGroups);
+            }
+        }
+
+        private void TpGroups_Enter(object sender, EventArgs e)
+        {
+            if (Server.CurrentSession.Info.Admin)
+            {
+                lblGroups.Text = "Groups:";
+                gbNewGroup.Visible = true;
+            }
+            else
+            {
+                lblGroups.Text = "Your Group:";
+                gbNewGroup.Visible = false;
+            }
+
+            ReloadGroups();
+        }
+
+        private void BtnAddGroup_Click(object sender, EventArgs e)
+        {
+            string name = tbxGroupName.Text;
+            string description = tbxGroupDescription.Text;
+            string rules = tbxGroupRules.Text;
+
+            try
+            {
+                if (string.IsNullOrEmpty(name))
+                    throw new Exception("Please, enter a group name.");
+
+                Group group = Group.Create(name, description, rules, Server.CurrentSession);
+                AddGroupToUI(group);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

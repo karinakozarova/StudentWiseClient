@@ -20,47 +20,25 @@ namespace StudentWiseClient
 
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(fNameTbx.Text))
-            {
-                MessageBox.Show("Please, enter your first name.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(fNameTbx.Text))
+                throw new ApplicationException("Please, enter your first name.");
 
-            if(String.IsNullOrEmpty(lNameTbx.Text))
-            {
-                MessageBox.Show("Please, enter your last name.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(lNameTbx.Text))
+                throw new ApplicationException("Please, enter your last name.");
 
-            if (String.IsNullOrEmpty(emailAddressTbx.Text))
-            {
-                MessageBox.Show("Please, enter your email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(emailAddressTbx.Text) ||
+                !EmailValidation.IsValidEmail(emailAddressTbx.Text))
+                throw new ApplicationException("Please, enter a valid email address.");
 
-            if (String.IsNullOrEmpty(passwordTbx.Text))
-            {
-                MessageBox.Show("Please, enter a password", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(passwordTbx.Text))
+                throw new ApplicationException("Please, enter a password.");
 
-            if (!EmailValidation.IsValidEmail(emailAddressTbx.Text))
-            {
-                MessageBox.Show("Please, enter a valid email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            Server.CurrentSession = Server.CreateUser(emailAddressTbx.Text, fNameTbx.Text, lNameTbx.Text, passwordTbx.Text);
 
-            try
-            {
-                Server.CurrentSession = Server.CreateUser(emailAddressTbx.Text, fNameTbx.Text, lNameTbx.Text, passwordTbx.Text);
-
-                // User logged in successfully, go to the according page
-                this.Hide();
-                FormMain dashboard = new FormMain();
-                dashboard.Show();
-            } catch(Exception ex){
-                MessageBox.Show(ex.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+            // User logged in successfully, go to the according page
+            this.Hide();
+            FormMain dashboard = new FormMain();
+            dashboard.Show();
         }
 
         private void LoginLinkL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

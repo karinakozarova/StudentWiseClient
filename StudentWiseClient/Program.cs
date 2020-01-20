@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace StudentWiseClient
 {
@@ -16,7 +17,18 @@ namespace StudentWiseClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += ShowExceptionHandler;
             Application.Run(new Login());
+        }
+
+        static void ShowExceptionHandler(object sender, ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show(
+                e.Exception.Message,
+                null,
+                MessageBoxButtons.OK,                   
+                e.Exception is ApplicationException ? MessageBoxIcon.Warning : MessageBoxIcon.Error
+            );
         }
     }
 }

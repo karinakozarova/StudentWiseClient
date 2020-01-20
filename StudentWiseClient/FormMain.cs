@@ -234,19 +234,11 @@ namespace StudentWiseClient
 
         private void FileComplaintBttn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(titleTbx.Text))
-            {
-                MessageBox.Show("Please enter a title for your complaint");
-                return;
-            }
-
-            if (String.IsNullOrEmpty(descriptionTbx.Text))
-            {
-                MessageBox.Show("Please enter a description for your complaint");
-                return;
-            }
-
-            Complaint.Create(titleTbx.Text, descriptionTbx.Text, Server.CurrentSession);
+            if (string.IsNullOrEmpty(titleTbx.Text))
+                throw new ApplicationException("Please enter a title for your complaint");
+            
+            Complaint.Create(titleTbx.Text,
+                string.IsNullOrWhiteSpace(descriptionTbx.Text) ? null : descriptionTbx.Text);
             titleTbx.Clear();
             descriptionTbx.Clear();
             ReloadComplaints();
@@ -259,30 +251,17 @@ namespace StudentWiseClient
 
         private void AddExpenseBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(ExpenseTitleTbx.Text))
-            {
-                MessageBox.Show("Please enter expense title");
-                return;
-            }
-
             string expenseTitle = ExpenseTitleTbx.Text;
             string expenseNotes = ExpenseNotesRtbx.Text;
 
-            decimal expensePrice = 0;
-            int expenseQuantity = 1;
-
-            try
-            {
-                expensePrice = ExpensePriceNum.Value;
-                expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Please enter a correct number");
-                return;
-            }
-
-            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity, expenseNotes);            
+            if (string.IsNullOrEmpty(ExpenseTitleTbx.Text))
+                throw new ApplicationException("Please enter expense title");
+                            
+            decimal expensePrice = ExpensePriceNum.Value;
+            int expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
+            
+            Expense expense = Expense.Create(expenseTitle, expensePrice, expenseQuantity,
+                string.IsNullOrWhiteSpace(expenseNotes) ? null : expenseNotes);
 
             // Share expeses with all users by default
             foreach(User user in User.Enumerate())
@@ -302,19 +281,10 @@ namespace StudentWiseClient
             string description = agreementDescriprionTbx.Text;
             string title = agreementTitleTbx.Text;
 
-            if (String.IsNullOrEmpty(description))
-            {
-                MessageBox.Show("Add description");
-                return;
-            }
+            if (string.IsNullOrEmpty(title))
+                throw new ApplicationException("Please, specify a title.");
 
-            if (String.IsNullOrEmpty(title))
-            {
-                MessageBox.Show("Add title");
-                return;
-            }
-
-            Agreement.Create(title, description, Server.CurrentSession);
+            Agreement.Create(title, string.IsNullOrWhiteSpace(description) ? null : description);
             ReloadAgreements();
         }
 
@@ -404,18 +374,11 @@ namespace StudentWiseClient
             string description = tbxGroupDescription.Text;
             string rules = tbxGroupRules.Text;
 
-            try
-            {
-                if (string.IsNullOrEmpty(name))
-                    throw new Exception("Please, enter a group name.");
+            if (string.IsNullOrEmpty(name))
+                throw new ApplicationException("Please, enter a group name.");
 
-                Group group = Group.Create(name, description, rules, Server.CurrentSession);
-                AddGroupToUI(group);
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            Group group = Group.Create(name, description, string.IsNullOrWhiteSpace(rules) ? null : rules);
+            AddGroupToUI(group);
         }
     }
 }

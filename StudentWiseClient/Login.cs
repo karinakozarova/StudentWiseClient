@@ -20,37 +20,18 @@ namespace StudentWiseClient
 
         private void ContinueBttn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(emailAddressTbx.Text))
-            {
-                MessageBox.Show("Please, enter your email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(emailAddressTbx.Text) ||
+                !EmailValidation.IsValidEmail(emailAddressTbx.Text))
+                throw new ApplicationException("Please, enter a valid email address.");
 
-            if (String.IsNullOrEmpty(passwordTbx.Text))
-            {
-                MessageBox.Show("Please, enter your password.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(passwordTbx.Text))
+                throw new ApplicationException("Please, enter your password");
 
-            if (!EmailValidation.IsValidEmail(emailAddressTbx.Text))
-            {
-                MessageBox.Show("Please, enter a valid email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            Server.CurrentSession = Server.Login(emailAddressTbx.Text, passwordTbx.Text);
+            this.Hide();
 
-            try
-            {
-                Server.CurrentSession = Server.Login(emailAddressTbx.Text, passwordTbx.Text);
-                this.Hide();
-
-                FormMain dashboard = new FormMain();
-                dashboard.Show();
-                return;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            FormMain dashboard = new FormMain();
+            dashboard.Show();
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

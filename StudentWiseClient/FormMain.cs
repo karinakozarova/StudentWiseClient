@@ -352,7 +352,13 @@ namespace StudentWiseClient
 
         private void AddGroupToUI(Group group)
         {
-            GroupComponent groupComponent = new GroupComponent(group);
+            Control groupComponent;
+
+            if (Server.CurrentSession.Info.Admin)
+                groupComponent = new GroupDetailedComponent(group, User.Enumerate());
+            else
+                groupComponent = new GroupComponent(group);
+
             flPnlGroups.Controls.Add(groupComponent);
         }
 
@@ -401,9 +407,7 @@ namespace StudentWiseClient
             try
             {
                 if (string.IsNullOrEmpty(name))
-                {
-                    throw new ArgumentException("Please, enter a group name.");
-                }
+                    throw new Exception("Please, enter a group name.");
 
                 Group group = Group.Create(name, description, rules, Server.CurrentSession);
                 AddGroupToUI(group);

@@ -122,6 +122,12 @@
     <Compile Include="GroupComponent.Designer.cs">
       <DependentUpon>GroupComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupDetailedComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GroupDetailedComponent.designer.cs">
+      <DependentUpon>GroupDetailedComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GroupComponent.resx">
       <DependentUpon>GroupComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupDetailedComponent.resx">
+      <DependentUpon>GroupDetailedComponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

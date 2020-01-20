@@ -13,38 +13,18 @@ namespace StudentWiseClient
 {
     public partial class ComplaintsComponent : UserControl
     {
-        public ComplaintsComponent()
+        public ComplaintsComponent(Complaint complaint)
         {
             InitializeComponent();
-            this.BorderStyle = BorderStyle.FixedSingle;
+            Refresh(complaint);
         }
 
-        public void ChangeComplainStatus(ComplaintStatus status)
+        public void Refresh(Complaint complaint)
         {
-            statusLbl.Text = status.ToString();
-        }
-
-        public void ChangeTitle(String title)
-        {
-            titleLbl.Text = title;
-        }
-
-        public void ChangeDescription(String description)
-        {
-            descriptionLbl.Text = description;
-        }
-
-        public void ChangeTimestamp(DateTime timestamp)
-        {
-            timestampLbl.Text = timestamp.ToString();
-        }
-
-        public void ChangeLabels(String title, String description, ComplaintStatus status, DateTime timestamp)
-        {
-            ChangeTitle(title);
-            ChangeDescription(description);
-            ChangeComplainStatus(status);
-            ChangeTimestamp(timestamp);
+            titleLbl.Text = complaint.Title;
+            descriptionLbl.Text = complaint.Description ?? "No description provided.";
+            statusLbl.Text = complaint.Status.ToString();
+            timestampLbl.Text = complaint.CreatedAt.ToString();            
         }
     }
 }

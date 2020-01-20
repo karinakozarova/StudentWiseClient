@@ -28,44 +28,21 @@ namespace StudentWiseClient
 
         private void AddTodaysEventsToEventView()
         {
-            List<Event> events = Event.Enumerate(); // TODO: filter them to be today's only
+            List<Event> events = Event.Enumerate(EventFilter.Today());
             todaysEventsFllpnl.Controls.Clear();
 
             if (events.Count == 0)
-            {
-                DashboardNoEventToday eventComponent = new DashboardNoEventToday();
-                todaysEventsFllpnl.Controls.Add(eventComponent);
-            }
+                todaysEventsFllpnl.Controls.Add(new DashboardNoEventToday());
             else
-            {
                 foreach (Event ev in events)
-                {
-                    DateTime startDate = Convert.ToDateTime(ev.StartsAt);
-                    var date = startDate.Date;
-                    var dateNow = DateTime.Now.Date;
-                    EventComponent eventComponent = new EventComponent();
-                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Kind, ev.StartsAt, ev.FinishesAt);
-                    eventComponent.SetEvent(ev);
-                    if (date == dateNow)
-                    {
-                        todaysEventsFllpnl.Controls.Add(eventComponent);
-                    }
-                }
-            }
+                    todaysEventsFllpnl.Controls.Add(new EventComponent(ev));                    
         }
 
         private void AddBalanceToDashboard()
         {
             decimal balance = Server.CurrentSession.Info.ComputeBalance(Expense.Enumerate());
-            balanceAmountLbl.Text = balance.ToString();
-            if (balance > 0)
-            {
-                balanceAmountLbl.ForeColor = Color.Green;
-            }
-            else
-            {
-                balanceAmountLbl.ForeColor = Color.Red;
-            }
+            balanceAmountLbl.Text = balance.ToString("0.00");
+            balanceAmountLbl.ForeColor = balance >= 0 ? Color.Green : Color.Red;
         }
 
         private void TsBtn_Click(object sender, EventArgs e)
@@ -84,38 +61,25 @@ namespace StudentWiseClient
         private void AddEventComponentsToTodayPanel()
         {
             List<Event> events = Event.Enumerate();
+
             if (events.Count == 0)
-            {
-                NoEventsAvailable eventComponent = new NoEventsAvailable();
-                flowLayoutPanelToday.Controls.Add(eventComponent);
-            }
+                flowLayoutPanelToday.Controls.Add(new NoEventsAvailable());
             else
             {
-                foreach (Event ev in events)
-                {
-                    DateTime startDate = Convert.ToDateTime(ev.StartsAt);
-                    var date = startDate.Date;
-                    var dateNow = DateTime.Now.Date;
-                    EventComponent eventComponent = new EventComponent();
-                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Kind, ev.StartsAt, ev.FinishesAt);
-                    eventComponent.SetEvent(ev);
-                    if (date == dateNow)
-                    {
-                        flowLayoutPanelToday.Controls.Add(eventComponent);
-                    }
-                    else
-                    {
-                        flowLayoutPanelUpcoming.Controls.Add(eventComponent);
-                    }
-                }
+                // Today's events
+                foreach (Event ev in Event.Filter(events, EventFilter.Today()))
+                    flowLayoutPanelToday.Controls.Add(new EventComponent(ev));
+
+                // Upcoming events
+                foreach (Event ev in Event.Filter(events, EventFilter.Upcoming()))
+                    flowLayoutPanelUpcoming.Controls.Add(new EventComponent(ev));
             }
 
         }
 
         private void AddExpenseToExpenseListView(Expense expense)
         {
-            ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Amount.ToString(), expense.Price.ToString(), expense.Notes }));
-
+            ExpensesLv.Items.Add(new ListViewItem(new string[] { expense.Name, expense.Quantity.ToString(), expense.Price.ToString(), expense.Notes }));
         }
 
         private void AddMembersToExpenseListView(User participant, List<Expense> expenses)
@@ -134,7 +98,7 @@ namespace StudentWiseClient
             decimal total = 0;
             foreach (Expense expense in expenses)
             {
-                total += expense.Price * expense.Amount;
+                total += expense.Price * expense.Quantity;
                 AddExpenseToExpenseListView(expense);
                 
                 foreach (User participant in expense.Participants)
@@ -159,7 +123,6 @@ namespace StudentWiseClient
             AddEventComponentsToTodayPanel();
             AddEventComponentAddParticipantToCreatedEvents();
             ReloadComplaints();
-            ReloadAgreements();
             CalculateAndPopulateExpenses();
             UserNameLbl.Text = Server.CurrentSession.Info.FirstName;
         }
@@ -170,39 +133,22 @@ namespace StudentWiseClient
 
             List<Agreement> agreements = Agreement.Enumerate();
 
-            if (agreements.Count > 0)
-            {
-                foreach (Agreement agreement in agreements)
-                {
-                    AgreementComponent agreementComponent = new AgreementComponent(agreement.Title, agreement.Description, agreement.Creator.FirstName, agreement.CreatedAt);
-                    agreementsFlpnl.Controls.Add(agreementComponent);
-                }
-            }
+            if (agreements.Count == 0)
+                agreementsFlpnl.Controls.Add(new NoAgreements());
             else
-            {
-                NoAgreements noAgreements = new NoAgreements();
-                agreementsFlpnl.Controls.Add(noAgreements);
-            }
-
+                foreach (Agreement agreement in agreements)
+                    agreementsFlpnl.Controls.Add(new AgreementComponent(agreement));
         }
 
-        private void AddComplaintToDashboard(Complaint complaint)
+        private void tbAgreements_Enter(object sender, EventArgs e)
         {
-            MiniComplaintComponent miniComplaintComponent = new MiniComplaintComponent();
-            miniComplaintComponent.ChangeLabels(complaint.Title, complaint.Status);
-            complaintsFllPanel.Controls.Add(miniComplaintComponent);
-        }
-        private void AddComplaintToComplaintsListing(Complaint complaint)
-        {
-            ComplaintsComponent complaintComponent = new ComplaintsComponent();
-            complaintComponent.ChangeLabels(complaint.Title, complaint.Description, complaint.Status, complaint.CreatedAt);
-            complaintsFllpnl.Controls.Add(complaintComponent);
+            ReloadAgreements();
         }
 
         private void AddComplaintToUI(Complaint complaint)
         {
-            AddComplaintToComplaintsListing(complaint);
-            AddComplaintToDashboard(complaint);
+            complaintsFllpnl.Controls.Add(new ComplaintsComponent(complaint));
+            complaintsFllPanel.Controls.Add(new MiniComplaintComponent(complaint));
         }
 
         private void ReloadComplaints()
@@ -214,31 +160,23 @@ namespace StudentWiseClient
             if (complaints.Count > 0)
             {
                 foreach (Complaint complaint in complaints)
-                {
                     AddComplaintToUI(complaint);
-                }
             }
             else
             {
-                NoComplaints complaintComponent = new NoComplaints();
-                NoComplaints complaintComponentDashboard = new NoComplaints();
-
-                complaintsFllPanel.Controls.Add(complaintComponentDashboard);
-                complaintsFllpnl.Controls.Add(complaintComponent);
-
-                complaintsFllPanel.AutoScroll = false;
-                complaintsFllpnl.AutoScroll = false;
-
+                complaintsFllPanel.Controls.Add(new NoComplaints());
+                complaintsFllpnl.Controls.Add(new NoComplaints());
             }
         }
 
         private void FileComplaintBttn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(titleTbx.Text))
-                throw new ApplicationException("Please enter a title for your complaint");
+                throw new ApplicationException("Please, specify a title.");
             
             Complaint.Create(titleTbx.Text,
                 string.IsNullOrWhiteSpace(descriptionTbx.Text) ? null : descriptionTbx.Text);
+
             titleTbx.Clear();
             descriptionTbx.Clear();
             ReloadComplaints();
@@ -255,7 +193,7 @@ namespace StudentWiseClient
             string expenseNotes = ExpenseNotesRtbx.Text;
 
             if (string.IsNullOrEmpty(ExpenseTitleTbx.Text))
-                throw new ApplicationException("Please enter expense title");
+                throw new ApplicationException("Please, specify a title");
                             
             decimal expensePrice = ExpensePriceNum.Value;
             int expenseQuantity = Convert.ToInt32(ExpenseQuantityNum.Value);
@@ -284,8 +222,14 @@ namespace StudentWiseClient
             if (string.IsNullOrEmpty(title))
                 throw new ApplicationException("Please, specify a title.");
 
-            Agreement.Create(title, string.IsNullOrWhiteSpace(description) ? null : description);
-            ReloadAgreements();
+            Agreement agreement = Agreement.Create(title,
+                string.IsNullOrWhiteSpace(description) ? null : description);
+
+            foreach (Control control in agreementsFlpnl.Controls)
+                if (control is NoAgreements)
+                    agreementsFlpnl.Controls.Remove(control);
+
+            agreementsFlpnl.Controls.Add(new AgreementComponent(agreement));
         }
 
         private void MyEventsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -299,25 +243,13 @@ namespace StudentWiseClient
         }
         private void AddEventComponentAddParticipantToCreatedEvents()
         {
-            List<Event> events = Event.Enumerate();
+            List<Event> events = Event.Enumerate(EventFilter.Involved(EventInvolvement.Creator));
+            
             if (events.Count == 0)
-            {
-                NoEventsAvailable eventComponent = new NoEventsAvailable();
-                CreatedEventsFllpnl.Controls.Add(eventComponent);
-            }
+                CreatedEventsFllpnl.Controls.Add(new NoEventsAvailable());
             else
-            {
                 foreach (Event ev in events)
-                {
-                    EventComponentAddParticipant eventComponent = new EventComponentAddParticipant();
-                    eventComponent.SetAllNeededProperties(ev.Id, ev.Creator, Server.CurrentSession, ev.Title, ev.Description, ev.Type, ev.StartsAt, ev.FinishesAt);
-                    eventComponent.SetEvent(ev);
-                    if (eventComponent.Creator.Id == eventComponent.Session.Info.Id)
-                    {
-                        CreatedEventsFllpnl.Controls.Add(eventComponent);
-                    }
-                }
-            }
+                    CreatedEventsFllpnl.Controls.Add(new EventComponentAddParticipant(ev));
         }
 
         private void AddGroupToUI(Group group)
@@ -379,6 +311,12 @@ namespace StudentWiseClient
 
             Group group = Group.Create(name, description, string.IsNullOrWhiteSpace(rules) ? null : rules);
             AddGroupToUI(group);
+        }
+
+        private void AddEventBtn_Resize(object sender, EventArgs e)
+        {
+            lblEvents.Width = AddEventBtn.Width;
+            UpcomingEventsLbl.Width = AddEventBtn.Width;
         }
     }
 }

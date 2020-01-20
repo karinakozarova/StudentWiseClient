@@ -54,7 +54,7 @@ namespace StudentWiseApi
             return new EventFilter()
             {
                 TimeConstrained = true,
-                StartsBefore = DateTime.Today,
+                StartsBefore = DateTime.Today.AddDays(1),
                 FinishesAfter = DateTime.Today
             };
         }
@@ -224,8 +224,12 @@ namespace StudentWiseApi
         public static List<Event> Enumerate(EventFilter filter, UserSession session = null)
         {
             // TODO: switch to passing GET-parameters when the API is ready
+            return Filter(Enumerate(session), filter, session);
+        }
 
-            var events = Enumerate(session);
+        public static List<Event> Filter(List<Event> events, EventFilter filter, UserSession session = null)
+        {
+            session = session ?? Server.CurrentSession;
 
             switch (filter.InvolvedAs)
             {

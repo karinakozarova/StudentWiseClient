@@ -21,8 +21,8 @@ namespace StudentWiseClient
 
         public void Refresh(Agreement agreement)
         {
-            titleLbl.Text = agreement.Title;
-            descriptionLbl.Text = agreement.Description ?? "No description provided.";
+            titleLbl.Text = agreement.Title.UppercaseFirst();
+            descriptionLbl.Text = agreement.Description.UppercaseFirst() ?? "No description provided.";
             timestampLbl.Text = $"Created by {agreement.Creator}\r\non {agreement.CreatedAt.ToShortDateString()}";
         }
     }

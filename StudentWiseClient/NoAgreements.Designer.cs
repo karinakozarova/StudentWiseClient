@@ -28,46 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.sorryLbl = new System.Windows.Forms.Label();
+            this.lblHeader = new System.Windows.Forms.Label();
+            this.lblBody = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // lblHeader
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 158);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(358, 51);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "You don\'t have any agreements";
+            this.lblHeader.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.Location = new System.Drawing.Point(20, 120);
+            this.lblHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(460, 60);
+            this.lblHeader.TabIndex = 5;
+            this.lblHeader.Text = "Currently, there are no agreements.";
+            this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // sorryLbl
+            // lblBody
             // 
-            this.sorryLbl.AutoSize = true;
-            this.sorryLbl.Font = new System.Drawing.Font("Oswald", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sorryLbl.Location = new System.Drawing.Point(110, 56);
-            this.sorryLbl.Name = "sorryLbl";
-            this.sorryLbl.Size = new System.Drawing.Size(171, 102);
-            this.sorryLbl.TabIndex = 4;
-            this.sorryLbl.Text = "Sorry!";
+            this.lblBody.Font = new System.Drawing.Font("Oswald", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBody.Location = new System.Drawing.Point(20, 20);
+            this.lblBody.Margin = new System.Windows.Forms.Padding(0);
+            this.lblBody.Name = "lblBody";
+            this.lblBody.Size = new System.Drawing.Size(460, 100);
+            this.lblBody.TabIndex = 4;
+            this.lblBody.Text = "Sorry!";
+            this.lblBody.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NoAgreements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.sorryLbl);
+            this.Controls.Add(this.lblHeader);
+            this.Controls.Add(this.lblBody);
             this.Name = "NoAgreements";
-            this.Size = new System.Drawing.Size(409, 265);
+            this.Padding = new System.Windows.Forms.Padding(20);
+            this.Size = new System.Drawing.Size(500, 200);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label sorryLbl;
+        private System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.Label lblBody;
     }
 }

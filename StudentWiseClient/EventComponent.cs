@@ -44,9 +44,9 @@ namespace StudentWiseClient
         }
         public void SetAllNeededProperties()
         {
-            EventTitleLbl.Text = Self.Title;
-            EventDescriptionLbl.Text = Self.Description ?? "No description provided.";
-            EventTypeLbl.Text = Self.Kind.ToString();
+            EventTitleLbl.Text = Self.Title.UppercaseFirst();
+            EventDescriptionLbl.Text = Self.Description.UppercaseFirst() ?? "No description provided.";
+            EventTypeLbl.Text = Self.Kind.ToString().ToUpper();
             SetDeadline(Self.StartsAt, Self.FinishesAt);
             
             DeleteEventPbx.Visible = Self.Creator == Server.CurrentSession.Info;

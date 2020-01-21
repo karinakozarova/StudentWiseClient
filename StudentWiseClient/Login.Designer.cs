@@ -44,7 +44,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(154, 9);
+            this.label1.Location = new System.Drawing.Point(155, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 102);
             this.label1.TabIndex = 0;
@@ -80,9 +80,9 @@
             // 
             // continueBttn
             // 
-            this.continueBttn.BackColor = System.Drawing.Color.LawnGreen;
+            this.continueBttn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.continueBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.continueBttn.Location = new System.Drawing.Point(69, 444);
+            this.continueBttn.Location = new System.Drawing.Point(74, 444);
             this.continueBttn.Name = "continueBttn";
             this.continueBttn.Size = new System.Drawing.Size(255, 61);
             this.continueBttn.TabIndex = 3;
@@ -94,7 +94,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(110, 508);
+            this.label4.Location = new System.Drawing.Point(118, 511);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 35);
             this.label4.TabIndex = 7;
@@ -104,12 +104,12 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(132, 543);
+            this.linkLabel1.Location = new System.Drawing.Point(143, 546);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(114, 35);
+            this.linkLabel1.Size = new System.Drawing.Size(115, 35);
             this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Register here!";
+            this.linkLabel1.Text = "Register Now!";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // passwordTbx
@@ -125,10 +125,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::StudentWiseClient.Properties.Resources.StudentwISEvBuilders__1_1;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 21);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(136, 153);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(130, 145);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 

@@ -25,7 +25,7 @@ namespace StudentWiseClient
                 throw new ApplicationException("Please, enter a valid email address.");
 
             if (string.IsNullOrEmpty(passwordTbx.Text))
-                throw new ApplicationException("Please, enter your password");
+                throw new ApplicationException("Please, enter your password.");
 
             Server.CurrentSession = Server.Login(emailAddressTbx.Text, passwordTbx.Text);
             

@@ -21,10 +21,10 @@ namespace StudentWiseClient
 
         public void Refresh(Complaint complaint)
         {
-            titleLbl.Text = complaint.Title;
-            descriptionLbl.Text = complaint.Description ?? "No description provided.";
-            statusLbl.Text = complaint.Status.ToString();
-            timestampLbl.Text = complaint.CreatedAt.ToString();            
+            titleLbl.Text = complaint.Title.UppercaseFirst();
+            descriptionLbl.Text = complaint.Description.UppercaseFirst() ?? "No description provided.";
+            statusLbl.Text = complaint.Status.ToString().ToUpper();
+            timestampLbl.Text = $"Updated At {complaint.UpdatedAt}";
         }
     }
 }

@@ -66,7 +66,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, -5);
+            this.label2.Location = new System.Drawing.Point(94, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(269, 64);
             this.label2.TabIndex = 6;
@@ -139,9 +139,9 @@
             // 
             // createBttn
             // 
-            this.createBttn.BackColor = System.Drawing.Color.LawnGreen;
+            this.createBttn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.createBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createBttn.Location = new System.Drawing.Point(78, 589);
+            this.createBttn.Location = new System.Drawing.Point(94, 589);
             this.createBttn.Name = "createBttn";
             this.createBttn.Size = new System.Drawing.Size(255, 61);
             this.createBttn.TabIndex = 15;

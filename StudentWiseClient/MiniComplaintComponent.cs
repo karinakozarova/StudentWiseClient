@@ -22,7 +22,7 @@ namespace StudentWiseClient
         public void Refresh(Complaint complaint)
         {
             titleLbl.Text = complaint.Title;
-            statusLbl.Text = complaint.Status.ToString();
+            statusLbl.Text = complaint.Status.ToString().ToUpper();
         }
     }
 }

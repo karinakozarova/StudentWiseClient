@@ -66,7 +66,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, -5);
+            this.label2.Location = new System.Drawing.Point(94, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(269, 64);
             this.label2.TabIndex = 6;
@@ -139,9 +139,9 @@
             // 
             // createBttn
             // 
-            this.createBttn.BackColor = System.Drawing.Color.LawnGreen;
+            this.createBttn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.createBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createBttn.Location = new System.Drawing.Point(78, 589);
+            this.createBttn.Location = new System.Drawing.Point(94, 589);
             this.createBttn.Name = "createBttn";
             this.createBttn.Size = new System.Drawing.Size(255, 61);
             this.createBttn.TabIndex = 15;
@@ -152,16 +152,20 @@
             // startTimepkr
             // 
             this.startTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startTimepkr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.startTimepkr.Location = new System.Drawing.Point(229, 445);
             this.startTimepkr.Name = "startTimepkr";
+            this.startTimepkr.ShowUpDown = true;
             this.startTimepkr.Size = new System.Drawing.Size(200, 37);
             this.startTimepkr.TabIndex = 16;
             // 
             // EndTimepkr
             // 
             this.EndTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EndTimepkr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.EndTimepkr.Location = new System.Drawing.Point(229, 536);
             this.EndTimepkr.Name = "EndTimepkr";
+            this.EndTimepkr.ShowUpDown = true;
             this.EndTimepkr.Size = new System.Drawing.Size(200, 37);
             this.EndTimepkr.TabIndex = 17;
             // 
@@ -177,6 +181,7 @@
             // 
             // eventTypeCmbbx
             // 
+            this.eventTypeCmbbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.eventTypeCmbbx.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eventTypeCmbbx.FormattingEnabled = true;
             this.eventTypeCmbbx.Location = new System.Drawing.Point(18, 348);

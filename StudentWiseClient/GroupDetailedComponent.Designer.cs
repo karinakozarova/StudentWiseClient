@@ -35,11 +35,13 @@
             this.btnMoveMember = new System.Windows.Forms.Button();
             this.cbxMembers = new System.Windows.Forms.ComboBox();
             this.btnRemoveMember = new System.Windows.Forms.Button();
+            this.lblManageMembers = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblName
             // 
-            this.lblName.Font = new System.Drawing.Font("Oswald", 12F);
+            this.lblName.AutoEllipsis = true;
+            this.lblName.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Bold);
             this.lblName.Location = new System.Drawing.Point(20, 20);
             this.lblName.Margin = new System.Windows.Forms.Padding(0);
             this.lblName.Name = "lblName";
@@ -49,6 +51,7 @@
             // 
             // lblDateTime
             // 
+            this.lblDateTime.AutoEllipsis = true;
             this.lblDateTime.Font = new System.Drawing.Font("Oswald", 12F);
             this.lblDateTime.Location = new System.Drawing.Point(300, 20);
             this.lblDateTime.Margin = new System.Windows.Forms.Padding(0);
@@ -83,7 +86,7 @@
             // btnMoveMember
             // 
             this.btnMoveMember.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveMember.Location = new System.Drawing.Point(305, 251);
+            this.btnMoveMember.Location = new System.Drawing.Point(306, 277);
             this.btnMoveMember.Name = "btnMoveMember";
             this.btnMoveMember.Size = new System.Drawing.Size(130, 42);
             this.btnMoveMember.TabIndex = 2;
@@ -96,7 +99,7 @@
             this.cbxMembers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMembers.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxMembers.FormattingEnabled = true;
-            this.cbxMembers.Location = new System.Drawing.Point(20, 253);
+            this.cbxMembers.Location = new System.Drawing.Point(23, 278);
             this.cbxMembers.Name = "cbxMembers";
             this.cbxMembers.Size = new System.Drawing.Size(270, 39);
             this.cbxMembers.TabIndex = 1;
@@ -104,13 +107,24 @@
             // btnRemoveMember
             // 
             this.btnRemoveMember.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveMember.Location = new System.Drawing.Point(450, 251);
+            this.btnRemoveMember.Location = new System.Drawing.Point(447, 277);
             this.btnRemoveMember.Name = "btnRemoveMember";
             this.btnRemoveMember.Size = new System.Drawing.Size(130, 42);
             this.btnRemoveMember.TabIndex = 3;
             this.btnRemoveMember.Text = "Remove";
             this.btnRemoveMember.UseVisualStyleBackColor = true;
             this.btnRemoveMember.Click += new System.EventHandler(this.BtnRemoveMember_Click);
+            // 
+            // lblManageMembers
+            // 
+            this.lblManageMembers.AutoSize = true;
+            this.lblManageMembers.Font = new System.Drawing.Font("Oswald", 10F, System.Drawing.FontStyle.Bold);
+            this.lblManageMembers.Location = new System.Drawing.Point(20, 240);
+            this.lblManageMembers.Margin = new System.Windows.Forms.Padding(0);
+            this.lblManageMembers.Name = "lblManageMembers";
+            this.lblManageMembers.Size = new System.Drawing.Size(135, 29);
+            this.lblManageMembers.TabIndex = 4;
+            this.lblManageMembers.Text = "Manage Members";
             // 
             // GroupDetailedComponent
             // 
@@ -121,12 +135,16 @@
             this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblRules);
+            this.Controls.Add(this.lblManageMembers);
             this.Controls.Add(this.cbxMembers);
             this.Controls.Add(this.btnMoveMember);
             this.Controls.Add(this.btnRemoveMember);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "GroupDetailedComponent";
-            this.Size = new System.Drawing.Size(600, 315);
+            this.Padding = new System.Windows.Forms.Padding(20);
+            this.Size = new System.Drawing.Size(600, 340);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -139,5 +157,6 @@
         private System.Windows.Forms.Button btnMoveMember;
         private System.Windows.Forms.ComboBox cbxMembers;
         private System.Windows.Forms.Button btnRemoveMember;
+        private System.Windows.Forms.Label lblManageMembers;
     }
 }

@@ -127,6 +127,11 @@ namespace StudentWiseApi
             return (User)obj == this;
         }
 
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
+
         internal User(ParsedJson info)
         {
             Id = info.GetInt("id");

@@ -40,10 +40,8 @@
             this.dashboardEventsLbl = new System.Windows.Forms.Label();
             this.timeNowLbl = new System.Windows.Forms.Label();
             this.tpEvents = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanelDay1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanelDay2 = new System.Windows.Forms.FlowLayoutPanel();
             this.AddEventBtn = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelToday = new System.Windows.Forms.FlowLayoutPanel();
             this.lblEvents = new System.Windows.Forms.Label();
             this.flowLayoutPanelUpcoming = new System.Windows.Forms.FlowLayoutPanel();
@@ -154,7 +152,7 @@
             this.tcMain.Margin = new System.Windows.Forms.Padding(0);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
-            this.tcMain.Size = new System.Drawing.Size(957, 475);
+            this.tcMain.Size = new System.Drawing.Size(995, 467);
             this.tcMain.TabIndex = 0;
             // 
             // tpDashboard
@@ -169,7 +167,7 @@
             this.tpDashboard.Location = new System.Drawing.Point(4, 25);
             this.tpDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tpDashboard.Name = "tpDashboard";
-            this.tpDashboard.Size = new System.Drawing.Size(949, 446);
+            this.tpDashboard.Size = new System.Drawing.Size(987, 438);
             this.tpDashboard.TabIndex = 0;
             this.tpDashboard.Text = "Dashboard";
             this.tpDashboard.UseVisualStyleBackColor = true;
@@ -179,7 +177,7 @@
             this.dashboardComplaintsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dashboardComplaintsLbl.AutoSize = true;
             this.dashboardComplaintsLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardComplaintsLbl.Location = new System.Drawing.Point(543, 34);
+            this.dashboardComplaintsLbl.Location = new System.Drawing.Point(581, 13);
             this.dashboardComplaintsLbl.Name = "dashboardComplaintsLbl";
             this.dashboardComplaintsLbl.Size = new System.Drawing.Size(143, 51);
             this.dashboardComplaintsLbl.TabIndex = 7;
@@ -188,12 +186,11 @@
             // balanceAmountLbl
             // 
             this.balanceAmountLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.balanceAmountLbl.AutoSize = true;
             this.balanceAmountLbl.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.balanceAmountLbl.ForeColor = System.Drawing.Color.SpringGreen;
-            this.balanceAmountLbl.Location = new System.Drawing.Point(708, 371);
+            this.balanceAmountLbl.Location = new System.Drawing.Point(745, 378);
             this.balanceAmountLbl.Name = "balanceAmountLbl";
-            this.balanceAmountLbl.Size = new System.Drawing.Size(35, 35);
+            this.balanceAmountLbl.Size = new System.Drawing.Size(195, 35);
             this.balanceAmountLbl.TabIndex = 6;
             this.balanceAmountLbl.Text = "0$";
             // 
@@ -202,7 +199,7 @@
             this.balanceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.balanceLbl.AutoSize = true;
             this.balanceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceLbl.Location = new System.Drawing.Point(554, 365);
+            this.balanceLbl.Location = new System.Drawing.Point(583, 373);
             this.balanceLbl.Name = "balanceLbl";
             this.balanceLbl.Size = new System.Drawing.Size(159, 41);
             this.balanceLbl.TabIndex = 5;
@@ -213,9 +210,9 @@
             this.complaintsFllPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.complaintsFllPanel.AutoScroll = true;
-            this.complaintsFllPanel.Location = new System.Drawing.Point(552, 88);
+            this.complaintsFllPanel.Location = new System.Drawing.Point(590, 64);
             this.complaintsFllPanel.Name = "complaintsFllPanel";
-            this.complaintsFllPanel.Size = new System.Drawing.Size(315, 261);
+            this.complaintsFllPanel.Size = new System.Drawing.Size(350, 251);
             this.complaintsFllPanel.TabIndex = 4;
             // 
             // todaysEventsFllpnl
@@ -224,16 +221,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.todaysEventsFllpnl.AutoScroll = true;
-            this.todaysEventsFllpnl.Location = new System.Drawing.Point(17, 88);
+            this.todaysEventsFllpnl.Location = new System.Drawing.Point(16, 64);
             this.todaysEventsFllpnl.Name = "todaysEventsFllpnl";
-            this.todaysEventsFllpnl.Size = new System.Drawing.Size(460, 318);
+            this.todaysEventsFllpnl.Size = new System.Drawing.Size(498, 356);
             this.todaysEventsFllpnl.TabIndex = 3;
             // 
             // dashboardEventsLbl
             // 
             this.dashboardEventsLbl.AutoSize = true;
             this.dashboardEventsLbl.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardEventsLbl.Location = new System.Drawing.Point(8, 34);
+            this.dashboardEventsLbl.Location = new System.Drawing.Point(8, 13);
             this.dashboardEventsLbl.Name = "dashboardEventsLbl";
             this.dashboardEventsLbl.Size = new System.Drawing.Size(261, 51);
             this.dashboardEventsLbl.TabIndex = 2;
@@ -241,10 +238,10 @@
             // 
             // timeNowLbl
             // 
-            this.timeNowLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.timeNowLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.timeNowLbl.AutoSize = true;
             this.timeNowLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeNowLbl.Location = new System.Drawing.Point(748, 14);
+            this.timeNowLbl.Location = new System.Drawing.Point(583, 330);
             this.timeNowLbl.Name = "timeNowLbl";
             this.timeNowLbl.Size = new System.Drawing.Size(101, 41);
             this.timeNowLbl.TabIndex = 1;
@@ -252,14 +249,32 @@
             // 
             // tpEvents
             // 
+            this.tpEvents.Controls.Add(this.AddEventBtn);
             this.tpEvents.Controls.Add(this.flowLayoutPanel1);
             this.tpEvents.Location = new System.Drawing.Point(4, 25);
             this.tpEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(949, 446);
+            this.tpEvents.Size = new System.Drawing.Size(987, 438);
             this.tpEvents.TabIndex = 1;
             this.tpEvents.Text = "Events";
             this.tpEvents.UseVisualStyleBackColor = true;
+            // 
+            // AddEventBtn
+            // 
+            this.AddEventBtn.AllowDrop = true;
+            this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddEventBtn.AutoEllipsis = true;
+            this.AddEventBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
+            this.AddEventBtn.Font = new System.Drawing.Font("Oswald SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddEventBtn.Location = new System.Drawing.Point(6, 9);
+            this.AddEventBtn.Name = "AddEventBtn";
+            this.AddEventBtn.Size = new System.Drawing.Size(940, 68);
+            this.AddEventBtn.TabIndex = 4;
+            this.AddEventBtn.Text = "Add new event";
+            this.AddEventBtn.UseVisualStyleBackColor = false;
+            this.AddEventBtn.Click += new System.EventHandler(this.AddEventBtn_Click);
+            this.AddEventBtn.Resize += new System.EventHandler(this.AddEventBtn_Resize);
             // 
             // flowLayoutPanel1
             // 
@@ -267,63 +282,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelDay1);
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelDay2);
-            this.flowLayoutPanel1.Controls.Add(this.AddEventBtn);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelToday);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelUpcoming);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 80);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(933, 422);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(971, 350);
             this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // flowLayoutPanelDay1
-            // 
-            this.flowLayoutPanelDay1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.flowLayoutPanelDay1.AutoSize = true;
-            this.flowLayoutPanelDay1.Location = new System.Drawing.Point(3, 37);
-            this.flowLayoutPanelDay1.Name = "flowLayoutPanelDay1";
-            this.flowLayoutPanelDay1.Size = new System.Drawing.Size(0, 0);
-            this.flowLayoutPanelDay1.TabIndex = 3;
-            // 
-            // flowLayoutPanelDay2
-            // 
-            this.flowLayoutPanelDay2.AutoSize = true;
-            this.flowLayoutPanelDay2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanelDay2.Location = new System.Drawing.Point(9, 3);
-            this.flowLayoutPanelDay2.Name = "flowLayoutPanelDay2";
-            this.flowLayoutPanelDay2.Size = new System.Drawing.Size(0, 0);
-            this.flowLayoutPanelDay2.TabIndex = 5;
-            // 
-            // AddEventBtn
-            // 
-            this.AddEventBtn.AllowDrop = true;
-            this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddEventBtn.AutoEllipsis = true;
-            this.AddEventBtn.BackColor = System.Drawing.Color.LawnGreen;
-            this.AddEventBtn.Font = new System.Drawing.Font("Oswald SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddEventBtn.Location = new System.Drawing.Point(15, 3);
-            this.AddEventBtn.Name = "AddEventBtn";
-            this.AddEventBtn.Size = new System.Drawing.Size(907, 68);
-            this.AddEventBtn.TabIndex = 4;
-            this.AddEventBtn.Text = "Add new event";
-            this.AddEventBtn.UseVisualStyleBackColor = false;
-            this.AddEventBtn.Click += new System.EventHandler(this.AddEventBtn_Click);
             // 
             // flowLayoutPanelToday
             // 
             this.flowLayoutPanelToday.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanelToday.AutoSize = true;
             this.flowLayoutPanelToday.Controls.Add(this.lblEvents);
-            this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 77);
+            this.flowLayoutPanelToday.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanelToday.Name = "flowLayoutPanelToday";
-            this.flowLayoutPanelToday.Size = new System.Drawing.Size(907, 66);
+            this.flowLayoutPanelToday.Size = new System.Drawing.Size(940, 66);
             this.flowLayoutPanelToday.TabIndex = 9;
             // 
             // lblEvents
             // 
             this.lblEvents.AllowDrop = true;
-            this.lblEvents.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblEvents.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblEvents.BackColor = System.Drawing.Color.LightGray;
             this.lblEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblEvents.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -331,7 +311,7 @@
             this.lblEvents.Location = new System.Drawing.Point(0, 0);
             this.lblEvents.Margin = new System.Windows.Forms.Padding(0);
             this.lblEvents.Name = "lblEvents";
-            this.lblEvents.Size = new System.Drawing.Size(907, 66);
+            this.lblEvents.Size = new System.Drawing.Size(940, 66);
             this.lblEvents.TabIndex = 8;
             this.lblEvents.Text = "Today\'s events";
             this.lblEvents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -340,10 +320,11 @@
             // 
             this.flowLayoutPanelUpcoming.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanelUpcoming.AutoSize = true;
             this.flowLayoutPanelUpcoming.Controls.Add(this.UpcomingEventsLbl);
-            this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(3, 149);
+            this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(3, 75);
             this.flowLayoutPanelUpcoming.Name = "flowLayoutPanelUpcoming";
-            this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(907, 68);
+            this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(940, 68);
             this.flowLayoutPanelUpcoming.TabIndex = 10;
             // 
             // UpcomingEventsLbl
@@ -356,7 +337,7 @@
             this.UpcomingEventsLbl.Location = new System.Drawing.Point(0, 0);
             this.UpcomingEventsLbl.Margin = new System.Windows.Forms.Padding(0);
             this.UpcomingEventsLbl.Name = "UpcomingEventsLbl";
-            this.UpcomingEventsLbl.Size = new System.Drawing.Size(907, 68);
+            this.UpcomingEventsLbl.Size = new System.Drawing.Size(940, 68);
             this.UpcomingEventsLbl.TabIndex = 9;
             this.UpcomingEventsLbl.Text = "Upcoming events";
             this.UpcomingEventsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -382,7 +363,7 @@
             this.tpExpenses.Location = new System.Drawing.Point(4, 25);
             this.tpExpenses.Margin = new System.Windows.Forms.Padding(0);
             this.tpExpenses.Name = "tpExpenses";
-            this.tpExpenses.Size = new System.Drawing.Size(949, 446);
+            this.tpExpenses.Size = new System.Drawing.Size(987, 438);
             this.tpExpenses.TabIndex = 2;
             this.tpExpenses.Text = "Expenses";
             this.tpExpenses.UseVisualStyleBackColor = true;
@@ -392,7 +373,8 @@
             this.ExpenseTotalPriceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTotalPriceLbl.AutoSize = true;
             this.ExpenseTotalPriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTotalPriceLbl.Location = new System.Drawing.Point(539, 390);
+            this.ExpenseTotalPriceLbl.ForeColor = System.Drawing.Color.Green;
+            this.ExpenseTotalPriceLbl.Location = new System.Drawing.Point(577, 382);
             this.ExpenseTotalPriceLbl.Name = "ExpenseTotalPriceLbl";
             this.ExpenseTotalPriceLbl.Size = new System.Drawing.Size(48, 41);
             this.ExpenseTotalPriceLbl.TabIndex = 15;
@@ -403,7 +385,7 @@
             this.ExpenseTotalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTotalLbl.AutoSize = true;
             this.ExpenseTotalLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTotalLbl.Location = new System.Drawing.Point(467, 390);
+            this.ExpenseTotalLbl.Location = new System.Drawing.Point(505, 382);
             this.ExpenseTotalLbl.Name = "ExpenseTotalLbl";
             this.ExpenseTotalLbl.Size = new System.Drawing.Size(66, 41);
             this.ExpenseTotalLbl.TabIndex = 14;
@@ -412,13 +394,13 @@
             // AddExpenseBtn
             // 
             this.AddExpenseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddExpenseBtn.BackColor = System.Drawing.Color.LawnGreen;
+            this.AddExpenseBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.AddExpenseBtn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddExpenseBtn.Location = new System.Drawing.Point(619, 380);
+            this.AddExpenseBtn.Location = new System.Drawing.Point(657, 372);
             this.AddExpenseBtn.Name = "AddExpenseBtn";
             this.AddExpenseBtn.Size = new System.Drawing.Size(286, 53);
             this.AddExpenseBtn.TabIndex = 13;
-            this.AddExpenseBtn.Text = "Add expense";
+            this.AddExpenseBtn.Text = "Add Expense";
             this.AddExpenseBtn.UseVisualStyleBackColor = false;
             this.AddExpenseBtn.Click += new System.EventHandler(this.AddExpenseBtn_Click);
             // 
@@ -426,7 +408,7 @@
             // 
             this.ExpenseQuantityNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseQuantityNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseQuantityNum.Location = new System.Drawing.Point(773, 341);
+            this.ExpenseQuantityNum.Location = new System.Drawing.Point(811, 333);
             this.ExpenseQuantityNum.Minimum = new decimal(new int[] {
             1,
             0,
@@ -445,7 +427,7 @@
             // 
             this.ExpensePriceNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensePriceNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpensePriceNum.Location = new System.Drawing.Point(619, 341);
+            this.ExpensePriceNum.Location = new System.Drawing.Point(657, 333);
             this.ExpensePriceNum.Name = "ExpensePriceNum";
             this.ExpensePriceNum.Size = new System.Drawing.Size(126, 30);
             this.ExpensePriceNum.TabIndex = 11;
@@ -455,7 +437,7 @@
             this.ExpenseQuantityLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseQuantityLbl.AutoSize = true;
             this.ExpenseQuantityLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseQuantityLbl.Location = new System.Drawing.Point(766, 297);
+            this.ExpenseQuantityLbl.Location = new System.Drawing.Point(804, 289);
             this.ExpenseQuantityLbl.Name = "ExpenseQuantityLbl";
             this.ExpenseQuantityLbl.Size = new System.Drawing.Size(97, 41);
             this.ExpenseQuantityLbl.TabIndex = 10;
@@ -466,7 +448,7 @@
             this.ExpensePriceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpensePriceLbl.AutoSize = true;
             this.ExpensePriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpensePriceLbl.Location = new System.Drawing.Point(612, 299);
+            this.ExpensePriceLbl.Location = new System.Drawing.Point(650, 291);
             this.ExpensePriceLbl.Name = "ExpensePriceLbl";
             this.ExpensePriceLbl.Size = new System.Drawing.Size(69, 41);
             this.ExpensePriceLbl.TabIndex = 9;
@@ -477,7 +459,7 @@
             this.ExpenseNotesLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseNotesLbl.AutoSize = true;
             this.ExpenseNotesLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseNotesLbl.Location = new System.Drawing.Point(612, 138);
+            this.ExpenseNotesLbl.Location = new System.Drawing.Point(650, 138);
             this.ExpenseNotesLbl.Name = "ExpenseNotesLbl";
             this.ExpenseNotesLbl.Size = new System.Drawing.Size(72, 41);
             this.ExpenseNotesLbl.TabIndex = 8;
@@ -489,9 +471,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseNotesRtbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ExpenseNotesRtbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseNotesRtbx.Location = new System.Drawing.Point(619, 182);
+            this.ExpenseNotesRtbx.Location = new System.Drawing.Point(657, 182);
             this.ExpenseNotesRtbx.Name = "ExpenseNotesRtbx";
-            this.ExpenseNotesRtbx.Size = new System.Drawing.Size(286, 115);
+            this.ExpenseNotesRtbx.Size = new System.Drawing.Size(286, 107);
             this.ExpenseNotesRtbx.TabIndex = 7;
             this.ExpenseNotesRtbx.Text = "";
             // 
@@ -499,7 +481,7 @@
             // 
             this.ExpenseTitleTbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTitleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTitleTbx.Location = new System.Drawing.Point(619, 98);
+            this.ExpenseTitleTbx.Location = new System.Drawing.Point(657, 98);
             this.ExpenseTitleTbx.Name = "ExpenseTitleTbx";
             this.ExpenseTitleTbx.Size = new System.Drawing.Size(286, 37);
             this.ExpenseTitleTbx.TabIndex = 6;
@@ -509,7 +491,7 @@
             this.ExpenseTitleLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTitleLbl.AutoSize = true;
             this.ExpenseTitleLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseTitleLbl.Location = new System.Drawing.Point(612, 59);
+            this.ExpenseTitleLbl.Location = new System.Drawing.Point(650, 59);
             this.ExpenseTitleLbl.Name = "ExpenseTitleLbl";
             this.ExpenseTitleLbl.Size = new System.Drawing.Size(62, 41);
             this.ExpenseTitleLbl.TabIndex = 5;
@@ -520,7 +502,7 @@
             this.NewExpenseLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NewExpenseLbl.AutoSize = true;
             this.NewExpenseLbl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewExpenseLbl.Location = new System.Drawing.Point(691, 13);
+            this.NewExpenseLbl.Location = new System.Drawing.Point(729, 13);
             this.NewExpenseLbl.Name = "NewExpenseLbl";
             this.NewExpenseLbl.Size = new System.Drawing.Size(172, 48);
             this.NewExpenseLbl.TabIndex = 4;
@@ -542,7 +524,7 @@
             this.ExpensesLv.HideSelection = false;
             this.ExpensesLv.Location = new System.Drawing.Point(239, 64);
             this.ExpensesLv.Name = "ExpensesLv";
-            this.ExpensesLv.Size = new System.Drawing.Size(348, 324);
+            this.ExpensesLv.Size = new System.Drawing.Size(386, 316);
             this.ExpensesLv.TabIndex = 3;
             this.ExpensesLv.UseCompatibleStateImageBehavior = false;
             this.ExpensesLv.View = System.Windows.Forms.View.Details;
@@ -599,7 +581,7 @@
             this.MembersLv.HideSelection = false;
             this.MembersLv.Location = new System.Drawing.Point(20, 64);
             this.MembersLv.Name = "MembersLv";
-            this.MembersLv.Size = new System.Drawing.Size(184, 324);
+            this.MembersLv.Size = new System.Drawing.Size(184, 316);
             this.MembersLv.TabIndex = 0;
             this.MembersLv.UseCompatibleStateImageBehavior = false;
             this.MembersLv.View = System.Windows.Forms.View.Details;
@@ -622,7 +604,7 @@
             this.tpComplaints.Location = new System.Drawing.Point(4, 25);
             this.tpComplaints.Margin = new System.Windows.Forms.Padding(0);
             this.tpComplaints.Name = "tpComplaints";
-            this.tpComplaints.Size = new System.Drawing.Size(949, 446);
+            this.tpComplaints.Size = new System.Drawing.Size(987, 438);
             this.tpComplaints.TabIndex = 3;
             this.tpComplaints.Text = "Complaints";
             this.tpComplaints.UseVisualStyleBackColor = true;
@@ -635,7 +617,7 @@
             this.complaintsFllpnl.AutoScroll = true;
             this.complaintsFllpnl.Location = new System.Drawing.Point(16, 64);
             this.complaintsFllpnl.Name = "complaintsFllpnl";
-            this.complaintsFllpnl.Size = new System.Drawing.Size(500, 361);
+            this.complaintsFllpnl.Size = new System.Drawing.Size(538, 356);
             this.complaintsFllpnl.TabIndex = 2;
             // 
             // newComplaintGb
@@ -648,9 +630,9 @@
             this.newComplaintGb.Controls.Add(this.descriptionLbl);
             this.newComplaintGb.Controls.Add(this.titleLbl);
             this.newComplaintGb.Controls.Add(this.newComplaintLbl);
-            this.newComplaintGb.Location = new System.Drawing.Point(531, 13);
+            this.newComplaintGb.Location = new System.Drawing.Point(568, 8);
             this.newComplaintGb.Name = "newComplaintGb";
-            this.newComplaintGb.Size = new System.Drawing.Size(397, 412);
+            this.newComplaintGb.Size = new System.Drawing.Size(400, 412);
             this.newComplaintGb.TabIndex = 1;
             this.newComplaintGb.TabStop = false;
             // 
@@ -658,12 +640,12 @@
             // 
             this.fileComplaintBttn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.fileComplaintBttn.BackColor = System.Drawing.Color.SpringGreen;
+            this.fileComplaintBttn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.fileComplaintBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileComplaintBttn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fileComplaintBttn.Location = new System.Drawing.Point(24, 343);
             this.fileComplaintBttn.Name = "fileComplaintBttn";
-            this.fileComplaintBttn.Size = new System.Drawing.Size(347, 50);
+            this.fileComplaintBttn.Size = new System.Drawing.Size(350, 50);
             this.fileComplaintBttn.TabIndex = 3;
             this.fileComplaintBttn.Text = "File Complaint";
             this.fileComplaintBttn.UseVisualStyleBackColor = false;
@@ -676,7 +658,7 @@
             this.titleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleTbx.Location = new System.Drawing.Point(24, 122);
             this.titleTbx.Name = "titleTbx";
-            this.titleTbx.Size = new System.Drawing.Size(347, 37);
+            this.titleTbx.Size = new System.Drawing.Size(350, 37);
             this.titleTbx.TabIndex = 1;
             // 
             // descriptionTbx
@@ -687,7 +669,7 @@
             this.descriptionTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionTbx.Location = new System.Drawing.Point(24, 212);
             this.descriptionTbx.Name = "descriptionTbx";
-            this.descriptionTbx.Size = new System.Drawing.Size(347, 112);
+            this.descriptionTbx.Size = new System.Drawing.Size(350, 112);
             this.descriptionTbx.TabIndex = 2;
             this.descriptionTbx.Text = "";
             // 
@@ -738,10 +720,11 @@
             this.tbAgreements.Controls.Add(this.groupBox1);
             this.tbAgreements.Location = new System.Drawing.Point(4, 25);
             this.tbAgreements.Name = "tbAgreements";
-            this.tbAgreements.Size = new System.Drawing.Size(949, 446);
+            this.tbAgreements.Size = new System.Drawing.Size(987, 438);
             this.tbAgreements.TabIndex = 4;
             this.tbAgreements.Text = "Agreements";
             this.tbAgreements.UseVisualStyleBackColor = true;
+            this.tbAgreements.Enter += new System.EventHandler(this.tbAgreements_Enter);
             // 
             // agreementsFlpnl
             // 
@@ -749,16 +732,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.agreementsFlpnl.AutoScroll = true;
-            this.agreementsFlpnl.Location = new System.Drawing.Point(22, 68);
+            this.agreementsFlpnl.Location = new System.Drawing.Point(16, 64);
             this.agreementsFlpnl.Name = "agreementsFlpnl";
-            this.agreementsFlpnl.Size = new System.Drawing.Size(500, 361);
+            this.agreementsFlpnl.Size = new System.Drawing.Size(538, 356);
             this.agreementsFlpnl.TabIndex = 5;
             // 
             // agreemeentsLBl
             // 
             this.agreemeentsLBl.AutoSize = true;
             this.agreemeentsLBl.Font = new System.Drawing.Font("Oswald", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.agreemeentsLBl.Location = new System.Drawing.Point(14, 17);
+            this.agreemeentsLBl.Location = new System.Drawing.Point(8, 13);
             this.agreemeentsLBl.Name = "agreemeentsLBl";
             this.agreemeentsLBl.Size = new System.Drawing.Size(147, 48);
             this.agreemeentsLBl.TabIndex = 3;
@@ -775,9 +758,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.newAgreementLbl);
-            this.groupBox1.Location = new System.Drawing.Point(537, 17);
+            this.groupBox1.Location = new System.Drawing.Point(568, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(397, 412);
+            this.groupBox1.Size = new System.Drawing.Size(400, 412);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
@@ -785,14 +768,14 @@
             // 
             this.newAgreementBttn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.newAgreementBttn.BackColor = System.Drawing.Color.SpringGreen;
+            this.newAgreementBttn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.newAgreementBttn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newAgreementBttn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.newAgreementBttn.Location = new System.Drawing.Point(24, 343);
             this.newAgreementBttn.Name = "newAgreementBttn";
-            this.newAgreementBttn.Size = new System.Drawing.Size(347, 50);
+            this.newAgreementBttn.Size = new System.Drawing.Size(350, 50);
             this.newAgreementBttn.TabIndex = 3;
-            this.newAgreementBttn.Text = "Create Agreement";
+            this.newAgreementBttn.Text = "Add Agreement";
             this.newAgreementBttn.UseVisualStyleBackColor = false;
             this.newAgreementBttn.Click += new System.EventHandler(this.NewAgreementBttn_Click);
             // 
@@ -803,7 +786,7 @@
             this.agreementTitleTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agreementTitleTbx.Location = new System.Drawing.Point(24, 122);
             this.agreementTitleTbx.Name = "agreementTitleTbx";
-            this.agreementTitleTbx.Size = new System.Drawing.Size(347, 37);
+            this.agreementTitleTbx.Size = new System.Drawing.Size(350, 37);
             this.agreementTitleTbx.TabIndex = 1;
             // 
             // agreementDescriprionTbx
@@ -814,7 +797,7 @@
             this.agreementDescriprionTbx.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agreementDescriprionTbx.Location = new System.Drawing.Point(24, 212);
             this.agreementDescriprionTbx.Name = "agreementDescriprionTbx";
-            this.agreementDescriprionTbx.Size = new System.Drawing.Size(347, 112);
+            this.agreementDescriprionTbx.Size = new System.Drawing.Size(350, 112);
             this.agreementDescriprionTbx.TabIndex = 2;
             this.agreementDescriprionTbx.Text = "";
             // 
@@ -855,7 +838,7 @@
             this.tpGroups.Controls.Add(this.gbNewGroup);
             this.tpGroups.Location = new System.Drawing.Point(4, 25);
             this.tpGroups.Name = "tpGroups";
-            this.tpGroups.Size = new System.Drawing.Size(949, 446);
+            this.tpGroups.Size = new System.Drawing.Size(987, 438);
             this.tpGroups.TabIndex = 6;
             this.tpGroups.Text = "Groups";
             this.tpGroups.UseVisualStyleBackColor = true;
@@ -879,7 +862,7 @@
             this.flPnlGroups.AutoScroll = true;
             this.flPnlGroups.Location = new System.Drawing.Point(16, 64);
             this.flPnlGroups.Name = "flPnlGroups";
-            this.flPnlGroups.Size = new System.Drawing.Size(500, 361);
+            this.flPnlGroups.Size = new System.Drawing.Size(538, 356);
             this.flPnlGroups.TabIndex = 0;
             // 
             // gbNewGroup
@@ -894,9 +877,9 @@
             this.gbNewGroup.Controls.Add(this.lblGroupRules);
             this.gbNewGroup.Controls.Add(this.tbxGroupRules);
             this.gbNewGroup.Controls.Add(this.btnAddGroup);
-            this.gbNewGroup.Location = new System.Drawing.Point(531, 13);
+            this.gbNewGroup.Location = new System.Drawing.Point(568, 8);
             this.gbNewGroup.Name = "gbNewGroup";
-            this.gbNewGroup.Size = new System.Drawing.Size(397, 412);
+            this.gbNewGroup.Size = new System.Drawing.Size(400, 412);
             this.gbNewGroup.TabIndex = 5;
             this.gbNewGroup.TabStop = false;
             // 
@@ -927,7 +910,7 @@
             this.tbxGroupName.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxGroupName.Location = new System.Drawing.Point(24, 110);
             this.tbxGroupName.Name = "tbxGroupName";
-            this.tbxGroupName.Size = new System.Drawing.Size(347, 37);
+            this.tbxGroupName.Size = new System.Drawing.Size(350, 37);
             this.tbxGroupName.TabIndex = 1;
             // 
             // lblGroupDescription
@@ -949,7 +932,7 @@
             this.tbxGroupDescription.Multiline = true;
             this.tbxGroupDescription.Name = "tbxGroupDescription";
             this.tbxGroupDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbxGroupDescription.Size = new System.Drawing.Size(347, 37);
+            this.tbxGroupDescription.Size = new System.Drawing.Size(350, 37);
             this.tbxGroupDescription.TabIndex = 2;
             // 
             // lblGroupRules
@@ -972,19 +955,19 @@
             this.tbxGroupRules.Multiline = true;
             this.tbxGroupRules.Name = "tbxGroupRules";
             this.tbxGroupRules.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbxGroupRules.Size = new System.Drawing.Size(347, 37);
+            this.tbxGroupRules.Size = new System.Drawing.Size(350, 37);
             this.tbxGroupRules.TabIndex = 3;
             // 
             // btnAddGroup
             // 
             this.btnAddGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddGroup.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnAddGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.btnAddGroup.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddGroup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAddGroup.Location = new System.Drawing.Point(24, 343);
             this.btnAddGroup.Name = "btnAddGroup";
-            this.btnAddGroup.Size = new System.Drawing.Size(347, 50);
+            this.btnAddGroup.Size = new System.Drawing.Size(350, 50);
             this.btnAddGroup.TabIndex = 4;
             this.btnAddGroup.Text = "Add Group";
             this.btnAddGroup.UseVisualStyleBackColor = false;
@@ -997,16 +980,17 @@
             this.tpCreatedEvents.Location = new System.Drawing.Point(4, 25);
             this.tpCreatedEvents.Name = "tpCreatedEvents";
             this.tpCreatedEvents.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCreatedEvents.Size = new System.Drawing.Size(949, 446);
+            this.tpCreatedEvents.Size = new System.Drawing.Size(987, 438);
             this.tpCreatedEvents.TabIndex = 5;
             this.tpCreatedEvents.Text = "CreatedEvents";
             this.tpCreatedEvents.UseVisualStyleBackColor = true;
             // 
             // CreatedEventsLbl
             // 
+            this.CreatedEventsLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CreatedEventsLbl.AutoSize = true;
             this.CreatedEventsLbl.Font = new System.Drawing.Font("Oswald", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatedEventsLbl.Location = new System.Drawing.Point(326, 16);
+            this.CreatedEventsLbl.Location = new System.Drawing.Point(343, 16);
             this.CreatedEventsLbl.Name = "CreatedEventsLbl";
             this.CreatedEventsLbl.Size = new System.Drawing.Size(274, 68);
             this.CreatedEventsLbl.TabIndex = 1;
@@ -1016,7 +1000,7 @@
             // 
             this.CreatedEventsFllpnl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CreatedEventsFllpnl.AutoScroll = true;
-            this.CreatedEventsFllpnl.Location = new System.Drawing.Point(8, 98);
+            this.CreatedEventsFllpnl.Location = new System.Drawing.Point(27, 98);
             this.CreatedEventsFllpnl.Name = "CreatedEventsFllpnl";
             this.CreatedEventsFllpnl.Size = new System.Drawing.Size(920, 327);
             this.CreatedEventsFllpnl.TabIndex = 0;
@@ -1041,7 +1025,7 @@
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Padding = new System.Windows.Forms.Padding(10);
-            this.tsMain.Size = new System.Drawing.Size(953, 64);
+            this.tsMain.Size = new System.Drawing.Size(991, 64);
             this.tsMain.TabIndex = 1;
             // 
             // tsBtnDashboard
@@ -1053,7 +1037,7 @@
             this.tsBtnDashboard.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnDashboard.Size = new System.Drawing.Size(142, 44);
             this.tsBtnDashboard.Text = "Dashboard";
-            this.tsBtnDashboard.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnDashboard.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsBtnEvents
             // 
@@ -1067,7 +1051,7 @@
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnEvents.Size = new System.Drawing.Size(112, 44);
             this.tsBtnEvents.Text = "Events";
-            this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnEvents.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // myEventsToolStripMenuItem
             // 
@@ -1092,7 +1076,7 @@
             this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnExpenses.Size = new System.Drawing.Size(124, 44);
             this.tsBtnExpenses.Text = "Expenses";
-            this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnExpenses.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsBtnComplaints
             // 
@@ -1103,7 +1087,7 @@
             this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnComplaints.Size = new System.Drawing.Size(145, 44);
             this.tsBtnComplaints.Text = "Complaints";
-            this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnComplaints.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsAgreementBttn
             // 
@@ -1114,7 +1098,7 @@
             this.tsAgreementBttn.Padding = new System.Windows.Forms.Padding(5);
             this.tsAgreementBttn.Size = new System.Drawing.Size(151, 44);
             this.tsAgreementBttn.Text = "Agreements";
-            this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsAgreementBttn.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsBtnGroups
             // 
@@ -1125,23 +1109,23 @@
             this.tsBtnGroups.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnGroups.Size = new System.Drawing.Size(110, 44);
             this.tsBtnGroups.Text = "Groups";
-            this.tsBtnGroups.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnGroups.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // timeNowTimer
             // 
+            this.timeNowTimer.Enabled = true;
             this.timeNowTimer.Interval = 1000;
-            this.timeNowTimer.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.timeNowTimer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // UserNameLbl
             // 
             this.UserNameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UserNameLbl.AutoEllipsis = true;
-            this.UserNameLbl.AutoSize = true;
             this.UserNameLbl.BackColor = System.Drawing.SystemColors.Control;
             this.UserNameLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserNameLbl.Location = new System.Drawing.Point(766, 14);
+            this.UserNameLbl.Location = new System.Drawing.Point(811, 14);
             this.UserNameLbl.Name = "UserNameLbl";
-            this.UserNameLbl.Size = new System.Drawing.Size(67, 41);
+            this.UserNameLbl.Size = new System.Drawing.Size(167, 41);
             this.UserNameLbl.TabIndex = 2;
             this.UserNameLbl.Text = "Name";
             // 
@@ -1150,7 +1134,7 @@
             this.PersonIconPbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PersonIconPbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.PersonIconPbx.Image = global::StudentWiseClient.Properties.Resources.anonymous_person_png;
-            this.PersonIconPbx.Location = new System.Drawing.Point(713, 7);
+            this.PersonIconPbx.Location = new System.Drawing.Point(751, 7);
             this.PersonIconPbx.Name = "PersonIconPbx";
             this.PersonIconPbx.Size = new System.Drawing.Size(54, 50);
             this.PersonIconPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1160,14 +1144,16 @@
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(944, 501);
+            this.ClientSize = new System.Drawing.Size(982, 493);
             this.Controls.Add(this.PersonIconPbx);
             this.Controls.Add(this.UserNameLbl);
             this.Controls.Add(this.tsMain);
             this.Controls.Add(this.tcMain);
-            this.MinimumSize = new System.Drawing.Size(470, 540);
+            this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(1000, 540);
             this.Name = "FormMain";
             this.Text = "StudentWise";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tcMain.ResumeLayout(false);
             this.tpDashboard.ResumeLayout(false);
@@ -1199,7 +1185,6 @@
             this.tsMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PersonIconPbx)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1215,8 +1200,6 @@
         private System.Windows.Forms.ToolStripButton tsBtnComplaints;
         private System.Windows.Forms.TabPage tpEvents;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelDay1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelDay2;
         private System.Windows.Forms.Button AddEventBtn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelToday;
         private System.Windows.Forms.Label lblEvents;

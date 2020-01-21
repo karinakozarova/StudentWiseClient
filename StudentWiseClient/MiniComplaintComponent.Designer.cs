@@ -34,23 +34,25 @@
             // 
             // titleLbl
             // 
-            this.titleLbl.AutoSize = true;
+            this.titleLbl.AutoEllipsis = true;
             this.titleLbl.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.titleLbl.Location = new System.Drawing.Point(20, 40);
+            this.titleLbl.Location = new System.Drawing.Point(20, 45);
+            this.titleLbl.Margin = new System.Windows.Forms.Padding(0);
             this.titleLbl.Name = "titleLbl";
-            this.titleLbl.Size = new System.Drawing.Size(174, 35);
+            this.titleLbl.Size = new System.Drawing.Size(360, 35);
             this.titleLbl.TabIndex = 3;
             this.titleLbl.Text = "Title of the complaint";
             // 
             // statusLbl
             // 
-            this.statusLbl.AutoSize = true;
+            this.statusLbl.AutoEllipsis = true;
             this.statusLbl.Font = new System.Drawing.Font("Oswald", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusLbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.statusLbl.Location = new System.Drawing.Point(22, 16);
+            this.statusLbl.Location = new System.Drawing.Point(20, 20);
+            this.statusLbl.Margin = new System.Windows.Forms.Padding(0);
             this.statusLbl.Name = "statusLbl";
-            this.statusLbl.Size = new System.Drawing.Size(79, 24);
+            this.statusLbl.Size = new System.Drawing.Size(360, 24);
             this.statusLbl.TabIndex = 2;
             this.statusLbl.Text = "IN PROGRESS";
             // 
@@ -61,10 +63,11 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Controls.Add(this.titleLbl);
             this.Controls.Add(this.statusLbl);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "MiniComplaintComponent";
-            this.Size = new System.Drawing.Size(384, 91);
+            this.Padding = new System.Windows.Forms.Padding(20);
+            this.Size = new System.Drawing.Size(400, 100);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

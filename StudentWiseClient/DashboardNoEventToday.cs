@@ -19,19 +19,8 @@ namespace StudentWiseClient
 
         private void AddEventBtn_Click_1(object sender, EventArgs e)
         {
-            List<Form> openForms = new List<Form>();
-
-            foreach (Form f in Application.OpenForms)
-                openForms.Add(f);
-
-            foreach (Form f in openForms)
-            {
-                if (f.Name == "FormMain")
-                    f.Close();
-            }
-
-            NewEvent createEvent = new NewEvent();
-            createEvent.Show();
+            NewEvent createEventDlg = new NewEvent();
+            createEventDlg.ShowDialog(FormMain.Instance);
         }
     }
 }

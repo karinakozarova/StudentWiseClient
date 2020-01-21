@@ -36,7 +36,8 @@
             // 
             // lblName
             // 
-            this.lblName.Font = new System.Drawing.Font("Oswald", 12F);
+            this.lblName.AutoEllipsis = true;
+            this.lblName.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Bold);
             this.lblName.Location = new System.Drawing.Point(20, 20);
             this.lblName.Margin = new System.Windows.Forms.Padding(0);
             this.lblName.Name = "lblName";
@@ -85,6 +86,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblRules);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "GroupComponent";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.Size = new System.Drawing.Size(600, 250);

@@ -20,50 +20,36 @@ namespace StudentWiseClient
 
         private void ContinueBttn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(emailAddressTbx.Text))
-            {
-                MessageBox.Show("Please, enter your email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(emailAddressTbx.Text) ||
+                !EmailValidation.IsValidEmail(emailAddressTbx.Text))
+                throw new ApplicationException("Please, enter a valid email address.");
 
-            if (String.IsNullOrEmpty(passwordTbx.Text))
-            {
-                MessageBox.Show("Please, enter your password.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (string.IsNullOrEmpty(passwordTbx.Text))
+                throw new ApplicationException("Please, enter your password.");
 
-            if (!EmailValidation.IsValidEmail(emailAddressTbx.Text))
-            {
-                MessageBox.Show("Please, enter a valid email address.", null, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                Server.CurrentSession = Server.Login(emailAddressTbx.Text, passwordTbx.Text);
-                this.Hide();
-
-                FormMain dashboard = new FormMain();
-                dashboard.Show();
-                return;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Server.CurrentSession = Server.Login(emailAddressTbx.Text, passwordTbx.Text);
+            
+            FormMain dashboard = new FormMain();
+            dashboard.Show();
+            Close();
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
             Register registerScreen = new Register();
             registerScreen.Show();
+            Close();
         }
 
         private void passwordTbx_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
                 continueBttn.PerformClick();
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.ExitIfLastForm();
         }
     }
 }

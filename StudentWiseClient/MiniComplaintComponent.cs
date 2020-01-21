@@ -13,26 +13,16 @@ namespace StudentWiseClient
 {
     public partial class MiniComplaintComponent : UserControl
     {
-        public MiniComplaintComponent()
+        public MiniComplaintComponent(Complaint complaint)
         {
             InitializeComponent();
+            Refresh(complaint);
         }
 
-        public void ChangeComplainStatus(ComplaintStatus status)
+        public void Refresh(Complaint complaint)
         {
-            statusLbl.Text = status.ToString();
-        }
-
-        public void ChangeTitle(String title)
-        {
-            titleLbl.Text = title;
-        }
-
-
-        public void ChangeLabels(String title, ComplaintStatus status)
-        {
-            ChangeTitle(title);
-            ChangeComplainStatus(status);
+            titleLbl.Text = complaint.Title;
+            statusLbl.Text = complaint.Status.ToString().ToUpper();
         }
     }
 }

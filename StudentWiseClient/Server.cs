@@ -184,7 +184,7 @@ namespace StudentWiseApi
                 );
             }
 
-            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+            throw new Exception(UnexpectedStatus(response.StatusCode));
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace StudentWiseApi
                 );
             }
 
-            throw new Exception(Server.UnexpectedStatus(response.StatusCode));
+            throw new Exception(UnexpectedStatus(response.StatusCode));
         }
     }
 }

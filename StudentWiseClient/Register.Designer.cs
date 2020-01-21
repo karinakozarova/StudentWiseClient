@@ -48,7 +48,7 @@
             // 
             this.CreateAccountLbl.AutoSize = true;
             this.CreateAccountLbl.Font = new System.Drawing.Font("Oswald", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateAccountLbl.Location = new System.Drawing.Point(160, 22);
+            this.CreateAccountLbl.Location = new System.Drawing.Point(155, 12);
             this.CreateAccountLbl.MaximumSize = new System.Drawing.Size(250, 0);
             this.CreateAccountLbl.Name = "CreateAccountLbl";
             this.CreateAccountLbl.Size = new System.Drawing.Size(192, 146);
@@ -58,10 +58,10 @@
             // LogoPbx
             // 
             this.LogoPbx.Image = global::StudentWiseClient.Properties.Resources.StudentwISEvBuilders__1_1;
-            this.LogoPbx.Location = new System.Drawing.Point(24, 22);
+            this.LogoPbx.Location = new System.Drawing.Point(16, 12);
             this.LogoPbx.Name = "LogoPbx";
-            this.LogoPbx.Size = new System.Drawing.Size(127, 136);
-            this.LogoPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LogoPbx.Size = new System.Drawing.Size(130, 145);
+            this.LogoPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LogoPbx.TabIndex = 2;
             this.LogoPbx.TabStop = false;
             // 
@@ -143,19 +143,19 @@
             // 
             this.loginLinkL.AutoSize = true;
             this.loginLinkL.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginLinkL.Location = new System.Drawing.Point(167, 566);
+            this.loginLinkL.Location = new System.Drawing.Point(172, 566);
             this.loginLinkL.Name = "loginLinkL";
-            this.loginLinkL.Size = new System.Drawing.Size(59, 35);
+            this.loginLinkL.Size = new System.Drawing.Size(64, 35);
             this.loginLinkL.TabIndex = 6;
             this.loginLinkL.TabStop = true;
-            this.loginLinkL.Text = "Login!";
+            this.loginLinkL.Text = "Log in!";
             this.loginLinkL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoginLinkL_LinkClicked);
             // 
             // textLbl
             // 
             this.textLbl.AutoSize = true;
             this.textLbl.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textLbl.Location = new System.Drawing.Point(95, 531);
+            this.textLbl.Location = new System.Drawing.Point(100, 531);
             this.textLbl.Name = "textLbl";
             this.textLbl.Size = new System.Drawing.Size(205, 35);
             this.textLbl.TabIndex = 14;
@@ -163,9 +163,9 @@
             // 
             // registerBtn
             // 
-            this.registerBtn.BackColor = System.Drawing.Color.LawnGreen;
+            this.registerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(184)))), ((int)(((byte)(92)))));
             this.registerBtn.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerBtn.Location = new System.Drawing.Point(73, 467);
+            this.registerBtn.Location = new System.Drawing.Point(75, 467);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(255, 61);
             this.registerBtn.TabIndex = 5;
@@ -196,6 +196,7 @@
             this.MinimizeBox = false;
             this.Name = "Register";
             this.Text = "Register";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Register_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

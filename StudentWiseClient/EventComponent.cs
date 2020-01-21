@@ -13,121 +13,69 @@ namespace StudentWiseClient
 {
     public partial class EventComponent : UserControl
     {
-        public EventComponent()
+        public EventComponent(Event ev)
         {
             InitializeComponent();
-            this.BorderStyle = BorderStyle.FixedSingle;
+            Self = ev;
+            SetAllNeededProperties();
         }
 
-        public UserSession Session
-        {
-            get;
-            set;
-        }
+        public Event Self { get; private set; }
 
-        public int Id
+        public void SetEvent()
         {
-            set;
-            get;
-        }
-        public Event CurrentEvent
-        {
-            set;
-            get;
-        }
-
-        public User Creator
-        {
-            get;
-            set;
-        }
-
-        public void SetEvent(Event ev)
-        {
-            CurrentEvent = ev;
-            if (CurrentEvent.Participants.Contains(Server.CurrentSession.Info))
+            if (Self.Participants.Contains(Server.CurrentSession.Info))
             {
-                if (CurrentEvent.Status == EventStatus.Pending)
+                switch (Self.Status)
                 {
-                    EventCompletePbx.Image = Properties.Resources.undo_favicon;
-                }
-                else if (CurrentEvent.Status == EventStatus.Finished)
-                {
-                    EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
-                }
-                else
-                {
-                    EventCompletePbx.Visible = false;
-                }
+                    case EventStatus.Pending:
+                        EventCompletePbx.Image = Properties.Resources.undo_favicon;
+                        break;
+
+                    case EventStatus.Finished:
+                        EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+                        break;
+
+                    default:
+                        EventCompletePbx.Visible = false;
+                        break;
+                }                
             }
         }
-        public void SetAllNeededProperties(int id, User creator, UserSession session, String title, String description, EventType type, DateTime? start, DateTime? end, int points = 0)
+        public void SetAllNeededProperties()
         {
-            this.SetTitle(title);
-            this.SetDescription(description);
-            this.SetType(type);
-            this.SetDeadline(start, end);
-            this.SetEventPoints();
-            this.Id = id;
-            this.Session = session;
-            this.Creator = creator;
-
-            if (this.Creator.Id != this.Session.Info.Id)
+            EventTitleLbl.Text = Self.Title.UppercaseFirst();
+            EventDescriptionLbl.Text = Self.Description.UppercaseFirst() ?? "No description provided.";
+            EventTypeLbl.Text = Self.Kind.ToString().ToUpper();
+            SetDeadline(Self.StartsAt, Self.FinishesAt);
+            
+            DeleteEventPbx.Visible = Self.Creator == Server.CurrentSession.Info;
+            
+            switch (Self.Kind)
             {
-                DeleteEventPbx.Visible = false;
+                case EventType.Party:
+                    BackColor = Color.Gold;
+                    break;
+
+                case EventType.Duty:
+                    BackColor = Color.OrangeRed;
+                    break;
             }
-            else
-            {
-                DeleteEventPbx.Visible = true;
-            }
-
-            if(type == EventType.Party)
-            {
-                this.BackColor = Color.Gold;
-            } else if (type == EventType.Duty)
-            {
-                this.BackColor = Color.OrangeRed;
-            }
-        }
-
-        public void SetTitle(String title)
-        {
-            EventTitleLbl.Text = title;
-        }
-        public void SetDescription(String description)
-        {
-            EventDescriptionLbl.Text = description;
-        }
-
-        public void SetType(EventType type)
-        {
-            EventTypeLbl.Text = type.ToString();
+            SetEvent();
         }
 
         public void SetDeadline(DateTime? start, DateTime? end)
         {
-            if(start == null && end == null)
-            {
-                EventDeadlineLbl.Text = "";
-            }else if(start == null)
-            {
-                EventDeadlineLbl.Text = $"Until {end}";
-            }else if(end == null)
-            {
-                EventDeadlineLbl.Text = $"From {start}";
-            }
-            else
-            {
-                EventDeadlineLbl.Text = $"From {start} untill {end}";
-            }
-            
-        }
+            string result = "";
 
-        public void SetEventPoints(int points = 0)
-        {
-            EventPointsLbl.Text = points.ToString();
-        }
+            if (start.HasValue)
+                result += $"From {start} ";
 
+            if (end.HasValue)
+                result += $"Until {end}";
+
+            EventDeadlineLbl.Text = result;
+        }
 
         private void DeleteEventPbx_Click(object sender, EventArgs e)
         {
@@ -139,17 +87,19 @@ namespace StudentWiseClient
 
         private void EventCompletePbx_Click(object sender, EventArgs e)
         {
-            if (CurrentEvent.Participants.Contains(Server.CurrentSession.Info))
+            if (Self.Participants.Contains(Server.CurrentSession.Info))
             {
-                if (CurrentEvent.Status == EventStatus.Pending)
+                switch (Self.Status)
                 {
-                    CurrentEvent.MarkAsFinished();
-                    EventCompletePbx.Image = Properties.Resources.undo_favicon;
-                }
-                else if (CurrentEvent.Status == EventStatus.Finished)
-                {
-                    Event.MarkEvent(CurrentEvent.Id, false);
-                    EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+                    case EventStatus.Pending:
+                        Self.MarkAsFinished();
+                        EventCompletePbx.Image = Properties.Resources.undo_favicon;
+                        break;
+
+                    case EventStatus.Finished:
+                        Self.MarkAsPending();
+                        EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+                        break;
                 }
             }
 
@@ -157,11 +107,8 @@ namespace StudentWiseClient
 
         private void DeleteEvent()
         {
-            Event.Delete(this.Id, this.Session);
-
-            this.Parent.Controls.Remove(this);
-
-            //this.Enabled = false;
+            Self.Delete();
+            FormMain.Instance.ReloadEvents();
         }
         
     }

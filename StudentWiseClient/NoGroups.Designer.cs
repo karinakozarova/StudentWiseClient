@@ -35,9 +35,10 @@
             // lblHeader
             // 
             this.lblHeader.Font = new System.Drawing.Font("Oswald", 36F);
-            this.lblHeader.Location = new System.Drawing.Point(23, 20);
+            this.lblHeader.Location = new System.Drawing.Point(20, 20);
+            this.lblHeader.Margin = new System.Windows.Forms.Padding(0);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(454, 100);
+            this.lblHeader.Size = new System.Drawing.Size(460, 100);
             this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Sorry!";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -45,11 +46,12 @@
             // lblBody
             // 
             this.lblBody.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBody.Location = new System.Drawing.Point(23, 120);
+            this.lblBody.Location = new System.Drawing.Point(20, 120);
+            this.lblBody.Margin = new System.Windows.Forms.Padding(0);
             this.lblBody.Name = "lblBody";
-            this.lblBody.Size = new System.Drawing.Size(454, 60);
+            this.lblBody.Size = new System.Drawing.Size(460, 60);
             this.lblBody.TabIndex = 0;
-            this.lblBody.Text = "Currently, there are no groups";
+            this.lblBody.Text = "Currently, there are no groups.";
             this.lblBody.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NoGroups

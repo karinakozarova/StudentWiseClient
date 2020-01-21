@@ -28,23 +28,28 @@ namespace StudentWiseClient
                 throw new ApplicationException("Please, enter your password");
 
             Server.CurrentSession = Server.Login(emailAddressTbx.Text, passwordTbx.Text);
-            this.Hide();
-
+            
             FormMain dashboard = new FormMain();
             dashboard.Show();
+            Close();
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
             Register registerScreen = new Register();
             registerScreen.Show();
+            Close();
         }
 
         private void passwordTbx_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
                 continueBttn.PerformClick();
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.ExitIfLastForm();
         }
     }
 }

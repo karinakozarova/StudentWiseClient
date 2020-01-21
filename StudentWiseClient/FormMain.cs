@@ -388,6 +388,11 @@ namespace StudentWiseClient
             lblEvents.Width = AddEventBtn.Width;
             UpcomingEventsLbl.Width = AddEventBtn.Width;
         }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.ExitIfLastForm();
+        }
         #endregion
     }
 }

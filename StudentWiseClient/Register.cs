@@ -36,22 +36,27 @@ namespace StudentWiseClient
             Server.CurrentSession = Server.CreateUser(emailAddressTbx.Text, fNameTbx.Text, lNameTbx.Text, passwordTbx.Text);
 
             // User logged in successfully, go to the according page
-            this.Hide();
             FormMain dashboard = new FormMain();
             dashboard.Show();
+            Close();
         }
 
         private void LoginLinkL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
             Login loginScreen = new Login();
             loginScreen.Show();
+            Close();
         }
 
         private void passwordTbx_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
                 registerBtn.PerformClick();
+        }
+
+        private void Register_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.ExitIfLastForm();
         }
     }
 }

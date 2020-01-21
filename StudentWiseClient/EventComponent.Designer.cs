@@ -87,7 +87,7 @@
             this.EventPointsLbl.Name = "EventPointsLbl";
             this.EventPointsLbl.Size = new System.Drawing.Size(165, 73);
             this.EventPointsLbl.TabIndex = 6;
-            this.EventPointsLbl.Text = "Event Points";
+            this.EventPointsLbl.Text = "Points: 0";
             this.EventPointsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DeleteEventPbx

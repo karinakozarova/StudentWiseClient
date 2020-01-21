@@ -18,7 +18,15 @@ namespace StudentWiseClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += ShowExceptionHandler;
-            Application.Run(new Login());
+            Login firstForm = new Login();
+            firstForm.Show();
+            Application.Run();
+        }
+
+        static public void ExitIfLastForm()
+        {
+            if (Application.OpenForms.Count == 0)
+                Application.Exit();
         }
 
         static void ShowExceptionHandler(object sender, ThreadExceptionEventArgs e)

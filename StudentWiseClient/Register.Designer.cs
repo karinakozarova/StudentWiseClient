@@ -196,6 +196,7 @@
             this.MinimizeBox = false;
             this.Name = "Register";
             this.Text = "Register";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Register_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

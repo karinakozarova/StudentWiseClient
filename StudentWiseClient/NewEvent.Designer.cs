@@ -152,16 +152,20 @@
             // startTimepkr
             // 
             this.startTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startTimepkr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.startTimepkr.Location = new System.Drawing.Point(229, 445);
             this.startTimepkr.Name = "startTimepkr";
+            this.startTimepkr.ShowUpDown = true;
             this.startTimepkr.Size = new System.Drawing.Size(200, 37);
             this.startTimepkr.TabIndex = 16;
             // 
             // EndTimepkr
             // 
             this.EndTimepkr.Font = new System.Drawing.Font("Oswald", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EndTimepkr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.EndTimepkr.Location = new System.Drawing.Point(229, 536);
             this.EndTimepkr.Name = "EndTimepkr";
+            this.EndTimepkr.ShowUpDown = true;
             this.EndTimepkr.Size = new System.Drawing.Size(200, 37);
             this.EndTimepkr.TabIndex = 17;
             // 
@@ -177,6 +181,7 @@
             // 
             // eventTypeCmbbx
             // 
+            this.eventTypeCmbbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.eventTypeCmbbx.Font = new System.Drawing.Font("Oswald", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eventTypeCmbbx.FormattingEnabled = true;
             this.eventTypeCmbbx.Location = new System.Drawing.Point(18, 348);

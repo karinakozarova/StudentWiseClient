@@ -75,6 +75,12 @@ namespace StudentWiseApi
                 InvolvedAs = involvement                
             };
         }
+
+        public bool Matches(Event e, UserSession session = null)
+        {
+            // TODO: move the matching logic here
+            return Event.Filter(new List<Event> { e }, this, session).Count > 0;
+        }
     }
     
     /// <summary>

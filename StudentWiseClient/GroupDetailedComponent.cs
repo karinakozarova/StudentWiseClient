@@ -26,65 +26,40 @@ namespace StudentWiseClient
             lblRules.Text = group.Rules.UppercaseFirst();
             lblDateTime.Text = $"Created on {group.CreatedAt.ToShortDateString()}";
 
-            cbxMembers.Items.AddRange(UsersFullNames(users));
-        }
-
-        private string[] UsersFullNames(List<User> users)
-        {
-            List<string> results = new List<string>();
-
-            foreach (var user in users)
-            {
-                results.Add($"{user.FirstName.UppercaseFirst()} {user.LastName.UppercaseFirst()}");
-            }
-
-            return results.ToArray();
+            cbxMembers.Items.AddRange(users.ToArray());
         }
 
         private void BtnMoveMember_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (cbxMembers.SelectedIndex == -1)
-                    throw new Exception("Please, select a user.");
+            if (cbxMembers.SelectedIndex == -1)
+                throw new Exception("Please, select a user.");
 
-                User user = users[cbxMembers.SelectedIndex];
-                user.MoveToGroup(group.Id);
+            User user = users[cbxMembers.SelectedIndex];
+            user.MoveToGroup(group.Id);
 
-                MessageBox.Show(
-                    $"Successfully moved {user.FirstName.UppercaseFirst()} to the {group.Name.UppercaseFirst()} group.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show(
+                $"Successfully moved {user} to the {group.Name.UppercaseFirst()} group.",
+                "Information",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
 
         private void BtnRemoveMember_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (cbxMembers.SelectedIndex == -1)
-                    throw new Exception("Please, select a user.");
 
-                User user = users[cbxMembers.SelectedIndex];
-                group.RemoveMember(user.Id);
+            if (cbxMembers.SelectedIndex == -1)
+                throw new Exception("Please, select a user.");
 
-                MessageBox.Show(
-                    $"Successfully removed {user.FirstName.UppercaseFirst()} from the {group.Name.UppercaseFirst()} group.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message, null, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            User user = users[cbxMembers.SelectedIndex];
+            group.RemoveMember(user.Id);
+
+            MessageBox.Show(
+                $"Successfully removed {user} from the {group.Name.UppercaseFirst()} group.",
+                "Information",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
     }
 }

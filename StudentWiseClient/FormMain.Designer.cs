@@ -40,8 +40,8 @@
             this.dashboardEventsLbl = new System.Windows.Forms.Label();
             this.timeNowLbl = new System.Windows.Forms.Label();
             this.tpEvents = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.AddEventBtn = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelToday = new System.Windows.Forms.FlowLayoutPanel();
             this.lblEvents = new System.Windows.Forms.Label();
             this.flowLayoutPanelUpcoming = new System.Windows.Forms.FlowLayoutPanel();
@@ -260,19 +260,6 @@
             this.tpEvents.Text = "Events";
             this.tpEvents.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelToday);
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelUpcoming);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 80);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(933, 345);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
             // AddEventBtn
             // 
             this.AddEventBtn.AllowDrop = true;
@@ -289,6 +276,19 @@
             this.AddEventBtn.UseVisualStyleBackColor = false;
             this.AddEventBtn.Click += new System.EventHandler(this.AddEventBtn_Click);
             this.AddEventBtn.Resize += new System.EventHandler(this.AddEventBtn_Resize);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelToday);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanelUpcoming);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 80);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(933, 345);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // flowLayoutPanelToday
             // 
@@ -374,6 +374,7 @@
             this.ExpenseTotalPriceLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ExpenseTotalPriceLbl.AutoSize = true;
             this.ExpenseTotalPriceLbl.Font = new System.Drawing.Font("Oswald", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseTotalPriceLbl.ForeColor = System.Drawing.Color.Green;
             this.ExpenseTotalPriceLbl.Location = new System.Drawing.Point(539, 390);
             this.ExpenseTotalPriceLbl.Name = "ExpenseTotalPriceLbl";
             this.ExpenseTotalPriceLbl.Size = new System.Drawing.Size(48, 41);
@@ -867,6 +868,8 @@
             // 
             // gbNewGroup
             // 
+            this.gbNewGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbNewGroup.Controls.Add(this.lblNewGroupHeader);
             this.gbNewGroup.Controls.Add(this.lblGroupName);
             this.gbNewGroup.Controls.Add(this.tbxGroupName);
@@ -1034,7 +1037,7 @@
             this.tsBtnDashboard.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnDashboard.Size = new System.Drawing.Size(142, 44);
             this.tsBtnDashboard.Text = "Dashboard";
-            this.tsBtnDashboard.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnDashboard.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsBtnEvents
             // 
@@ -1048,7 +1051,7 @@
             this.tsBtnEvents.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnEvents.Size = new System.Drawing.Size(112, 44);
             this.tsBtnEvents.Text = "Events";
-            this.tsBtnEvents.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnEvents.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // myEventsToolStripMenuItem
             // 
@@ -1073,7 +1076,7 @@
             this.tsBtnExpenses.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnExpenses.Size = new System.Drawing.Size(124, 44);
             this.tsBtnExpenses.Text = "Expenses";
-            this.tsBtnExpenses.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnExpenses.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsBtnComplaints
             // 
@@ -1084,7 +1087,7 @@
             this.tsBtnComplaints.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnComplaints.Size = new System.Drawing.Size(145, 44);
             this.tsBtnComplaints.Text = "Complaints";
-            this.tsBtnComplaints.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnComplaints.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsAgreementBttn
             // 
@@ -1095,7 +1098,7 @@
             this.tsAgreementBttn.Padding = new System.Windows.Forms.Padding(5);
             this.tsAgreementBttn.Size = new System.Drawing.Size(151, 44);
             this.tsAgreementBttn.Text = "Agreements";
-            this.tsAgreementBttn.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsAgreementBttn.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // tsBtnGroups
             // 
@@ -1106,12 +1109,13 @@
             this.tsBtnGroups.Padding = new System.Windows.Forms.Padding(5);
             this.tsBtnGroups.Size = new System.Drawing.Size(110, 44);
             this.tsBtnGroups.Text = "Groups";
-            this.tsBtnGroups.Click += new System.EventHandler(this.TsBtn_Click);
+            this.tsBtnGroups.Click += new System.EventHandler(this.SwitchToTab_Click);
             // 
             // timeNowTimer
             // 
+            this.timeNowTimer.Enabled = true;
             this.timeNowTimer.Interval = 1000;
-            this.timeNowTimer.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.timeNowTimer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // UserNameLbl
             // 

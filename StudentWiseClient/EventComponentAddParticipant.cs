@@ -72,39 +72,23 @@ namespace StudentWiseClient
         private void DeleteEvent()
         {
             Self.Delete();
-            Parent.Controls.Remove(this);
+            FormMain.Instance.ReloadEvents();
         }
 
         private void ReloadParticipants()
         {
             ParticipantsCmb.Items.Clear();
 
-            List<User> users = User.Enumerate();
-            List<User> participants = Self.Participants;
-            List<User> result = users.Except(participants).ToList();
-
-
-            foreach (User user in result)
-                ParticipantsCmb.Items.Add(user.FirstName);
+            foreach (User user in User.Enumerate().Except(Self.Participants))
+                ParticipantsCmb.Items.Add(user);
         }
 
         private void AddParticipantBtn_Click(object sender, EventArgs e)
         {
-            int userID = 0;
-            List<User> users = User.Enumerate();
-            List<User> participants = Self.Participants;
-            List<User> result = users.Except(participants).ToList();
-
-            foreach (User user in result)
+            if (ParticipantsCmb.SelectedItem is User)
             {
-                if (ParticipantsCmb.SelectedIndex == -1) continue;
-                string selected = ParticipantsCmb.SelectedItem.ToString();
-                if (user.FirstName == selected)
-                {
-                    userID = user.Id;
-                    Self.AddParticipant(userID);
-                    ReloadParticipants();
-                }
+                Self.AddParticipant((ParticipantsCmb.SelectedItem as User).Id);
+                ParticipantsCmb.Items.Remove(ParticipantsCmb.SelectedItem);
             }
         }
 
@@ -120,15 +104,17 @@ namespace StudentWiseClient
         {
             if (Self.Participants.Contains(Server.CurrentSession.Info))
             {
-                if (Self.Status == EventStatus.Pending)
+                switch (Self.Status)
                 {
-                    Self.MarkAsFinished();
-                    EventCompletePbx.Image = Properties.Resources.undo_favicon;
-                }
-                else if (Self.Status == EventStatus.Finished)
-                {
-                    Self.MarkAsPending(); 
-                    EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+                    case EventStatus.Pending:
+                        Self.MarkAsFinished();
+                        EventCompletePbx.Image = Properties.Resources.undo_favicon;
+                        break;
+
+                    case EventStatus.Finished:
+                        Self.MarkAsPending();
+                        EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+                        break;
                 }
             }
         }

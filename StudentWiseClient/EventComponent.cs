@@ -89,15 +89,17 @@ namespace StudentWiseClient
         {
             if (Self.Participants.Contains(Server.CurrentSession.Info))
             {
-                if (Self.Status == EventStatus.Pending)
+                switch (Self.Status)
                 {
-                    Self.MarkAsFinished();
-                    EventCompletePbx.Image = Properties.Resources.undo_favicon;
-                }
-                else if (Self.Status == EventStatus.Finished)
-                {
-                    Self.MarkAsPending();
-                    EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+                    case EventStatus.Pending:
+                        Self.MarkAsFinished();
+                        EventCompletePbx.Image = Properties.Resources.undo_favicon;
+                        break;
+
+                    case EventStatus.Finished:
+                        Self.MarkAsPending();
+                        EventCompletePbx.Image = Properties.Resources.kisspng_check_mark_symbol_icon_black_checkmark_5a76d35a732948_8416047115177367944717;
+                        break;
                 }
             }
 
@@ -106,7 +108,7 @@ namespace StudentWiseClient
         private void DeleteEvent()
         {
             Self.Delete();
-            Parent.Controls.Remove(this);
+            FormMain.Instance.ReloadEvents();
         }
         
     }

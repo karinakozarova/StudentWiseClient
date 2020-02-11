@@ -66,11 +66,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(94, 9);
+            this.label2.Location = new System.Drawing.Point(135, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 64);
+            this.label2.Size = new System.Drawing.Size(171, 64);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Create new event";
+            this.label2.Text = "New event";
             // 
             // eventTitleLbl
             // 
@@ -209,8 +209,11 @@
             this.Controls.Add(this.titleTbx);
             this.Controls.Add(this.eventTitleLbl);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "NewEvent";
-            this.Text = "Create new event";
+            this.Text = "New event";
             this.ResumeLayout(false);
             this.PerformLayout();
 

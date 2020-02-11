@@ -22,9 +22,9 @@ namespace StudentWiseClient
             startDttpkr.MinDate = DateTime.Today;
 
             // Add event types
-            eventTypeCmbbx.Items.Add(EventType.Other);
-            eventTypeCmbbx.Items.Add(EventType.Duty);
-            eventTypeCmbbx.Items.Add(EventType.Party);
+            eventTypeCmbbx.Items.AddRange(
+                Enum.GetValues(typeof(EventType)).Cast<object>().ToArray()
+            );
             eventTypeCmbbx.SelectedIndex = 0;
         }
 

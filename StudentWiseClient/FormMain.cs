@@ -46,9 +46,9 @@ namespace StudentWiseClient
             // Today's events
             if (EventFilter.Today().Matches(ev))
             {
-                // Remove "DashboardNoEventToday" panel
+                // Remove "NoEventsToday" panel
                 foreach (Control control in todaysEventsFllpnl.Controls)
-                    if (control is DashboardNoEventToday)
+                    if (control is NoEventsToday)
                         todaysEventsFllpnl.Controls.Remove(control);
 
                 todaysEventsFllpnl.Controls.Add(new EventComponent(ev));
@@ -62,9 +62,9 @@ namespace StudentWiseClient
             // Created events
             if (EventFilter.Involved(EventInvolvement.Creator).Matches(ev))
             {
-                // Remove "NoEventsAvailable" panel
+                // Remove "NoEventsCreated" panel
                 foreach (Control control in CreatedEventsFllpnl.Controls)
-                    if (control is NoEventsAvailable)
+                    if (control is NoEventsCreated)
                         CreatedEventsFllpnl.Controls.Remove(control);
 
                 CreatedEventsFllpnl.Controls.Add(new EventComponentAddParticipant(ev));               
@@ -84,16 +84,21 @@ namespace StudentWiseClient
                 AddEventToUI(ev);
 
             if (CreatedEventsFllpnl.Controls.Count == 0)
-                CreatedEventsFllpnl.Controls.Add(new NoEventsAvailable());
+                CreatedEventsFllpnl.Controls.Add(new NoEventsCreated());
 
             if (todaysEventsFllpnl.Controls.Count == 0)
-                todaysEventsFllpnl.Controls.Add(new DashboardNoEventToday());
+                todaysEventsFllpnl.Controls.Add(new NoEventsToday());
+        }
+
+        public void ShowNewEventForm()
+        {
+            NewEvent dlgNewEvent = new NewEvent();
+            dlgNewEvent.ShowDialog(this);
         }
 
         private void AddEventBtn_Click(object sender, EventArgs e)
         {
-            NewEvent createEventDlg = new NewEvent();
-            createEventDlg.ShowDialog(this);
+            ShowNewEventForm();
         }
 
         private void RemoveChilderExceptLabels(Control control)

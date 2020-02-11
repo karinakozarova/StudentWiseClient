@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace StudentWiseClient
 {
-    public partial class NoEventsAvailable : UserControl
+    public partial class NoEventsToday : UserControl
     {
-        public NoEventsAvailable()
+        public NoEventsToday()
         {
             InitializeComponent();
+        }
+
+        private void BtnAddEvent_Click(object sender, EventArgs e)
+        {
+            FormMain.Instance.ShowNewEventForm();
         }
     }
 }

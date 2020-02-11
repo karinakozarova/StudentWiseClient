@@ -426,8 +426,14 @@
             // ExpensePriceNum
             // 
             this.ExpensePriceNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExpensePriceNum.DecimalPlaces = 2;
             this.ExpensePriceNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpensePriceNum.Location = new System.Drawing.Point(657, 333);
+            this.ExpensePriceNum.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.ExpensePriceNum.Name = "ExpensePriceNum";
             this.ExpensePriceNum.Size = new System.Drawing.Size(126, 30);
             this.ExpensePriceNum.TabIndex = 11;

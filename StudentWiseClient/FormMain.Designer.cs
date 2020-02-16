@@ -1157,6 +1157,7 @@
             this.Controls.Add(this.tsMain);
             this.Controls.Add(this.tcMain);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 540);
             this.Name = "FormMain";
             this.Text = "StudentWise";

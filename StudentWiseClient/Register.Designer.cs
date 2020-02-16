@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             this.CreateAccountLbl = new System.Windows.Forms.Label();
             this.LogoPbx = new System.Windows.Forms.PictureBox();
             this.emailAddressTbx = new System.Windows.Forms.TextBox();
@@ -192,6 +193,7 @@
             this.Controls.Add(this.CreateAccountLbl);
             this.Controls.Add(this.LogoPbx);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Register";

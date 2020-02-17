@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace StudentWiseClient
 {
-    public partial class DashboardNoEventToday : UserControl
+    public partial class NoEventsCreated : UserControl
     {
-        public DashboardNoEventToday()
+        public NoEventsCreated()
         {
             InitializeComponent();
         }
 
-        private void AddEventBtn_Click_1(object sender, EventArgs e)
+        private void BtnAddEvent_Click(object sender, EventArgs e)
         {
-            NewEvent createEventDlg = new NewEvent();
-            createEventDlg.ShowDialog(FormMain.Instance);
+            FormMain.Instance.ShowNewEventForm();
         }
     }
 }

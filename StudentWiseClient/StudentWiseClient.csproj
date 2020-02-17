@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -88,11 +91,11 @@
     <Compile Include="ComplaintsComponent.Designer.cs">
       <DependentUpon>ComplaintsComponent.cs</DependentUpon>
     </Compile>
-    <Compile Include="DashboardNoEventToday.cs">
+    <Compile Include="NoEventsToday.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DashboardNoEventToday.Designer.cs">
-      <DependentUpon>DashboardNoEventToday.cs</DependentUpon>
+    <Compile Include="NoEventsToday.Designer.cs">
+      <DependentUpon>NoEventsToday.cs</DependentUpon>
     </Compile>
     <Compile Include="EmailValidation.cs" />
     <Compile Include="Event.cs" />
@@ -158,11 +161,11 @@
     <Compile Include="NoComplaints.Designer.cs">
       <DependentUpon>NoComplaints.cs</DependentUpon>
     </Compile>
-    <Compile Include="NoEventsAvailable.cs">
+    <Compile Include="NoEventsCreated.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NoEventsAvailable.Designer.cs">
-      <DependentUpon>NoEventsAvailable.cs</DependentUpon>
+    <Compile Include="NoEventsCreated.Designer.cs">
+      <DependentUpon>NoEventsCreated.cs</DependentUpon>
     </Compile>
     <Compile Include="NoGroups.cs">
       <SubType>UserControl</SubType>
@@ -189,8 +192,8 @@
     <EmbeddedResource Include="ComplaintsComponent.resx">
       <DependentUpon>ComplaintsComponent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DashboardNoEventToday.resx">
-      <DependentUpon>DashboardNoEventToday.cs</DependentUpon>
+    <EmbeddedResource Include="NoEventsToday.resx">
+      <DependentUpon>NoEventsToday.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventComponent.resx">
       <DependentUpon>EventComponent.cs</DependentUpon>
@@ -222,8 +225,8 @@
     <EmbeddedResource Include="NoComplaints.resx">
       <DependentUpon>NoComplaints.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NoEventsAvailable.resx">
-      <DependentUpon>NoEventsAvailable.cs</DependentUpon>
+    <EmbeddedResource Include="NoEventsCreated.resx">
+      <DependentUpon>NoEventsCreated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NoGroups.resx">
       <DependentUpon>NoGroups.cs</DependentUpon>
@@ -275,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\anonymous-person-png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

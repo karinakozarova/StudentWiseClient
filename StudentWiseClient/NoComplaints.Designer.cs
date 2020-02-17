@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblHeader = new System.Windows.Forms.Label();
             this.lblBody = new System.Windows.Forms.Label();
+            this.lblHeader = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // lblHeader
-            // 
-            this.lblHeader.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(20, 120);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(0);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(420, 60);
-            this.lblHeader.TabIndex = 3;
-            this.lblHeader.Text = "You didn\'t file any complaints yet.";
-            this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblBody
             // 
-            this.lblBody.Font = new System.Drawing.Font("Oswald", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBody.Location = new System.Drawing.Point(20, 20);
+            this.lblBody.Font = new System.Drawing.Font("Oswald", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBody.Location = new System.Drawing.Point(20, 120);
             this.lblBody.Margin = new System.Windows.Forms.Padding(0);
             this.lblBody.Name = "lblBody";
-            this.lblBody.Size = new System.Drawing.Size(420, 100);
-            this.lblBody.TabIndex = 2;
-            this.lblBody.Text = "Sorry!";
+            this.lblBody.Size = new System.Drawing.Size(420, 60);
+            this.lblBody.TabIndex = 3;
+            this.lblBody.Text = "You didn\'t file any complaints yet.";
             this.lblBody.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblHeader
+            // 
+            this.lblHeader.Font = new System.Drawing.Font("Oswald", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.Location = new System.Drawing.Point(20, 20);
+            this.lblHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(420, 100);
+            this.lblHeader.TabIndex = 2;
+            this.lblHeader.Text = "Sorry!";
+            this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NoComplaints
             // 
@@ -69,7 +69,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Label lblBody;
+        private System.Windows.Forms.Label lblHeader;
     }
 }
